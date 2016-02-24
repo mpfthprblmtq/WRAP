@@ -1,7 +1,13 @@
-nbproject/private/
+#IGNORES EVERYTHING BUT SOURCE FILES
+
 build/
-nbbuild/
+nbproject/
 dist/
-nbdist/
-nbactions.xml
-.nb-gradle/
+test/
+*.mf
+*.xml
+
+#nbbuild/
+#nbdist/
+#nbactions.xml
+#.nb-gradle/
