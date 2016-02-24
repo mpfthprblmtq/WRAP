@@ -269,7 +269,7 @@ public class IOController {
         return false;
     }
 
-    public static boolean AddPerson(Profile p) {
+    public static boolean AddProfile(Profile p) {
 
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(rawroster, true)))) {
             out.println(p.toString());

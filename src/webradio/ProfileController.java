@@ -14,12 +14,12 @@ import java.util.Comparator;
  */
 public class ProfileController implements Comparator<Profile> {
     
-    public static boolean AddPerson(Profile p) {
+    public static boolean AddProfile(Profile p) {
         boolean dupeID = IOController.CheckForIDDupe(p.getId());
         if (dupeID) {
             return false;
         }
-        return IOController.AddPerson(p);
+        return IOController.AddProfile(p);
     }
     
     public static Profile SearchPerson(String id) {

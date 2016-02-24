@@ -1109,9 +1109,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 toBool(str[9]), toBool(str[10]), toBool(str[11]), toBool(str[12]));
         ListElement element = new ListElement(str[0], str[1], str[2]);
 
-        if (ProfileController.AddPerson(p)) {
+        if (ProfileController.AddProfile(p)) {
             errLabel.setForeground(Color.blue);
-            errLabel.setText("Person added successfully");
+            errLabel.setText("Profile added successfully");
 
             UpdateList(ADD, element);
 
@@ -1202,7 +1202,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 toBool(str[9]), toBool(str[10]), toBool(str[11]), toBool(str[12]));
 
         ProfileController.DeletePerson(temp.getId());
-        ProfileController.AddPerson(p);
+        ProfileController.AddProfile(p);
 
         ListElement t = new ListElement(temp.getfName(),
                 temp.getlName(),

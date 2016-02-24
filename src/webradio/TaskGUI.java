@@ -441,7 +441,7 @@ public class TaskGUI extends javax.swing.JFrame {
         p.setTrained(bool[3]);
         
         ProfileController.DeletePerson(temp.getId());
-        ProfileController.AddPerson(p);
+        ProfileController.AddProfile(p);
         
 
         ListElement q = new ListElement(p.getfName(),
