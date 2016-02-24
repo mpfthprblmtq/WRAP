@@ -21,8 +21,8 @@ import sun.misc.BASE64Encoder;
 public class IOController {
 
     static File config = new File("config.txt");
-    static File passwords = new File("files\\users.txt");
-    static File rawroster = new File("files\\rawroster.txt");
+    static File passwords = new File("src\\files\\users.txt");
+    static File rawroster = new File("src\\files\\rawroster.txt");
 
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
     static DateFormat filedf = new SimpleDateFormat("MM.dd.yy");
@@ -346,7 +346,7 @@ public class IOController {
     public static void reportBug(String name, String report) {
         Date date = new Date();
         String filename = filedf.format(date);
-        File bug = new File("bugreports\\" + filename + ".txt");
+        File bug = new File("src\\bugreports\\" + filename + ".txt");
 
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(bug, false)))) {
 
