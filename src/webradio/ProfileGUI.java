@@ -6,6 +6,7 @@
 package webradio;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -112,8 +113,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snum800Field = new javax.swing.JTextField();
         ssiueEmailField = new javax.swing.JTextField();
         sprefEmailField = new javax.swing.JTextField();
-        stypeBox = new javax.swing.JComboBox<>();
-        spositionBox = new javax.swing.JComboBox<>();
+        stypeBox = new javax.swing.JComboBox<String>();
+        spositionBox = new javax.swing.JComboBox<String>();
         stypeField = new javax.swing.JTextField();
         spositionField = new javax.swing.JTextField();
         sscrollPane = new javax.swing.JScrollPane();
@@ -143,15 +144,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         asiueEmailField = new javax.swing.JTextField();
         aprefEmailField = new javax.swing.JTextField();
         atypeField = new javax.swing.JTextField();
-        atypeBox = new javax.swing.JComboBox<>();
+        atypeBox = new javax.swing.JComboBox<String>();
         apositionField = new javax.swing.JTextField();
-        apositionBox = new javax.swing.JComboBox<>();
+        apositionBox = new javax.swing.JComboBox<String>();
         ascrollPane = new javax.swing.JScrollPane();
         anotesField = new javax.swing.JTextArea();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         jLabel19 = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -242,7 +243,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        stypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
+        stypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         stypeBox.setSelectedIndex(4);
         stypeBox.setEnabled(false);
         stypeBox.setNextFocusableComponent(spositionBox);
@@ -252,7 +253,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        spositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
+        spositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         spositionBox.setSelectedIndex(9);
         spositionBox.setEnabled(false);
         spositionBox.setNextFocusableComponent(snotesField);
@@ -484,6 +485,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 afNameFieldFocusGained(evt);
             }
         });
+        afNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                afNameFieldKeyPressed(evt);
+            }
+        });
 
         alNameField.setNextFocusableComponent(anum800Field);
         alNameField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -550,7 +556,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         atypeField.setEditable(false);
         atypeField.setBackground(new java.awt.Color(255, 255, 255));
 
-        atypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
+        atypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         atypeBox.setSelectedIndex(4);
         atypeBox.setNextFocusableComponent(apositionBox);
         atypeBox.addActionListener(new java.awt.event.ActionListener() {
@@ -562,7 +568,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
 
-        apositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
+        apositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         apositionBox.setSelectedIndex(9);
         apositionBox.setNextFocusableComponent(anotesField);
         apositionBox.addActionListener(new java.awt.event.ActionListener() {
@@ -1056,6 +1062,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private void snotesFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_snotesFieldFocusGained
         snotesField.selectAll();
     }//GEN-LAST:event_snotesFieldFocusGained
+
+    private void afNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_afNameFieldKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+            //if(aCheck()) {
+            //    Add();
+            //}
+        }
+    }//GEN-LAST:event_afNameFieldKeyPressed
 
     /**
      * @param args the command line arguments
