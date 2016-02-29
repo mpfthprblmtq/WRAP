@@ -11,6 +11,12 @@ package webradio;
  */
 public interface Util {
     
-    public boolean sepCheck(String str);
+    static boolean sepCheck(String str) {
+        return !str.contains("///");
+    }
+    
+    static boolean toBool(String str) {
+        return str.equals("true");
+    }
     
 }

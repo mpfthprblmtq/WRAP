@@ -2,11 +2,8 @@ Things to implement:
 	/// check
 	Enter press submission for everything
 	EventLog
+	"Are you sure" dialog for deletion
 	
 
 	Utility interface -> /// check, toBool, close/open (?), errLabel(Color, Text), Constants, valid input check
 	
-
-http://www.alvinpoh.com/how-to-make-and-run-batch-files-in-terminal-in-mac-osx/
-http://stackoverflow.com/questions/19248639/executing-jar-in-applescript
-http://stackoverflow.com/questions/1870270/sending-commands-and-strings-to-terminal-app-with-applescript

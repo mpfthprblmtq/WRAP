@@ -17,11 +17,6 @@ import javax.swing.text.PlainDocument;
  */
 public class ProfileGUI extends javax.swing.JFrame implements Util {
 
-    @Override
-    public boolean sepCheck(String str) {
-        return !str.contains("///");
-    }
-
     public class ListElement {
 
         String fName, lName, id;
@@ -810,7 +805,21 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        Delete();
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to delete " +
+                        slNameField.getText() + ", " +
+                        sfNameField.getText() + "?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION);
+        switch(res) {
+            case 0:
+                Delete();
+                break;
+            default:
+                // do nothing
+        }
+        
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
@@ -1411,7 +1420,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             afNameField.setForeground(Color.red);
             afNameField.setText("--");
-        } else if (!sepCheck(afNameField.getText())) {
+        } else if (!Util.sepCheck(afNameField.getText())) {
             flag = false;
             afNameField.setForeground(Color.red);
         }
@@ -1423,7 +1432,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             alNameField.setForeground(Color.red);
             alNameField.setText("--");
-        } else if (!sepCheck(alNameField.getText())) {
+        } else if (!Util.sepCheck(alNameField.getText())) {
             flag = false;
             alNameField.setForeground(Color.red);
         }
@@ -1515,7 +1524,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText("SIUe email invalid");
 
             // check for separator
-        } else if (!sepCheck(asiueEmailField.getText())) {
+        } else if (!Util.sepCheck(asiueEmailField.getText())) {
             flag = false;
             asiueEmailField.setForeground(Color.red);
         }
@@ -1546,7 +1555,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText("Preferred email invalid");
 
             // check for separator
-        } else if (!sepCheck(aprefEmailField.getText())) {
+        } else if (!Util.sepCheck(aprefEmailField.getText())) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
         }
@@ -1569,7 +1578,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // notes
         // if it contains separator, throw error
-        if (!sepCheck(anotesField.getText())) {
+        if (!Util.sepCheck(anotesField.getText())) {
             flag = false;
             anotesField.setForeground(Color.red);
         }
@@ -1593,7 +1602,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             sfNameField.setForeground(Color.red);
             sfNameField.setText("--");
             errLabel.setText("All fields required");
-        } else if (!sepCheck(sfNameField.getText())) {
+        } else if (!Util.sepCheck(sfNameField.getText())) {
             flag = false;
             sfNameField.setForeground(Color.red);
         }
@@ -1606,7 +1615,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             slNameField.setForeground(Color.red);
             slNameField.setText("--");
             errLabel.setText("All fields required");
-        } else if (!sepCheck(slNameField.getText())) {
+        } else if (!Util.sepCheck(slNameField.getText())) {
             flag = false;
             slNameField.setForeground(Color.red);
         }
@@ -1701,7 +1710,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText("SIUe email invalid");
 
             // check for seperator
-        } else if (!sepCheck(ssiueEmailField.getText())) {
+        } else if (!Util.sepCheck(ssiueEmailField.getText())) {
             flag = false;
             ssiueEmailField.setForeground(Color.red);
         }
@@ -1732,7 +1741,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText("SIUe email invalid");
 
             // check for seperator
-        } else if (!sepCheck(sprefEmailField.getText())) {
+        } else if (!Util.sepCheck(sprefEmailField.getText())) {
             flag = false;
             sprefEmailField.setForeground(Color.red);
         }
@@ -1752,8 +1761,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             spositionBox.setForeground(Color.red);
             errLabel.setText("All fields required");
         }
-        
-        if (!sepCheck(snotesField.getText())) {
+
+        if (!Util.sepCheck(snotesField.getText())) {
             flag = false;
             snotesField.setForeground(Color.red);
         }
@@ -1804,8 +1813,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             err = "Error with first name field";
         }
 
-        System.out.println(errCount);
-        System.out.println(err);
         if (errCount > 1) {
             errLabel.setForeground(Color.red);
             errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
