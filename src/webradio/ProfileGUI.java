@@ -211,6 +211,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 sfNameFieldFocusGained(evt);
             }
         });
+        sfNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sfNameFieldKeyPressed(evt);
+            }
+        });
 
         slNameField.setEditable(false);
         slNameField.setNextFocusableComponent(snum800Field);
@@ -219,11 +224,21 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 slNameFieldFocusGained(evt);
             }
         });
+        slNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                slNameFieldKeyPressed(evt);
+            }
+        });
 
         snum800Field.setEditable(false);
         snum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 snum800FieldFocusGained(evt);
+            }
+        });
+        snum800Field.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                snum800FieldKeyPressed(evt);
             }
         });
 
@@ -234,12 +249,22 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 ssiueEmailFieldFocusGained(evt);
             }
         });
+        ssiueEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ssiueEmailFieldKeyPressed(evt);
+            }
+        });
 
         sprefEmailField.setEditable(false);
         sprefEmailField.setNextFocusableComponent(stypeBox);
         sprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sprefEmailFieldFocusGained(evt);
+            }
+        });
+        sprefEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sprefEmailFieldKeyPressed(evt);
             }
         });
 
@@ -252,6 +277,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 stypeBoxActionPerformed(evt);
             }
         });
+        stypeBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                stypeBoxKeyPressed(evt);
+            }
+        });
 
         spositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         spositionBox.setSelectedIndex(9);
@@ -260,6 +290,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         spositionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spositionBoxActionPerformed(evt);
+            }
+        });
+        spositionBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                spositionBoxKeyPressed(evt);
             }
         });
 
@@ -282,6 +317,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snotesField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 snotesFieldFocusGained(evt);
+            }
+        });
+        snotesField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                snotesFieldKeyPressed(evt);
             }
         });
         sscrollPane.setViewportView(snotesField);
@@ -321,6 +361,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         sphoneField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sphoneField1KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 sphoneField1KeyReleased(evt);
             }
@@ -335,6 +378,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         sphoneField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sphoneField2KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 sphoneField2KeyReleased(evt);
             }
@@ -346,6 +392,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sphoneField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sphoneField3FocusGained(evt);
+            }
+        });
+        sphoneField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sphoneField3KeyPressed(evt);
             }
         });
 
@@ -497,11 +548,21 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 alNameFieldFocusGained(evt);
             }
         });
+        alNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                alNameFieldKeyPressed(evt);
+            }
+        });
 
         anum800Field.setNextFocusableComponent(aphoneField1);
         anum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 anum800FieldFocusGained(evt);
+            }
+        });
+        anum800Field.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                anum800FieldKeyPressed(evt);
             }
         });
 
@@ -513,6 +574,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         aphoneField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aphoneField1KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 aphoneField1KeyReleased(evt);
             }
@@ -526,6 +590,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         aphoneField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aphoneField2KeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 aphoneField2KeyReleased(evt);
             }
@@ -538,6 +605,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 aphoneField3FocusGained(evt);
             }
         });
+        aphoneField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aphoneField3KeyPressed(evt);
+            }
+        });
 
         asiueEmailField.setNextFocusableComponent(aprefEmailField);
         asiueEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -545,11 +617,21 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 asiueEmailFieldFocusGained(evt);
             }
         });
+        asiueEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                asiueEmailFieldKeyPressed(evt);
+            }
+        });
 
         aprefEmailField.setNextFocusableComponent(atypeBox);
         aprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aprefEmailFieldFocusGained(evt);
+            }
+        });
+        aprefEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aprefEmailFieldKeyPressed(evt);
             }
         });
 
@@ -564,6 +646,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 atypeBoxActionPerformed(evt);
             }
         });
+        atypeBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                atypeBoxKeyPressed(evt);
+            }
+        });
 
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
@@ -574,6 +661,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         apositionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apositionBoxActionPerformed(evt);
+            }
+        });
+        apositionBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                apositionBoxKeyPressed(evt);
             }
         });
 
@@ -587,6 +679,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         anotesField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 anotesFieldFocusGained(evt);
+            }
+        });
+        anotesField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                anotesFieldKeyPressed(evt);
             }
         });
         ascrollPane.setViewportView(anotesField);
@@ -813,19 +910,19 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int res = JOptionPane.showConfirmDialog(
                 null,
-                "Are you sure you want to delete " +
-                        slNameField.getText() + ", " +
-                        sfNameField.getText() + "?",
+                "Are you sure you want to delete "
+                + slNameField.getText() + ", "
+                + sfNameField.getText() + "?",
                 "Confirm Deletion",
                 JOptionPane.YES_NO_OPTION);
-        switch(res) {
+        switch (res) {
             case 0:
                 Delete();
                 break;
             default:
-                // do nothing
+            // do nothing
         }
-        
+
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
@@ -1064,13 +1161,158 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_snotesFieldFocusGained
 
     private void afNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_afNameFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             addButton.doClick();
-            //if(aCheck()) {
-            //    Add();
-            //}
         }
     }//GEN-LAST:event_afNameFieldKeyPressed
+
+    private void alNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_alNameFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_alNameFieldKeyPressed
+
+    private void anum800FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anum800FieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_anum800FieldKeyPressed
+
+    private void aphoneField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aphoneField1KeyPressed
+
+    private void aphoneField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aphoneField2KeyPressed
+
+    private void aphoneField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField3KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aphoneField3KeyPressed
+
+    private void asiueEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asiueEmailFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_asiueEmailFieldKeyPressed
+
+    private void aprefEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aprefEmailFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aprefEmailFieldKeyPressed
+
+    private void anotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anotesFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_anotesFieldKeyPressed
+
+    private void atypeBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_atypeBoxKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_atypeBoxKeyPressed
+
+    private void apositionBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apositionBoxKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_apositionBoxKeyPressed
+
+    private void sfNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sfNameFieldKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_sfNameFieldKeyPressed
+
+    private void slNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_slNameFieldKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_slNameFieldKeyPressed
+
+    private void snum800FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_snum800FieldKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_snum800FieldKeyPressed
+
+    private void sphoneField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField1KeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_sphoneField1KeyPressed
+
+    private void sphoneField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField2KeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_sphoneField2KeyPressed
+
+    private void sphoneField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField3KeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_sphoneField3KeyPressed
+
+    private void ssiueEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ssiueEmailFieldKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_ssiueEmailFieldKeyPressed
+
+    private void sprefEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sprefEmailFieldKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_sprefEmailFieldKeyPressed
+
+    private void stypeBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stypeBoxKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_stypeBoxKeyPressed
+
+    private void spositionBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spositionBoxKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_spositionBoxKeyPressed
+
+    private void snotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_snotesFieldKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            }
+        }
+    }//GEN-LAST:event_snotesFieldKeyPressed
 
     /**
      * @param args the command line arguments
