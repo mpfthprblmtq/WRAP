@@ -1756,7 +1756,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             aphoneField1.setForeground(Color.red);
             aphoneField2.setForeground(Color.red);
             aphoneField3.setForeground(Color.red);
-            errLabel.setText("Phone number field invalid");
         }
 
         // siue email
@@ -1774,7 +1773,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (!asiueEmailField.getText().contains("@")) {
             flag = false;
             asiueEmailField.setForeground(Color.red);
-            errLabel.setText("SIUe email invalid");
 
             // check for email ending
         } else if (!(asiueEmailField.getText().endsWith(".com")
@@ -1783,7 +1781,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 || asiueEmailField.getText().endsWith(".net"))) {
             flag = false;
             asiueEmailField.setForeground(Color.red);
-            errLabel.setText("SIUe email invalid");
 
             // check for separator
         } else if (!Util.sepCheck(asiueEmailField.getText())) {
@@ -1799,13 +1796,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             aprefEmailField.setForeground(Color.red);
             aprefEmailField.setText("--");
-            errLabel.setText("All fields required");
 
             // check for @
         } else if (!aprefEmailField.getText().contains("@")) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
-            errLabel.setText("Preferred email invalid");
 
             // check ending
         } else if (!(aprefEmailField.getText().endsWith(".com")
@@ -1814,7 +1809,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 || aprefEmailField.getText().endsWith(".net"))) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
-            errLabel.setText("Preferred email invalid");
 
             // check for separator
         } else if (!Util.sepCheck(aprefEmailField.getText())) {
@@ -1827,7 +1821,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (atypeBox.getSelectedIndex() == 4) {
             flag = false;
             atypeBox.setForeground(Color.red);
-            errLabel.setText("All fields required");
         }
 
         // position
@@ -1835,7 +1828,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (apositionBox.getSelectedIndex() == 9) {
             flag = false;
             apositionBox.setForeground(Color.red);
-            errLabel.setText("All fields required");
         }
 
         // notes

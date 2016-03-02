@@ -1,8 +1,8 @@
 Things to implement:
-	/// check
 	Enter press submission for everything
 	EventLog
 	"Are you sure" dialog for deletion
+	"Are you sure" dialog for closing windows
 	
 
 	Utility interface -> /// check, toBool, close/open (?), errLabel(Color, Text), Constants, valid input check

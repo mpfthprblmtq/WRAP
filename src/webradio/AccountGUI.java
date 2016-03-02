@@ -38,6 +38,7 @@ public class AccountGUI extends javax.swing.JFrame {
     Account temp;                                                   // used for editing
     DefaultListModel<ListElement> users = new DefaultListModel<>();      // for the graphical list
     ListElement[] elements;
+    boolean passwordsMatch = false;
 
     public static final int ADMIN = 0;
     public static final int MOD = 1;
@@ -482,9 +483,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tabs)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(scrollpane))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
                 .addContainerGap())
@@ -501,10 +500,9 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
-            errLabel.setForeground(Color.red);
-            errLabel.setText("Please fill all fields");
-        } else {
             Add();
+        } else {
+            // do nothing
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -725,16 +723,39 @@ public class AccountGUI extends javax.swing.JFrame {
         }
         
         // Password
-        // if it is either nothing or default, throw error
-        if (apassField.getText().equals("")) {
+        // if it is nothing, throw error
+        // if it contains separator character, throw error
+        if (apassField.getText().equals("") && aconfirmpassField.getText().equals("")) {
             flag = false;
+            apassField.setForeground(Color.red);
+            aconfirmpassField.setForeground(Color.red);
+        } else if (!passwordsMatch) {
+            flag = false;
+            apassField.setForeground(Color.red);
+            aconfirmpassField.setForeground(Color.red);
         } else if (!Util.sepCheck(apassField.getText())) {
             flag = false;
             apassField.setForeground(Color.red);
-            apassField.setForeground(Color.red);
+            aconfirmpassField.setForeground(Color.red);
         }
         
-        return true;
+        // Access
+        // if the box is on the default index, throw error
+        if (aAComboBox.getSelectedIndex() == 3) {
+            flag = false;
+            aAComboBox.setForeground(Color.red);
+        }
+        
+        // Name
+        // if it is either nothing or the default, throw error
+        if (aNField.getText().equals ("") || aNField.getText().equals("--")) {
+            flag = false;
+            aNField.setText("--");
+            aNField.setForeground(Color.red);
+        }
+        
+        setAddErrLabel();
+        return flag;
     }
 
     public boolean sCheck() {
@@ -744,10 +765,46 @@ public class AccountGUI extends javax.swing.JFrame {
                 || sNField.getText().equals(""));
     }
     
+    public void setAddErrLabel() {
+        int errCount = 0;
+        String err = "";
+        
+        if(aNField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with name field";
+        }
+        
+        if (aAComboBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with access field";
+        }
+        
+        if (apassField.getForeground() == Color.red
+                && aconfirmpassField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with password field(s)";
+        }
+        
+        if (aUField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with username field";
+        }
+        
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
+    }
+    
     public void asetAllForeground(Color c) {
         aAComboBox.setForeground(c);
         aNField.setForeground(c);
         aUField.setForeground(c);
+        apassField.setForeground(c);
+        aconfirmpassField.setForeground(c);
         //aPField.setForeground(c);
     }
     
@@ -762,9 +819,11 @@ public class AccountGUI extends javax.swing.JFrame {
         if(apassField.getText().equals(aconfirmpassField.getText())) {
             passwordMatch.setForeground(Color.blue);
             passwordMatch.setText("Passwords match!");
+            passwordsMatch = true;
         } else {
             passwordMatch.setForeground(Color.red);
             passwordMatch.setText("Passwords don't match!");
+            passwordsMatch = false;
         }
     }
 
