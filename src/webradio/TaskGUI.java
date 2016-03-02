@@ -2,6 +2,7 @@ package webradio;
 
 import java.awt.Color;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class TaskGUI extends javax.swing.JFrame {
 
@@ -324,7 +325,18 @@ public class TaskGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutItemActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
-        System.exit(0);
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to exit WRAP?",
+                "",
+                JOptionPane.YES_NO_OPTION);
+        switch (res) {
+            case 0:
+                System.exit(0);
+                break;
+            default:
+            // do nothing
+        }
     }//GEN-LAST:event_exitItemActionPerformed
 
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed

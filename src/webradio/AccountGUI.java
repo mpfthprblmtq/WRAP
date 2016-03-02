@@ -11,6 +11,8 @@ package webradio;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.Border;
 
 public class AccountGUI extends javax.swing.JFrame {
 
@@ -72,22 +74,26 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField = new javax.swing.JTextField();
         sPField = new javax.swing.JTextField();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<String>();
+        sAComboBox = new javax.swing.JComboBox<>();
         sNField = new javax.swing.JTextField();
         addPanel = new javax.swing.JPanel();
         L6 = new javax.swing.JLabel();
         L7 = new javax.swing.JLabel();
         L8 = new javax.swing.JLabel();
         L9 = new javax.swing.JLabel();
+        L10 = new javax.swing.JLabel();
+        showPassword = new javax.swing.JLabel();
         aUField = new javax.swing.JTextField();
-        aPField = new javax.swing.JTextField();
+        apassField = new javax.swing.JPasswordField();
+        aconfirmpassField = new javax.swing.JPasswordField();
+        passwordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<String>();
+        aAComboBox = new javax.swing.JComboBox<>();
         aNField = new javax.swing.JTextField();
-        AddButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -156,19 +162,15 @@ public class AccountGUI extends javax.swing.JFrame {
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
         sAComboBox.setName(""); // NOI18N
         sAComboBox.setNextFocusableComponent(sNField);
-        sAComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                sAComboBoxPopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+        sAComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sAComboBoxActionPerformed(evt);
             }
         });
 
@@ -250,28 +252,67 @@ public class AccountGUI extends javax.swing.JFrame {
         L9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         L9.setText("Name:");
 
+        L10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L10.setText("Confirm:");
+
+        showPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        showPassword.setToolTipText("Show password");
+        showPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showPasswordMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                showPasswordMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                showPasswordMouseExited(evt);
+            }
+        });
+
         aUField.setFocusCycleRoot(true);
-        aUField.setNextFocusableComponent(aPField);
         aUField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 aUFieldKeyPressed(evt);
             }
         });
 
-        aPField.setNextFocusableComponent(aAComboBox);
-        aPField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aPFieldKeyPressed(evt);
+        apassField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                apassFieldFocusLost(evt);
             }
         });
+        apassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                apassFieldKeyPressed(evt);
+            }
+        });
+
+        aconfirmpassField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                aconfirmpassFieldFocusLost(evt);
+            }
+        });
+        aconfirmpassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aconfirmpassFieldKeyPressed(evt);
+            }
+        });
+
+        passwordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        passwordMatch.setText(" ");
 
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
+        aAComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aAComboBoxActionPerformed(evt);
+            }
+        });
         aAComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 aAComboBoxKeyPressed(evt);
@@ -285,10 +326,10 @@ public class AccountGUI extends javax.swing.JFrame {
             }
         });
 
-        AddButton.setText("Add");
-        AddButton.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddButtonActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
@@ -298,7 +339,7 @@ public class AccountGUI extends javax.swing.JFrame {
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addPanelLayout.createSequentialGroup()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(AddButton)
+                    .addComponent(addButton)
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -307,20 +348,27 @@ public class AccountGUI extends javax.swing.JFrame {
                                     .addContainerGap()
                                     .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(L6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(L7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(L7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(L10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(addPanelLayout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(L8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(aPField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(aUField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(aNField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(addPanelLayout.createSequentialGroup()
-                                .addComponent(aAField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aAComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                                    .addComponent(passwordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(showPassword))
+                                .addComponent(aconfirmpassField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(addPanelLayout.createSequentialGroup()
+                                    .addComponent(aAField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(aAComboBox, 0, 86, Short.MAX_VALUE))
+                                .addComponent(apassField)
+                                .addComponent(aUField, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +380,15 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L7)
-                    .addComponent(aPField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(apassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aconfirmpassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordMatch)
+                    .addComponent(showPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aAComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,8 +399,8 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addComponent(aNField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(addButton)
+                .addGap(23, 23, 23))
         );
 
         tabs.addTab("Add", addPanel);
@@ -424,12 +480,14 @@ public class AccountGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tabs)
-                    .addComponent(scrollpane))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -441,14 +499,14 @@ public class AccountGUI extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
             errLabel.setForeground(Color.red);
             errLabel.setText("Please fill all fields");
         } else {
             Add();
         }
-    }//GEN-LAST:event_AddButtonActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseAccountGUI();
@@ -486,72 +544,22 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_listMouseClicked
 
     private void aUFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aUFieldKeyPressed
-
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (aAComboBox.getSelectedIndex() == 3
-                    || aNField.getText().equals("")
-                    || aUField.getText().equals("")
-                    || aPField.getText().equals("")) {
-                errLabel.setForeground(Color.red);
-                errLabel.setText("Please fill all fields");
-                return;
-            }
-
-            Add();
+            addButton.doClick();
         }
     }//GEN-LAST:event_aUFieldKeyPressed
 
-    private void aPFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aPFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (aAComboBox.getSelectedIndex() == 3
-                    || aNField.getText().equals("")
-                    || aUField.getText().equals("")
-                    || aPField.getText().equals("")) {
-                errLabel.setForeground(Color.red);
-                errLabel.setText("Please fill all fields");
-                return;
-            }
-
-            Add();
-        }
-    }//GEN-LAST:event_aPFieldKeyPressed
-
     private void aAComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aAComboBoxKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (aAComboBox.getSelectedIndex() == 3
-                    || aNField.getText().equals("")
-                    || aUField.getText().equals("")
-                    || aPField.getText().equals("")) {
-                errLabel.setForeground(Color.red);
-                errLabel.setText("Please fill all fields");
-                return;
-            }
-
-            Add();
+            addButton.doClick();
         }
     }//GEN-LAST:event_aAComboBoxKeyPressed
 
     private void aNFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aNFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (aAComboBox.getSelectedIndex() == 3
-                    || aNField.getText().equals("")
-                    || aUField.getText().equals("")
-                    || aPField.getText().equals("")) {
-                errLabel.setForeground(Color.red);
-                errLabel.setText("Please fill all fields");
-                return;
-            }
-
-            Add();
+            addButton.doClick();
         }
     }//GEN-LAST:event_aNFieldKeyPressed
-
-    private void sAComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_sAComboBoxPopupMenuWillBecomeInvisible
-        sAField.setText(String.valueOf(sAComboBox.getSelectedIndex()));
-        if (sAComboBox.getSelectedIndex() == 3) {
-            sAField.setText("");
-        }
-    }//GEN-LAST:event_sAComboBoxPopupMenuWillBecomeInvisible
 
     private void searchPanelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_searchPanelComponentHidden
         sUField.setText("");
@@ -582,12 +590,94 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutItemActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
-        System.exit(0);
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to exit WRAP?",
+                "",
+                JOptionPane.YES_NO_OPTION);
+        switch (res) {
+            case 0:
+                System.exit(0);
+                break;
+            default:
+            // do nothing
+        }
     }//GEN-LAST:event_exitItemActionPerformed
 
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
+
+    private void sAComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sAComboBoxActionPerformed
+        switch (sAComboBox.getSelectedIndex()) {
+            case 0:
+                sAField.setText("Admin");
+                break;
+            case 1:
+                sAField.setText("Mod");
+                break;
+            case 2:
+                sAField.setText("User");
+                break;
+            case 3:
+                sAField.setText("");
+                break;
+        }
+    }//GEN-LAST:event_sAComboBoxActionPerformed
+
+    private void aAComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAComboBoxActionPerformed
+        switch (aAComboBox.getSelectedIndex()) {
+            case 0:
+                aAField.setText("Admin");
+                break;
+            case 1:
+                aAField.setText("Mod");
+                break;
+            case 2:
+                aAField.setText("User");
+                break;
+            case 3:
+                aAField.setText("");
+                break;
+        }
+    }//GEN-LAST:event_aAComboBoxActionPerformed
+
+    private void showPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseClicked
+        JOptionPane.showMessageDialog(null, apassField.getText());
+    }//GEN-LAST:event_showPasswordMouseClicked
+
+    private void apassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apassFieldFocusLost
+        aCheckPasswordMatch();
+    }//GEN-LAST:event_apassFieldFocusLost
+
+    private void aconfirmpassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aconfirmpassFieldFocusLost
+        aCheckPasswordMatch();
+    }//GEN-LAST:event_aconfirmpassFieldFocusLost
+
+    private void showPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseEntered
+        passwordMatch.setForeground(Color.black);
+        passwordMatch.setText("Show password");
+    }//GEN-LAST:event_showPasswordMouseEntered
+
+    private void showPasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseExited
+        if(!apassField.getText().equals("") && !aconfirmpassField.getText().equals("")) {
+            aCheckPasswordMatch();
+        } else {
+            passwordMatch.setText("");
+        }
+    }//GEN-LAST:event_showPasswordMouseExited
+
+    private void apassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apassFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_apassFieldKeyPressed
+
+    private void aconfirmpassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aconfirmpassFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aconfirmpassFieldKeyPressed
 
     public DefaultListModel FillList() {
         int total = IOController.getTotalUsers();
@@ -616,10 +706,35 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     public boolean aCheck() {
-        return (aAComboBox.getSelectedIndex() == 3
-                || aNField.getText().equals("")
-                || aUField.getText().equals("")
-                || aPField.getText().equals(""));
+        boolean flag = true;
+        
+        // preconditions
+        errLabel.setForeground(Color.red);
+        asetAllForeground(Color.black);
+        
+        // Username
+        // if it is either nothing or default, throw error
+        // if it contains separator character, throw error
+        if (aUField.getText().equals("") || aUField.getText().equals("--")) {
+            flag = false;
+            aUField.setText("--");
+            aUField.setForeground(Color.red);
+        } else if (!Util.sepCheck(aUField.getText())) {
+            flag = false;
+            aUField.setForeground(Color.red);
+        }
+        
+        // Password
+        // if it is either nothing or default, throw error
+        if (apassField.getText().equals("")) {
+            flag = false;
+        } else if (!Util.sepCheck(apassField.getText())) {
+            flag = false;
+            apassField.setForeground(Color.red);
+            apassField.setForeground(Color.red);
+        }
+        
+        return true;
     }
 
     public boolean sCheck() {
@@ -628,10 +743,34 @@ public class AccountGUI extends javax.swing.JFrame {
                 || sAComboBox.getSelectedIndex() == 3
                 || sNField.getText().equals(""));
     }
+    
+    public void asetAllForeground(Color c) {
+        aAComboBox.setForeground(c);
+        aNField.setForeground(c);
+        aUField.setForeground(c);
+        //aPField.setForeground(c);
+    }
+    
+    public void ssetAllForeground(Color c) {
+        sAComboBox.setForeground(c);
+        sNField.setForeground(c);
+        sUField.setForeground(c);
+        sPField.setForeground(c);
+    }
+    
+    public void aCheckPasswordMatch() {
+        if(apassField.getText().equals(aconfirmpassField.getText())) {
+            passwordMatch.setForeground(Color.blue);
+            passwordMatch.setText("Passwords match!");
+        } else {
+            passwordMatch.setForeground(Color.red);
+            passwordMatch.setText("Passwords don't match!");
+        }
+    }
 
     public void Add() {
         String username = aUField.getText();
-        String password = aPField.getText();
+        String password = apassField.getText();
         String name = aNField.getText();
         String access = String.valueOf(aAComboBox.getSelectedIndex());
 
@@ -747,7 +886,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
     public void setAddValuesToNull() {
         aUField.setText("");
-        aPField.setText("");
+        apassField.setText("");
         aNField.setText("");
         aAComboBox.setSelectedIndex(3);
     }
@@ -820,7 +959,7 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddButton;
+    private javax.swing.JLabel L10;
     private javax.swing.JLabel L2;
     private javax.swing.JLabel L3;
     private javax.swing.JLabel L4;
@@ -832,9 +971,11 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> aAComboBox;
     private javax.swing.JTextField aAField;
     private javax.swing.JTextField aNField;
-    private javax.swing.JTextField aPField;
     private javax.swing.JTextField aUField;
+    private javax.swing.JPasswordField aconfirmpassField;
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
+    private javax.swing.JPasswordField apassField;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
     private javax.swing.JButton deleteButton;
@@ -846,6 +987,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JList<String> list;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JLabel passwordMatch;
     private javax.swing.JComboBox<String> sAComboBox;
     private javax.swing.JTextField sAField;
     private javax.swing.JTextField sNField;
@@ -853,6 +995,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JTextField sUField;
     private javax.swing.JScrollPane scrollpane;
     private javax.swing.JPanel searchPanel;
+    private javax.swing.JLabel showPassword;
     private javax.swing.JButton submitButton;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables

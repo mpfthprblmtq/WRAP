@@ -69,6 +69,7 @@ public class Main {
     }
 
     public static void CloseAccountGUI() {
+        accountGUI.dispose();
         accountGUIVisible = false;
     }
 
@@ -82,6 +83,7 @@ public class Main {
     }
 
     public static void CloseProfileGUI() {
+        profileGUI.dispose();
         profileGUIVisible = false;
     }
     
@@ -95,6 +97,7 @@ public class Main {
     }
 
     public static void CloseTaskGUI() {
+        taskGUI.dispose();
         taskGUIVisible = false;
     }
 
@@ -108,6 +111,7 @@ public class Main {
     }
 
     public static void CloseFinanceGUI() {
+        financeGUI.dispose();
         financeGUIVisible = false;
     }
 
@@ -121,6 +125,7 @@ public class Main {
     }
 
     public static void CloseLinkGUI() {
+        linkGUI.dispose();
         linkGUIVisible = false;
     }
 
@@ -134,6 +139,7 @@ public class Main {
     }
 
     public static void CloseReportsGUI() {
+        reportsGUI.dispose();
         reportsGUIVisible = false;
     }
     

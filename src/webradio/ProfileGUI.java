@@ -1061,7 +1061,18 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_logoutItemActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
-        System.exit(0);
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to exit WRAP?",
+                "",
+                JOptionPane.YES_NO_OPTION);
+        switch (res) {
+            case 0:
+                System.exit(0);
+                break;
+            default:
+            // do nothing
+        }
     }//GEN-LAST:event_exitItemActionPerformed
 
     private void afNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_afNameFieldFocusGained
@@ -1406,7 +1417,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.setText(p.getfName());
         slNameField.setText(p.getlName());
         snum800Field.setText(p.getId());
-        //sphoneField.setText(p.getPhone());
         sphoneField1.setText(str[0]);
         sphoneField2.setText(str[1]);
         sphoneField3.setText(str[2]);
@@ -1492,7 +1502,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.setText("");
         slNameField.setText("");
         snum800Field.setText("");
-        //sphoneField.setText("");
         sphoneField1.setText("");
         sphoneField2.setText("");
         sphoneField3.setText("");
@@ -1523,7 +1532,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.setBackground(Color.white);
         slNameField.setBackground(Color.white);
         snum800Field.setBackground(Color.white);
-        //sphoneField.setBackground(Color.white);
         sphoneField1.setBackground(Color.white);
         sphoneField2.setBackground(Color.white);
         sphoneField3.setBackground(Color.white);
@@ -1540,7 +1548,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.setEditable(b);
         slNameField.setEditable(b);
         snum800Field.setEditable(b);
-        //sphoneField.setEditable(b);
         sphoneField1.setEditable(b);
         sphoneField2.setEditable(b);
         sphoneField3.setEditable(b);
@@ -1558,7 +1565,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             sfNameField.setBackground(new Color(240, 240, 240));
             slNameField.setBackground(new Color(240, 240, 240));
             snum800Field.setBackground(new Color(240, 240, 240));
-            //sphoneField.setBackground(new Color(240, 240, 240));
             sphoneField1.setBackground(new Color(240, 240, 240));
             sphoneField2.setBackground(new Color(240, 240, 240));
             sphoneField3.setBackground(new Color(240, 240, 240));
@@ -1571,7 +1577,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             sfNameField.setBackground(Color.white);
             slNameField.setBackground(Color.white);
             snum800Field.setBackground(Color.white);
-            //sphoneField.setBackground(Color.white);
             sphoneField1.setBackground(Color.white);
             sphoneField2.setBackground(Color.white);
             sphoneField3.setBackground(Color.white);

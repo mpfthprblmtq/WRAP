@@ -410,7 +410,18 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bugItemActionPerformed
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
-        System.exit(0);
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to exit WRAP?",
+                "",
+                JOptionPane.YES_NO_OPTION);
+        switch (res) {
+            case 0:
+                System.exit(0);
+                break;
+            default:
+            // do nothing
+        }
     }//GEN-LAST:event_exitItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
