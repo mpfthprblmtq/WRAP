@@ -11,8 +11,6 @@ package webradio;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.AbstractBorder;
-import javax.swing.border.Border;
 
 public class AccountGUI extends javax.swing.JFrame {
 
@@ -75,7 +73,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField = new javax.swing.JTextField();
         sPField = new javax.swing.JTextField();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<>();
+        sAComboBox = new javax.swing.JComboBox<String>();
         sNField = new javax.swing.JTextField();
         addPanel = new javax.swing.JPanel();
         L6 = new javax.swing.JLabel();
@@ -89,12 +87,12 @@ public class AccountGUI extends javax.swing.JFrame {
         aconfirmpassField = new javax.swing.JPasswordField();
         passwordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<>();
+        aAComboBox = new javax.swing.JComboBox<String>();
         aNField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -114,12 +112,6 @@ public class AccountGUI extends javax.swing.JFrame {
 
         tabs.setFocusable(false);
         tabs.setName("tabPane"); // NOI18N
-
-        searchPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentHidden(java.awt.event.ComponentEvent evt) {
-                searchPanelComponentHidden(evt);
-            }
-        });
 
         deleteButton.setText("Delete");
         deleteButton.setEnabled(false);
@@ -163,7 +155,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
@@ -271,12 +263,14 @@ public class AccountGUI extends javax.swing.JFrame {
         });
 
         aUField.setFocusCycleRoot(true);
+        aUField.setNextFocusableComponent(apassField);
         aUField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 aUFieldKeyPressed(evt);
             }
         });
 
+        apassField.setNextFocusableComponent(aconfirmpassField);
         apassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 apassFieldFocusLost(evt);
@@ -288,6 +282,7 @@ public class AccountGUI extends javax.swing.JFrame {
             }
         });
 
+        aconfirmpassField.setNextFocusableComponent(aAComboBox);
         aconfirmpassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 aconfirmpassFieldFocusLost(evt);
@@ -305,7 +300,7 @@ public class AccountGUI extends javax.swing.JFrame {
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
@@ -361,7 +356,7 @@ public class AccountGUI extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
                                     .addComponent(passwordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(showPassword))
+                                    .addComponent(showPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(aconfirmpassField, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(addPanelLayout.createSequentialGroup()
                                     .addComponent(aAField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,7 +381,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aconfirmpassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordMatch)
                     .addComponent(showPassword))
@@ -558,25 +553,6 @@ public class AccountGUI extends javax.swing.JFrame {
             addButton.doClick();
         }
     }//GEN-LAST:event_aNFieldKeyPressed
-
-    private void searchPanelComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_searchPanelComponentHidden
-        sUField.setText("");
-        sPField.setText("");
-        sAComboBox.setSelectedIndex(3);
-        sAField.setText("");
-        sNField.setText("");
-
-        sUField.setEditable(false);
-        sPField.setEditable(false);
-        sAField.setEditable(false);
-        sAComboBox.setEnabled(false);
-        sNField.setEditable(false);
-
-        sUField.setBackground(new Color(240, 240, 240));
-        sPField.setBackground(new Color(240, 240, 240));
-        sAField.setBackground(new Color(240, 240, 240));
-        sNField.setBackground(new Color(240, 240, 240));
-    }//GEN-LAST:event_searchPanelComponentHidden
 
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseAccountGUI();
@@ -853,7 +829,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
     public void Search(String username) {
 
-        errLabel.setText("");
+        errLabel.setText(" ");
 
         Account p = AccountController.SearchUser(username);
 

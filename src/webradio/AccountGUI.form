@@ -126,9 +126,6 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="searchPanel">
-          <Events>
-            <EventHandler event="componentHidden" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="searchPanelComponentHidden"/>
-          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Search">
@@ -360,7 +357,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="passwordMatch" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="showPassword" min="-2" max="-2" attributes="0"/>
+                                          <Component id="showPassword" min="-2" pref="20" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="aconfirmpassField" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
@@ -396,7 +393,7 @@
                           <Component id="aconfirmpassField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="L10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="passwordMatch" min="-2" max="-2" attributes="0"/>
                           <Component id="showPassword" min="-2" max="-2" attributes="0"/>
@@ -466,18 +463,31 @@
             <Component class="javax.swing.JTextField" name="aUField">
               <Properties>
                 <Property name="focusCycleRoot" type="boolean" value="true"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="apassField"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aUFieldKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="apassField">
+              <Properties>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="aconfirmpassField"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apassFieldFocusLost"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="apassFieldKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="aconfirmpassField">
+              <Properties>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="aAComboBox"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aconfirmpassFieldFocusLost"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aconfirmpassFieldKeyPressed"/>
