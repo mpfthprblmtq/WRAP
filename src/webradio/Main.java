@@ -1,5 +1,7 @@
 package webradio;
 
+import javax.swing.ImageIcon;
+
 public class Main {
 
     public static Account p;
@@ -30,6 +32,8 @@ public class Main {
     public static void main(String[] args) {
         
         LoginGUI loginGUI = new LoginGUI();
+        ImageIcon icon = new ImageIcon("src\\images\\imageicon.png");
+        loginGUI.setIconImage(icon.getImage());
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
     }

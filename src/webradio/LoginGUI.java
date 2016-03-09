@@ -184,10 +184,10 @@ public class LoginGUI extends javax.swing.JFrame {
         }
         
         // Input validated, sending to AccountController
-        String[] res = AccountController.Login(usernameField.getText(), passwordField.getText());
+        Account res = AccountController.Login(usernameField.getText(), passwordField.getText());
         
         // No match found
-        if(res[0].equals("NO") && res[1].equals("MATCH")) {
+        if(res == null) {
             ErrLabel.setText("Invalid credentials");
             usernameField.setText("");
             passwordField.setText("");
@@ -197,7 +197,9 @@ public class LoginGUI extends javax.swing.JFrame {
         
         // Successful Login, launching main interface
         this.setVisible(false);
+        Main.SetUser(res);
         Main.LaunchMainGUI();
+
     }
 
     /**

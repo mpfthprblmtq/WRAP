@@ -1,16 +1,49 @@
 package webradio;
 
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class MainGUI extends javax.swing.JFrame {
 
+    public static Account a;
+    
     /**
      * Creates new form LoginGUI
      */
     public MainGUI() {
+        
+        a = Main.getUser();
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    switch (e.getKeyCode()) {
+                        case KeyEvent.VK_F1:
+                            profileButton.doClick();
+                            break;
+                        case KeyEvent.VK_F2:
+                            accountButton.doClick();
+                            break;
+                        case KeyEvent.VK_F3:
+                            taskButton.doClick();
+                            break;
+                        case KeyEvent.VK_F4:
+                            linkButton.doClick();
+                            break;
+                        case KeyEvent.VK_F5:
+                            financeButton.doClick();
+                            break;
+                        case KeyEvent.VK_F6:
+                            reportButton.doClick();
+                            break;
+                    }
+                    return false;
+        });
+
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -21,15 +54,15 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ProfileButton = new javax.swing.JButton();
-        LinkButton = new javax.swing.JButton();
-        ReportButton = new javax.swing.JButton();
-        FinanceButton = new javax.swing.JButton();
-        WelcomeLabel = new javax.swing.JLabel();
-        AccountButton = new javax.swing.JButton();
-        TaskButton = new javax.swing.JButton();
-        Logo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        profileButton = new javax.swing.JButton();
+        linkButton = new javax.swing.JButton();
+        reportButton = new javax.swing.JButton();
+        financeButton = new javax.swing.JButton();
+        welcomeLabel = new javax.swing.JLabel();
+        accountButton = new javax.swing.JButton();
+        taskButton = new javax.swing.JButton();
+        logo = new javax.swing.JLabel();
+        scrollpane = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         textHeader = new javax.swing.JLabel();
         f1 = new javax.swing.JLabel();
@@ -44,6 +77,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W.R.A.P. - Web Radio Assistant Program");
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -51,134 +85,131 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        ProfileButton.setText("Profiles");
-        ProfileButton.setFocusable(false);
-        ProfileButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        profileButton.setText("Profiles");
+        profileButton.setFocusable(false);
+        profileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ProfileButtonMouseEntered(evt);
+                profileButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ProfileButtonMouseExited(evt);
+                profileButtonMouseExited(evt);
             }
         });
-        ProfileButton.addActionListener(new java.awt.event.ActionListener() {
+        profileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfileButtonActionPerformed(evt);
+                profileButtonActionPerformed(evt);
             }
         });
 
-        LinkButton.setText("Links");
-        LinkButton.setFocusable(false);
-        LinkButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        linkButton.setText("Links");
+        linkButton.setFocusable(false);
+        linkButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                LinkButtonMouseEntered(evt);
+                linkButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                LinkButtonMouseExited(evt);
+                linkButtonMouseExited(evt);
             }
         });
-        LinkButton.addActionListener(new java.awt.event.ActionListener() {
+        linkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LinkButtonActionPerformed(evt);
+                linkButtonActionPerformed(evt);
             }
         });
 
-        ReportButton.setText("Reports");
-        ReportButton.setFocusable(false);
-        ReportButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        reportButton.setText("Reports");
+        reportButton.setFocusable(false);
+        reportButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ReportButtonMouseEntered(evt);
+                reportButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ReportButtonMouseExited(evt);
+                reportButtonMouseExited(evt);
             }
         });
-        ReportButton.addActionListener(new java.awt.event.ActionListener() {
+        reportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReportButtonActionPerformed(evt);
+                reportButtonActionPerformed(evt);
             }
         });
 
-        FinanceButton.setText("Finances");
-        FinanceButton.setFocusable(false);
-        FinanceButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        financeButton.setText("Finances");
+        financeButton.setFocusable(false);
+        financeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                FinanceButtonMouseEntered(evt);
+                financeButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                FinanceButtonMouseExited(evt);
+                financeButtonMouseExited(evt);
             }
         });
-        FinanceButton.addActionListener(new java.awt.event.ActionListener() {
+        financeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FinanceButtonActionPerformed(evt);
+                financeButtonActionPerformed(evt);
             }
         });
 
-        WelcomeLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        WelcomeLabel.setText(" ");
-        WelcomeLabel.setFocusCycleRoot(true);
-        WelcomeLabel.setFocusTraversalPolicy(null);
-        WelcomeLabel.setFocusable(false);
+        welcomeLabel.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
+        welcomeLabel.setText(" ");
+        welcomeLabel.setFocusCycleRoot(true);
+        welcomeLabel.setFocusTraversalPolicy(null);
+        welcomeLabel.setFocusable(false);
 
-        AccountButton.setText("Users");
-        AccountButton.setFocusable(false);
-        AccountButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        accountButton.setText("Accounts");
+        accountButton.setFocusable(false);
+        accountButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AccountButtonMouseEntered(evt);
+                accountButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                AccountButtonMouseExited(evt);
+                accountButtonMouseExited(evt);
             }
         });
-        AccountButton.addActionListener(new java.awt.event.ActionListener() {
+        accountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccountButtonActionPerformed(evt);
+                accountButtonActionPerformed(evt);
             }
         });
 
-        TaskButton.setText("Tasks");
-        TaskButton.setFocusable(false);
-        TaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        taskButton.setText("Tasks");
+        taskButton.setFocusable(false);
+        taskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                TaskButtonMouseEntered(evt);
+                taskButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                TaskButtonMouseExited(evt);
+                taskButtonMouseExited(evt);
             }
         });
-        TaskButton.addActionListener(new java.awt.event.ActionListener() {
+        taskButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TaskButtonActionPerformed(evt);
+                taskButtonActionPerformed(evt);
             }
         });
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/wraplogo smaller.png"))); // NOI18N
-        Logo.setFocusable(false);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/wraplogo smaller.png"))); // NOI18N
+        logo.setFocusable(false);
 
-        jScrollPane1.setFocusable(false);
+        scrollpane.setFocusable(false);
 
         text.setEditable(false);
         text.setBackground(new java.awt.Color(240, 240, 240));
         text.setColumns(20);
-        text.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        text.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         text.setRows(5);
+        text.setWrapStyleWord(true);
         text.setFocusable(false);
-        jScrollPane1.setViewportView(text);
+        scrollpane.setViewportView(text);
 
         textHeader.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         textHeader.setText(" ");
         textHeader.setFocusable(false);
 
         f1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        f1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         f1.setText(" ");
         f1.setFocusCycleRoot(true);
         f1.setFocusable(false);
-        f1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                f1KeyPressed(evt);
-            }
-        });
 
         menubar.setFocusable(false);
 
@@ -237,168 +268,169 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ProfileButton)
+                        .addComponent(profileButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(AccountButton)
+                        .addComponent(accountButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TaskButton)
+                        .addComponent(taskButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LinkButton)
+                        .addComponent(linkButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(FinanceButton)
+                        .addComponent(financeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ReportButton))
-                    .addComponent(jScrollPane1)
-                    .addComponent(WelcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reportButton))
+                    .addComponent(scrollpane)
+                    .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(textHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(f1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Logo))
+                .addComponent(logo))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(WelcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(textHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(f1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ProfileButton)
-                    .addComponent(AccountButton)
-                    .addComponent(TaskButton)
-                    .addComponent(LinkButton)
-                    .addComponent(FinanceButton)
-                    .addComponent(ReportButton))
+                    .addComponent(profileButton)
+                    .addComponent(accountButton)
+                    .addComponent(taskButton)
+                    .addComponent(linkButton)
+                    .addComponent(financeButton)
+                    .addComponent(reportButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Logo)
+                .addComponent(logo)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
+    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         Main.LaunchProfileGUI();
-    }//GEN-LAST:event_ProfileButtonActionPerformed
+    }//GEN-LAST:event_profileButtonActionPerformed
 
-    private void LinkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LinkButtonActionPerformed
+    private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
         //Main.LaunchLinkGUI();
         JOptionPane.showMessageDialog(this, "  Links interface not implemented yet! :(     ");
-    }//GEN-LAST:event_LinkButtonActionPerformed
+    }//GEN-LAST:event_linkButtonActionPerformed
 
-    private void FinanceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinanceButtonActionPerformed
+    private void financeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeButtonActionPerformed
         //Main.LaunchFinanceGUI();
         JOptionPane.showMessageDialog(this, "  Finance interface not implemented yet! :(     ");
-    }//GEN-LAST:event_FinanceButtonActionPerformed
+    }//GEN-LAST:event_financeButtonActionPerformed
 
-    private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
+    private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
         //Main.LaunchReportsGUI();
         JOptionPane.showMessageDialog(this, "  Reports interface not implemented yet! :(     ");
-    }//GEN-LAST:event_ReportButtonActionPerformed
+    }//GEN-LAST:event_reportButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        WelcomeLabel.setText("Welcome, " + Main.p.getName() + "!");
-        text.setText("Welcome to WRAP!!!  \nRemember this is in Beta, so everything might not be perfect.\nIf you have a suggestion, found an error, or something doesn't look right,\ngo to Help and submit a Bug Report!\nLet me know if you have any questions!                                     -Pat");
+        welcomeLabel.setText("Welcome, " + a.getName() + "!");
+        text.setText("Welcome to WRAP!!!");
     }//GEN-LAST:event_formWindowOpened
 
-    private void AccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccountButtonActionPerformed
-        if(Main.p.getAccess() != 0) {
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
+        if (a.getAccess() != 0) {
             JOptionPane.showMessageDialog(this, "403: Forbidden, Administrator access only", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
             Main.LaunchAccountGUI();
         }
-    }//GEN-LAST:event_AccountButtonActionPerformed
+    }//GEN-LAST:event_accountButtonActionPerformed
 
-    private void ProfileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileButtonMouseEntered
-//        textHeader.setText("Profiles");
-//        text.setText("WHOOOOO");
-//        f1.setText("Shortcut key: F1");
-    }//GEN-LAST:event_ProfileButtonMouseEntered
+    private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
+        textHeader.setText("Profiles");
+        text.setText("Shows DJ's information, and allows for addition, deletion, and " + 
+                "\nediting of DJ's.");
+        f1.setText("Shortcut key: F1");
+    }//GEN-LAST:event_profileButtonMouseEntered
 
-    private void ProfileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileButtonMouseExited
-//        textHeader.setText("");
-//        text.setText("");
-//        f1.setText("");
-    }//GEN-LAST:event_ProfileButtonMouseExited
+    private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
+        textHeader.setText("");
+        text.setText("");
+        f1.setText("");
+    }//GEN-LAST:event_profileButtonMouseExited
 
-    private void AccountButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountButtonMouseEntered
-//        textHeader.setText("Users");
-//        text.setText("WHOOOOOOO");
-//        f1.setText("Shortcut key: F2");
-    }//GEN-LAST:event_AccountButtonMouseEntered
+    private void accountButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseEntered
+        textHeader.setText("Accounts");
+        text.setText("Allows addition and deletion of users of W.R.A.P. along" +
+                "\nwith the editing of existing users." +
+                "\nNote: Admin access only");
+        f1.setText("Shortcut key: F2");
+    }//GEN-LAST:event_accountButtonMouseEntered
 
-    private void AccountButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountButtonMouseExited
-//        textHeader.setText("");
-//        text.setText("");
-//        f1.setText("");
-    }//GEN-LAST:event_AccountButtonMouseExited
+    private void accountButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseExited
+        textHeader.setText("");
+        text.setText("");
+        f1.setText("");
+    }//GEN-LAST:event_accountButtonMouseExited
 
-    private void TaskButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TaskButtonMouseEntered
-//        textHeader.setText("Tasks");
-//        text.setText("WHOOOOOOOOO");
-//        f1.setText("Shortcut key: F3");
-    }//GEN-LAST:event_TaskButtonMouseEntered
+    private void taskButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseEntered
+        textHeader.setText("Tasks");
+        text.setText("Check the DJ requirements of a member.  Four main" +
+                "\ntasks: Pay dues, send in a show time and description," +
+                "\nfill out the proper paperwork, and be trained on the board.");
+        f1.setText("Shortcut key: F3");
+    }//GEN-LAST:event_taskButtonMouseEntered
 
-    private void TaskButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TaskButtonMouseExited
-//        textHeader.setText("");
-//        text.setText("");
-//        f1.setText("");
-    }//GEN-LAST:event_TaskButtonMouseExited
+    private void taskButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseExited
+        textHeader.setText("");
+        text.setText("");
+        f1.setText("");
+    }//GEN-LAST:event_taskButtonMouseExited
 
-    private void LinkButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkButtonMouseEntered
-//        textHeader.setText("Links");
-//        text.setText("WHOOOOOOOOOOO");
-//        f1.setText("Shortcut key: F4");
-    }//GEN-LAST:event_LinkButtonMouseEntered
+    private void linkButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseEntered
+        textHeader.setText("Links");
+        text.setText("Some links to important things" +
+                "\nNOTE: May be replaced with alternate function");
+        f1.setText("Shortcut key: F4");
+    }//GEN-LAST:event_linkButtonMouseEntered
 
-    private void LinkButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LinkButtonMouseExited
-//        textHeader.setText("");
-//        text.setText("");
-//        f1.setText("");
-    }//GEN-LAST:event_LinkButtonMouseExited
+    private void linkButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseExited
+        textHeader.setText("");
+        text.setText("");
+        f1.setText("");
+    }//GEN-LAST:event_linkButtonMouseExited
 
-    private void FinanceButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceButtonMouseEntered
-//        textHeader.setText("Finances");
-//        text.setText("WHOOOOOOOOOOOOO");
-//        f1.setText("Shortcut key: F5");
-    }//GEN-LAST:event_FinanceButtonMouseEntered
+    private void financeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseEntered
+        textHeader.setText("Finances");
+        text.setText("Track finances, add money, and basically" +
+                "\nanything that has to do with our funds.");
+        f1.setText("Shortcut key: F5");
+    }//GEN-LAST:event_financeButtonMouseEntered
 
-    private void FinanceButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FinanceButtonMouseExited
-//        textHeader.setText("");
-//        text.setText("");
-//        f1.setText("");
-    }//GEN-LAST:event_FinanceButtonMouseExited
+    private void financeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseExited
+        textHeader.setText("");
+        text.setText("");
+        f1.setText("");
+    }//GEN-LAST:event_financeButtonMouseExited
 
-    private void ReportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButtonMouseEntered
-//        textHeader.setText("Reports");
-//        text.setText("WHOOOOOOOOOOOOOOO");
-//        f1.setText("Shortcut key: F6");
-    }//GEN-LAST:event_ReportButtonMouseEntered
+    private void reportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseEntered
+        textHeader.setText("Reports");
+        text.setText("Generate reports based on member tasks, create" +
+                "\na roster, or print report on individuals.");
+        f1.setText("Shortcut key: F6");
+    }//GEN-LAST:event_reportButtonMouseEntered
 
-    private void ReportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ReportButtonMouseExited
-//        textHeader.setText("");
-//        text.setText("");
-//        f1.setText("");
-    }//GEN-LAST:event_ReportButtonMouseExited
+    private void reportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseExited
+        textHeader.setText("");
+        text.setText("");
+        f1.setText("");
+    }//GEN-LAST:event_reportButtonMouseExited
 
-    private void f1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_f1KeyPressed
-//        if(evt.getKeyCode() == KeyEvent.VK_F1) {
-//            System.out.println("sadfsd");
-//            Main.LaunchProfileGUI();
-//        }
-    }//GEN-LAST:event_f1KeyPressed
-
-    private void TaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaskButtonActionPerformed
+    private void taskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskButtonActionPerformed
         Main.LaunchTaskGUI();
-    }//GEN-LAST:event_TaskButtonActionPerformed
+    }//GEN-LAST:event_taskButtonActionPerformed
 
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
@@ -425,7 +457,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        JOptionPane.showMessageDialog(this, "  VERSION 1.0  :D  ");
+        JOptionPane.showMessageDialog(this, "  VERSION 1.0.2  :D  ");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -463,25 +495,25 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AccountButton;
-    private javax.swing.JButton FinanceButton;
-    private javax.swing.JButton LinkButton;
-    private javax.swing.JLabel Logo;
-    private javax.swing.JButton ProfileButton;
-    private javax.swing.JButton ReportButton;
-    private javax.swing.JButton TaskButton;
-    private javax.swing.JLabel WelcomeLabel;
+    private javax.swing.JButton accountButton;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JLabel f1;
     private javax.swing.JMenu file;
+    private javax.swing.JButton financeButton;
     private javax.swing.JMenu help;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton linkButton;
+    private javax.swing.JLabel logo;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JButton profileButton;
+    private javax.swing.JButton reportButton;
+    private javax.swing.JScrollPane scrollpane;
+    private javax.swing.JButton taskButton;
     private javax.swing.JTextArea text;
     private javax.swing.JLabel textHeader;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,5 @@
 /**
- * File: AccountGUI.java 
+ * File: AccountGUI.java
  * Desc: Sends input to AccountController and handles all
  *       the GUI related events
  *
@@ -36,7 +36,8 @@ public class AccountGUI extends javax.swing.JFrame {
     Account temp;                                                   // used for editing
     DefaultListModel<ListElement> users = new DefaultListModel<>();      // for the graphical list
     ListElement[] elements;
-    boolean passwordsMatch = false;
+    boolean apasswordsMatch = true;
+    boolean spasswordsMatch = true;
 
     public static final int ADMIN = 0;
     public static final int MOD = 1;
@@ -66,14 +67,18 @@ public class AccountGUI extends javax.swing.JFrame {
         deleteButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
+        L1 = new javax.swing.JLabel();
         L2 = new javax.swing.JLabel();
         L3 = new javax.swing.JLabel();
         L4 = new javax.swing.JLabel();
         L5 = new javax.swing.JLabel();
         sUField = new javax.swing.JTextField();
-        sPField = new javax.swing.JTextField();
+        spassField = new javax.swing.JPasswordField();
+        sconfirmpassField = new javax.swing.JPasswordField();
+        spasswordMatch = new javax.swing.JLabel();
+        sshowPassword = new javax.swing.JLabel();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<String>();
+        sAComboBox = new javax.swing.JComboBox<>();
         sNField = new javax.swing.JTextField();
         addPanel = new javax.swing.JPanel();
         L6 = new javax.swing.JLabel();
@@ -81,18 +86,18 @@ public class AccountGUI extends javax.swing.JFrame {
         L8 = new javax.swing.JLabel();
         L9 = new javax.swing.JLabel();
         L10 = new javax.swing.JLabel();
-        showPassword = new javax.swing.JLabel();
+        ashowPassword = new javax.swing.JLabel();
         aUField = new javax.swing.JTextField();
         apassField = new javax.swing.JPasswordField();
         aconfirmpassField = new javax.swing.JPasswordField();
-        passwordMatch = new javax.swing.JLabel();
+        apasswordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<String>();
+        aAComboBox = new javax.swing.JComboBox<>();
         aNField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -103,6 +108,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Users");
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -131,31 +137,87 @@ public class AccountGUI extends javax.swing.JFrame {
 
         submitButton.setText("Submit");
         submitButton.setEnabled(false);
+        submitButton.setMaximumSize(new java.awt.Dimension(68, 23));
+        submitButton.setMinimumSize(new java.awt.Dimension(68, 23));
+        submitButton.setPreferredSize(new java.awt.Dimension(68, 23));
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
             }
         });
 
-        L2.setText("Username:");
+        L1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L1.setText("Username:");
 
-        L3.setText("Password:");
+        L2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L2.setText("Password:");
 
+        L3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L3.setText("Confirm:");
+
+        L4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         L4.setText("Access:");
 
+        L5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         L5.setText("Name:");
 
         sUField.setEditable(false);
         sUField.setFocusCycleRoot(true);
-        sUField.setNextFocusableComponent(sPField);
+        sUField.setNextFocusableComponent(spassField);
+        sUField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sUFieldFocusGained(evt);
+            }
+        });
 
-        sPField.setEditable(false);
-        sPField.setNextFocusableComponent(sAComboBox);
+        spassField.setEditable(false);
+        spassField.setNextFocusableComponent(sconfirmpassField);
+        spassField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                spassFieldFocusGained(evt);
+            }
+        });
+        spassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                spassFieldKeyReleased(evt);
+            }
+        });
+
+        sconfirmpassField.setEditable(false);
+        sconfirmpassField.setNextFocusableComponent(aAComboBox);
+        sconfirmpassField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sconfirmpassFieldFocusGained(evt);
+            }
+        });
+        sconfirmpassField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sconfirmpassFieldKeyReleased(evt);
+            }
+        });
+
+        spasswordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        spasswordMatch.setText(" ");
+
+        sshowPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        sshowPassword.setToolTipText("");
+        sshowPassword.setEnabled(false);
+        sshowPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sshowPasswordMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sshowPasswordMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                sshowPasswordMouseExited(evt);
+            }
+        });
 
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
@@ -169,37 +231,52 @@ public class AccountGUI extends javax.swing.JFrame {
 
         sNField.setEditable(false);
         sNField.setNextFocusableComponent(sUField);
+        sNField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sNFieldFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(L4)
-                            .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(L2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(L3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(L5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(editButton)
+                        .addGap(5, 5, 5)
+                        .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(searchPanelLayout.createSequentialGroup()
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sPField)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(L1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(L5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(L4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(L2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(L3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(sNField)
                             .addComponent(sUField)
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addComponent(sAField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spassField)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(spasswordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sAComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(deleteButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(editButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(158, 158, 158))
+                                .addComponent(sshowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sconfirmpassField)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(sAField, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sAComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(26, 26, 26))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,26 +284,34 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sUField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(L2))
+                    .addComponent(L1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sPField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L2)
+                    .addComponent(spassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sconfirmpassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L3))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(spasswordMatch)
+                    .addComponent(sshowPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sAField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sAComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(L4)
-                    .addComponent(sAField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(L4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sNField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(submitButton)
-                    .addComponent(editButton)
-                    .addComponent(deleteButton))
-                .addContainerGap())
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(editButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(submitButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -248,22 +333,27 @@ public class AccountGUI extends javax.swing.JFrame {
         L10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         L10.setText("Confirm:");
 
-        showPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
-        showPassword.setToolTipText("Show password");
-        showPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+        ashowPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        ashowPassword.setToolTipText("");
+        ashowPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                showPasswordMouseClicked(evt);
+                ashowPasswordMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                showPasswordMouseEntered(evt);
+                ashowPasswordMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                showPasswordMouseExited(evt);
+                ashowPasswordMouseExited(evt);
             }
         });
 
         aUField.setFocusCycleRoot(true);
         aUField.setNextFocusableComponent(apassField);
+        aUField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aUFieldFocusGained(evt);
+            }
+        });
         aUField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 aUFieldKeyPressed(evt);
@@ -272,35 +362,35 @@ public class AccountGUI extends javax.swing.JFrame {
 
         apassField.setNextFocusableComponent(aconfirmpassField);
         apassField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                apassFieldFocusLost(evt);
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                apassFieldFocusGained(evt);
             }
         });
         apassField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                apassFieldKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                apassFieldKeyReleased(evt);
             }
         });
 
         aconfirmpassField.setNextFocusableComponent(aAComboBox);
         aconfirmpassField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                aconfirmpassFieldFocusLost(evt);
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aconfirmpassFieldFocusGained(evt);
             }
         });
         aconfirmpassField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aconfirmpassFieldKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                aconfirmpassFieldKeyReleased(evt);
             }
         });
 
-        passwordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        passwordMatch.setText(" ");
+        apasswordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        apasswordMatch.setText(" ");
 
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
@@ -316,6 +406,11 @@ public class AccountGUI extends javax.swing.JFrame {
         });
 
         aNField.setNextFocusableComponent(aUField);
+        aNField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aNFieldFocusGained(evt);
+            }
+        });
         aNField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 aNFieldKeyPressed(evt);
@@ -334,36 +429,31 @@ public class AccountGUI extends javax.swing.JFrame {
         addPanelLayout.setHorizontalGroup(
             addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addButton)
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(L9)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addPanelLayout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(L6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(L7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(L10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(addPanelLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(L8)))
-                        .addGap(12, 12, 12)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(L7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L6, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(L8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(aNField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                                    .addComponent(passwordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(apasswordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(showPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(ashowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(aconfirmpassField, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(addPanelLayout.createSequentialGroup()
                                     .addComponent(aAField, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(aAComboBox, 0, 86, Short.MAX_VALUE))
+                                    .addComponent(aAComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(apassField)
-                                .addComponent(aUField, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                .addComponent(aUField)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         addPanelLayout.setVerticalGroup(
@@ -372,7 +462,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aUField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(L6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(L6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(L7)
@@ -383,8 +473,8 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addComponent(L10))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordMatch)
-                    .addComponent(showPassword))
+                    .addComponent(apasswordMatch)
+                    .addComponent(ashowPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aAComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -477,8 +567,8 @@ public class AccountGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabs)
-                    .addComponent(scrollpane))
+                    .addComponent(scrollpane)
+                    .addComponent(tabs))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
                 .addContainerGap())
@@ -496,8 +586,6 @@ public class AccountGUI extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
             Add();
-        } else {
-            // do nothing
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -506,14 +594,23 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        Delete();
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to delete user "
+                + sUField.getText() + "?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION);
+        switch (res) {
+            case 0:
+                Delete();
+                break;
+            default:
+            // do nothing
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
-            errLabel.setForeground(Color.red);
-            errLabel.setText("All fields are required");
-        } else {
             Submit();
         }
     }//GEN-LAST:event_submitButtonActionPerformed
@@ -528,11 +625,13 @@ public class AccountGUI extends javax.swing.JFrame {
             editButton.setEnabled(true);
             deleteButton.setEnabled(true);
             setSearchFieldsEditable(false);
-            
+
             Search(users.elementAt(list.getSelectedIndex()).username);
             tabs.setSelectedIndex(0);
+            sCheckPasswordMatch();
         } else {
             // do nothing
+            // it crashes otherwise
         }
     }//GEN-LAST:event_listMouseClicked
 
@@ -616,42 +715,119 @@ public class AccountGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_aAComboBoxActionPerformed
 
-    private void showPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseClicked
-        JOptionPane.showMessageDialog(null, apassField.getText());
-    }//GEN-LAST:event_showPasswordMouseClicked
-
-    private void apassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apassFieldFocusLost
-        aCheckPasswordMatch();
-    }//GEN-LAST:event_apassFieldFocusLost
-
-    private void aconfirmpassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aconfirmpassFieldFocusLost
-        aCheckPasswordMatch();
-    }//GEN-LAST:event_aconfirmpassFieldFocusLost
-
-    private void showPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseEntered
-        passwordMatch.setForeground(Color.black);
-        passwordMatch.setText("Show password");
-    }//GEN-LAST:event_showPasswordMouseEntered
-
-    private void showPasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPasswordMouseExited
-        if(!apassField.getText().equals("") && !aconfirmpassField.getText().equals("")) {
-            aCheckPasswordMatch();
+    private void ashowPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ashowPasswordMouseClicked
+        if (apassField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nothing to show here!");
         } else {
-            passwordMatch.setText("");
+            JOptionPane.showMessageDialog(null, apassField.getText());
         }
-    }//GEN-LAST:event_showPasswordMouseExited
+    }//GEN-LAST:event_ashowPasswordMouseClicked
 
-    private void apassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apassFieldKeyPressed
+    private void ashowPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ashowPasswordMouseEntered
+        apasswordMatch.setForeground(Color.black);
+        apasswordMatch.setText("Show password");
+    }//GEN-LAST:event_ashowPasswordMouseEntered
+
+    private void ashowPasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ashowPasswordMouseExited
+        if (!apassField.getText().equals("") && !aconfirmpassField.getText().equals("")) {
+            sCheckPasswordMatch();
+        } else {
+            apasswordMatch.setText("");
+        }
+    }//GEN-LAST:event_ashowPasswordMouseExited
+
+    private void sshowPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sshowPasswordMouseClicked
+        if (spassField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Nothing to show here!");
+        } else {
+            JOptionPane.showMessageDialog(null, spassField.getText());
+        }
+    }//GEN-LAST:event_sshowPasswordMouseClicked
+
+    private void sshowPasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sshowPasswordMouseEntered
+        if (sshowPassword.isEnabled()) {
+            spasswordMatch.setForeground(Color.black);
+            spasswordMatch.setText("Show password");
+        }
+    }//GEN-LAST:event_sshowPasswordMouseEntered
+
+    private void sshowPasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sshowPasswordMouseExited
+        if (sshowPassword.isEnabled()) {
+            if (!spassField.getText().equals("") && !sconfirmpassField.getText().equals("")) {
+                sCheckPasswordMatch();
+            } else {
+                spasswordMatch.setText("");
+            }
+        }
+    }//GEN-LAST:event_sshowPasswordMouseExited
+
+    private void spassFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spassFieldKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (submitButton.isEnabled()) {
+                submitButton.doClick();
+            }
+        } else {
+            sCheckPasswordMatch();
+        }
+    }//GEN-LAST:event_spassFieldKeyReleased
+
+    private void sconfirmpassFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sconfirmpassFieldKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (submitButton.isEnabled()) {
+                submitButton.doClick();
+            }
+        } else {
+            sCheckPasswordMatch();
+        }
+    }//GEN-LAST:event_sconfirmpassFieldKeyReleased
+
+    private void apassFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apassFieldKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             addButton.doClick();
+        } else {
+            aCheckPasswordMatch();
         }
-    }//GEN-LAST:event_apassFieldKeyPressed
+    }//GEN-LAST:event_apassFieldKeyReleased
 
-    private void aconfirmpassFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aconfirmpassFieldKeyPressed
+    private void aconfirmpassFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aconfirmpassFieldKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             addButton.doClick();
+        } else {
+            aCheckPasswordMatch();
         }
-    }//GEN-LAST:event_aconfirmpassFieldKeyPressed
+    }//GEN-LAST:event_aconfirmpassFieldKeyReleased
+
+    private void sUFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sUFieldFocusGained
+        sUField.selectAll();
+    }//GEN-LAST:event_sUFieldFocusGained
+
+    private void spassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_spassFieldFocusGained
+        spassField.selectAll();
+    }//GEN-LAST:event_spassFieldFocusGained
+
+    private void sconfirmpassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sconfirmpassFieldFocusGained
+        sconfirmpassField.selectAll();
+    }//GEN-LAST:event_sconfirmpassFieldFocusGained
+
+    private void sNFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sNFieldFocusGained
+        sNField.selectAll();
+    }//GEN-LAST:event_sNFieldFocusGained
+
+    private void aUFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aUFieldFocusGained
+        aUField.selectAll();
+    }//GEN-LAST:event_aUFieldFocusGained
+
+    private void apassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apassFieldFocusGained
+        apassField.selectAll();
+    }//GEN-LAST:event_apassFieldFocusGained
+
+    private void aconfirmpassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aconfirmpassFieldFocusGained
+        aconfirmpassField.selectAll();
+    }//GEN-LAST:event_aconfirmpassFieldFocusGained
+
+    private void aNFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNFieldFocusGained
+        aNField.selectAll();
+    }//GEN-LAST:event_aNFieldFocusGained
 
     public DefaultListModel FillList() {
         int total = IOController.getTotalUsers();
@@ -676,130 +852,6 @@ public class AccountGUI extends javax.swing.JFrame {
             case REMOVE:         // remove
                 users.remove(list.getSelectedIndex());
                 break;
-        }
-    }
-
-    public boolean aCheck() {
-        boolean flag = true;
-        
-        // preconditions
-        errLabel.setForeground(Color.red);
-        asetAllForeground(Color.black);
-        
-        // Username
-        // if it is either nothing or default, throw error
-        // if it contains separator character, throw error
-        if (aUField.getText().equals("") || aUField.getText().equals("--")) {
-            flag = false;
-            aUField.setText("--");
-            aUField.setForeground(Color.red);
-        } else if (!Util.sepCheck(aUField.getText())) {
-            flag = false;
-            aUField.setForeground(Color.red);
-        }
-        
-        // Password
-        // if it is nothing, throw error
-        // if it contains separator character, throw error
-        if (apassField.getText().equals("") && aconfirmpassField.getText().equals("")) {
-            flag = false;
-            apassField.setForeground(Color.red);
-            aconfirmpassField.setForeground(Color.red);
-        } else if (!passwordsMatch) {
-            flag = false;
-            apassField.setForeground(Color.red);
-            aconfirmpassField.setForeground(Color.red);
-        } else if (!Util.sepCheck(apassField.getText())) {
-            flag = false;
-            apassField.setForeground(Color.red);
-            aconfirmpassField.setForeground(Color.red);
-        }
-        
-        // Access
-        // if the box is on the default index, throw error
-        if (aAComboBox.getSelectedIndex() == 3) {
-            flag = false;
-            aAComboBox.setForeground(Color.red);
-        }
-        
-        // Name
-        // if it is either nothing or the default, throw error
-        if (aNField.getText().equals ("") || aNField.getText().equals("--")) {
-            flag = false;
-            aNField.setText("--");
-            aNField.setForeground(Color.red);
-        }
-        
-        setAddErrLabel();
-        return flag;
-    }
-
-    public boolean sCheck() {
-        return (sUField.getText().equals("")
-                || sPField.getText().equals("")
-                || sAComboBox.getSelectedIndex() == 3
-                || sNField.getText().equals(""));
-    }
-    
-    public void setAddErrLabel() {
-        int errCount = 0;
-        String err = "";
-        
-        if(aNField.getForeground() == Color.red) {
-            errCount++;
-            err = "Error with name field";
-        }
-        
-        if (aAComboBox.getForeground() == Color.red) {
-            errCount++;
-            err = "Error with access field";
-        }
-        
-        if (apassField.getForeground() == Color.red
-                && aconfirmpassField.getForeground() == Color.red) {
-            errCount++;
-            err = "Error with password field(s)";
-        }
-        
-        if (aUField.getForeground() == Color.red) {
-            errCount++;
-            err = "Error with username field";
-        }
-        
-        if (errCount > 1) {
-            errLabel.setForeground(Color.red);
-            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
-        } else if (errCount == 1) {
-            errLabel.setForeground(Color.red);
-            errLabel.setText(err);
-        }
-    }
-    
-    public void asetAllForeground(Color c) {
-        aAComboBox.setForeground(c);
-        aNField.setForeground(c);
-        aUField.setForeground(c);
-        apassField.setForeground(c);
-        aconfirmpassField.setForeground(c);
-        //aPField.setForeground(c);
-    }
-    
-    public void ssetAllForeground(Color c) {
-        sAComboBox.setForeground(c);
-        sNField.setForeground(c);
-        sUField.setForeground(c);
-        sPField.setForeground(c);
-    }
-    
-    public void aCheckPasswordMatch() {
-        if(apassField.getText().equals(aconfirmpassField.getText())) {
-            passwordMatch.setForeground(Color.blue);
-            passwordMatch.setText("Passwords match!");
-            passwordsMatch = true;
-        } else {
-            passwordMatch.setForeground(Color.red);
-            passwordMatch.setText("Passwords don't match!");
-            passwordsMatch = false;
         }
     }
 
@@ -839,7 +891,8 @@ public class AccountGUI extends javax.swing.JFrame {
         setSearchFieldsToValid();
 
         sUField.setText(p.getUsername());
-        sPField.setText(p.getPassword());
+        spassField.setText(p.getPassword());
+        sconfirmpassField.setText(p.getPassword());
         sAField.setText(String.valueOf(p.getAccess()));
         sAComboBox.setSelectedIndex(p.getAccess());
         sNField.setText(p.getName());
@@ -849,7 +902,7 @@ public class AccountGUI extends javax.swing.JFrame {
     public void Delete() {
 
         Account p = new Account(sUField.getText(),
-                sPField.getText(),
+                spassField.getText(),
                 sAComboBox.getSelectedIndex(),
                 sNField.getText());
 
@@ -865,7 +918,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
             setSearchValuesToNull();
             setSearchFieldsEditable(false);
-            
+
             deleteButton.setEnabled(false);
             editButton.setEnabled(false);
             submitButton.setEnabled(false);
@@ -874,7 +927,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
     public void Edit() {
         String username = sUField.getText();
-        String password = sPField.getText();
+        String password = spassField.getText();
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
 
@@ -889,24 +942,24 @@ public class AccountGUI extends javax.swing.JFrame {
 
     public void Submit() {
         String username = sUField.getText();
-        String password = sPField.getText();
+        String password = spassField.getText();
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
-        
+
         errLabel.setForeground(Color.blue);
         errLabel.setText("User edited successfully");
 
         setSearchFieldsEditable(false);
-        
+
         Account p = new Account(username, password, Integer.valueOf(access), name);
-        
+
         AccountController.DeleteUser(temp);
         AccountController.AddUser(p);
-        
-        ListElement t = new ListElement(temp.getUsername(), temp.getPassword(), 
-                                                temp.getAccess(), temp.getName());
+
+        ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
+                temp.getAccess(), temp.getName());
         ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
-        
+
         UpdateList(REMOVE, t);
         UpdateList(ADD, q);
 
@@ -919,41 +972,264 @@ public class AccountGUI extends javax.swing.JFrame {
 
     }
 
+    public boolean aCheck() {
+        boolean flag = true;
+
+        // preconditions
+        errLabel.setForeground(Color.red);
+        asetAllForeground(Color.black);
+
+        // Username
+        // if it is either nothing or default, throw error
+        // if it contains separator character, throw error
+        if (aUField.getText().equals("") || aUField.getText().equals("--")) {
+            flag = false;
+            aUField.setText("--");
+            aUField.setForeground(Color.red);
+        } else if (!Util.sepCheck(aUField.getText())) {
+            flag = false;
+            aUField.setForeground(Color.red);
+        }
+
+        // Password
+        // if it is nothing, throw error
+        // if it contains separator character, throw error
+        if (apassField.getText().equals("") && aconfirmpassField.getText().equals("")) {
+            flag = false;
+            apassField.setForeground(Color.red);
+            aconfirmpassField.setForeground(Color.red);
+        } else if (!apasswordsMatch) {
+            flag = false;
+            apassField.setForeground(Color.red);
+            aconfirmpassField.setForeground(Color.red);
+        } else if (!Util.sepCheck(apassField.getText())) {
+            flag = false;
+            apassField.setForeground(Color.red);
+            aconfirmpassField.setForeground(Color.red);
+        }
+
+        // Access
+        // if the box is on the default index, throw error
+        if (aAComboBox.getSelectedIndex() == 3) {
+            flag = false;
+            aAComboBox.setForeground(Color.red);
+        }
+
+        // Name
+        // if it is either nothing or the default, throw error
+        if (aNField.getText().equals("") || aNField.getText().equals("--")) {
+            flag = false;
+            aNField.setText("--");
+            aNField.setForeground(Color.red);
+        }
+
+        setAddErrLabel();
+        return flag;
+    }
+
+    public boolean sCheck() {
+        boolean flag = true;
+
+        // preconditions
+        errLabel.setForeground(Color.red);
+        ssetAllForeground(Color.black);
+
+        // Username
+        // if it is either nothing or default, throw error
+        // if it contains separator character, throw error
+        if (sUField.getText().equals("") || sUField.getText().equals("--")) {
+            flag = false;
+            sUField.setText("--");
+            sUField.setForeground(Color.red);
+        } else if (!Util.sepCheck(sUField.getText())) {
+            flag = false;
+            sUField.setForeground(Color.red);
+        }
+
+        // Password
+        // if it is nothing, throw error
+        // if it contains separator character, throw error
+        if (spassField.getText().equals("") && sconfirmpassField.getText().equals("")) {
+            flag = false;
+            spassField.setForeground(Color.red);
+            sconfirmpassField.setForeground(Color.red);
+        } else if (!spasswordsMatch) {
+            flag = false;
+            spassField.setForeground(Color.red);
+            sconfirmpassField.setForeground(Color.red);
+        } else if (!Util.sepCheck(spassField.getText())) {
+            flag = false;
+            spassField.setForeground(Color.red);
+            sconfirmpassField.setForeground(Color.red);
+        }
+
+        // Access
+        // if the box is on the default index, throw error
+        if (sAComboBox.getSelectedIndex() == 3) {
+            flag = false;
+            sAComboBox.setForeground(Color.red);
+        }
+
+        // Name
+        // if it is either nothing or the default, throw error
+        if (sNField.getText().equals("") || sNField.getText().equals("--")) {
+            flag = false;
+            sNField.setText("--");
+            sNField.setForeground(Color.red);
+        }
+
+        setSearchErrLabel();
+        return flag;
+    }
+
+    public void setAddErrLabel() {
+        int errCount = 0;
+        String err = "";
+
+        if (aNField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with name field";
+        }
+
+        if (aAComboBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with access field";
+        }
+
+        if (apassField.getForeground() == Color.red
+                && aconfirmpassField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with password field(s)";
+        }
+
+        if (aUField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with username field";
+        }
+
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
+    }
+
+    public void setSearchErrLabel() {
+        int errCount = 0;
+        String err = "";
+
+        if (sNField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with name field";
+        }
+
+        if (sAComboBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with access field";
+        }
+
+        if (spassField.getForeground() == Color.red
+                && sconfirmpassField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with password field(s)";
+        }
+
+        if (sUField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with username field";
+        }
+
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
+    }
+
+    public void asetAllForeground(Color c) {
+        aAComboBox.setForeground(c);
+        aNField.setForeground(c);
+        aUField.setForeground(c);
+        apassField.setForeground(c);
+        aconfirmpassField.setForeground(c);
+    }
+
+    public void ssetAllForeground(Color c) {
+        sAComboBox.setForeground(c);
+        sNField.setForeground(c);
+        sUField.setForeground(c);
+        spassField.setForeground(c);
+        sconfirmpassField.setForeground(c);
+    }
+
+    public void aCheckPasswordMatch() {
+        if (apassField.getText().equals(aconfirmpassField.getText())) {
+            apasswordMatch.setForeground(Color.blue);
+            apasswordMatch.setText("Passwords match!");
+            apasswordsMatch = true;
+        } else {
+            apasswordMatch.setForeground(Color.red);
+            apasswordMatch.setText("Passwords don't match!");
+            apasswordsMatch = false;
+        }
+    }
+
+    public void sCheckPasswordMatch() {
+        if (spassField.getText().equals(sconfirmpassField.getText())) {
+            spasswordMatch.setForeground(Color.blue);
+            spasswordMatch.setText("Passwords match!");
+            spasswordsMatch = true;
+        } else {
+            spasswordMatch.setForeground(Color.red);
+            spasswordMatch.setText("Passwords don't match!");
+            spasswordsMatch = false;
+        }
+    }
+
     public void setAddValuesToNull() {
         aUField.setText("");
         apassField.setText("");
+        aconfirmpassField.setText("");
         aNField.setText("");
+        apasswordMatch.setText(" ");
         aAComboBox.setSelectedIndex(3);
     }
 
     public void setSearchValuesToNull() {
         sUField.setText("");
-        sPField.setText("");
+        spassField.setText("");
+        sconfirmpassField.setText("");
+        spasswordMatch.setText(" ");
         sAComboBox.setSelectedIndex(3);
+        sshowPassword.setEnabled(false);
         sAField.setText("");
         sNField.setText("");
 
         sUField.setBackground(new Color(240, 240, 240));
-        sPField.setBackground(new Color(240, 240, 240));
+        spassField.setBackground(new Color(240, 240, 240));
+        sconfirmpassField.setBackground(new Color(240, 240, 240));
         sAField.setBackground(new Color(240, 240, 240));
         sNField.setBackground(new Color(240, 240, 240));
-
-        sUField.setEnabled(false);
-        sPField.setEnabled(false);
-        sNField.setEnabled(false);
     }
 
     public void setSearchFieldsToValid() {
         sAField.setEnabled(true);
+        sshowPassword.setEnabled(true);
         sUField.setBackground(Color.white);
-        sPField.setBackground(Color.white);
+        spassField.setBackground(Color.white);
+        sconfirmpassField.setBackground(Color.white);
         sAField.setBackground(Color.white);
         sNField.setBackground(Color.white);
     }
-    
+
     public void setSearchFieldsEditable(boolean b) {
         sUField.setEditable(b);
-        sPField.setEditable(b);
+        spassField.setEditable(b);
+        sconfirmpassField.setEditable(b);
         sAComboBox.setEnabled(b);
         sNField.setEditable(b);
     }
@@ -994,6 +1270,7 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel L1;
     private javax.swing.JLabel L10;
     private javax.swing.JLabel L2;
     private javax.swing.JLabel L3;
@@ -1011,6 +1288,8 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
     private javax.swing.JPasswordField apassField;
+    private javax.swing.JLabel apasswordMatch;
+    private javax.swing.JLabel ashowPassword;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
     private javax.swing.JButton deleteButton;
@@ -1022,15 +1301,16 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JList<String> list;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
-    private javax.swing.JLabel passwordMatch;
     private javax.swing.JComboBox<String> sAComboBox;
     private javax.swing.JTextField sAField;
     private javax.swing.JTextField sNField;
-    private javax.swing.JTextField sPField;
     private javax.swing.JTextField sUField;
+    private javax.swing.JPasswordField sconfirmpassField;
     private javax.swing.JScrollPane scrollpane;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JLabel showPassword;
+    private javax.swing.JPasswordField spassField;
+    private javax.swing.JLabel spasswordMatch;
+    private javax.swing.JLabel sshowPassword;
     private javax.swing.JButton submitButton;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables

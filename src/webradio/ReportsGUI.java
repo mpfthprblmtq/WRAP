@@ -5,6 +5,8 @@
  */
 package webradio;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Pat
@@ -28,6 +30,7 @@ public class ReportsGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);

@@ -22,19 +22,8 @@ public class AccountController {
      * @param password
      * @return pro, the String[] with Account info
      */
-    public static String[] Login(String username, String password) {
-        String pro[] = IOController.Login(username, password);
-        if (pro[0].equals("///") && pro[1].equals("///")) {
-            return pro;
-        } else {
-            String u = pro[0];
-            String p = pro[1];
-            int i = Integer.valueOf(pro[2]);
-            String n = pro[3];
-
-            Main.SetUser(new Account(u, p, i, n));
-            return pro;
-        }
+    public static Account Login(String username, String password) {
+        return IOController.Login(username, password);
     }
 
     /**

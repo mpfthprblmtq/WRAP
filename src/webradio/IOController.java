@@ -35,16 +35,11 @@ public class IOController {
         (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,
         (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,};
 
-    public static String[] Login(String username, String password) {
+    public static Account Login(String username, String password) {
         if (username.equals("root") && password.equals("admin")) {
-            String[] info = new String[]{"root", "admin", "0", "Pat"};
-            return info;
+            return new Account("root", "admin", 0, "Pat");
         } else {
-
-            String[] info = new String[]{"", "", "", ""};
-
             String ePass = "";
-            String dPass = "";
 
             try {
                 ePass = encrypt(password);
@@ -52,17 +47,17 @@ public class IOController {
                 System.err.println(ex);
             }
 
+            Account a = null;
             try (Scanner in = new Scanner(new FileReader(passwords))) {
                 while (in.hasNext()) {
                     String line = in.nextLine();
                     String[] str = line.split(s);
                     try {
                         if (str[0].equals(username) && str[1].equals(ePass)) {
-                            System.arraycopy(str, 0, info, 0, 4);
+                            a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
                             break;
                         } else {
-                            info[0] = "///";
-                            info[1] = "///";
+                            a = new Account("///", "///", -1, "///");
                         }
                     } catch (NullPointerException e) {
                         System.err.println(e);
@@ -72,8 +67,8 @@ public class IOController {
             } catch (FileNotFoundException e) {
                 System.err.println(e);
             }
-            // Returns either "NO MATCH" or a good profile
-            return info;
+            // Returns either null or a good profile
+            return a;
         }
     }
 

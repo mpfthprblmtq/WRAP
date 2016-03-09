@@ -2,6 +2,7 @@ package webradio;
 
 import java.awt.Color;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class TaskGUI extends javax.swing.JFrame {
@@ -43,7 +44,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         sp = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         errLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,6 +71,7 @@ public class TaskGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Tasks");
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -383,7 +385,7 @@ public class TaskGUI extends javax.swing.JFrame {
         int total = IOController.getTotalPeople();
 
         for (int i = 0; i < total; i++) {
-            
+
             elements[i] = new ListElement(profiles[i].getfName(),
                     profiles[i].getlName(),
                     profiles[i].getId());
@@ -412,10 +414,10 @@ public class TaskGUI extends javax.swing.JFrame {
             statusField.setForeground(Color.red);
             statusField.setText("Bad");
         } else {
-            statusField.setForeground(Color.green);
+            statusField.setForeground(Color.blue);
             statusField.setText("Good");
-        } 
-        
+        }
+
         dpBox.setSelected(p.isDuesPaid());
         ptiBox.setSelected(p.isPaperworkTurnedIn());
         sdtBox.setSelected(p.isShowDesc());
@@ -428,7 +430,7 @@ public class TaskGUI extends javax.swing.JFrame {
         sdtBox.setEnabled(b);
         btBox.setEnabled(b);
     }
-    
+
     public void Submit() {
         boolean[] bool = new boolean[]{dpBox.isSelected(),
             ptiBox.isSelected(),
@@ -437,12 +439,12 @@ public class TaskGUI extends javax.swing.JFrame {
 
         errLabel.setForeground(Color.blue);
         errLabel.setText("Profile updated successfully");
-        
+
         setBoxesEnabled(false);
-        
+
         temp = IOController.SearchPerson(people.elementAt(list.getSelectedIndex()).id);
         Profile p = temp;
-        
+
         ListElement t = new ListElement(p.getfName(),
                 p.getlName(),
                 p.getId());
@@ -451,10 +453,9 @@ public class TaskGUI extends javax.swing.JFrame {
         p.setPaperworkTurnedIn(bool[1]);
         p.setShowDesc(bool[2]);
         p.setTrained(bool[3]);
-        
+
         ProfileController.DeletePerson(temp.getId());
         ProfileController.AddProfile(p);
-        
 
         ListElement q = new ListElement(p.getfName(),
                 p.getlName(),
@@ -463,16 +464,14 @@ public class TaskGUI extends javax.swing.JFrame {
         UpdateList(REMOVE, t);
         UpdateList(ADD, q);
 
-        
         submitButton.setEnabled(false);
         list.setSelectedIndex(list.getLastVisibleIndex());
     }
-    
+
     public void Admin() {
-        
+
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox btBox;

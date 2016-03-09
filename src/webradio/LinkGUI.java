@@ -5,6 +5,8 @@
  */
 package webradio;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Pat
@@ -28,6 +30,7 @@ public class LinkGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -81,7 +84,11 @@ public class LinkGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new LinkGUI().setVisible(true);
+            //new LinkGUI().setVisible(true);
+            LinkGUI frame = new LinkGUI();
+            frame.setVisible(true);
+            ImageIcon icon = new ImageIcon("src\\images\\imageicon.png");
+            frame.setIconImage(icon.getImage());
         });
     }
 

@@ -6,9 +6,7 @@
 package webradio;
 
 import java.text.DecimalFormat;
-import java.util.Locale;
-import java.text.NumberFormat;
-import java.text.ParseException;
+import javax.swing.ImageIcon;
 
 public class FinanceGUI extends javax.swing.JFrame {
 
@@ -78,6 +76,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
