@@ -1,5 +1,14 @@
+/**
+ * File: IOController.java
+ * Desc: Handles all things relating to IO
+ *       Might be split up into individual classes with relation to each function
+ *
+ * Author: Pat Ripley
+ */
+
 package webradio;
 
+// imports
 import java.io.*;
 import java.util.*;
 
@@ -20,21 +29,51 @@ import sun.misc.BASE64Encoder;
 
 public class IOController {
 
+    // global files
     static File config = new File("config.txt");
     static File passwords = new File("src\\files\\users.txt");
     static File rawroster = new File("src\\files\\rawroster.txt");
 
+    // date/time formatting
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
-    static DateFormat filedf = new SimpleDateFormat("MM.dd.yy");
+    static DateFormat filedf = new SimpleDateFormat("MM.dd.yy HH.mm");
 
+    // globals
     static ArrayList<Profile> data;
     static String s = "///";
 
+    // encryption/decryption variables
     private static final char[] PASSWORD = "enfldsgbnlsngdlksdsgm".toCharArray();
     private static final byte[] SALT = {
         (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,
         (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,};
 
+    /*
+     *   _                 _       
+     *  | |               (_)      
+     *  | |     ___   __ _ _ _ __  
+     *  | |    / _ \ / _` | | '_ \ 
+     *  | |___| (_) | (_| | | | | |
+     *  |______\___/ \__, |_|_| |_|
+     *                __/ |        
+     *               |___/         
+     */
+    
+    /**
+     * Login()
+     * 
+     * Takes a String username and String password as parameters
+     * Generalize root login
+     * Create an encrypted version of the password given
+     * Read the users file line by line to see if you find a match based
+     *  on the username and encrypted password
+     * If a match is found, return the account
+     * If no match is found, return a null account
+     * 
+     * @param username
+     * @param password
+     * @return a, a new account, result of a successful login
+     */
     public static Account Login(String username, String password) {
         if (username.equals("root") && password.equals("admin")) {
             return new Account("root", "admin", 0, "Pat");
@@ -55,9 +94,7 @@ public class IOController {
                     try {
                         if (str[0].equals(username) && str[1].equals(ePass)) {
                             a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
-                            break;
-                        } else {
-                            a = new Account("///", "///", -1, "///");
+                            return a;
                         }
                     } catch (NullPointerException e) {
                         System.err.println(e);
@@ -70,8 +107,25 @@ public class IOController {
             // Returns either null or a good profile
             return a;
         }
-    }
+    } // end Login()
 
+    /*
+     *   _    _                   
+     *  | |  | |                  
+     *  | |  | |___  ___ _ __ ___ 
+     *  | |  | / __|/ _ \ '__/ __|
+     *  | |__| \__ \  __/ |  \__ \
+     *   \____/|___/\___|_|  |___/
+     */
+    
+    /**
+     * getAllUsers()
+     * 
+     * Goes through the users file and creates an array of accounts based
+     *  on the contents of the file
+     * 
+     * @return an array of Accounts
+     */
     public static Account[] getAllUsers() {
 
         int total = getTotalUsers();
@@ -83,7 +137,6 @@ public class IOController {
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
 
-                //In order for this to work there has to be at least one user
                 pro[count] = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
                 count++;
             }
@@ -91,10 +144,16 @@ public class IOController {
         } catch (FileNotFoundException e) {
             System.err.println(e);
         }
-
         return pro;
     }
-
+    
+    /**
+     * getTotalUsers()
+     * 
+     * Scans the users text file and counts the number of users
+     * 
+     * @return a count of all users
+     */
     public static int getTotalUsers() {
         int total = 0;
         try (Scanner a_in = new Scanner(new FileReader(passwords))) {
@@ -109,6 +168,16 @@ public class IOController {
         return total;
     }
 
+    /**
+     * CheckForUsernameDupe()
+     * 
+     * Checks for a username duplication, needed for adding a new user
+     * If while scanning the file, it encounters a match, return true
+     * Else return false
+     * 
+     * @param u, the username to search
+     * @return the result of the search
+     */
     public static boolean CheckForUsernameDupe(String u) {
         try (Scanner in = new Scanner(new FileReader(passwords))) {
             while (in.hasNext()) {
@@ -129,6 +198,15 @@ public class IOController {
         return false;
     }
 
+    /**
+     * AddUser()
+     * 
+     * Writes a new Account object to the users file at the end
+     * Password is encrypted
+     * 
+     * @param p, the account to add
+     * @return the result of the addition
+     */
     public static boolean AddUser(Account p) {
 
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(passwords, true)))) {
@@ -137,14 +215,22 @@ public class IOController {
         } catch (IOException e) {
             System.err.println(e);
             return false;
-
         } catch (GeneralSecurityException ex) {
             System.err.println(ex);
         }
-
         return true;
     }
 
+    /**
+     * SearchUser()
+     * 
+     * Searches for a user based on the username given in the users file
+     * While scanning the users file, if a match is found, return a new account
+     * If no match, return a null account
+     * 
+     * @param username, the account to search
+     * @return the account found
+     */
     public static Account SearchUser(String username) {
         Account p = null;
 
@@ -166,6 +252,15 @@ public class IOController {
         return p;
     }
 
+    /**
+     * DeleteUser()
+     * 
+     * Basically just rewrites the users file, and excludes the account that 
+     * was passed as a parameter
+     * 
+     * @param p, the account to search
+     * @return the result of the deletion
+     */
     public static boolean DeleteUser(Account p) {
 
         int total = getTotalUsers();    // for array size
@@ -207,13 +302,23 @@ public class IOController {
         return true;
     }
 
+    /*
+     *   _____            __ _ _           
+     *  |  __ \          / _(_) |          
+     *  | |__) | __ ___ | |_ _| | ___  ___ 
+     *  |  ___/ '__/ _ \|  _| | |/ _ \/ __|
+     *  | |   | | | (_) | | | | |  __/\__ \
+     *  |_|   |_|  \___/|_| |_|_|\___||___/
+     */
     
-    
-    
-    
-    
-    
-    
+    /**
+     * getAllProfiles()
+     * 
+     * Goes through the roster file and creates an array of profiles based
+     *  on the contents of the file
+     * 
+     * @return an array of Profiles
+     */
     public static Profile[] getAllProfiles() {
         int total = getTotalProfiles();
         Profile[] profiles = new Profile[total];
@@ -237,6 +342,13 @@ public class IOController {
         return profiles;
     }
 
+    /**
+     * getTotalProfiles()
+     * 
+     * Scans the roster text file and counts the number of profiles
+     * 
+     * @return a count of all profiles
+     */
     public static int getTotalProfiles() {
         int total = 0;
         try (Scanner a_in = new Scanner(new FileReader(rawroster))) {

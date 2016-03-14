@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: BugReportGUI.java
+ * Desc: Prompts for name and a brief description of the bug found, then
+ *        sends it to IOController and creates a report in the bugreports
+ *        folder in src
+ *
+ * Author: Pat Ripley
  */
 package webradio;
 
-/**
- *
- * @author Pat
- */
 public class BugReportGUI extends javax.swing.JFrame {
 
     /**
@@ -38,6 +37,7 @@ public class BugReportGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         submitButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        errLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Bug Report");
@@ -60,6 +60,7 @@ public class BugReportGUI extends javax.swing.JFrame {
         desc.setColumns(20);
         desc.setLineWrap(true);
         desc.setRows(5);
+        desc.setWrapStyleWord(true);
         jScrollPane1.setViewportView(desc);
 
         jLabel3.setText("Please provide a brief description:");
@@ -75,6 +76,9 @@ public class BugReportGUI extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
 
+        errLabel.setForeground(new java.awt.Color(255, 0, 0));
+        errLabel.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,8 +89,11 @@ public class BugReportGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(submitButton))
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,29 +133,47 @@ public class BugReportGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(submitButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitButton)
+                    .addComponent(errLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles the submit button press
+     * Checks to see if the name field and description field are filled
+     * If not, update errLabel
+     * Send the input to IOController to create the report file
+     * 
+     * @param evt 
+     */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        if (!nameField.getText().equals("") || !desc.getText().equals("")) {
+        if (nameField.getText().equals("") || desc.getText().equals("")) {
+            errLabel.setText("All fields required");
+        } else {
             this.dispose();
             String name = nameField.getText();
             String report = desc.getText();
             IOController.reportBug(name, report);
-        } else {
-            // no
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
+    /**
+     * Handles when the window is closed 
+     * When the window is closed, call Main.closeAccountGUI()
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseBugReportGUI();
     }//GEN-LAST:event_formWindowClosed
 
     /**
+     * main()
+     * 
+     * You already know what main is if you're reading this
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -184,6 +209,7 @@ public class BugReportGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea desc;
+    private javax.swing.JLabel errLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

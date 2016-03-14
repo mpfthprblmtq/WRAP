@@ -1,11 +1,10 @@
 /**
- * File:    AccountController.java
- * Desc:    Takes input from AccountGUI and communicates with IOController to read
- *          and write to files
- * 
- * Author:  Pat Ripley
+ * File: AccountController.java
+ * Desc: Takes input from AccountGUI and communicates with IOController to read
+ * and write to files
+ *
+ * Author: Pat Ripley
  */
-
 package webradio;
 
 public class AccountController {
@@ -13,10 +12,10 @@ public class AccountController {
     /**
      * Login()
      * Sends username and password combination in String form to IOController
-     *    to be checked through users on record
+     * to be checked through users on record
      * If there is no match, recieves a null Account, invalid
      * Else it returns an Account
-     * 
+     *
      * @param username
      * @param password
      * @return pro, the String[] with Account info
@@ -27,9 +26,9 @@ public class AccountController {
 
     /**
      * AddUser()
-     * Checks the username for any duplicated usernames, returns false if the 
-     *    username is already taken
-     * 
+     * Checks the username for any duplicated usernames, returns false if the
+     * username is already taken
+     *
      * @param p, the Account object
      * @return boolean result of the addition
      */
@@ -44,7 +43,7 @@ public class AccountController {
     /**
      * SearchUser()
      * Searches for an Account object based on username
-     * 
+     *
      * @param username to search by
      * @return an Account object
      */
@@ -55,12 +54,12 @@ public class AccountController {
     /**
      * DeleteUser()
      * Deletes an Account
-     * 
+     *
      * @param p, the Account object
      * @return boolean result of the deletion
      */
     public static boolean DeleteUser(Account p) {
         return IOController.DeleteUser(p);
     }
-    
+
 } // end AccountController

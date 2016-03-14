@@ -140,13 +140,13 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void usernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             submit();
         }
     }//GEN-LAST:event_usernameFieldKeyPressed
 
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             submit();
         }
     }//GEN-LAST:event_passwordFieldKeyPressed
@@ -160,7 +160,7 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldFocusGained
 
     private void submit() {
-                
+
         // Tests if there's actually text in the fields
         if (usernameField.getText().equals("")
                 || usernameField.getText().equals("Username")
@@ -172,33 +172,32 @@ public class LoginGUI extends javax.swing.JFrame {
             usernameField.requestFocus();
             return;
         }
-        
+
         // Tests for the split character "/"
-        if (usernameField.getText().contains("/") || passwordField.getText().contains("/")) {
-            ErrLabel.setText("Invalid character: /");
-            
-            usernameField.setText("");
+        if (Util.sepCheck(usernameField.getText()) || Util.sepCheck(passwordField.getText())) {
+            ErrLabel.setText("Invalid character");
+
             passwordField.setText("");
             usernameField.requestFocus();
             return;
         }
-        
+
         // Input validated, sending to AccountController
         Account res = AccountController.Login(usernameField.getText(), passwordField.getText());
         
-        // No match found
-        if(res == null) {
+        if (res == null) {
+            // no match found
             ErrLabel.setText("Invalid credentials");
             usernameField.setText("");
             passwordField.setText("");
             usernameField.requestFocus();
-            return;
+
+        } else {
+            // match found
+            this.setVisible(false);
+            Main.SetUser(res);
+            Main.LaunchMainGUI();
         }
-        
-        // Successful Login, launching main interface
-        this.setVisible(false);
-        Main.SetUser(res);
-        Main.LaunchMainGUI();
 
     }
 
@@ -209,7 +208,7 @@ public class LoginGUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -222,7 +221,7 @@ public class LoginGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

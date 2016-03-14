@@ -1,7 +1,6 @@
 /**
  * File: AccountGUI.java
- * Desc: Sends input to AccountController and handles all
- *       the GUI related events
+ * Desc: Sends input to AccountController and handles all the GUI related events
  *
  * Author: Pat Ripley
  */
@@ -584,13 +583,16 @@ public class AccountGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Literally all event related methods Includes: Add, Submit, and Edit :
-     * calls outside methods FormWindow events : closing, opening ListClicked :
-     * searches for element that was clicked KeyPressed : if enter was pressed,
-     * do a thing MenuBar things : things in the menu bar (exit, close, logout,
-     * help, bug, etc) ComboBox things : changes the fields when the combobox is
-     * changed ShowPassword : changes the text on the passwordsMatch label,
-     * shows password in pop up window when clicked
+     * Literally all event related methods
+     * Includes:
+     *
+     * Add, Submit, and Edit : calls outside methods
+     * FormWindow events : closing, opening
+     * ListClicked : searches for element that was clicked
+     * KeyPressed : if enter was pressed, do a thing
+     * MenuBar things : things in the menu bar (exit, close, logout, help, bug, etc)
+     * ComboBox things : changes the fields when the combobox is changed
+     * ShowPassword : changes the text on the passwordsMatch label, shows password in pop up window when clicked
      */
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods">  
     /**
@@ -969,10 +971,12 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aNFieldFocusGained
 
     // </editor-fold>
+    
     /**
-     * FillList() Gets all of the users from IOController and shoves them into
-     * an array Then it populates the DefaultListModel of ListElements from that
-     * array
+     * FillList()
+     *
+     * Gets all of the users from IOController and shoves them into an array
+     * Then it populates the DefaultListModel of ListElements from that array
      *
      * @return the DefaultListModel to populate the JList
      */
@@ -994,10 +998,11 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * UpdateList() Works with the global list of users, which updates the JList
-     * Graphics
+     * UpdateList()
      *
-     * @param action, the type of action (either add or remove)
+     * Works with the global list of users, which updates the JList graphics
+     *
+     * @param action,  the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void UpdateList(int action, ListElement element) {
@@ -1012,10 +1017,14 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * If the fields are all valid, this method is called Takes fields and
-     * creates Account and ListElement objects Then it calls the
-     * AccountController to add the user If the addition succeeds Confirmation
-     * on errLabel, update the list, and update graphics Else addition fails
+     * Add()
+     *
+     * If the fields are all valid, this method is called
+     * Takes fields and creates Account and ListElement objects
+     * Then it calls the AccountController to add the user
+     * If the addition succeeds
+     * Confirmation on errLabel, update the list, and update graphics
+     * Else addition fails
      * Means that the username is already taken, display error on errLabel
      */
     public void Add() {
@@ -1047,6 +1056,8 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
+     * Search()
+     *
      * Calls the SearchUser method from AccountController, which returns a valid
      * account Update the graphics with the account credentials
      *
@@ -1073,8 +1084,11 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Delete() Create an account with the fields given Then call DeleteUser()
-     * from AccountController If success, confirm on errLabel
+     * Delete()
+     *
+     * Creates an account with the fields given
+     * Then call DeleteUser() from AccountController
+     * If success, confirm on errLabel
      */
     public void Delete() {
 
@@ -1109,7 +1123,9 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Edit() Basically just sets the fields to editable Stores a temporary
+     * Edit()
+     *
+     * Basically just sets the fields to editable Stores a temporary
      * global account, used in the editing process in Submit()
      */
     public void Edit() {
@@ -1129,16 +1145,25 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Submit() Takes the new input as parameters for a new Account object
+     * Submit()
+     *
+     * Takes the new input as parameters for a new Account object
+     * Then it deletes the old account, then adds the new one (in that order)
+     * If success, update the graphics
+     * If failure, return and update graphics
      */
     public void Submit() {
+
+        setSearchFieldsEditable(false);
+
+        // create new account object
         String username = sUField.getText();
         String password = spassField.getText();
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
-        setSearchFieldsEditable(false);
-
         Account p = new Account(username, password, Integer.valueOf(access), name);
+
+        // delete old, then add new
         if (AccountController.DeleteUser(temp) && AccountController.AddUser(p)) {
             errLabel.setForeground(Color.blue);
             errLabel.setText("User edited successfully");
@@ -1163,9 +1188,20 @@ public class AccountGUI extends javax.swing.JFrame {
 
         list.setSelectedIndex(list.getLastVisibleIndex());
         Search(users.getElementAt(users.getSize() - 1).username);
-
     }
 
+    /**
+     * aCheck()
+     *
+     * Checks the add panel and makes sure all the fields are kosher
+     * See comments in function for details on each element
+     * First, it "resets" by making all fields foregrounds black
+     * Then it checks each individual field, and sets the foreground red if the field has an error
+     * If it returns a true flag, there is no error
+     * It calls the setAddErrLabel to find the individual errors and updates errLabel
+     *
+     * @return flag, the conditional to show if the fields are valid
+     */
     public boolean aCheck() {
         boolean flag = true;
 
@@ -1221,6 +1257,18 @@ public class AccountGUI extends javax.swing.JFrame {
         return flag;
     }
 
+    /**
+     * sCheck()
+     *
+     * Checks the search panel and makes sure all the fields are kosher
+     * See comments in function for details on each element
+     * First, it "resets" by making all fields foregrounds black
+     * Then it checks each individual field, and sets the foreground red if the field has an error
+     * If it returns a true flag, there is no error
+     * It calls the setAddErrLabel to find the individual errors and updates errLabel
+     *
+     * @return flag, the conditional to show if the fields are valid
+     */
     public boolean sCheck() {
         boolean flag = true;
 
@@ -1234,6 +1282,9 @@ public class AccountGUI extends javax.swing.JFrame {
         if (sUField.getText().equals("") || sUField.getText().equals("--")) {
             flag = false;
             sUField.setText("--");
+            sUField.setForeground(Color.red);
+        } else if (IOController.CheckForUsernameDupe(sUField.getText())) {
+            flag = false;
             sUField.setForeground(Color.red);
         } else if (!Util.sepCheck(sUField.getText())) {
             flag = false;
@@ -1276,74 +1327,113 @@ public class AccountGUI extends javax.swing.JFrame {
         return flag;
     }
 
+    /**
+     * setAddErrLabel()
+     *
+     * Has an error count to find the total number of errors
+     * Basically just sees if the foregrounds of each field is red
+     * If they are, add 1 to count
+     * It's in reverse so it starts with the top most field
+     * Example: "Error with access field and 1 other(s)"
+     */
     public void setAddErrLabel() {
-        int errCount = 0;
-        String err = "";
+        int errCount = 0;   // number of errors
+        String err = "";    // err, instantiated it to null to add to it later
 
+        // name field
         if (aNField.getForeground() == Color.red) {
             errCount++;
             err = "Error with name field";
         }
 
+        // access field
         if (aAComboBox.getForeground() == Color.red) {
             errCount++;
             err = "Error with access field";
         }
 
+        // passwords field
         if (apassField.getForeground() == Color.red
                 && aconfirmpassField.getForeground() == Color.red) {
             errCount++;
             err = "Error with password field(s)";
         }
 
+        // username field
         if (aUField.getForeground() == Color.red) {
             errCount++;
             err = "Error with username field";
         }
 
+        // if the count is over 1, get the top most error and add "and # other(s)"
         if (errCount > 1) {
             errLabel.setForeground(Color.red);
             errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+
+            // else if error count is only 1, display the only error
         } else if (errCount == 1) {
             errLabel.setForeground(Color.red);
             errLabel.setText(err);
         }
     }
 
+    /**
+     * setSeachErrLabel()
+     *
+     * Has an error count to find the total number of errors
+     * Basically just sees if the foregrounds of each field is red
+     * If they are, add 1 to count It's in reverse so it starts with the top most field
+     * Example: "Error with access field and 1 other(s)"
+     */
     public void setSearchErrLabel() {
-        int errCount = 0;
-        String err = "";
+        int errCount = 0;   // number of errors
+        String err = "";    // err, instantiated it to null to add to it later
 
+        // name field
         if (sNField.getForeground() == Color.red) {
             errCount++;
             err = "Error with name field";
         }
 
+        // access field
         if (sAComboBox.getForeground() == Color.red) {
             errCount++;
             err = "Error with access field";
         }
 
+        // password field
         if (spassField.getForeground() == Color.red
                 && sconfirmpassField.getForeground() == Color.red) {
             errCount++;
             err = "Error with password field(s)";
         }
 
+        // username field
         if (sUField.getForeground() == Color.red) {
             errCount++;
             err = "Error with username field";
         }
 
+        // if the count is over 1, get the top most error and add "and # other(s)"
         if (errCount > 1) {
             errLabel.setForeground(Color.red);
             errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+
+            // else if error count is only 1, display the only error
         } else if (errCount == 1) {
             errLabel.setForeground(Color.red);
             errLabel.setText(err);
         }
     }
 
+    /**
+     * asetAllForeground()
+     *
+     * Graphics update
+     * Just sets the foreground of all fields on add panel to a color
+     *
+     * @param c, the color to change the fields to
+     */
     public void asetAllForeground(Color c) {
         aAComboBox.setForeground(c);
         aNField.setForeground(c);
@@ -1352,6 +1442,14 @@ public class AccountGUI extends javax.swing.JFrame {
         aconfirmpassField.setForeground(c);
     }
 
+    /**
+     * ssetAllForeground()
+     *
+     * Graphics update
+     * Just sets the foreground of all fields on search panel to a color
+     *
+     * @param c, the color to change the fields to
+     */
     public void ssetAllForeground(Color c) {
         sAComboBox.setForeground(c);
         sNField.setForeground(c);
@@ -1360,6 +1458,12 @@ public class AccountGUI extends javax.swing.JFrame {
         sconfirmpassField.setForeground(c);
     }
 
+    /**
+     * aCheckPasswordMatch()
+     *
+     * Checks to see if the password in first field matches the password
+     * in the confirm field on every key release
+     */
     public void aCheckPasswordMatch() {
         if (apassField.getText().equals(aconfirmpassField.getText())) {
             apasswordMatch.setForeground(Color.blue);
@@ -1372,6 +1476,12 @@ public class AccountGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * sCheckPasswordMatch()
+     *
+     * Checks to see if the password in first field matches the password
+     * in the confirm field on every key release
+     */
     public void sCheckPasswordMatch() {
         if (spassField.getText().equals(sconfirmpassField.getText())) {
             spasswordMatch.setForeground(Color.blue);
@@ -1384,6 +1494,12 @@ public class AccountGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * setAddValuesToNull()
+     *
+     * Graphics update
+     * Sets all fields in add panel to blank values
+     */
     public void setAddValuesToNull() {
         aUField.setText("");
         apassField.setText("");
@@ -1393,6 +1509,12 @@ public class AccountGUI extends javax.swing.JFrame {
         aAComboBox.setSelectedIndex(3);
     }
 
+    /**
+     * setSearchValuesToNull()
+     *
+     * Graphics update
+     * Sets all fields in search panel to blank values
+     */
     public void setSearchValuesToNull() {
         sUField.setText("");
         spassField.setText("");
@@ -1410,6 +1532,12 @@ public class AccountGUI extends javax.swing.JFrame {
         sNField.setBackground(new Color(240, 240, 240));
     }
 
+    /**
+     * setSearchFieldsToValid()
+     *
+     * Graphics update
+     * Sets all fields in search panel to valid
+     */
     public void setSearchFieldsToValid() {
         sAField.setEnabled(true);
         sshowPassword.setEnabled(true);
@@ -1420,6 +1548,14 @@ public class AccountGUI extends javax.swing.JFrame {
         sNField.setBackground(Color.white);
     }
 
+    /**
+     * setSearchFieldsEditable()
+     *
+     * Graphics update
+     * Sets all fields in search panel to editable
+     *
+     * @param b, the condition of editable
+     */
     public void setSearchFieldsEditable(boolean b) {
         sUField.setEditable(b);
         spassField.setEditable(b);
@@ -1429,13 +1565,17 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
+     * main()
+     *
+     * You already know what main is if you're reading this
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
 
         try {
@@ -1463,6 +1603,7 @@ public class AccountGUI extends javax.swing.JFrame {
         });
     }
 
+    // I'll modify what I want
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel L1;
     private javax.swing.JLabel L10;
@@ -1508,4 +1649,4 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JButton submitButton;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
-}
+} // End AccountGUI
