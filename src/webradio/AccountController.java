@@ -12,11 +12,10 @@ public class AccountController {
 
     /**
      * Login()
-     * Sends username and password combination in String[] form to IOController
+     * Sends username and password combination in String form to IOController
      *    to be checked through users on record
-     * If there is no match, recieves String[] with "///" as both elements, invalid
-     * Else it returns a String[] with elements to create the Account object
-     * Creates the Account object and sets it in Main to be used by the whole program
+     * If there is no match, recieves a null Account, invalid
+     * Else it returns an Account
      * 
      * @param username
      * @param password

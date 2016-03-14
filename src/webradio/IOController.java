@@ -207,8 +207,15 @@ public class IOController {
         return true;
     }
 
-    public static Profile[] getAllPeople() {
-        int total = getTotalPeople();
+    
+    
+    
+    
+    
+    
+    
+    public static Profile[] getAllProfiles() {
+        int total = getTotalProfiles();
         Profile[] profiles = new Profile[total];
 
         int count = 0;
@@ -218,7 +225,7 @@ public class IOController {
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
                 profiles[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
-                        toBool(str[9]), toBool(str[10]), toBool(str[11]), toBool(str[12]));
+                        Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
                 count++;
             }
 
@@ -230,7 +237,7 @@ public class IOController {
         return profiles;
     }
 
-    public static int getTotalPeople() {
+    public static int getTotalProfiles() {
         int total = 0;
         try (Scanner a_in = new Scanner(new FileReader(rawroster))) {
             while (a_in.hasNextLine()) {
@@ -277,7 +284,7 @@ public class IOController {
         return true;
     }
 
-    public static Profile SearchPerson(String id) {
+    public static Profile SearchProfile(String id) {
         Profile p = null;
 
         try (Scanner in = new Scanner(new FileReader(rawroster))) {
@@ -287,7 +294,7 @@ public class IOController {
 
                 if (str[2].equals(id)) {
                     p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
-                            toBool(str[9]), toBool(str[10]), toBool(str[11]), toBool(str[12]));
+                            Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
                 }
             }
             in.close();
@@ -298,7 +305,7 @@ public class IOController {
     }
 
     public static boolean DeletePerson(String id) {
-        int total = getTotalPeople();    // for array size
+        int total = getTotalProfiles();    // for array size
         int count = 0;                  // counter
 
         // main array of users
@@ -313,7 +320,7 @@ public class IOController {
                 // if the current person is NOT the person to delete, put it in the array
                 if (!str[2].equals(id)) {
                     arr[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
-                            toBool(str[9]), toBool(str[10]), toBool(str[11]), toBool(str[12]));
+                            Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
                 }
                 count++;
             }
@@ -360,10 +367,6 @@ public class IOController {
         } catch (IOException e) {
             System.err.println(e);
         }
-    }
-
-    public static boolean toBool(String s) {
-        return !s.equals("false");
     }
 
     /*

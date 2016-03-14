@@ -20,8 +20,8 @@ public class TaskController implements Comparator<Profile> {
      * 
      * @return sorted array of Profiles
      */
-    public static Profile[] getAllPeople() {
-        Profile[] arr = IOController.getAllPeople();
+    public static Profile[] getAllProfiles() {
+        Profile[] arr = IOController.getAllProfiles();
         arr = sort(arr);
         return arr;
     }

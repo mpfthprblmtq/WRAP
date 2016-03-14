@@ -23,7 +23,7 @@ public class ProfileController implements Comparator<Profile> {
     }
     
     public static Profile SearchPerson(String id) {
-        return IOController.SearchPerson(id);
+        return IOController.SearchProfile(id);
     }
     
     public static boolean DeletePerson(String id) {
@@ -31,7 +31,7 @@ public class ProfileController implements Comparator<Profile> {
     }
     
     public static Profile[] getAllPeople() {
-        Profile[] arr = IOController.getAllPeople();
+        Profile[] arr = IOController.getAllProfiles();
         arr = sort(arr);
         return arr;
     }

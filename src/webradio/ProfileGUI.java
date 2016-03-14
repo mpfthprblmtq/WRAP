@@ -1354,7 +1354,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     public DefaultListModel FillList() {
-        int total = IOController.getTotalPeople();
+        int total = IOController.getTotalProfiles();
         Profile[] str = ProfileController.sort(ProfileController.getAllPeople());
         elements = new ListElement[total];
         if (str != null) {
