@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: LinkGUI.java
+ * Desc: Not implemented yet
+ *
+ * Author: Pat Ripley
  */
 package webradio;
 
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author Pat
- */
 public class LinkGUI extends javax.swing.JFrame {
 
     /**
@@ -84,11 +81,7 @@ public class LinkGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            //new LinkGUI().setVisible(true);
-            LinkGUI frame = new LinkGUI();
-            frame.setVisible(true);
-            ImageIcon icon = new ImageIcon("src\\images\\imageicon.png");
-            frame.setIconImage(icon.getImage());
+            new LinkGUI().setVisible(true);
         });
     }
 

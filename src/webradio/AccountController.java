@@ -55,11 +55,11 @@ public class AccountController {
      * DeleteUser()
      * Deletes an Account
      *
-     * @param p, the Account object
+     * @param username, the Account to delete
      * @return boolean result of the deletion
      */
-    public static boolean DeleteUser(Account p) {
-        return IOController.DeleteUser(p);
+    public static boolean DeleteUser(String username) {
+        return IOController.DeleteUser(username);
     }
 
 } // end AccountController

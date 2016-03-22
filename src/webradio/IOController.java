@@ -78,22 +78,28 @@ public class IOController {
         if (username.equals("root") && password.equals("admin")) {
             return new Account("root", "admin", 0, "Pat");
         } else {
+            // encrypted password
             String ePass = "";
 
             try {
+                // store the encrypted password in ePass
                 ePass = encrypt(password);
             } catch (GeneralSecurityException | UnsupportedEncodingException ex) {
                 System.err.println(ex);
             }
 
+            // instantiate the account to null, return if no match found
             Account a = null;
             try (Scanner in = new Scanner(new FileReader(passwords))) {
                 while (in.hasNext()) {
                     String line = in.nextLine();
                     String[] str = line.split(s);
                     try {
+                        // if the username and password match
                         if (str[0].equals(username) && str[1].equals(ePass)) {
+                            // create a new account from info in file
                             a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
+                            // return the new account
                             return a;
                         }
                     } catch (NullPointerException e) {
@@ -104,7 +110,7 @@ public class IOController {
             } catch (FileNotFoundException e) {
                 System.err.println(e);
             }
-            // Returns either null or a good profile
+            // return the null profile
             return a;
         }
     } // end Login()
@@ -232,7 +238,7 @@ public class IOController {
      * @return the account found
      */
     public static Account SearchUser(String username) {
-        Account p = null;
+        Account a = null;
 
         try (Scanner in = new Scanner(new FileReader(passwords))) {
             while (in.hasNext()) {
@@ -240,7 +246,7 @@ public class IOController {
                 String[] str = line.split(s);
 
                 if (str[0].equals(username)) {
-                    p = new Account(str[0], decrypt(str[1]), Integer.valueOf(str[2]), str[3]);
+                    a = new Account(str[0], decrypt(str[1]), Integer.valueOf(str[2]), str[3]);
                 }
             }
             in.close();
@@ -249,7 +255,7 @@ public class IOController {
         } catch (GeneralSecurityException | IOException ex) {
             System.err.println(ex);
         }
-        return p;
+        return a;
     }
 
     /**
@@ -258,10 +264,10 @@ public class IOController {
      * Basically just rewrites the users file, and excludes the account that 
      * was passed as a parameter
      * 
-     * @param p, the account to search
+     * @param username, the account to search
      * @return the result of the deletion
      */
-    public static boolean DeleteUser(Account p) {
+    public static boolean DeleteUser(String username) {
 
         int total = getTotalUsers();    // for array size
         int count = 0;                  // counter
@@ -276,7 +282,7 @@ public class IOController {
                 String[] str = line.split(s);       // split it on / symbol
 
                 // if the profile is not the profile to delete, put it in the array
-                if (!str[0].equals(p.getUsername())) {
+                if (!str[0].equals(username)) {
                     arr[count] = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
                 }
                 count++;
@@ -363,13 +369,25 @@ public class IOController {
         return total;
     }
 
+    /**
+     * CheckForIDDupe()
+     * 
+     * Checks for a id duplication, needed for adding a new profile
+     * If while scanning the file, it encounters a match, return true
+     * Else return false
+     * 
+     * @param id, the id to search
+     * @return the result of the search
+     */
     public static boolean CheckForIDDupe(String id) {
         try (Scanner in = new Scanner(new FileReader(rawroster))) {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
                 try {
+                    // if the id in the file matches the parameter
                     if (str[2].equals(id)) {
+                        // return true if match found
                         return true;
                     }
                 } catch (NullPointerException e) {
@@ -380,9 +398,18 @@ public class IOController {
         } catch (FileNotFoundException e) {
             System.err.println(e);
         }
+        // return false if no match found
         return false;
     }
 
+    /**
+     * AddProfile()
+     * 
+     * Writes a new Profile object to the roster file at the end
+     * 
+     * @param p, the profile to add
+     * @return the result of the addition
+     */
     public static boolean AddProfile(Profile p) {
 
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(rawroster, true)))) {
@@ -396,6 +423,16 @@ public class IOController {
         return true;
     }
 
+    /**
+     * SearchProfile()
+     * 
+     * Searches for a profile based on the id given in the roster file
+     * While scanning the roster file, if a match is found, return a new profile
+     * If no match, return a null profile
+     * 
+     * @param id, the id to search
+     * @return the profile found
+     */
     public static Profile SearchProfile(String id) {
         Profile p = null;
 
@@ -403,7 +440,8 @@ public class IOController {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
-
+                
+                // if match is found, create new profile 
                 if (str[2].equals(id)) {
                     p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
                             Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
@@ -413,14 +451,24 @@ public class IOController {
         } catch (FileNotFoundException e) {
             System.err.println(e);
         }
+        // if no match found, return the null profile
         return p;
     }
 
-    public static boolean DeletePerson(String id) {
+    /**
+     * DeleteProfile()
+     * 
+     * Basically just rewrites the roster file, and excludes the profile that 
+     * was passed as a parameter
+     * 
+     * @param id, the id to search
+     * @return the result of the deletion
+     */
+    public static boolean DeleteProfile(String id) {
         int total = getTotalProfiles();    // for array size
-        int count = 0;                  // counter
+        int count = 0;                      // counter
 
-        // main array of users
+        // main array of profiles
         Profile[] arr = new Profile[total];
 
         // filling array with all elements that are not the profile to delete
@@ -457,16 +505,32 @@ public class IOController {
         return true;
     }
 
+    /**
+     * reportBug()
+     * 
+     * Creates a new file based on date and time
+     * Includes the name, date/time, and description of the bug
+     * Since word wrapping is super fun to hardcode, I did it a fun way
+     * 
+     * @param name
+     * @param report 
+     */
     public static void reportBug(String name, String report) {
+        // creating the file name
         Date date = new Date();
         String filename = filedf.format(date);
         File bug = new File("src\\bugreports\\" + filename + ".txt");
 
+        // creating the file
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(bug, false)))) {
-
+            // header with name and date
             out.println("Name:  " + name);
             out.println("Date:  " + df.format(date));
             out.println("");
+            
+            // description
+            // basically just splits the string as an array and split on space character
+            // every 10 elements in the new String array, print a newline
             out.println("Description:\n");
             String[] str = report.split(" ");
             for (int i = 0; i < str.length; i++) {
@@ -501,7 +565,8 @@ public class IOController {
     }
 
     private static String base64Encode(byte[] bytes) {
-        // NB: This class is internal, and you probably should use another impl
+        // This class is internal
+        // should probably use a different implementation
         return new BASE64Encoder().encode(bytes);
     }
 
@@ -514,7 +579,8 @@ public class IOController {
     }
 
     private static byte[] base64Decode(String property) throws IOException {
-        // NB: This class is internal, and you probably should use another impl
+        // This class is internal
+        // should probably use a different implemtation
         return new BASE64Decoder().decodeBuffer(property);
     }
-}
+} // end IOController

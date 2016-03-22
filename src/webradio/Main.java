@@ -1,51 +1,89 @@
-package webradio;
+/**
+ * File: Main.java
+ * Desc: Controls all of the GUIs, having them dispose instead of close
+ *       Has the global user account stored here
+ *       Starts the code off by showing the LoginGUI
+ *
+ * Author: Pat Ripley
+ */
 
-import javax.swing.ImageIcon;
+package webradio;
 
 public class Main {
 
+    // global account
     public static Account p;
 
+    // All of these are the actual GUI, and a boolean to see if they are open or not
+    
+    // mainGUI
     static MainGUI mainGUI;
 
+    // accountGUI
     static AccountGUI accountGUI;
     static boolean accountGUIVisible = false;
 
+    // profileGUI
     static ProfileGUI profileGUI;
     static boolean profileGUIVisible = false;
     
+    // taskGUI
     static TaskGUI taskGUI;
     static boolean taskGUIVisible = false;
 
+    // financeGUI
     static FinanceGUI financeGUI;
     static boolean financeGUIVisible = false;
 
+    // linkGUI
     static LinkGUI linkGUI;
     static boolean linkGUIVisible = false;
 
+    // reportsGUI
     static ReportsGUI reportsGUI;
     static boolean reportsGUIVisible = false;
     
+    // bugReportGUI
     static BugReportGUI bugreportGUI;
     static boolean bugreportGUIVisible = false;
 
+    /**
+     * main()
+     * 
+     * Sets a LoginGUI visible
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
         
         LoginGUI loginGUI = new LoginGUI();
-        ImageIcon icon = new ImageIcon("src\\images\\imageicon.png");
-        loginGUI.setIconImage(icon.getImage());
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
     }
 
+    /**
+     * SetUser()
+     * Set the global user
+     * @param p 
+     */
     public static void SetUser(Account p) {
         Main.p = p;
     }
     
+    /**
+     * getUser()
+     * Return the global user
+     * @return 
+     */
     public static Account getUser() {
         return p;
     }
 
+    /**
+     * Logout()
+     * 
+     * Clears the global account, then creates a new LoginGUI
+     */
     public static void Logout() {
         Main.p = null;
         LoginGUI loginGUI = new LoginGUI();
@@ -53,6 +91,10 @@ public class Main {
         loginGUI.setVisible(true);
     }
 
+    /**
+     * MainGUI
+     * Controls the MainGUI opening and closing
+     */
     public static void LaunchMainGUI() {
         mainGUI = new MainGUI();
         mainGUI.setLocationRelativeTo(null);
@@ -63,6 +105,10 @@ public class Main {
         mainGUI.dispose();
     }
 
+    /**
+     * AccountGUI
+     * Controls the AccountGUI opening and closing
+     */
     public static void LaunchAccountGUI() {
         if (!accountGUIVisible) {
             accountGUI = new AccountGUI();
@@ -77,6 +123,10 @@ public class Main {
         accountGUIVisible = false;
     }
 
+    /**
+     * ProfileGUI
+     * Controls the ProfileGUI opening and closing
+     */
     public static void LaunchProfileGUI() {
         if (!profileGUIVisible) {
             profileGUI = new ProfileGUI();
@@ -91,6 +141,10 @@ public class Main {
         profileGUIVisible = false;
     }
     
+    /**
+     * TaskGUI
+     * Controls the TaskGUI opening and closing
+     */
     public static void LaunchTaskGUI() {
         if (!taskGUIVisible) {
             taskGUI = new TaskGUI();
@@ -105,6 +159,10 @@ public class Main {
         taskGUIVisible = false;
     }
 
+    /**
+     * FinanceGUI
+     * Controls the FinanceGUI opening and closing
+     */
     public static void LaunchFinanceGUI() {
         if (!financeGUIVisible) {
             financeGUI = new FinanceGUI();
@@ -119,6 +177,10 @@ public class Main {
         financeGUIVisible = false;
     }
 
+    /**
+     * LinkGUI
+     * Controls the LinkGUI opening and closing
+     */
     public static void LaunchLinkGUI() {
         if (!linkGUIVisible) {
             linkGUI = new LinkGUI();
@@ -133,6 +195,10 @@ public class Main {
         linkGUIVisible = false;
     }
 
+    /**
+     * ReportsGUI
+     * Controls the ReportsGUI opening and closing
+     */
     public static void LaunchReportsGUI() {
         if (!reportsGUIVisible) {
             reportsGUI = new ReportsGUI();
@@ -147,6 +213,10 @@ public class Main {
         reportsGUIVisible = false;
     }
     
+    /**
+     * BugReportGUI
+     * Controls the BugReportGUI opening and closing
+     */
     public static void LaunchBugReportGUI() {
         if (!bugreportGUIVisible) {
             bugreportGUI = new BugReportGUI();
@@ -159,4 +229,4 @@ public class Main {
     public static void CloseBugReportGUI() {
         bugreportGUIVisible = false;
     }
-}
+} // end Main

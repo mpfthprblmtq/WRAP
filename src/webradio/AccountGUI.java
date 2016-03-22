@@ -592,9 +592,13 @@ public class AccountGUI extends javax.swing.JFrame {
      * KeyPressed : if enter was pressed, do a thing
      * MenuBar things : things in the menu bar (exit, close, logout, help, bug, etc)
      * ComboBox things : changes the fields when the combobox is changed
+     * GainFocus : selects all text in the field when field gains focus
+     * EnterKeyPressed : clicks a button when enter is pressed
      * ShowPassword : changes the text on the passwordsMatch label, shows password in pop up window when clicked
      */
+    
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods">  
+    
     /**
      * Handles when the ADD button is pressed Checks to see if all of the
      * elements are kosher, then calls Add()
@@ -624,6 +628,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 + sUField.getText() + "?",
                 "Confirm Deletion",
                 JOptionPane.YES_NO_OPTION);
+        
+        // do a thing based on response
         switch (res) {
             case 0:
                 Delete();
@@ -634,8 +640,8 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
-     * Handles when the SUBMIT button is pressed Checks to see if all the
-     * modified elements, then calls Submit()
+     * Handles when the SUBMIT button is pressed 
+     * Checks to see if all the modified elements are okay, calls Submit() if they are
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
@@ -731,6 +737,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 "Are you sure you want to exit WRAP?",
                 "",
                 JOptionPane.YES_NO_OPTION);
+        
+        // do a thing based on response
         switch (res) {
             case 0:
                 System.exit(0);
@@ -1010,7 +1018,7 @@ public class AccountGUI extends javax.swing.JFrame {
             case ADD:         // add
                 users.add(users.getSize(), element);
                 break;
-            case REMOVE:         // remove
+            case REMOVE:      // remove
                 users.remove(list.getSelectedIndex());
                 break;
         }
@@ -1099,7 +1107,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 sNField.getText());
 
         // call DeleteUser()
-        if (AccountController.DeleteUser(p)) {
+        if (AccountController.DeleteUser(p.getUsername())) {
             ListElement element = new ListElement(p.getUsername(),
                     p.getPassword(),
                     p.getAccess(),
@@ -1164,11 +1172,11 @@ public class AccountGUI extends javax.swing.JFrame {
         Account p = new Account(username, password, Integer.valueOf(access), name);
 
         // delete old, then add new
-        if (AccountController.DeleteUser(temp) && AccountController.AddUser(p)) {
+        if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
             errLabel.setForeground(Color.blue);
             errLabel.setText("User edited successfully");
 
-            AccountController.DeleteUser(temp);
+            AccountController.DeleteUser(temp.getUsername());
             AccountController.AddUser(p);
 
             ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),

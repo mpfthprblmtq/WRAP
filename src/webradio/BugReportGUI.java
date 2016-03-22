@@ -147,8 +147,6 @@ public class BugReportGUI extends javax.swing.JFrame {
      * Checks to see if the name field and description field are filled
      * If not, update errLabel
      * Send the input to IOController to create the report file
-     * 
-     * @param evt 
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (nameField.getText().equals("") || desc.getText().equals("")) {

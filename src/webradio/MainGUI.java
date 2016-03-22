@@ -1,20 +1,26 @@
+/**
+ * File: MainGUI.java
+ * Desc: The main gui, what's shown after a successful login
+ *       Allows the traversing of other GUI's
+ *
+ * Author: Pat Ripley
+ */
+
 package webradio;
 
-import java.awt.KeyEventDispatcher;
+// imports
 import java.awt.KeyboardFocusManager;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class MainGUI extends javax.swing.JFrame {
 
-    public static Account a;
-    
     /**
-     * Creates new form LoginGUI
+     * Creates new form MainGUI
+     * Uses a keylistener to find F1-F6 presses
      */
     public MainGUI() {
         
-        a = Main.getUser();
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
                     switch (e.getKeyCode()) {
@@ -316,38 +322,72 @@ public class MainGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles when window is closed
+     * @param evt 
+     */
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         Main.LaunchProfileGUI();
     }//GEN-LAST:event_profileButtonActionPerformed
 
+    /**
+     * Handles when Link button is pressed
+     * Not implemented yet, so shows a message dialog
+     * @param evt 
+     */
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
         //Main.LaunchLinkGUI();
         JOptionPane.showMessageDialog(this, "  Links interface not implemented yet! :(     ");
     }//GEN-LAST:event_linkButtonActionPerformed
 
+    /**
+     * Handles when Finance button is pressed
+     * Not implemented yet, so shows a message dialog
+     * @param evt 
+     */
     private void financeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeButtonActionPerformed
         //Main.LaunchFinanceGUI();
         JOptionPane.showMessageDialog(this, "  Finance interface not implemented yet! :(     ");
     }//GEN-LAST:event_financeButtonActionPerformed
 
+    /**
+     * Handles when Report button is pressed
+     * Not implemented yet, so shows a message dialog
+     * @param evt 
+     */
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
         //Main.LaunchReportsGUI();
         JOptionPane.showMessageDialog(this, "  Reports interface not implemented yet! :(     ");
     }//GEN-LAST:event_reportButtonActionPerformed
 
+    /**
+     * Handles when the window is opened
+     * Set the welcome label to a personalized greeting
+     * @param evt 
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        welcomeLabel.setText("Welcome, " + a.getName() + "!");
+        welcomeLabel.setText("Welcome, " + Main.getUser().getName() + "!");
         text.setText("Welcome to WRAP!!!");
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * Handles when Accounts button is pressed
+     * Checks if user is an admin, and if not, shows error message
+     * If user is an admin, launch account gui
+     * @param evt 
+     */
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        if (a.getAccess() != 0) {
+        if (Main.getUser().getAccess() != 0) {
             JOptionPane.showMessageDialog(this, "403: Forbidden, Administrator access only", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
             Main.LaunchAccountGUI();
         }
     }//GEN-LAST:event_accountButtonActionPerformed
 
+    /**
+     * Handles when cursor goes into the button frame
+     * @param evt 
+     */
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
         textHeader.setText("Profiles");
         text.setText("Shows DJ's information, and allows for addition, deletion, and " + 
@@ -355,12 +395,20 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setText("Shortcut key: F1");
     }//GEN-LAST:event_profileButtonMouseEntered
 
+    /**
+     * Handles when cursor leaves button frame
+     * @param evt 
+     */
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
         textHeader.setText("");
-        text.setText("");
+        text.setText("Welcome to WRAP!");
         f1.setText("");
     }//GEN-LAST:event_profileButtonMouseExited
 
+    /**
+     * Handles when cursor goes into the button frame
+     * @param evt 
+     */
     private void accountButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseEntered
         textHeader.setText("Accounts");
         text.setText("Allows addition and deletion of users of W.R.A.P. along" +
@@ -368,13 +416,21 @@ public class MainGUI extends javax.swing.JFrame {
                 "\nNote: Admin access only");
         f1.setText("Shortcut key: F2");
     }//GEN-LAST:event_accountButtonMouseEntered
-
+    
+    /**
+     * Handles when cursor leaves button frame
+     * @param evt 
+     */
     private void accountButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseExited
         textHeader.setText("");
-        text.setText("");
+        text.setText("Welcome to WRAP!");
         f1.setText("");
     }//GEN-LAST:event_accountButtonMouseExited
 
+    /**
+     * Handles when cursor goes into the button frame
+     * @param evt 
+     */
     private void taskButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseEntered
         textHeader.setText("Tasks");
         text.setText("Check the DJ requirements of a member.  Four main" +
@@ -383,25 +439,41 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setText("Shortcut key: F3");
     }//GEN-LAST:event_taskButtonMouseEntered
 
+    /**
+     * Handles when cursor leaves button frame
+     * @param evt 
+     */
     private void taskButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseExited
         textHeader.setText("");
-        text.setText("");
+        text.setText("Welcome to WRAP!");
         f1.setText("");
     }//GEN-LAST:event_taskButtonMouseExited
 
+    /**
+     * Handles when cursor goes into the button frame
+     * @param evt 
+     */
     private void linkButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseEntered
         textHeader.setText("Links");
         text.setText("Some links to important things" +
-                "\nNOTE: May be replaced with alternate function");
+                "\nNOTE: May be replaced with alternate function in a future release");
         f1.setText("Shortcut key: F4");
     }//GEN-LAST:event_linkButtonMouseEntered
 
+    /**
+     * Handles when cursor leaves button frame
+     * @param evt 
+     */
     private void linkButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseExited
         textHeader.setText("");
-        text.setText("");
+        text.setText("Welcome to WRAP!");
         f1.setText("");
     }//GEN-LAST:event_linkButtonMouseExited
 
+    /**
+     * Handles when cursor goes into the button frame
+     * @param evt 
+     */
     private void financeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseEntered
         textHeader.setText("Finances");
         text.setText("Track finances, add money, and basically" +
@@ -409,12 +481,20 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setText("Shortcut key: F5");
     }//GEN-LAST:event_financeButtonMouseEntered
 
+    /**
+     * Handles when cursor leaves button frame
+     * @param evt 
+     */
     private void financeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseExited
         textHeader.setText("");
-        text.setText("");
+        text.setText("Welcome to WRAP!");
         f1.setText("");
     }//GEN-LAST:event_financeButtonMouseExited
 
+    /**
+     * Handles when cursor goes into the button frame
+     * @param evt 
+     */
     private void reportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseEntered
         textHeader.setText("Reports");
         text.setText("Generate reports based on member tasks, create" +
@@ -422,25 +502,49 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setText("Shortcut key: F6");
     }//GEN-LAST:event_reportButtonMouseEntered
 
+    /**
+     * Handles when cursor leaves button frame
+     * @param evt 
+     */
     private void reportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseExited
         textHeader.setText("");
-        text.setText("");
+        text.setText("Welcome to WRAP!");
         f1.setText("");
     }//GEN-LAST:event_reportButtonMouseExited
 
+    /**
+     * Handles when Task button is pressed
+     * Launches TaskGUI
+     * @param evt 
+     */
     private void taskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskButtonActionPerformed
         Main.LaunchTaskGUI();
     }//GEN-LAST:event_taskButtonActionPerformed
 
+    /**
+     * Handles when logout option is chosen in file menu
+     * Sends the user back to Main, creates a new loginGUI
+     * @param evt 
+     */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
+    /**
+     * Handles when user chooses Report Bug from help menu
+     * Launches TaskGUI
+     * @param evt 
+     */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
+    /**
+     * Handles when user chooses exit from file menu
+     * Launches a confirmation dialog, exits if user wishes
+     * @param evt 
+     */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
                 null,
@@ -452,15 +556,23 @@ public class MainGUI extends javax.swing.JFrame {
                 System.exit(0);
                 break;
             default:
-            // do nothing
+            // do nothing and return
         }
     }//GEN-LAST:event_exitItemActionPerformed
 
+    /**
+     * Displays version
+     * @param evt 
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         JOptionPane.showMessageDialog(this, "  VERSION 1.0.2  :D  ");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
+     * main()
+     * 
+     * You already know what main is if you're reading this
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -516,4 +628,4 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel textHeader;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
-}
+} // end MainGUI

@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: LoginGUI.java
+ * Desc: First GUI to prompt user for username and password
+ *
+ * Author: Pat Ripley
  */
 package webradio;
 
+// imports
 import java.awt.event.*;
 
-/**
- *
- * @author Pat
- */
 public class LoginGUI extends javax.swing.JFrame {
 
     /**
@@ -135,46 +133,73 @@ public class LoginGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Sends the info to the submit function
+     * @param evt 
+     */
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         submit();
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
+    /**
+     * If enter is pressed on username field, submit()
+     * @param evt 
+     */
     private void usernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             submit();
         }
     }//GEN-LAST:event_usernameFieldKeyPressed
 
+    /**
+     * If enter is pressed on password field, submit()
+     * @param evt 
+     */
     private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             submit();
         }
     }//GEN-LAST:event_passwordFieldKeyPressed
 
+    /**
+     * Highlights all the text when username field is focused
+     * @param evt 
+     */
     private void usernameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFieldFocusGained
         usernameField.selectAll();
     }//GEN-LAST:event_usernameFieldFocusGained
 
+    /**
+     * Highlights all the text when password field is focused
+     * @param evt 
+     */
     private void passwordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFieldFocusGained
         passwordField.selectAll();
     }//GEN-LAST:event_passwordFieldFocusGained
 
+    /**
+     * submit()
+     * 
+     * Tests the input, and sees if it's valid
+     * If it is, send the info to the Login() function in IOController
+     * If a match is found, send it to Main to set the global user
+     * Else not found, update errLabel and reset the graphics
+     */
     private void submit() {
 
-        // Tests if there's actually text in the fields
+        // tests if there's actually text in the fields
         if (usernameField.getText().equals("")
                 || usernameField.getText().equals("Username")
                 || passwordField.getText().equals("")
                 || passwordField.getText().equals("Password")) {
             usernameField.setText("");
-            //passwordField.setText("");
             ErrLabel.setText("Invalid credentials");
             usernameField.requestFocus();
             return;
         }
 
-        // Tests for the split character "/"
-        if (Util.sepCheck(usernameField.getText()) || Util.sepCheck(passwordField.getText())) {
+        // tests for the split character "/"
+        if (!Util.sepCheck(usernameField.getText()) || !Util.sepCheck(passwordField.getText())) {
             ErrLabel.setText("Invalid character");
 
             passwordField.setText("");
@@ -182,7 +207,7 @@ public class LoginGUI extends javax.swing.JFrame {
             return;
         }
 
-        // Input validated, sending to AccountController
+        // input validated, sending to AccountController
         Account res = AccountController.Login(usernameField.getText(), passwordField.getText());
         
         if (res == null) {
@@ -198,10 +223,13 @@ public class LoginGUI extends javax.swing.JFrame {
             Main.SetUser(res);
             Main.LaunchMainGUI();
         }
-
     }
 
     /**
+     * main()
+     * 
+     * You already know what main is if you're reading this
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -222,8 +250,6 @@ public class LoginGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new LoginGUI().setVisible(true);
@@ -240,4 +266,4 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel uLabel;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
-}
+} // end LoginGUI

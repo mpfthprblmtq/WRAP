@@ -1,5 +1,13 @@
+/**
+ * File: ProfileController.java
+ * Desc: Takes input from the Profile list and displays results in the form
+ * of checkboxes
+ *
+ * Author: Pat Ripley
+ */
 package webradio;
 
+// imports
 import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -7,6 +15,10 @@ import javax.swing.JOptionPane;
 
 public class TaskGUI extends javax.swing.JFrame {
 
+    /**
+     * Minor inner class used to create the list on the right side of the panel
+     */
+    // <editor-fold defaultstate="collapsed" desc="ListElement">
     public class ListElement {
 
         String fName, lName, id;
@@ -22,14 +34,20 @@ public class TaskGUI extends javax.swing.JFrame {
             return lName + ", " + fName;
         }
     }
+    // </editor-fold>
 
+    // globals
     DefaultListModel<ListElement> people = new DefaultListModel<>();
     ListElement[] elements;
     Profile temp;
 
+    // const
     private final int ADD = 0;
     private final int REMOVE = 1;
 
+    /**
+     * Creates new form TaskGUI()
+     */
     public TaskGUI() {
         initComponents();
     }
@@ -287,6 +305,12 @@ public class TaskGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles when the list is clicked on
+     * Basically just calls Show() if the list is not empty
+     *
+     * @param evt
+     */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!people.isEmpty()) {
             editButton.setEnabled(true);
@@ -296,36 +320,69 @@ public class TaskGUI extends javax.swing.JFrame {
             // because it crashes if there's nothing in there
         }
     }//GEN-LAST:event_listMouseClicked
-
+    /**
+     * Handles when the window is closed
+     * Calls Main.CloseTaskGUI()
+     *
+     * @param evt
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseTaskGUI();
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Handles when EDIT button is pressed
+     * Makes the boxes and buttons editable
+     * @param evt 
+     */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         setBoxesEnabled(true);
         editButton.setEnabled(false);
         submitButton.setEnabled(true);
     }//GEN-LAST:event_editButtonActionPerformed
 
+    /**
+     * Handles when SUBMIT button is pressed
+     * Calls Submit(), then Show()
+     * @param evt 
+     */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         Submit();
         Show();
-
     }//GEN-LAST:event_submitButtonActionPerformed
 
+    /**
+     * Does an admin thing, not implemented yet
+     * @param evt 
+     */
     private void gearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gearMouseClicked
         Admin();
     }//GEN-LAST:event_gearMouseClicked
 
+    /**
+     * Handles when the close option in menu bar is chosen
+     * Calls Main.CloseTaskGUI()
+     * @param evt 
+     */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseTaskGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
+    /**
+     * Handles when the logout option in menu bar is chosen
+     * Calls Main.Logout(), then Main.CloseTaskGUI()
+     * @param evt 
+     */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseTaskGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
+    /**
+     * Handles when the exit option in menu bar is chosen
+     * Pops up a confirmation dialog, then exits the program if the user wishes
+     * @param evt 
+     */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
                 null,
@@ -341,18 +398,178 @@ public class TaskGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitItemActionPerformed
 
+    /**
+     * Handles when Report Bug option in menu bar is chosen
+     * Calls Main.LaunchBugReportGUI()
+     * @param evt 
+     */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
     /**
+     * FillList()
+     *
+     * Gets all of the Profiles from IOController and shoves them into an array
+     * Then it populates the DefaultListModel of ListElements from that array
+     *
+     * @return the DefaultListModel to populate the JList
+     */
+    public DefaultListModel FillList() {
+        
+        // create the profile array and ListElement array
+        Profile[] profiles = ProfileController.sort(ProfileController.getAllProfiles());
+        elements = new ListElement[profiles.length];
+        int total = IOController.getTotalProfiles();
+
+        // populate the ListElement array and DefaultListModel
+        for (int i = 0; i < total; i++) {
+            elements[i] = new ListElement(profiles[i].getfName(),
+                    profiles[i].getlName(),
+                    profiles[i].getId());
+            people.add(i, elements[i]);
+        }
+        return people;
+    }
+
+    /**
+     * UpdateList()
+     *
+     * Works with the global list of Profiles, which updates the JList graphics
+     *
+     * @param action,  the type of action (either add or remove)
+     * @param element, the element to add or remove
+     */
+    public void UpdateList(int action, ListElement element) {
+        switch (action) {
+            case ADD:         // add
+                people.add(people.getSize(), element);
+                break;
+            case REMOVE:      // remove
+                people.remove(list.getSelectedIndex());
+                break;
+        }
+    }
+
+    /**
+     * Show()
+     * 
+     * When a Profile is selected on the JList, show the values of boolean 
+     * values on the checkboxes
+     * Checks to see if profile is on good or bad standing
+     */
+    public void Show() {
+        // get the profile
+        Profile p = ProfileController.SearchProfile(people.elementAt(list.getSelectedIndex()).id);
+
+        // set name fields
+        fNameField.setText(p.getfName());
+        lNameField.setText(p.getlName());
+        
+        // check standing
+        if (!p.isDuesPaid() || !p.isPaperworkTurnedIn() || !p.isShowDesc_Time() || !p.isTrained()) {
+            statusField.setForeground(Color.red);
+            statusField.setText("Bad");
+        } else {
+            statusField.setForeground(Color.blue);
+            statusField.setText("Good");
+        }
+
+        // set the checkboxes
+        dpBox.setSelected(p.isDuesPaid());
+        ptiBox.setSelected(p.isPaperworkTurnedIn());
+        sdtBox.setSelected(p.isShowDesc_Time());
+        btBox.setSelected(p.isTrained());
+    }
+
+    /**
+     * setBoxesEnabled()
+     * 
+     * Graphics update
+     * Sets the checkboxes enabled on the boolean param
+     * 
+     * @param b 
+     */
+    public void setBoxesEnabled(boolean b) {
+        dpBox.setEnabled(b);
+        ptiBox.setEnabled(b);
+        sdtBox.setEnabled(b);
+        btBox.setEnabled(b);
+    }
+
+    /**
+     * Submit()
+     * 
+     * Creates a temp object based on old profile and new boolean values
+     * Deletes the old profile then adds a new one
+     */
+    public void Submit() {
+        // get values of new booleans
+        boolean[] bool = new boolean[]{dpBox.isSelected(),
+            ptiBox.isSelected(),
+            sdtBox.isSelected(),
+            btBox.isSelected()};
+
+        // update errLabel
+        errLabel.setForeground(Color.blue);
+        errLabel.setText("Profile updated successfully");
+        
+        // update graphics
+        setBoxesEnabled(false);
+
+        // create new profiles
+        temp = IOController.SearchProfile(people.elementAt(list.getSelectedIndex()).id);
+        Profile p = temp;
+
+        // create ListElement object
+        ListElement t = new ListElement(p.getfName(),
+                p.getlName(),
+                p.getId());
+
+        // update the new profile with new booleans
+        p.setDuesPaid(bool[0]);
+        p.setPaperworkTurnedIn(bool[1]);
+        p.setShowDesc_Time(bool[2]);
+        p.setTrained(bool[3]);
+
+        // delete then add
+        ProfileController.DeleteProfile(temp.getId());
+        ProfileController.AddProfile(p);
+
+        // create ListElement object
+        ListElement q = new ListElement(p.getfName(),
+                p.getlName(),
+                p.getId());
+
+        // update the list
+        UpdateList(REMOVE, t);
+        UpdateList(ADD, q);
+
+        // update graphics
+        submitButton.setEnabled(false);
+        list.setSelectedIndex(list.getLastVisibleIndex());
+    }
+
+    /**
+     * Admin()
+     * Not implemented yet
+     */
+    public void Admin() {
+
+    }
+    
+    /**
+     * main()
+     * 
+     * You already know what this is if you're reading this
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -366,7 +583,7 @@ public class TaskGUI extends javax.swing.JFrame {
             System.err.println(ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -374,101 +591,6 @@ public class TaskGUI extends javax.swing.JFrame {
             new TaskGUI().setVisible(true);
         });
     }
-
-    public DefaultListModel FillList() {
-        Profile[] profiles = TaskController.sort(TaskController.getAllProfiles());
-
-        elements = new ListElement[profiles.length];
-        int total = IOController.getTotalProfiles();
-
-        for (int i = 0; i < total; i++) {
-
-            elements[i] = new ListElement(profiles[i].getfName(),
-                    profiles[i].getlName(),
-                    profiles[i].getId());
-            people.add(i, elements[i]);
-        }
-        return people;
-    }
-
-    public void UpdateList(int action, ListElement element) {
-        switch (action) {
-            case ADD:         // add
-                people.add(people.getSize(), element);
-                break;
-            case REMOVE:      // remove
-                people.remove(list.getSelectedIndex());
-                break;
-        }
-    }
-
-    public void Show() {
-        Profile p = ProfileController.SearchPerson(people.elementAt(list.getSelectedIndex()).id);
-
-        fNameField.setText(p.getfName());
-        lNameField.setText(p.getlName());
-        if (!p.isDuesPaid() || !p.isPaperworkTurnedIn() || !p.isShowDesc() || !p.isTrained()) {
-            statusField.setForeground(Color.red);
-            statusField.setText("Bad");
-        } else {
-            statusField.setForeground(Color.blue);
-            statusField.setText("Good");
-        }
-
-        dpBox.setSelected(p.isDuesPaid());
-        ptiBox.setSelected(p.isPaperworkTurnedIn());
-        sdtBox.setSelected(p.isShowDesc());
-        btBox.setSelected(p.isTrained());
-    }
-
-    public void setBoxesEnabled(boolean b) {
-        dpBox.setEnabled(b);
-        ptiBox.setEnabled(b);
-        sdtBox.setEnabled(b);
-        btBox.setEnabled(b);
-    }
-
-    public void Submit() {
-        boolean[] bool = new boolean[]{dpBox.isSelected(),
-            ptiBox.isSelected(),
-            sdtBox.isSelected(),
-            btBox.isSelected()};
-
-        errLabel.setForeground(Color.blue);
-        errLabel.setText("Profile updated successfully");
-
-        setBoxesEnabled(false);
-
-        temp = IOController.SearchProfile(people.elementAt(list.getSelectedIndex()).id);
-        Profile p = temp;
-
-        ListElement t = new ListElement(p.getfName(),
-                p.getlName(),
-                p.getId());
-
-        p.setDuesPaid(bool[0]);
-        p.setPaperworkTurnedIn(bool[1]);
-        p.setShowDesc(bool[2]);
-        p.setTrained(bool[3]);
-
-        ProfileController.DeletePerson(temp.getId());
-        ProfileController.AddProfile(p);
-
-        ListElement q = new ListElement(p.getfName(),
-                p.getlName(),
-                p.getId());
-
-        UpdateList(REMOVE, t);
-        UpdateList(ADD, q);
-
-        submitButton.setEnabled(false);
-        list.setSelectedIndex(list.getLastVisibleIndex());
-    }
-
-    public void Admin() {
-
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox btBox;
@@ -497,4 +619,4 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JTextField statusField;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
-}
+} // end TaskGUI

@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: ReportsGUI.java
+ * Desc: Not implemented yet
+ *
+ * Author: Pat Ripley
  */
 package webradio;
 
-import javax.swing.ImageIcon;
-
-/**
- *
- * @author Pat
- */
 public class ReportsGUI extends javax.swing.JFrame {
 
     /**
@@ -30,7 +25,6 @@ public class ReportsGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
