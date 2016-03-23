@@ -8,6 +8,7 @@ package webradio;
 
 // imports
 import java.awt.event.*;
+import javax.swing.ImageIcon;
 
 public class LoginGUI extends javax.swing.JFrame {
 
@@ -40,6 +41,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         setResizable(false);
 
         uLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N

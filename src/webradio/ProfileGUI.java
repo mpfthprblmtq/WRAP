@@ -2648,7 +2648,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ProfileGUI().setVisible(true);
+            ProfileGUI gui = new ProfileGUI();
+            gui.setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
+            gui.setVisible(true);
         });
     }
 
