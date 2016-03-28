@@ -46,6 +46,10 @@ public class Main {
     // bugReportGUI
     static BugReportGUI bugreportGUI;
     static boolean bugreportGUIVisible = false;
+    
+    // suggestionReportGUI
+    static SuggestionReportGUI suggestionreportGUI;
+    static boolean suggestionreportGUIVisible = false;
 
     /**
      * main()
@@ -228,5 +232,22 @@ public class Main {
 
     public static void CloseBugReportGUI() {
         bugreportGUIVisible = false;
+    }
+    
+    /**
+     * SuggestionReportGUI
+     * Controls the SuggestionReportGUI opening and closing
+     */
+    public static void LaunchSuggestionReportGUI() {
+        if (!suggestionreportGUIVisible) {
+            suggestionreportGUI = new SuggestionReportGUI();
+            suggestionreportGUI.setLocationRelativeTo(null);
+            suggestionreportGUI.setVisible(true);
+            suggestionreportGUIVisible = true;
+        }
+    }
+
+    public static void CloseSuggestionReportGUI() {
+        suggestionreportGUIVisible = false;
     }
 } // end Main

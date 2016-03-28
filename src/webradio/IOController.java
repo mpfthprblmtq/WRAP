@@ -36,7 +36,7 @@ public class IOController {
 
     // date/time formatting
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
-    static DateFormat filedf = new SimpleDateFormat("MM.dd.yy HH.mm");
+    static DateFormat filedf = new SimpleDateFormat("MM.dd.yy HH.mm.ss");
 
     // globals
     static ArrayList<Profile> data;
@@ -519,13 +519,55 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = filedf.format(date);
-        File bug = new File("src\\bugreports\\" + filename + ".txt");
+        File bug = new File("src\\bugreports\\bugs\\" + filename + ".txt");
 
         // creating the file
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(bug, false)))) {
             // header with name and date
-            out.println("Name:  " + name);
-            out.println("Date:  " + df.format(date));
+            out.println("Name:         " + name);
+            out.println("Date:         " + df.format(date));
+            out.println("Reported by:  " + Main.p.getUsername());
+            out.println("");
+            
+            // description
+            // basically just splits the string as an array and split on space character
+            // every 10 elements in the new String array, print a newline
+            out.println("Description:\n");
+            String[] str = report.split(" ");
+            for (int i = 0; i < str.length; i++) {
+                out.print(str[i] + " ");
+                if (i % 10 == 0 && i != 0) {
+                    out.print("\r\n");
+                }
+            }
+            out.close();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+    
+    /**
+     * makeSuggestion()
+     * 
+     * Creates a new file based on date and time
+     * Includes the name, date/time, and description of the suggestion
+     * Since word wrapping is super fun to hardcode, I did it a fun way
+     * 
+     * @param name
+     * @param report 
+     */
+    public static void makeSuggestion(String name, String report) {
+        // creating the file name
+        Date date = new Date();
+        String filename = filedf.format(date);
+        File bug = new File("src\\bugreports\\suggestions\\" + filename + ".txt");
+
+        // creating the file
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(bug, false)))) {
+            // header with name and date
+            out.println("Name:         " + name);
+            out.println("Date:         " + df.format(date));
+            out.println("Reported by:  " + Main.p.getUsername());
             out.println("");
             
             // description

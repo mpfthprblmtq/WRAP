@@ -80,6 +80,7 @@ public class MainGUI extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         bugItem = new javax.swing.JMenuItem();
+        suggestionItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W.R.A.P. - Web Radio Assistant Program");
@@ -261,6 +262,15 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
         help.add(bugItem);
+
+        suggestionItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        suggestionItem.setText("Make a suggestion");
+        suggestionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestionItemActionPerformed(evt);
+            }
+        });
+        help.add(suggestionItem);
 
         menubar.add(help);
 
@@ -568,6 +578,10 @@ public class MainGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "  VERSION 1.0.2  :D  ");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
+        Main.LaunchSuggestionReportGUI();
+    }//GEN-LAST:event_suggestionItemActionPerformed
+
     /**
      * main()
      * 
@@ -623,6 +637,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton profileButton;
     private javax.swing.JButton reportButton;
     private javax.swing.JScrollPane scrollpane;
+    private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JButton taskButton;
     private javax.swing.JTextArea text;
     private javax.swing.JLabel textHeader;

@@ -39,7 +39,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Minor inner class used to limit th amount of text in a text field
-     * Mainly for the phone fields
      */
     // <editor-fold defaultstate="collapsed" desc="JTextFieldLimit">
     class JTextFieldLimit extends PlainDocument {
@@ -124,8 +123,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snum800Field = new javax.swing.JTextField();
         ssiueEmailField = new javax.swing.JTextField();
         sprefEmailField = new javax.swing.JTextField();
-        stypeBox = new javax.swing.JComboBox<>();
-        spositionBox = new javax.swing.JComboBox<>();
+        stypeBox = new javax.swing.JComboBox<String>();
+        spositionBox = new javax.swing.JComboBox<String>();
         stypeField = new javax.swing.JTextField();
         spositionField = new javax.swing.JTextField();
         sscrollPane = new javax.swing.JScrollPane();
@@ -155,15 +154,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         asiueEmailField = new javax.swing.JTextField();
         aprefEmailField = new javax.swing.JTextField();
         atypeField = new javax.swing.JTextField();
-        atypeBox = new javax.swing.JComboBox<>();
+        atypeBox = new javax.swing.JComboBox<String>();
         apositionField = new javax.swing.JTextField();
-        apositionBox = new javax.swing.JComboBox<>();
+        apositionBox = new javax.swing.JComboBox<String>();
         ascrollPane = new javax.swing.JScrollPane();
         anotesField = new javax.swing.JTextArea();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         jLabel19 = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -172,6 +171,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         bugItem = new javax.swing.JMenuItem();
+        suggestionItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Profiles");
@@ -280,7 +280,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        stypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
+        stypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         stypeBox.setSelectedIndex(4);
         stypeBox.setEnabled(false);
         stypeBox.setNextFocusableComponent(spositionBox);
@@ -295,7 +295,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        spositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
+        spositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         spositionBox.setSelectedIndex(9);
         spositionBox.setEnabled(false);
         spositionBox.setNextFocusableComponent(snotesField);
@@ -650,7 +650,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         atypeField.setEditable(false);
         atypeField.setBackground(new java.awt.Color(255, 255, 255));
 
-        atypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
+        atypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         atypeBox.setSelectedIndex(4);
         atypeBox.setNextFocusableComponent(apositionBox);
         atypeBox.addActionListener(new java.awt.event.ActionListener() {
@@ -667,7 +667,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
 
-        apositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
+        apositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         apositionBox.setSelectedIndex(9);
         apositionBox.setNextFocusableComponent(anotesField);
         apositionBox.addActionListener(new java.awt.event.ActionListener() {
@@ -856,6 +856,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         help.add(bugItem);
+
+        suggestionItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        suggestionItem.setText("Make a suggestion");
+        suggestionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestionItemActionPerformed(evt);
+            }
+        });
+        help.add(suggestionItem);
 
         menubar.add(help);
 
@@ -1644,6 +1653,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         }
     }//GEN-LAST:event_snotesFieldKeyPressed
+
+    private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
+        Main.LaunchSuggestionReportGUI();
+    }//GEN-LAST:event_suggestionItemActionPerformed
 
     // </editor-fold>
     
@@ -2718,6 +2731,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JComboBox<String> stypeBox;
     private javax.swing.JTextField stypeField;
     private javax.swing.JButton submitButton;
+    private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 } // end ProfileGUI

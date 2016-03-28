@@ -83,7 +83,7 @@ public class AccountGUI extends javax.swing.JFrame {
         spasswordMatch = new javax.swing.JLabel();
         sshowPassword = new javax.swing.JLabel();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<>();
+        sAComboBox = new javax.swing.JComboBox<String>();
         sNField = new javax.swing.JTextField();
         addPanel = new javax.swing.JPanel();
         L6 = new javax.swing.JLabel();
@@ -97,12 +97,12 @@ public class AccountGUI extends javax.swing.JFrame {
         aconfirmpassField = new javax.swing.JPasswordField();
         apasswordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<>();
+        aAComboBox = new javax.swing.JComboBox<String>();
         aNField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -110,6 +110,7 @@ public class AccountGUI extends javax.swing.JFrame {
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         bugItem = new javax.swing.JMenuItem();
+        suggestionItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Users");
@@ -222,7 +223,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
@@ -395,7 +396,7 @@ public class AccountGUI extends javax.swing.JFrame {
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
@@ -546,6 +547,15 @@ public class AccountGUI extends javax.swing.JFrame {
             }
         });
         help.add(bugItem);
+
+        suggestionItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        suggestionItem.setText("Make a suggestion");
+        suggestionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestionItemActionPerformed(evt);
+            }
+        });
+        help.add(suggestionItem);
 
         menubar.add(help);
 
@@ -977,6 +987,10 @@ public class AccountGUI extends javax.swing.JFrame {
     private void aNFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNFieldFocusGained
         aNField.selectAll();
     }//GEN-LAST:event_aNFieldFocusGained
+
+    private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
+        Main.LaunchSuggestionReportGUI();
+    }//GEN-LAST:event_suggestionItemActionPerformed
 
     // </editor-fold>
     
@@ -1655,6 +1669,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JLabel spasswordMatch;
     private javax.swing.JLabel sshowPassword;
     private javax.swing.JButton submitButton;
+    private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 } // End AccountGUI

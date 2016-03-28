@@ -62,7 +62,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         sp = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         errLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,6 +86,7 @@ public class TaskGUI extends javax.swing.JFrame {
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         bugItem = new javax.swing.JMenuItem();
+        suggestionItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Tasks");
@@ -265,6 +266,15 @@ public class TaskGUI extends javax.swing.JFrame {
         });
         help.add(bugItem);
 
+        suggestionItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        suggestionItem.setText("Make a suggestion");
+        suggestionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestionItemActionPerformed(evt);
+            }
+        });
+        help.add(suggestionItem);
+
         menubar.add(help);
 
         setJMenuBar(menubar);
@@ -406,6 +416,10 @@ public class TaskGUI extends javax.swing.JFrame {
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
+
+    private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
+        Main.LaunchSuggestionReportGUI();
+    }//GEN-LAST:event_suggestionItemActionPerformed
 
     /**
      * FillList()
@@ -618,5 +632,6 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane sp;
     private javax.swing.JTextField statusField;
     private javax.swing.JButton submitButton;
+    private javax.swing.JMenuItem suggestionItem;
     // End of variables declaration//GEN-END:variables
 } // end TaskGUI
