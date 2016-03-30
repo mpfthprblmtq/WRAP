@@ -1844,7 +1844,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     public void Submit() {
 
         // update graphics
-        setSearchFieldsEditable(false);
         errLabel.setForeground(Color.blue);
         errLabel.setText("User edited successfully");
 
@@ -1853,6 +1852,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         Profile p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
                 Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
 
+        // update graphics
+        // this was an error, if the box was disabled, it automatically chose the last index
+        setSearchFieldsEditable(false);
+        
         // delete then add
         ProfileController.DeleteProfile(temp.getId());
         ProfileController.AddProfile(p);
@@ -2231,10 +2234,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             asiueEmailField.setForeground(Color.red);
 
             // check for email ending
-        } else if (!(asiueEmailField.getText().endsWith(".com")
-                || asiueEmailField.getText().endsWith(".edu")
-                || asiueEmailField.getText().endsWith(".org")
-                || asiueEmailField.getText().endsWith(".net"))) {
+        } else if (!asiueEmailField.getText().endsWith(".edu")) {
             flag = false;
             asiueEmailField.setForeground(Color.red);
 
@@ -2252,26 +2252,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             aprefEmailField.setForeground(Color.red);
             aprefEmailField.setText("--");
-
-            // check for @
-        } else if (!aprefEmailField.getText().contains("@")) {
+        } else if (!aprefEmailField.getText().matches("(.*)@(.*)" + '.' + "(.*)")) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
-
-            // check ending
-        } else if (!(aprefEmailField.getText().endsWith(".com")
-                || aprefEmailField.getText().endsWith(".edu")
-                || aprefEmailField.getText().endsWith(".org")
-                || aprefEmailField.getText().endsWith(".net"))) {
-            flag = false;
-            aprefEmailField.setForeground(Color.red);
-
-            // check for separator
         } else if (!Util.sepCheck(aprefEmailField.getText())) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
         }
-
+    
         // type
         // if the box is on the default index, throw error
         if (atypeBox.getSelectedIndex() == 4) {
