@@ -386,6 +386,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseTaskGUI();
+        Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
     /**

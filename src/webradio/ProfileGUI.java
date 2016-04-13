@@ -8,6 +8,7 @@ package webradio;
 
 // imports
 import java.awt.Color;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
@@ -95,6 +96,26 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Creates new form ProfileGUI
      */
     public ProfileGUI() {
+
+//        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+//                .addKeyEventDispatcher((KeyEvent e) -> {
+//                    if (this.isFocusOwner()) {
+//                        switch (e.getKeyCode()) {
+//                            case KeyEvent.VK_UP:
+//                                if(!list.hasFocus()) {
+//                                    list.requestFocus();
+//                                    list.setSelectedIndex(0);
+//                                } else {
+//                                    if(list.getSelectedIndex() == 0) {
+//                                        list.setSelectedIndex(list.getLastVisibleIndex());
+//                                    } else if(list.getSelectedIndex() != 0) {
+//                                        list.setSelectedIndex(list.getSelectedIndex()+1);
+//                                    }
+//                                }
+//                        }
+//                    }
+//                    return false;
+//                });
         initComponents();
     }
 
@@ -218,6 +239,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.setEditable(false);
         sfNameField.setFocusCycleRoot(true);
         sfNameField.setNextFocusableComponent(slNameField);
+        sfNameField.setDocument(new JTextFieldLimit(30));
         sfNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sfNameFieldFocusGained(evt);
@@ -231,6 +253,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         slNameField.setEditable(false);
         slNameField.setNextFocusableComponent(snum800Field);
+        slNameField.setDocument(new JTextFieldLimit(30));
         slNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 slNameFieldFocusGained(evt);
@@ -243,6 +266,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         snum800Field.setEditable(false);
+        snum800Field.setDocument(new JTextFieldLimit(9));
         snum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 snum800FieldFocusGained(evt);
@@ -256,6 +280,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         ssiueEmailField.setEditable(false);
         ssiueEmailField.setNextFocusableComponent(sprefEmailField);
+        ssiueEmailField.setDocument(new JTextFieldLimit(50));
         ssiueEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 ssiueEmailFieldFocusGained(evt);
@@ -269,6 +294,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         sprefEmailField.setEditable(false);
         sprefEmailField.setNextFocusableComponent(stypeBox);
+        sprefEmailField.setDocument(new JTextFieldLimit(50));
         sprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sprefEmailFieldFocusGained(evt);
@@ -326,6 +352,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snotesField.setRows(5);
         snotesField.setBorder(null);
         snotesField.setNextFocusableComponent(sfNameField);
+        snotesField.setDocument(new JTextFieldLimit(100));
         snotesField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 snotesFieldFocusGained(evt);
@@ -543,6 +570,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         jLabel9.setText("Notes:");
 
         afNameField.setNextFocusableComponent(alNameField);
+        afNameField.setDocument(new JTextFieldLimit(30));
         afNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 afNameFieldFocusGained(evt);
@@ -555,6 +583,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         alNameField.setNextFocusableComponent(anum800Field);
+        alNameField.setDocument(new JTextFieldLimit(30));
         alNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 alNameFieldFocusGained(evt);
@@ -567,6 +596,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         anum800Field.setNextFocusableComponent(aphoneField1);
+        anum800Field.setDocument(new JTextFieldLimit(9));
         anum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 anum800FieldFocusGained(evt);
@@ -624,6 +654,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         asiueEmailField.setNextFocusableComponent(aprefEmailField);
+        asiueEmailField.setDocument(new JTextFieldLimit(50));
         asiueEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 asiueEmailFieldFocusGained(evt);
@@ -636,6 +667,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         aprefEmailField.setNextFocusableComponent(atypeBox);
+        aprefEmailField.setDocument(new JTextFieldLimit(50));
         aprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aprefEmailFieldFocusGained(evt);
@@ -688,6 +720,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         anotesField.setLineWrap(true);
         anotesField.setRows(5);
         anotesField.setNextFocusableComponent(afNameField);
+        anotesField.setDocument(new JTextFieldLimit(100));
         anotesField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 anotesFieldFocusGained(evt);
@@ -1153,6 +1186,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseProfileGUI();
+        Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
     /**
@@ -1659,7 +1693,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_suggestionItemActionPerformed
 
     // </editor-fold>
-    
     /**
      * FillList()
      *
@@ -1736,7 +1769,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
             setAddValuesToNull();
             afNameField.requestFocus();
-            
+
             // else if addition fails
         } else {
             errLabel.setForeground(Color.red);
@@ -1747,7 +1780,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Search()
      *
-     * Calls the SearchUser method from ProfileController, which returns a valid Profile 
+     * Calls the SearchUser method from ProfileController, which returns a valid Profile
      * Update the graphics with the Profile info
      *
      * @param id, the id to search
@@ -1756,7 +1789,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // get the Profile
         Profile p = ProfileController.SearchProfile(id);
-        
+
         // update graphics
         errLabel.setText(" ");
         editButton.setEnabled(true);
@@ -1788,7 +1821,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * If success, confirm on errLabel
      */
     public void Delete() {
-        
+
         // get necessary fields
         String fName, lName, id;
         fName = sfNameField.getText();
@@ -1797,10 +1830,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // if deletion succeeds
         if (ProfileController.DeleteProfile(id)) {
-            
+
             // create ListElement
             ListElement element = new ListElement(fName, lName, id);
-            
+
             // update graphics
             UpdateList(REMOVE, element);
             errLabel.setForeground(Color.blue);
@@ -1816,7 +1849,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Edit()
      *
-     * Basically just sets the fields to editable 
+     * Basically just sets the fields to editable
      * Stores a temporary global Profile, used in the editing process in Submit()
      */
     public void Edit() {
@@ -1855,7 +1888,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // update graphics
         // this was an error, if the box was disabled, it automatically chose the last index
         setSearchFieldsEditable(false);
-        
+
         // delete then add
         ProfileController.DeleteProfile(temp.getId());
         ProfileController.AddProfile(p);
@@ -1874,7 +1907,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         submitButton.setEnabled(false);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-        
+
         // reset the form, selecting the new Profile just edited
         list.setSelectedIndex(list.getLastVisibleIndex());
         Search(people.getElementAt(people.getSize() - 1).id);
@@ -1882,7 +1915,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * setSearchValuesToNull()
-     * 
+     *
      * Graphics update
      * Resets the search panel with null values
      */
@@ -1904,7 +1937,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * setAddValuesToNull()
-     * 
+     *
      * Graphics update
      * Resets the add panel with null values
      */
@@ -1924,7 +1957,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * setSearchFieldsToValid()
-     * 
+     *
      * Graphics update
      * Sets the search panel to accept valid values
      */
@@ -1946,11 +1979,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * setSearchFieldsEditable()
-     * 
+     *
      * Graphics update
      * Sets the search fields editable based on boolean parameter
-     * 
-     * @param b, the conditional to change the editability of the fields 
+     *
+     * @param b, the conditional to change the editability of the fields
      */
     public void setSearchFieldsEditable(boolean b) {
         sfNameField.setEditable(b);
@@ -1998,9 +2031,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * getSearchValues()
-     * 
+     *
      * Reads the values of the search panel to a String array
-     * 
+     *
      * @return str, the String array with values
      */
     public String[] getSearchValues() {
@@ -2025,9 +2058,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * getAddValues()
-     * 
+     *
      * Reads the values of the add panel to a String array
-     * 
+     *
      * @return str, the String array with values
      */
     public String[] getAddValues() {
@@ -2052,15 +2085,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * getPhone()
-     * 
-     * Gets the values of the three phone text fields and combines them into 
+     *
+     * Gets the values of the three phone text fields and combines them into
      * one string
-     * 
+     *
      * @param phone
      * @return the combined string phone
      */
     public String[] getPhone(String phone) {
-        
+
         // create a char array
         String[] str = new String[3];
         char[] p = phone.toCharArray();
@@ -2075,10 +2108,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * asetAllForeground()
-     * 
+     *
      * Sets the text color of all fields on add panel
-     * 
-     * @param c 
+     *
+     * @param c
      */
     public void asetAllForeground(Color c) {
         afNameField.setForeground(c);
@@ -2096,10 +2129,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * ssetAllForeground()
-     * 
+     *
      * Sets the text color of all fields on search panel
-     * 
-     * @param c 
+     *
+     * @param c
      */
     public void ssetAllForeground(Color c) {
         sfNameField.setForeground(c);
@@ -2129,6 +2162,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     public boolean aCheck() {
         boolean flag = true;
+        String email_regex = "[A-Z]+[a-zA-Z_]+@\b([a-zA-Z]+.){2}\b?.[a-zA-Z]+";
 
         // preconditions
         errLabel.setForeground(Color.red);
@@ -2203,6 +2237,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 aphoneField2.setForeground(Color.red);
                 aphoneField3.setForeground(Color.red);
 
+                // check for 555 on first and second fields
+            } else if (aphoneField1.getText().equals("555")
+                    || aphoneField2.getText().equals("555")) {
+                flag = false;
+                aphoneField1.setForeground(Color.red);
+                aphoneField2.setForeground(Color.red);
+                aphoneField3.setForeground(Color.red);
+
                 // try to make it an integer
             } else {
                 int num1 = Integer.parseInt(aphoneField1.getText());
@@ -2252,14 +2294,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             aprefEmailField.setForeground(Color.red);
             aprefEmailField.setText("--");
-        } else if (!aprefEmailField.getText().matches("(.*)@(.*)" + '.' + "(.*)")) {
+        } else if (!aprefEmailField.getText().matches(email_regex)) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
         } else if (!Util.sepCheck(aprefEmailField.getText())) {
             flag = false;
             aprefEmailField.setForeground(Color.red);
         }
-    
+
         // type
         // if the box is on the default index, throw error
         if (atypeBox.getSelectedIndex() == 4) {
@@ -2284,7 +2326,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         setAddErrLabel();
         return flag;
     }
-    
+
     /**
      * sCheck()
      *
@@ -2378,6 +2420,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 sphoneField2.setForeground(Color.red);
                 sphoneField3.setForeground(Color.red);
                 errLabel.setText("Phone number field invalid");
+
+                // check for 555 on first and second fields
+            } else if (sphoneField1.getText().equals("555")
+                    || sphoneField2.getText().equals("555")) {
+                flag = false;
+                sphoneField1.setForeground(Color.red);
+                sphoneField2.setForeground(Color.red);
+                sphoneField3.setForeground(Color.red);
 
                 // try to make it an integer
             } else {
@@ -2483,7 +2533,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * setAddErrLabel()
-     * 
+     *
      * Checks each field to see if the text color is red
      * If it is, add to count
      * Starts with end so it can print out "Error with ##### field and # other(s)
@@ -2554,7 +2604,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * setSearchErrLabel()
-     * 
+     *
      * Checks each field to see if the text color is red
      * If it is, add to count
      * Starts with end so it can print out "Error with ##### field and # other(s)
@@ -2624,9 +2674,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * main()
-     * 
+     *
      * You already know what main is if you're reading this
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {

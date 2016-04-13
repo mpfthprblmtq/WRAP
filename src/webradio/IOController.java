@@ -30,9 +30,10 @@ import sun.misc.BASE64Encoder;
 public class IOController {
 
     // global files
-    static File config = new File("config.txt");
-    static File passwords = new File("src\\files\\users.txt");
-    static File rawroster = new File("src\\files\\rawroster.txt");
+    static File config   = new File("config.txt");
+    static File accounts = new File("src\\app_ext\\uDistrib6.dll");
+    static File profiles = new File("src\\app_ext\\rDistrib5.dll");
+    static File shows    = new File("src\\app_ext\\sDistrib4.dll");
 
     // date/time formatting
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
@@ -90,7 +91,7 @@ public class IOController {
 
             // instantiate the account to null, return if no match found
             Account a = null;
-            try (Scanner in = new Scanner(new FileReader(passwords))) {
+            try (Scanner in = new Scanner(new FileReader(accounts))) {
                 while (in.hasNext()) {
                     String line = in.nextLine();
                     String[] str = line.split(s);
@@ -138,7 +139,7 @@ public class IOController {
         Account[] pro = new Account[total];
 
         int count = 0;
-        try (Scanner b_in = new Scanner(new FileReader(passwords))) {
+        try (Scanner b_in = new Scanner(new FileReader(accounts))) {
             while (b_in.hasNextLine()) {
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
@@ -162,7 +163,7 @@ public class IOController {
      */
     public static int getTotalUsers() {
         int total = 0;
-        try (Scanner a_in = new Scanner(new FileReader(passwords))) {
+        try (Scanner a_in = new Scanner(new FileReader(accounts))) {
             while (a_in.hasNextLine()) {
                 String line = a_in.nextLine();
                 total++;
@@ -185,7 +186,7 @@ public class IOController {
      * @return the result of the search
      */
     public static boolean CheckForUsernameDupe(String u) {
-        try (Scanner in = new Scanner(new FileReader(passwords))) {
+        try (Scanner in = new Scanner(new FileReader(accounts))) {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
@@ -215,7 +216,7 @@ public class IOController {
      */
     public static boolean AddUser(Account p) {
 
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(passwords, true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(accounts, true)))) {
             out.println(p.getUsername() + s + encrypt(p.getPassword()) + s + p.getAccess() + s + p.getName());
             out.close();
         } catch (IOException e) {
@@ -240,7 +241,7 @@ public class IOController {
     public static Account SearchUser(String username) {
         Account a = null;
 
-        try (Scanner in = new Scanner(new FileReader(passwords))) {
+        try (Scanner in = new Scanner(new FileReader(accounts))) {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
@@ -276,7 +277,7 @@ public class IOController {
         Account[] arr = new Account[total];
 
         // filling array with all elements that are not the profile to delete
-        try (Scanner b_in = new Scanner(new FileReader(passwords))) {
+        try (Scanner b_in = new Scanner(new FileReader(accounts))) {
             while (b_in.hasNext()) {
                 String line = b_in.nextLine();      // create array from each line
                 String[] str = line.split(s);       // split it on / symbol
@@ -293,7 +294,7 @@ public class IOController {
         }
 
         // refilling the text file with new array
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(passwords, false)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(accounts, false)))) {
 
             // essentially just skips any null value
             for (int i = 0; i < total; i++) {
@@ -331,7 +332,7 @@ public class IOController {
 
         int count = 0;
 
-        try (Scanner b_in = new Scanner(new FileReader(rawroster))) {
+        try (Scanner b_in = new Scanner(new FileReader(IOController.profiles))) {
             while (b_in.hasNext()) {
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
@@ -357,7 +358,7 @@ public class IOController {
      */
     public static int getTotalProfiles() {
         int total = 0;
-        try (Scanner a_in = new Scanner(new FileReader(rawroster))) {
+        try (Scanner a_in = new Scanner(new FileReader(profiles))) {
             while (a_in.hasNextLine()) {
                 String line = a_in.nextLine();
                 total++;
@@ -380,7 +381,7 @@ public class IOController {
      * @return the result of the search
      */
     public static boolean CheckForIDDupe(String id) {
-        try (Scanner in = new Scanner(new FileReader(rawroster))) {
+        try (Scanner in = new Scanner(new FileReader(profiles))) {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
@@ -412,7 +413,7 @@ public class IOController {
      */
     public static boolean AddProfile(Profile p) {
 
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(rawroster, true)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(profiles, true)))) {
             out.println(p.toString());
             out.close();
         } catch (IOException e) {
@@ -436,7 +437,7 @@ public class IOController {
     public static Profile SearchProfile(String id) {
         Profile p = null;
 
-        try (Scanner in = new Scanner(new FileReader(rawroster))) {
+        try (Scanner in = new Scanner(new FileReader(profiles))) {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
@@ -472,7 +473,7 @@ public class IOController {
         Profile[] arr = new Profile[total];
 
         // filling array with all elements that are not the profile to delete
-        try (Scanner b_in = new Scanner(new FileReader(rawroster))) {
+        try (Scanner b_in = new Scanner(new FileReader(profiles))) {
             while (b_in.hasNext()) {
                 String line = b_in.nextLine();      // create array from each line
                 String[] str = line.split(s);       // split it on /// symbol
@@ -490,7 +491,7 @@ public class IOController {
         }
 
         // refilling the text file with new array
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(rawroster, false)))) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(profiles, false)))) {
 
             // essentially just skips any null value
             for (int i = 0; i < total; i++) {

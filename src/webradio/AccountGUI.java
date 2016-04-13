@@ -10,6 +10,9 @@ package webradio;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 public class AccountGUI extends javax.swing.JFrame {
 
@@ -32,6 +35,37 @@ public class AccountGUI extends javax.swing.JFrame {
         @Override
         public String toString() {
             return username;
+        }
+    }
+    // </editor-fold>
+    
+    /**
+     * Minor inner class used to limit th amount of text in a text field
+     */
+    // <editor-fold defaultstate="collapsed" desc="JTextFieldLimit">
+    class JTextFieldLimit extends PlainDocument {
+
+        private final int limit;
+
+        JTextFieldLimit(int limit) {
+            super();
+            this.limit = limit;
+        }
+
+        JTextFieldLimit(int limit, boolean upper) {
+            super();
+            this.limit = limit;
+        }
+
+        @Override
+        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+            if (str == null) {
+                return;
+            }
+
+            if ((getLength() + str.length()) <= limit) {
+                super.insertString(offset, str, attr);
+            }
         }
     }
     // </editor-fold>
@@ -170,6 +204,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField.setEditable(false);
         sUField.setFocusCycleRoot(true);
         sUField.setNextFocusableComponent(spassField);
+        sUField.setDocument(new JTextFieldLimit(30));
         sUField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sUFieldFocusGained(evt);
@@ -178,6 +213,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         spassField.setEditable(false);
         spassField.setNextFocusableComponent(sconfirmpassField);
+        spassField.setDocument(new JTextFieldLimit(30));
         spassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 spassFieldFocusGained(evt);
@@ -191,6 +227,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         sconfirmpassField.setEditable(false);
         sconfirmpassField.setNextFocusableComponent(aAComboBox);
+        sconfirmpassField.setDocument(new JTextFieldLimit(30));
         sconfirmpassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sconfirmpassFieldFocusGained(evt);
@@ -237,6 +274,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         sNField.setEditable(false);
         sNField.setNextFocusableComponent(sUField);
+        sNField.setDocument(new JTextFieldLimit(30));
         sNField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sNFieldFocusGained(evt);
@@ -355,6 +393,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         aUField.setFocusCycleRoot(true);
         aUField.setNextFocusableComponent(apassField);
+        aUField.setDocument(new JTextFieldLimit(30));
         aUField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aUFieldFocusGained(evt);
@@ -367,6 +406,7 @@ public class AccountGUI extends javax.swing.JFrame {
         });
 
         apassField.setNextFocusableComponent(aconfirmpassField);
+        apassField.setDocument(new JTextFieldLimit(30));
         apassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 apassFieldFocusGained(evt);
@@ -379,6 +419,7 @@ public class AccountGUI extends javax.swing.JFrame {
         });
 
         aconfirmpassField.setNextFocusableComponent(aAComboBox);
+        aconfirmpassField.setDocument(new JTextFieldLimit(30));
         aconfirmpassField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aconfirmpassFieldFocusGained(evt);
@@ -412,6 +453,7 @@ public class AccountGUI extends javax.swing.JFrame {
         });
 
         aNField.setNextFocusableComponent(aUField);
+        aNField.setDocument(new JTextFieldLimit(30));
         aNField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aNFieldFocusGained(evt);
@@ -606,7 +648,6 @@ public class AccountGUI extends javax.swing.JFrame {
      * EnterKeyPressed : clicks a button when enter is pressed
      * ShowPassword : changes the text on the passwordsMatch label, shows password in pop up window when clicked
      */
-    
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods">  
     
     /**
@@ -735,6 +776,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseAccountGUI();
+        Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
     /**

@@ -323,6 +323,9 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sUFieldFocusGained"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sUField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="spassField">
               <Properties>
@@ -335,6 +338,9 @@
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="spassFieldFocusGained"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="spassFieldKeyReleased"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="spassField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="sconfirmpassField">
               <Properties>
@@ -347,6 +353,9 @@
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sconfirmpassFieldFocusGained"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sconfirmpassFieldKeyReleased"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sconfirmpassField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="spasswordMatch">
               <Properties>
@@ -411,6 +420,9 @@
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sNFieldFocusGained"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sNField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -562,6 +574,9 @@
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aUFieldFocusGained"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aUFieldKeyPressed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aUField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="apassField">
               <Properties>
@@ -573,6 +588,9 @@
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="apassFieldFocusGained"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="apassFieldKeyReleased"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="apassField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JPasswordField" name="aconfirmpassField">
               <Properties>
@@ -584,6 +602,9 @@
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aconfirmpassFieldFocusGained"/>
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aconfirmpassFieldKeyReleased"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aconfirmpassField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="apasswordMatch">
               <Properties>
@@ -635,6 +656,9 @@
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aNFieldFocusGained"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aNFieldKeyPressed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aNField.setDocument(new JTextFieldLimit(30));"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="addButton">
               <Properties>

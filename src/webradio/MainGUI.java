@@ -1,11 +1,10 @@
 /**
  * File: MainGUI.java
  * Desc: The main gui, what's shown after a successful login
- *       Allows the traversing of other GUI's
+ * Allows the traversing of other GUI's
  *
  * Author: Pat Ripley
  */
-
 package webradio;
 
 // imports
@@ -18,38 +17,39 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Creates new form MainGUI
      * Uses a keylistener to find F1-F6 presses
+     * Only pops a new window if the MainGUI is in focus
      */
     public MainGUI() {
-        
+
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
-                    switch (e.getKeyCode()) {
-                        case KeyEvent.VK_F1:
-                            profileButton.doClick();
-                            break;
-                        case KeyEvent.VK_F2:
-                            accountButton.doClick();
-                            break;
-                        case KeyEvent.VK_F3:
-                            taskButton.doClick();
-                            break;
-                        case KeyEvent.VK_F4:
-                            linkButton.doClick();
-                            break;
-                        case KeyEvent.VK_F5:
-                            financeButton.doClick();
-                            break;
-                        case KeyEvent.VK_F6:
-                            reportButton.doClick();
-                            break;
+                    if (this.isFocusOwner()) {
+                        switch (e.getKeyCode()) {
+                            case KeyEvent.VK_F1:
+                                profileButton.doClick();
+                                break;
+                            case KeyEvent.VK_F2:
+                                accountButton.doClick();
+                                break;
+                            case KeyEvent.VK_F3:
+                                taskButton.doClick();
+                                break;
+                            case KeyEvent.VK_F4:
+                                linkButton.doClick();
+                                break;
+                            case KeyEvent.VK_F5:
+                                financeButton.doClick();
+                                break;
+                            case KeyEvent.VK_F6:
+                                reportButton.doClick();
+                                break;
+                        }
                     }
                     return false;
-        });
+                });
 
         initComponents();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -334,7 +334,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when window is closed
-     * @param evt 
+     *
+     * @param evt
      */
     private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
         Main.LaunchProfileGUI();
@@ -343,7 +344,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when Link button is pressed
      * Not implemented yet, so shows a message dialog
-     * @param evt 
+     *
+     * @param evt
      */
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
         //Main.LaunchLinkGUI();
@@ -353,7 +355,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when Finance button is pressed
      * Not implemented yet, so shows a message dialog
-     * @param evt 
+     *
+     * @param evt
      */
     private void financeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeButtonActionPerformed
         //Main.LaunchFinanceGUI();
@@ -363,7 +366,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when Report button is pressed
      * Not implemented yet, so shows a message dialog
-     * @param evt 
+     *
+     * @param evt
      */
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
         //Main.LaunchReportsGUI();
@@ -373,7 +377,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when the window is opened
      * Set the welcome label to a personalized greeting
-     * @param evt 
+     *
+     * @param evt
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         welcomeLabel.setText("Welcome, " + Main.getUser().getName() + "!");
@@ -384,7 +389,8 @@ public class MainGUI extends javax.swing.JFrame {
      * Handles when Accounts button is pressed
      * Checks if user is an admin, and if not, shows error message
      * If user is an admin, launch account gui
-     * @param evt 
+     *
+     * @param evt
      */
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
         if (Main.getUser().getAccess() != 0) {
@@ -396,18 +402,20 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when cursor goes into the button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
         textHeader.setText("Profiles");
-        text.setText("Shows DJ's information, and allows for addition, deletion, and " + 
-                "\nediting of DJ's.");
+        text.setText("Shows DJ's information, and allows for addition, deletion, and "
+                + "\nediting of DJ's.");
         f1.setText("Shortcut key: F1");
     }//GEN-LAST:event_profileButtonMouseEntered
 
     /**
      * Handles when cursor leaves button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void profileButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseExited
         textHeader.setText("");
@@ -417,19 +425,21 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when cursor goes into the button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void accountButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseEntered
         textHeader.setText("Accounts");
-        text.setText("Allows addition and deletion of users of W.R.A.P. along" +
-                "\nwith the editing of existing users." +
-                "\nNote: Admin access only");
+        text.setText("Allows addition and deletion of users of W.R.A.P. along"
+                + "\nwith the editing of existing users."
+                + "\nNote: Admin access only");
         f1.setText("Shortcut key: F2");
     }//GEN-LAST:event_accountButtonMouseEntered
-    
+
     /**
      * Handles when cursor leaves button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void accountButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseExited
         textHeader.setText("");
@@ -439,19 +449,21 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when cursor goes into the button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void taskButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseEntered
         textHeader.setText("Tasks");
-        text.setText("Check the DJ requirements of a member.  Four main" +
-                "\ntasks: Pay dues, send in a show time and description," +
-                "\nfill out the proper paperwork, and be trained on the board.");
+        text.setText("Check the DJ requirements of a member.  Four main"
+                + "\ntasks: Pay dues, send in a show time and description,"
+                + "\nfill out the proper paperwork, and be trained on the board.");
         f1.setText("Shortcut key: F3");
     }//GEN-LAST:event_taskButtonMouseEntered
 
     /**
      * Handles when cursor leaves button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void taskButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseExited
         textHeader.setText("");
@@ -461,18 +473,20 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when cursor goes into the button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void linkButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseEntered
         textHeader.setText("Links");
-        text.setText("Some links to important things" +
-                "\nNOTE: May be replaced with alternate function in a future release");
+        text.setText("Some links to important things"
+                + "\nNOTE: May be replaced with alternate function in a future release");
         f1.setText("Shortcut key: F4");
     }//GEN-LAST:event_linkButtonMouseEntered
 
     /**
      * Handles when cursor leaves button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void linkButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseExited
         textHeader.setText("");
@@ -482,18 +496,20 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when cursor goes into the button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void financeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseEntered
         textHeader.setText("Finances");
-        text.setText("Track finances, add money, and basically" +
-                "\nanything that has to do with our funds.");
+        text.setText("Track finances, add money, and basically"
+                + "\nanything that has to do with our funds.");
         f1.setText("Shortcut key: F5");
     }//GEN-LAST:event_financeButtonMouseEntered
 
     /**
      * Handles when cursor leaves button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void financeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseExited
         textHeader.setText("");
@@ -503,18 +519,20 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles when cursor goes into the button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void reportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseEntered
         textHeader.setText("Reports");
-        text.setText("Generate reports based on member tasks, create" +
-                "\na roster, or print report on individuals.");
+        text.setText("Generate reports based on member tasks, create"
+                + "\na roster, or print report on individuals.");
         f1.setText("Shortcut key: F6");
     }//GEN-LAST:event_reportButtonMouseEntered
 
     /**
      * Handles when cursor leaves button frame
-     * @param evt 
+     *
+     * @param evt
      */
     private void reportButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseExited
         textHeader.setText("");
@@ -525,7 +543,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when Task button is pressed
      * Launches TaskGUI
-     * @param evt 
+     *
+     * @param evt
      */
     private void taskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskButtonActionPerformed
         Main.LaunchTaskGUI();
@@ -534,7 +553,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when logout option is chosen in file menu
      * Sends the user back to Main, creates a new loginGUI
-     * @param evt 
+     *
+     * @param evt
      */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
@@ -544,7 +564,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when user chooses Report Bug from help menu
      * Launches TaskGUI
-     * @param evt 
+     *
+     * @param evt
      */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
@@ -553,7 +574,8 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Handles when user chooses exit from file menu
      * Launches a confirmation dialog, exits if user wishes
-     * @param evt 
+     *
+     * @param evt
      */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
@@ -572,7 +594,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Displays version
-     * @param evt 
+     *
+     * @param evt
      */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         JOptionPane.showMessageDialog(this, "  VERSION 1.0.2  :D  ");
@@ -584,16 +607,16 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * main()
-     * 
+     *
      * You already know what main is if you're reading this
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
