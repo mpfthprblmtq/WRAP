@@ -393,11 +393,7 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        if (Main.getUser().getAccess() != 0) {
-            JOptionPane.showMessageDialog(this, "403: Forbidden, Administrator access only", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            Main.LaunchAccountGUI();
-        }
+        Main.LaunchAccountGUI();
     }//GEN-LAST:event_accountButtonActionPerformed
 
     /**
