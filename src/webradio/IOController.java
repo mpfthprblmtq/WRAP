@@ -1,11 +1,10 @@
 /**
  * File: IOController.java
  * Desc: Handles all things relating to IO
- *       Might be split up into individual classes with relation to each function
+ * Might be split up into individual classes with relation to each function
  *
  * Author: Pat Ripley
  */
-
 package webradio;
 
 // imports
@@ -24,16 +23,15 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
+//import sun.misc.BASE64Decoder;
+//import sun.misc.BASE64Encoder;
 public class IOController {
 
     // global files
-    static File config   = new File("config.txt");
+    static File config = new File("config.txt");
     static File accounts = new File("src\\app_ext\\uDistrib6.dll");
     static File profiles = new File("src\\app_ext\\rDistrib5.dll");
-    static File shows    = new File("src\\app_ext\\sDistrib4.dll");
+    static File shows = new File("src\\app_ext\\sDistrib4.dll");
 
     // date/time formatting
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
@@ -50,27 +48,26 @@ public class IOController {
         (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,};
 
     /*
-     *   _                 _       
-     *  | |               (_)      
-     *  | |     ___   __ _ _ _ __  
-     *  | |    / _ \ / _` | | '_ \ 
-     *  | |___| (_) | (_| | | | | |
-     *  |______\___/ \__, |_|_| |_|
-     *                __/ |        
-     *               |___/         
+     * _ _
+     * | | (_)
+     * | | ___ __ _ _ _ __
+     * | | / _ \ / _` | | '_ \
+     * | |___| (_) | (_| | | | | |
+     * |______\___/ \__, |_|_| |_|
+     * __/ |
+     * |___/
      */
-    
     /**
      * Login()
-     * 
+     *
      * Takes a String username and String password as parameters
      * Generalize root login
      * Create an encrypted version of the password given
      * Read the users file line by line to see if you find a match based
-     *  on the username and encrypted password
+     * on the username and encrypted password
      * If a match is found, return the account
      * If no match is found, return a null account
-     * 
+     *
      * @param username
      * @param password
      * @return a, a new account, result of a successful login
@@ -79,15 +76,20 @@ public class IOController {
         if (username.equals("root") && password.equals("admin")) {
             return new Account("root", "admin", 0, "Pat");
         } else {
-            // encrypted password
-            String ePass = "";
+//            // encrypted password
+//            String ePass = "";
+//
+//            try {
+//                // store the encrypted password in ePass
+//                //ePass = encrypt(password);
+//                
+//             String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));   
+//                
+//            } catch (GeneralSecurityException | UnsupportedEncodingException ex) {
+//                System.err.println(ex);
+//            }
 
-            try {
-                // store the encrypted password in ePass
-                ePass = encrypt(password);
-            } catch (GeneralSecurityException | UnsupportedEncodingException ex) {
-                System.err.println(ex);
-            }
+            String hashed = hashPassword(password);
 
             // instantiate the account to null, return if no match found
             Account a = null;
@@ -96,12 +98,15 @@ public class IOController {
                     String line = in.nextLine();
                     String[] str = line.split(s);
                     try {
+
+                        //System.out.println(hashed);
+                        //System.out.println(str[1]);
                         // if the username and password match
-                        if (str[0].equals(username) && str[1].equals(ePass)) {
-                            // create a new account from info in file
-                            a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
-                            // return the new account
-                            return a;
+                        if (str[0].equals(username) && checkPassword(password, str[1])) {
+                                // create a new account from info in file
+                                a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
+                                // return the new account
+                                return a;
                         }
                     } catch (NullPointerException e) {
                         System.err.println(e);
@@ -116,21 +121,38 @@ public class IOController {
         }
     } // end Login()
 
+    public static String hashPassword(String password_plaintext) {
+        String salt = BCrypt.gensalt(12);
+        String hashed_password = BCrypt.hashpw(password_plaintext, salt);
+        return (hashed_password);
+    }
+
+    public static boolean checkPassword(String password_plaintext, String stored_hash) {
+        boolean password_verified = false;
+
+        if (null == stored_hash || !stored_hash.startsWith("$2a$")) {
+            throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+        }
+
+        password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
+
+        return (password_verified);
+    }
+
     /*
-     *   _    _                   
-     *  | |  | |                  
-     *  | |  | |___  ___ _ __ ___ 
-     *  | |  | / __|/ _ \ '__/ __|
-     *  | |__| \__ \  __/ |  \__ \
-     *   \____/|___/\___|_|  |___/
+     * _ _
+     * | | | |
+     * | | | |___ ___ _ __ ___
+     * | | | / __|/ _ \ '__/ __|
+     * | |__| \__ \ __/ | \__ \
+     * \____/|___/\___|_| |___/
      */
-    
     /**
      * getAllUsers()
-     * 
+     *
      * Goes through the users file and creates an array of accounts based
-     *  on the contents of the file
-     * 
+     * on the contents of the file
+     *
      * @return an array of Accounts
      */
     public static Account[] getAllUsers() {
@@ -140,12 +162,13 @@ public class IOController {
 
         int count = 0;
         try (Scanner b_in = new Scanner(new FileReader(accounts))) {
-            while (b_in.hasNextLine()) {
+            while (b_in.hasNext()) {
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
-
-                pro[count] = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
-                count++;
+                if (line != null) {
+                    pro[count] = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
+                    count++;
+                }
             }
             b_in.close();
         } catch (FileNotFoundException e) {
@@ -153,12 +176,12 @@ public class IOController {
         }
         return pro;
     }
-    
+
     /**
      * getTotalUsers()
-     * 
+     *
      * Scans the users text file and counts the number of users
-     * 
+     *
      * @return a count of all users
      */
     public static int getTotalUsers() {
@@ -177,11 +200,11 @@ public class IOController {
 
     /**
      * CheckForUsernameDupe()
-     * 
+     *
      * Checks for a username duplication, needed for adding a new user
      * If while scanning the file, it encounters a match, return true
      * Else return false
-     * 
+     *
      * @param u, the username to search
      * @return the result of the search
      */
@@ -207,34 +230,32 @@ public class IOController {
 
     /**
      * AddUser()
-     * 
+     *
      * Writes a new Account object to the users file at the end
      * Password is encrypted
-     * 
+     *
      * @param p, the account to add
      * @return the result of the addition
      */
     public static boolean AddUser(Account p) {
 
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(accounts, true)))) {
-            out.println(p.getUsername() + s + encrypt(p.getPassword()) + s + p.getAccess() + s + p.getName());
+            out.println(p.getUsername() + s + hashPassword(p.getPassword()) + s + p.getAccess() + s + p.getName());
             out.close();
         } catch (IOException e) {
             System.err.println(e);
             return false;
-        } catch (GeneralSecurityException ex) {
-            System.err.println(ex);
         }
         return true;
     }
 
     /**
      * SearchUser()
-     * 
+     *
      * Searches for a user based on the username given in the users file
      * While scanning the users file, if a match is found, return a new account
      * If no match, return a null account
-     * 
+     *
      * @param username, the account to search
      * @return the account found
      */
@@ -247,24 +268,22 @@ public class IOController {
                 String[] str = line.split(s);
 
                 if (str[0].equals(username)) {
-                    a = new Account(str[0], decrypt(str[1]), Integer.valueOf(str[2]), str[3]);
+                    a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
                 }
             }
             in.close();
         } catch (FileNotFoundException e) {
             System.err.println(e);
-        } catch (GeneralSecurityException | IOException ex) {
-            System.err.println(ex);
         }
         return a;
     }
 
     /**
      * DeleteUser()
-     * 
-     * Basically just rewrites the users file, and excludes the account that 
+     *
+     * Basically just rewrites the users file, and excludes the account that
      * was passed as a parameter
-     * 
+     *
      * @param username, the account to search
      * @return the result of the deletion
      */
@@ -310,20 +329,19 @@ public class IOController {
     }
 
     /*
-     *   _____            __ _ _           
-     *  |  __ \          / _(_) |          
-     *  | |__) | __ ___ | |_ _| | ___  ___ 
-     *  |  ___/ '__/ _ \|  _| | |/ _ \/ __|
-     *  | |   | | | (_) | | | | |  __/\__ \
-     *  |_|   |_|  \___/|_| |_|_|\___||___/
+     * _____ __ _ _
+     * | __ \ / _(_) |
+     * | |__) | __ ___ | |_ _| | ___ ___
+     * | ___/ '__/ _ \| _| | |/ _ \/ __|
+     * | | | | | (_) | | | | | __/\__ \
+     * |_| |_| \___/|_| |_|_|\___||___/
      */
-    
     /**
      * getAllProfiles()
-     * 
+     *
      * Goes through the roster file and creates an array of profiles based
-     *  on the contents of the file
-     * 
+     * on the contents of the file
+     *
      * @return an array of Profiles
      */
     public static Profile[] getAllProfiles() {
@@ -351,9 +369,9 @@ public class IOController {
 
     /**
      * getTotalProfiles()
-     * 
+     *
      * Scans the roster text file and counts the number of profiles
-     * 
+     *
      * @return a count of all profiles
      */
     public static int getTotalProfiles() {
@@ -372,11 +390,11 @@ public class IOController {
 
     /**
      * CheckForIDDupe()
-     * 
+     *
      * Checks for a id duplication, needed for adding a new profile
      * If while scanning the file, it encounters a match, return true
      * Else return false
-     * 
+     *
      * @param id, the id to search
      * @return the result of the search
      */
@@ -405,9 +423,9 @@ public class IOController {
 
     /**
      * AddProfile()
-     * 
+     *
      * Writes a new Profile object to the roster file at the end
-     * 
+     *
      * @param p, the profile to add
      * @return the result of the addition
      */
@@ -426,11 +444,11 @@ public class IOController {
 
     /**
      * SearchProfile()
-     * 
+     *
      * Searches for a profile based on the id given in the roster file
      * While scanning the roster file, if a match is found, return a new profile
      * If no match, return a null profile
-     * 
+     *
      * @param id, the id to search
      * @return the profile found
      */
@@ -441,7 +459,7 @@ public class IOController {
             while (in.hasNext()) {
                 String line = in.nextLine();
                 String[] str = line.split(s);
-                
+
                 // if match is found, create new profile 
                 if (str[2].equals(id)) {
                     p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
@@ -458,10 +476,10 @@ public class IOController {
 
     /**
      * DeleteProfile()
-     * 
-     * Basically just rewrites the roster file, and excludes the profile that 
+     *
+     * Basically just rewrites the roster file, and excludes the profile that
      * was passed as a parameter
-     * 
+     *
      * @param id, the id to search
      * @return the result of the deletion
      */
@@ -508,13 +526,13 @@ public class IOController {
 
     /**
      * reportBug()
-     * 
+     *
      * Creates a new file based on date and time
      * Includes the name, date/time, and description of the bug
      * Since word wrapping is super fun to hardcode, I did it a fun way
-     * 
+     *
      * @param name
-     * @param report 
+     * @param report
      */
     public static void reportBug(String name, String report) {
         // creating the file name
@@ -529,7 +547,7 @@ public class IOController {
             out.println("Date:         " + df.format(date));
             out.println("Reported by:  " + Main.p.getUsername());
             out.println("");
-            
+
             // description
             // basically just splits the string as an array and split on space character
             // every 10 elements in the new String array, print a newline
@@ -546,16 +564,16 @@ public class IOController {
             System.err.println(e);
         }
     }
-    
+
     /**
      * makeSuggestion()
-     * 
+     *
      * Creates a new file based on date and time
      * Includes the name, date/time, and description of the suggestion
      * Since word wrapping is super fun to hardcode, I did it a fun way
-     * 
+     *
      * @param name
-     * @param report 
+     * @param report
      */
     public static void makeSuggestion(String name, String report) {
         // creating the file name
@@ -570,7 +588,7 @@ public class IOController {
             out.println("Date:         " + df.format(date));
             out.println("Reported by:  " + Main.p.getUsername());
             out.println("");
-            
+
             // description
             // basically just splits the string as an array and split on space character
             // every 10 elements in the new String array, print a newline
@@ -589,41 +607,41 @@ public class IOController {
     }
 
     /*
-     *   ______                             _   _             
-     *  |  ____|                           | | (_)            
-     *  | |__   _ __   ___ _ __ _   _ _ __ | |_ _  ___  _ __  
-     *  |  __| | '_ \ / __| '__| | | | '_ \| __| |/ _ \| '_ \ 
-     *  | |____| | | | (__| |  | |_| | |_) | |_| | (_) | | | |
-     *  |______|_| |_|\___|_|   \__, | .__/ \__|_|\___/|_| |_|
-     *                           __/ | |                      
-     *                          |___/|_|                      
+     * ______ _ _
+     * | ____| | | (_)
+     * | |__ _ __ ___ _ __ _ _ _ __ | |_ _ ___ _ __
+     * | __| | '_ \ / __| '__| | | | '_ \| __| |/ _ \| '_ \
+     * | |____| | | | (__| | | |_| | |_) | |_| | (_) | | | |
+     * |______|_| |_|\___|_| \__, | .__/ \__|_|\___/|_| |_|
+     * __/ | |
+     * |___/|_|
      *
      */
-    private static String encrypt(String property) throws GeneralSecurityException, UnsupportedEncodingException {
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
-        SecretKey key = keyFactory.generateSecret(new PBEKeySpec(PASSWORD));
-        Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-        pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
-        return base64Encode(pbeCipher.doFinal(property.getBytes("UTF-8")));
-    }
-
-    private static String base64Encode(byte[] bytes) {
-        // This class is internal
-        // should probably use a different implementation
-        return new BASE64Encoder().encode(bytes);
-    }
-
-    private static String decrypt(String property) throws GeneralSecurityException, IOException {
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
-        SecretKey key = keyFactory.generateSecret(new PBEKeySpec(PASSWORD));
-        Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-        pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
-        return new String(pbeCipher.doFinal(base64Decode(property)), "UTF-8");
-    }
-
-    private static byte[] base64Decode(String property) throws IOException {
-        // This class is internal
-        // should probably use a different implemtation
-        return new BASE64Decoder().decodeBuffer(property);
-    }
+//    private static String encrypt(String property) throws GeneralSecurityException, UnsupportedEncodingException {
+//        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
+//        SecretKey key = keyFactory.generateSecret(new PBEKeySpec(PASSWORD));
+//        Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
+//        pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
+//        return base64Encode(pbeCipher.doFinal(property.getBytes("UTF-8")));
+//    }
+//
+//    private static String base64Encode(byte[] bytes) {
+//        // This class is internal
+//        // should probably use a different implementation
+//        return new BASE64Encoder().encode(bytes);
+//    }
+//
+//    private static String decrypt(String property) throws GeneralSecurityException, IOException {
+//        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
+//        SecretKey key = keyFactory.generateSecret(new PBEKeySpec(PASSWORD));
+//        Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
+//        pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
+//        return new String(pbeCipher.doFinal(base64Decode(property)), "UTF-8");
+//    }
+//
+//    private static byte[] base64Decode(String property) throws IOException {
+//        // This class is internal
+//        // should probably use a different implemtation
+//        return new BASE64Decoder().decodeBuffer(property);
+//    }
 } // end IOController
