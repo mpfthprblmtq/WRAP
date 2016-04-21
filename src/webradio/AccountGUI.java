@@ -114,9 +114,9 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField = new javax.swing.JTextField();
         spasswordMatch = new javax.swing.JLabel();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<String>();
+        sAComboBox = new javax.swing.JComboBox<>();
         sNField = new javax.swing.JTextField();
-        changePasswordButton = new javax.swing.JButton();
+        changePasswordLabel = new javax.swing.JLabel();
         addPanel = new javax.swing.JPanel();
         L6 = new javax.swing.JLabel();
         L7 = new javax.swing.JLabel();
@@ -128,12 +128,12 @@ public class AccountGUI extends javax.swing.JFrame {
         aconfirmpassField = new javax.swing.JPasswordField();
         apasswordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<String>();
+        aAComboBox = new javax.swing.JComboBox<>();
         aNField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         loginLabel = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -213,7 +213,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
@@ -234,11 +234,12 @@ public class AccountGUI extends javax.swing.JFrame {
             }
         });
 
-        changePasswordButton.setText("Change Password");
-        changePasswordButton.setEnabled(false);
-        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changePasswordButtonActionPerformed(evt);
+        changePasswordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        changePasswordLabel.setText("Click to change password");
+        changePasswordLabel.setEnabled(false);
+        changePasswordLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changePasswordLabelMouseClicked(evt);
             }
         });
 
@@ -249,9 +250,6 @@ public class AccountGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(changePasswordButton))
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -265,12 +263,13 @@ public class AccountGUI extends javax.swing.JFrame {
                             .addComponent(L4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(changePasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sNField)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                                 .addComponent(sAField)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sAComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(sUField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(sUField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(spasswordMatch, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -283,8 +282,8 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addComponent(sUField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(changePasswordButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(changePasswordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spasswordMatch)
                     .addGroup(searchPanelLayout.createSequentialGroup()
@@ -369,7 +368,7 @@ public class AccountGUI extends javax.swing.JFrame {
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
@@ -658,7 +657,7 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if (Main.p.getUsername().equals(sUField.getText())
-                || Main.p.getAccess() == 0) {
+                || Main.p.getUsername().equals("root")) {
             Edit();
         } else {
             JOptionPane.showMessageDialog(this,
@@ -884,14 +883,13 @@ public class AccountGUI extends javax.swing.JFrame {
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
-    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
-        changePassword(true);
-
-    }//GEN-LAST:event_changePasswordButtonActionPerformed
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_formComponentShown
+
+    private void changePasswordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordLabelMouseClicked
+        changePassword(true);
+    }//GEN-LAST:event_changePasswordLabelMouseClicked
 
     // </editor-fold>
     /**
@@ -1109,7 +1107,7 @@ public class AccountGUI extends javax.swing.JFrame {
         submitButton.setEnabled(true);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-        changePasswordButton.setEnabled(true);
+        changePasswordLabel.setEnabled(true);
 
     }
 
@@ -1153,8 +1151,9 @@ public class AccountGUI extends javax.swing.JFrame {
         deleteButton.setEnabled(false);
         editButton.setEnabled(false);
         submitButton.setEnabled(false);
-        changePasswordButton.setEnabled(false);
+        changePasswordLabel.setEnabled(false);
 
+        passwordChangeTo = "";
         list.setSelectedIndex(list.getLastVisibleIndex());
         Search(users.getElementAt(users.getSize() - 1).username);
     }
@@ -1251,8 +1250,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         // if the username changed from the global account
         // if you edited your username
-        if (!Main.p.getUsername().equals(sUField.getText())) {
-            if (!Main.p.getUsername().equals("root")) {
+        if (!Main.p.getUsername().equals(sUField.getText()) && !Main.p.getUsername().equals("root")) {
                 // show a dialog box
                 int res = JOptionPane.showConfirmDialog(
                         null,
@@ -1272,6 +1270,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
                             // all is good, no duplication
                         } else {
+                            submitButton.doClick();
                             Main.Logout();
                             Main.CloseAccountGUI();
                             Main.CloseMainGUI();
@@ -1280,7 +1279,6 @@ public class AccountGUI extends javax.swing.JFrame {
                     default:
                         return false;
                 }
-            } else {
 //                // show a dialog box
 //                int res = JOptionPane.showConfirmDialog(
 //                        null,
@@ -1308,7 +1306,6 @@ public class AccountGUI extends javax.swing.JFrame {
 //                    default:
 //                        return false;
 //                }
-            }
 
             // no change in username, check the other things
         } else {
@@ -1647,7 +1644,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField apassField;
     private javax.swing.JLabel apasswordMatch;
     private javax.swing.JMenuItem bugItem;
-    private javax.swing.JButton changePasswordButton;
+    private javax.swing.JLabel changePasswordLabel;
     private javax.swing.JMenuItem closeItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;

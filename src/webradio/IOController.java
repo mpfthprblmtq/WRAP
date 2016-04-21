@@ -99,8 +99,8 @@ public class IOController {
                     String[] str = line.split(s);
                     try {
 
-                        //System.out.println(hashed);
-                        //System.out.println(str[1]);
+                        System.out.println(hashed);
+                        System.out.println(str[1]);
                         // if the username and password match
                         if (str[0].equals(username) && checkPassword(password, str[1])) {
                                 // create a new account from info in file

@@ -161,10 +161,6 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="changePasswordButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="deleteButton" min="-2" pref="73" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
@@ -180,13 +176,14 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="changePasswordLabel" alignment="1" max="32767" attributes="0"/>
                                   <Component id="sNField" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="sAField" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="sAComboBox" min="-2" pref="86" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="sUField" min="-2" pref="139" max="-2" attributes="0"/>
+                                  <Component id="sUField" alignment="1" pref="139" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -205,8 +202,8 @@
                           <Component id="L1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="changePasswordButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <Component id="changePasswordLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="spasswordMatch" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -292,9 +289,6 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="focusCycleRoot" type="boolean" value="true"/>
-                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sUFieldFocusGained"/>
@@ -356,13 +350,14 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sNField.setDocument(new JTextFieldLimit(30));"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="changePasswordButton">
+            <Component class="javax.swing.JLabel" name="changePasswordLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Change Password"/>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+                <Property name="text" type="java.lang.String" value="Click to change password"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePasswordButtonActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changePasswordLabelMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
