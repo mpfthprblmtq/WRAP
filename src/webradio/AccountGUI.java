@@ -953,7 +953,7 @@ public class AccountGUI extends javax.swing.JFrame {
             if (option == JOptionPane.OK_OPTION) {
                 if (password.getText().equals(confirmPassword.getText())) {
                     passwordChangeTo = password.getText();
-                    submitButton.doClick();
+                    //submitButton.doClick();
                 } else {
                     changePassword(false);
                 }
@@ -972,7 +972,7 @@ public class AccountGUI extends javax.swing.JFrame {
             if (option == JOptionPane.OK_OPTION) {
                 if (password.getText().equals(confirmPassword.getText())) {
                     passwordChangeTo = password.getText();
-                    submitButton.doClick();
+                    //submitButton.doClick();
                 } else {
                     changePassword(false);
                 }
@@ -1097,7 +1097,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         // create the temp Account
         String username = sUField.getText();
-        String password = null;
+        String password = "whoop";
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
         temp = new Account(username, password, Integer.valueOf(access), name);
@@ -1124,7 +1124,12 @@ public class AccountGUI extends javax.swing.JFrame {
 
         // create new account object
         String username = sUField.getText();
-        String password = passwordChangeTo;
+        String password;
+        if(!Main.p.getPassword().equals(passwordChangeTo)) {
+            password = passwordChangeTo;
+        } else {
+            password = Main.p.getPassword();
+        }
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
         Account p = new Account(username, password, Integer.valueOf(access), name);
@@ -1250,35 +1255,36 @@ public class AccountGUI extends javax.swing.JFrame {
 
         // if the username changed from the global account
         // if you edited your username
-        if (!Main.p.getUsername().equals(sUField.getText()) && !Main.p.getUsername().equals("root")) {
-                // show a dialog box
-                int res = JOptionPane.showConfirmDialog(
-                        null,
-                        "Changing your username requires you login again.\n"
-                        + "Are you sure you'd like to change your username to "
-                        + sUField.getText() + "?",
-                        "Confirm Username Change",
-                        JOptionPane.YES_NO_OPTION);
-
-                // do a thing based on response
-                switch (res) {
-                    case 0:     // if yes, check for dupe in username
-                        if (IOController.CheckForUsernameDupe(sUField.getText())) {
-                            errLabel.setForeground(Color.red);
-                            errLabel.setText("Username already taken");
-                            return false;
-
-                            // all is good, no duplication
-                        } else {
-                            submitButton.doClick();
-                            Main.Logout();
-                            Main.CloseAccountGUI();
-                            Main.CloseMainGUI();
-                        }
-                        break;
-                    default:
-                        return false;
-                }
+//        if (!Main.p.getUsername().equals(sUField.getText()) && !Main.p.getUsername().equals("root")) {
+//                // show a dialog box
+//                int res = JOptionPane.showConfirmDialog(
+//                        null,
+//                        "Changing your username requires you login again.\n"
+//                        + "Are you sure you'd like to change your username to "
+//                        + sUField.getText() + "?",
+//                        "Confirm Username Change",
+//                        JOptionPane.YES_NO_OPTION);
+//
+//                // do a thing based on response
+//                switch (res) {
+//                    case 0:     // if yes, check for dupe in username
+//                        if (IOController.CheckForUsernameDupe(sUField.getText())) {
+//                            errLabel.setForeground(Color.red);
+//                            errLabel.setText("Username already taken");
+//                            return false;
+//
+//                            // all is good, no duplication
+//                        } else {
+//                            //Submit();
+//                            //submitButton.doClick();
+//                            Main.Logout();
+//                            Main.CloseAccountGUI();
+//                            Main.CloseMainGUI();
+//                        }
+//                        break;
+//                    default:
+//                        return false;
+//                }
 //                // show a dialog box
 //                int res = JOptionPane.showConfirmDialog(
 //                        null,
@@ -1308,7 +1314,7 @@ public class AccountGUI extends javax.swing.JFrame {
 //                }
 
             // no change in username, check the other things
-        } else {
+        //} else {
 
             // Username
             // if it is either nothing or default, throw error
@@ -1320,9 +1326,6 @@ public class AccountGUI extends javax.swing.JFrame {
 //        } else if (IOController.CheckForUsernameDupe(sUField.getText())) {
 //            flag = false;
 //            sUField.setForeground(Color.red);
-            } else if (Main.p.getUsername().equals(sUField.getText())) {
-                flag = true;
-                sUField.setForeground(Color.black);
             } else if (!Util.sepCheck(sUField.getText())) {
                 flag = false;
                 sUField.setForeground(Color.red);
@@ -1360,7 +1363,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 sNField.setForeground(Color.red);
             }
 
-        }
+        //}
         setSearchErrLabel();
         return flag;
     }
