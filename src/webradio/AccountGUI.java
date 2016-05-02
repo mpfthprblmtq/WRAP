@@ -76,7 +76,7 @@ public class AccountGUI extends javax.swing.JFrame {
     ListElement[] elements;
     boolean apasswordsMatch = true;
     boolean spasswordsMatch = true;
-    
+
     String passwordChangeTo;
     boolean usernameChanged = false;
     boolean passwordChanged = false;
@@ -116,7 +116,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField = new javax.swing.JTextField();
         spasswordMatch = new javax.swing.JLabel();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<>();
+        sAComboBox = new javax.swing.JComboBox<String>();
         sNField = new javax.swing.JTextField();
         changePasswordLabel = new javax.swing.JLabel();
         changePasswordLabel2 = new javax.swing.JLabel();
@@ -131,12 +131,12 @@ public class AccountGUI extends javax.swing.JFrame {
         aconfirmpassField = new javax.swing.JPasswordField();
         apasswordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<>();
+        aAComboBox = new javax.swing.JComboBox<String>();
         aNField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<>();
+        list = new javax.swing.JList<String>();
         loginLabel = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
@@ -216,7 +216,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
@@ -377,7 +377,7 @@ public class AccountGUI extends javax.swing.JFrame {
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
@@ -559,7 +559,7 @@ public class AccountGUI extends javax.swing.JFrame {
                         .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -662,11 +662,13 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
-     * Handles when the EDIT button is pressed Just calls outside method Edit()
+     * Handles when the EDIT button is pressed
+     * IF you are editing your own account
+     * ELSE pop up error box
+     * Just calls outside method Edit()
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if (Main.p.getUsername().equals(sUField.getText())
-                || Main.p.getUsername().equals("root")) {
+        if (Main.p.getUsername().equals(sUField.getText())) {
             Edit();
         } else {
             JOptionPane.showMessageDialog(this,
@@ -687,7 +689,7 @@ public class AccountGUI extends javax.swing.JFrame {
             submitButton.setEnabled(false);
             editButton.setEnabled(true);
             deleteButton.setEnabled(true);
-            
+
             setSearchFieldsEditable(false);
 
             Search(users.elementAt(list.getSelectedIndex()).username);
@@ -964,16 +966,12 @@ public class AccountGUI extends javax.swing.JFrame {
                     changePasswordLabel2.setForeground(Color.blue);
                     changePasswordLabel2.setText("Password changed!");
                     passwordChanged = true;
-                    if(!passwordChanged) {
-                        passwordChangeTo = password.getText();
-                    } else {
-                        passwordChangeTo = Main.p.getPassword();
-                    }
+                    passwordChangeTo = password.getText();
                 } else {
                     changePassword(false);
                 }
             } else {
-                
+
             }
         } else {
             //JLabel err = new JLabel();
@@ -989,11 +987,7 @@ public class AccountGUI extends javax.swing.JFrame {
                     changePasswordLabel2.setForeground(Color.blue);
                     changePasswordLabel2.setText("Password changed!");
                     passwordChanged = true;
-                    if(!passwordChanged) {
-                        passwordChangeTo = password.getText();
-                    } else {
-                        passwordChangeTo = Main.p.getPassword();
-                    }
+                    passwordChangeTo = password.getText();
                     //submitButton.doClick();
                 } else {
                     changePassword(false);
@@ -1006,21 +1000,22 @@ public class AccountGUI extends javax.swing.JFrame {
 
     public boolean confirmPassword(boolean b) {
         JTextField password = new JPasswordField();
-        
-        if(b) {
+
+        if (b) {
             Object[] message = {
                 "Enter your original password to confirm:",
                 "Password:", password,
                 " "
             };
-        
+
             int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
-                    if(passwordChanged == false) {
+                    if (passwordChanged == false) {
+                        System.out.println("getText() : " + password.getText());
                         passwordChangeTo = password.getText();
                     } else {
-                        // no change
+                        // no change in passwords
                     }
                     return true;
                 } else {
@@ -1029,18 +1024,19 @@ public class AccountGUI extends javax.swing.JFrame {
             } else {
                 // canceled
             }
-            
+
         } else {
             Object[] message = {
                 "Enter your original password to confirm:",
                 "Password:", password,
                 "Invalid password"
             };
-            
+
             int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
-                    if(passwordChanged == false) {
+                    if (passwordChanged == false) {
+                        System.out.println("getText() : " + password.getText());
                         passwordChangeTo = password.getText();
                     } else {
                         // no change
@@ -1055,7 +1051,7 @@ public class AccountGUI extends javax.swing.JFrame {
         }
         return false;
     }
-    
+
     /**
      * Add()
      *
@@ -1194,44 +1190,56 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     public void Submit() {
 
-        if(confirmPassword(true)) { 
-        
-        setSearchFieldsEditable(false);
+        if (confirmPassword(true)) {
 
-        // create new account object
-        String username = sUField.getText();
-        String password = passwordChangeTo;
-        String access = String.valueOf(sAComboBox.getSelectedIndex());
-        String name = sNField.getText();
-        Account p = new Account(username, password, Integer.valueOf(access), name);
+            setSearchFieldsEditable(false);
 
-        // delete old, then add new
-        if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
-            errLabel.setForeground(Color.blue);
-            errLabel.setText("User edited successfully");
+            System.out.println(passwordChangeTo);
+            // create new account object
+            String username = sUField.getText();
+            String password = passwordChangeTo;
+            String access = String.valueOf(sAComboBox.getSelectedIndex());
+            String name = sNField.getText();
+            Account p = new Account(username, password, Integer.valueOf(access), name);
 
-            AccountController.DeleteUser(temp.getUsername());
-            AccountController.AddUser(p);
+            // delete old, then add new
+            if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Account edited successfully");
 
-            ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
-                    temp.getAccess(), temp.getName());
-            ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
+                AccountController.DeleteUser(temp.getUsername());
+                AccountController.AddUser(p);
 
-            UpdateList(REMOVE, t);
-            UpdateList(ADD, q);
-        } else {
-            errLabel.setForeground(Color.red);
-        }
+                ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
+                        temp.getAccess(), temp.getName());
+                ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
 
-        // update graphics
-        deleteButton.setEnabled(false);
-        editButton.setEnabled(false);
-        submitButton.setEnabled(false);
-        changePasswordLabel.setEnabled(false);
+                UpdateList(REMOVE, t);
+                UpdateList(ADD, q);
+            } else {
+                errLabel.setForeground(Color.red);
+                errLabel.setText("Error submitting account");
+            }
 
-        passwordChangeTo = "";
-        list.setSelectedIndex(list.getLastVisibleIndex());
-        Search(users.getElementAt(users.getSize() - 1).username);
+            // update the global account
+            Main.p.setUsername(username);
+            Main.p.setPassword(password);
+            Main.p.setAccess(sAComboBox.getSelectedIndex());
+            Main.p.setName(name);
+            
+            // update the login label
+            loginLabel.setText("Logged in as " + Main.p.getUsername());
+            
+            // update graphics
+            deleteButton.setEnabled(false);
+            editButton.setEnabled(false);
+            submitButton.setEnabled(false);
+            changePasswordLabel.setEnabled(false);
+
+            passwordChangeTo = "";
+            changePasswordLabel2.setText(" ");
+            list.setSelectedIndex(list.getLastVisibleIndex());
+            Search(users.getElementAt(users.getSize() - 1).username);
         }
     }
 
@@ -1325,115 +1333,32 @@ public class AccountGUI extends javax.swing.JFrame {
         errLabel.setForeground(Color.red);
         ssetAllForeground(Color.black);
 
-        // if the username changed from the global account
-        // if you edited your username
-//        if (!Main.p.getUsername().equals(sUField.getText()) && !Main.p.getUsername().equals("root")) {
-//                // show a dialog box
-//                int res = JOptionPane.showConfirmDialog(
-//                        null,
-//                        "Changing your username requires you login again.\n"
-//                        + "Are you sure you'd like to change your username to "
-//                        + sUField.getText() + "?",
-//                        "Confirm Username Change",
-//                        JOptionPane.YES_NO_OPTION);
-//
-//                // do a thing based on response
-//                switch (res) {
-//                    case 0:     // if yes, check for dupe in username
-//                        if (IOController.CheckForUsernameDupe(sUField.getText())) {
-//                            errLabel.setForeground(Color.red);
-//                            errLabel.setText("Username already taken");
-//                            return false;
-//
-//                            // all is good, no duplication
-//                        } else {
-//                            //Submit();
-//                            //submitButton.doClick();
-//                            Main.Logout();
-//                            Main.CloseAccountGUI();
-//                            Main.CloseMainGUI();
-//                        }
-//                        break;
-//                    default:
-//                        return false;
-//                }
-//                // show a dialog box
-//                int res = JOptionPane.showConfirmDialog(
-//                        null,
-//                        "Changing a username requires you login again.\n"
-//                        + "Are you sure you'd like to change the username to "
-//                        + sUField.getText() + "?",
-//                        "Confirm Username Change",
-//                        JOptionPane.YES_NO_OPTION);
+        // Username
+        // if it is either nothing or default, throw error
+        // if it contains separator character, throw error
+        if (sUField.getText().equals("") || sUField.getText().equals("--")) {
+            flag = false;
+            sUField.setText("--");
+            sUField.setForeground(Color.red);
+        } else if (!Util.sepCheck(sUField.getText())) {
+            flag = false;
+            sUField.setForeground(Color.red);
+        }
 
-//                // do a thing based on response
-//                switch (res) {
-//                    case 0:     // if yes, check for dupe in username
-//                        if (IOController.CheckForUsernameDupe(sUField.getText())) {
-//                            errLabel.setForeground(Color.red);
-//                            errLabel.setText("Username already taken");
-//                            return false;
-//
-//                            // all is good, no duplication
-//                        } else {
-//                            Main.Logout();
-//                            Main.CloseAccountGUI();
-//                            Main.CloseMainGUI();
-//                        }
-//                        break;
-//                    default:
-//                        return false;
-//                }
+        // Access
+        // if the box is on the default index, throw error
+        if (sAComboBox.getSelectedIndex() == 3) {
+            flag = false;
+            sAComboBox.setForeground(Color.red);
+        }
 
-            // no change in username, check the other things
-        //} else {
-
-            // Username
-            // if it is either nothing or default, throw error
-            // if it contains separator character, throw error
-            if (sUField.getText().equals("") || sUField.getText().equals("--")) {
-                flag = false;
-                sUField.setText("--");
-                sUField.setForeground(Color.red);
-//        } else if (IOController.CheckForUsernameDupe(sUField.getText())) {
-//            flag = false;
-//            sUField.setForeground(Color.red);
-            } else if (!Util.sepCheck(sUField.getText())) {
-                flag = false;
-                sUField.setForeground(Color.red);
-            }
-
-//            // Password
-//            // if it is nothing, throw error
-//            // if it contains separator character, throw error
-//            if (spassField.getText().equals("") && sconfirmpassField.getText().equals("")) {
-//                flag = false;
-//                spassField.setForeground(Color.red);
-//                sconfirmpassField.setForeground(Color.red);
-//            } else if (!spasswordsMatch) {
-//                flag = false;
-//                spassField.setForeground(Color.red);
-//                sconfirmpassField.setForeground(Color.red);
-//            } else if (!Util.sepCheck(spassField.getText())) {
-//                flag = false;
-//                spassField.setForeground(Color.red);
-//                sconfirmpassField.setForeground(Color.red);
-//            }
-
-            // Access
-            // if the box is on the default index, throw error
-            if (sAComboBox.getSelectedIndex() == 3) {
-                flag = false;
-                sAComboBox.setForeground(Color.red);
-            }
-
-            // Name
-            // if it is either nothing or the default, throw error
-            if (sNField.getText().equals("") || sNField.getText().equals("--")) {
-                flag = false;
-                sNField.setText("--");
-                sNField.setForeground(Color.red);
-            }
+        // Name
+        // if it is either nothing or the default, throw error
+        if (sNField.getText().equals("") || sNField.getText().equals("--")) {
+            flag = false;
+            sNField.setText("--");
+            sNField.setForeground(Color.red);
+        }
 
         //}
         setSearchErrLabel();
@@ -1519,7 +1444,6 @@ public class AccountGUI extends javax.swing.JFrame {
 //            errCount++;
 //            err = "Error with password field(s)";
 //        }
-
         // username field
         if (sUField.getForeground() == Color.red) {
             errCount++;
@@ -1603,7 +1527,6 @@ public class AccountGUI extends javax.swing.JFrame {
 //            spasswordsMatch = false;
 //        }
 //    }
-
     /**
      * setAddValuesToNull()
      *
