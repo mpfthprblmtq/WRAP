@@ -176,6 +176,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="changePasswordLabel2" alignment="1" max="32767" attributes="0"/>
                                   <Component id="changePasswordLabel" alignment="1" max="32767" attributes="0"/>
                                   <Component id="sNField" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
@@ -203,7 +204,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="changePasswordLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="changePasswordLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="7" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="spasswordMatch" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
@@ -359,6 +362,12 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changePasswordLabelMouseClicked"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="changePasswordLabel2">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="11"/>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

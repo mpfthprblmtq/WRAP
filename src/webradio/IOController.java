@@ -60,13 +60,11 @@ public class IOController {
     /**
      * Login()
      *
-     * Takes a String username and String password as parameters
-     * Generalize root login
-     * Create an encrypted version of the password given
-     * Read the users file line by line to see if you find a match based
-     * on the username and encrypted password
-     * If a match is found, return the account
-     * If no match is found, return a null account
+     * Takes a String username and String password as parameters Generalize root
+     * login Create an encrypted version of the password given Read the users
+     * file line by line to see if you find a match based on the username and
+     * encrypted password If a match is found, return the account If no match is
+     * found, return a null account
      *
      * @param username
      * @param password
@@ -103,10 +101,10 @@ public class IOController {
                         System.out.println(str[1]);
                         // if the username and password match
                         if (str[0].equals(username) && checkPassword(password, str[1])) {
-                                // create a new account from info in file
-                                a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
-                                // return the new account
-                                return a;
+                            // create a new account from info in file
+                            a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
+                            // return the new account
+                            return a;
                         }
                     } catch (NullPointerException e) {
                         System.err.println(e);
@@ -121,6 +119,23 @@ public class IOController {
         }
     } // end Login()
 
+    public static boolean checkPasswordForConfirmation(String username, String password) {
+        try (Scanner in = new Scanner(new FileReader(accounts))) {
+            while (in.hasNext()) {
+                String line = in.nextLine();
+                String[] str = line.split(s);
+
+                if (str[0].equals(username) && checkPassword(password, str[1])) {
+                    return true;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
     public static String hashPassword(String password_plaintext) {
         String salt = BCrypt.gensalt(12);
         String hashed_password = BCrypt.hashpw(password_plaintext, salt);
@@ -128,6 +143,7 @@ public class IOController {
     }
 
     public static boolean checkPassword(String password_plaintext, String stored_hash) {
+
         boolean password_verified = false;
 
         if (null == stored_hash || !stored_hash.startsWith("$2a$")) {
@@ -150,8 +166,8 @@ public class IOController {
     /**
      * getAllUsers()
      *
-     * Goes through the users file and creates an array of accounts based
-     * on the contents of the file
+     * Goes through the users file and creates an array of accounts based on the
+     * contents of the file
      *
      * @return an array of Accounts
      */
@@ -201,9 +217,8 @@ public class IOController {
     /**
      * CheckForUsernameDupe()
      *
-     * Checks for a username duplication, needed for adding a new user
-     * If while scanning the file, it encounters a match, return true
-     * Else return false
+     * Checks for a username duplication, needed for adding a new user If while
+     * scanning the file, it encounters a match, return true Else return false
      *
      * @param u, the username to search
      * @return the result of the search
@@ -231,8 +246,8 @@ public class IOController {
     /**
      * AddUser()
      *
-     * Writes a new Account object to the users file at the end
-     * Password is encrypted
+     * Writes a new Account object to the users file at the end Password is
+     * encrypted
      *
      * @param p, the account to add
      * @return the result of the addition
@@ -252,9 +267,9 @@ public class IOController {
     /**
      * SearchUser()
      *
-     * Searches for a user based on the username given in the users file
-     * While scanning the users file, if a match is found, return a new account
-     * If no match, return a null account
+     * Searches for a user based on the username given in the users file While
+     * scanning the users file, if a match is found, return a new account If no
+     * match, return a null account
      *
      * @param username, the account to search
      * @return the account found
@@ -281,8 +296,8 @@ public class IOController {
     /**
      * DeleteUser()
      *
-     * Basically just rewrites the users file, and excludes the account that
-     * was passed as a parameter
+     * Basically just rewrites the users file, and excludes the account that was
+     * passed as a parameter
      *
      * @param username, the account to search
      * @return the result of the deletion
@@ -339,8 +354,8 @@ public class IOController {
     /**
      * getAllProfiles()
      *
-     * Goes through the roster file and creates an array of profiles based
-     * on the contents of the file
+     * Goes through the roster file and creates an array of profiles based on
+     * the contents of the file
      *
      * @return an array of Profiles
      */
@@ -391,9 +406,8 @@ public class IOController {
     /**
      * CheckForIDDupe()
      *
-     * Checks for a id duplication, needed for adding a new profile
-     * If while scanning the file, it encounters a match, return true
-     * Else return false
+     * Checks for a id duplication, needed for adding a new profile If while
+     * scanning the file, it encounters a match, return true Else return false
      *
      * @param id, the id to search
      * @return the result of the search
@@ -445,9 +459,9 @@ public class IOController {
     /**
      * SearchProfile()
      *
-     * Searches for a profile based on the id given in the roster file
-     * While scanning the roster file, if a match is found, return a new profile
-     * If no match, return a null profile
+     * Searches for a profile based on the id given in the roster file While
+     * scanning the roster file, if a match is found, return a new profile If no
+     * match, return a null profile
      *
      * @param id, the id to search
      * @return the profile found
@@ -527,9 +541,9 @@ public class IOController {
     /**
      * reportBug()
      *
-     * Creates a new file based on date and time
-     * Includes the name, date/time, and description of the bug
-     * Since word wrapping is super fun to hardcode, I did it a fun way
+     * Creates a new file based on date and time Includes the name, date/time,
+     * and description of the bug Since word wrapping is super fun to hardcode,
+     * I did it a fun way
      *
      * @param name
      * @param report
@@ -568,9 +582,9 @@ public class IOController {
     /**
      * makeSuggestion()
      *
-     * Creates a new file based on date and time
-     * Includes the name, date/time, and description of the suggestion
-     * Since word wrapping is super fun to hardcode, I did it a fun way
+     * Creates a new file based on date and time Includes the name, date/time,
+     * and description of the suggestion Since word wrapping is super fun to
+     * hardcode, I did it a fun way
      *
      * @param name
      * @param report

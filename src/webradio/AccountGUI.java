@@ -78,6 +78,8 @@ public class AccountGUI extends javax.swing.JFrame {
     boolean spasswordsMatch = true;
     
     String passwordChangeTo;
+    boolean usernameChanged = false;
+    boolean passwordChanged = false;
 
     // global constants
     public static final int ADMIN = 0;
@@ -117,6 +119,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAComboBox = new javax.swing.JComboBox<>();
         sNField = new javax.swing.JTextField();
         changePasswordLabel = new javax.swing.JLabel();
+        changePasswordLabel2 = new javax.swing.JLabel();
         addPanel = new javax.swing.JPanel();
         L6 = new javax.swing.JLabel();
         L7 = new javax.swing.JLabel();
@@ -243,6 +246,9 @@ public class AccountGUI extends javax.swing.JFrame {
             }
         });
 
+        changePasswordLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        changePasswordLabel2.setText(" ");
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
@@ -263,6 +269,7 @@ public class AccountGUI extends javax.swing.JFrame {
                             .addComponent(L4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(changePasswordLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(changePasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sNField)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
@@ -283,7 +290,9 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addComponent(L1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(changePasswordLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changePasswordLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spasswordMatch)
                     .addGroup(searchPanelLayout.createSequentialGroup()
@@ -952,8 +961,14 @@ public class AccountGUI extends javax.swing.JFrame {
             int option = JOptionPane.showConfirmDialog(null, message, "Change password", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 if (password.getText().equals(confirmPassword.getText())) {
-                    passwordChangeTo = password.getText();
-                    //submitButton.doClick();
+                    changePasswordLabel2.setForeground(Color.blue);
+                    changePasswordLabel2.setText("Password changed!");
+                    passwordChanged = true;
+                    if(!passwordChanged) {
+                        passwordChangeTo = password.getText();
+                    } else {
+                        passwordChangeTo = Main.p.getPassword();
+                    }
                 } else {
                     changePassword(false);
                 }
@@ -971,7 +986,14 @@ public class AccountGUI extends javax.swing.JFrame {
             int option = JOptionPane.showConfirmDialog(null, message, "Change password", JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 if (password.getText().equals(confirmPassword.getText())) {
-                    passwordChangeTo = password.getText();
+                    changePasswordLabel2.setForeground(Color.blue);
+                    changePasswordLabel2.setText("Password changed!");
+                    passwordChanged = true;
+                    if(!passwordChanged) {
+                        passwordChangeTo = password.getText();
+                    } else {
+                        passwordChangeTo = Main.p.getPassword();
+                    }
                     //submitButton.doClick();
                 } else {
                     changePassword(false);
@@ -982,6 +1004,58 @@ public class AccountGUI extends javax.swing.JFrame {
         }
     }
 
+    public boolean confirmPassword(boolean b) {
+        JTextField password = new JPasswordField();
+        
+        if(b) {
+            Object[] message = {
+                "Enter your original password to confirm:",
+                "Password:", password,
+                " "
+            };
+        
+            int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
+                    if(passwordChanged == false) {
+                        passwordChangeTo = password.getText();
+                    } else {
+                        // no change
+                    }
+                    return true;
+                } else {
+                    // passwords didn't match
+                }
+            } else {
+                // canceled
+            }
+            
+        } else {
+            Object[] message = {
+                "Enter your original password to confirm:",
+                "Password:", password,
+                "Invalid password"
+            };
+            
+            int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
+            if (option == JOptionPane.OK_OPTION) {
+                if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
+                    if(passwordChanged == false) {
+                        passwordChangeTo = password.getText();
+                    } else {
+                        // no change
+                    }
+                    return true;
+                } else {
+                    confirmPassword(false);
+                }
+            } else {
+                // canceled
+            }
+        }
+        return false;
+    }
+    
     /**
      * Add()
      *
@@ -1097,7 +1171,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         // create the temp Account
         String username = sUField.getText();
-        String password = "whoop";
+        String password = Main.p.getPassword();
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
         temp = new Account(username, password, Integer.valueOf(access), name);
@@ -1120,16 +1194,13 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     public void Submit() {
 
+        if(confirmPassword(true)) { 
+        
         setSearchFieldsEditable(false);
 
         // create new account object
         String username = sUField.getText();
-        String password;
-        if(!Main.p.getPassword().equals(passwordChangeTo)) {
-            password = passwordChangeTo;
-        } else {
-            password = Main.p.getPassword();
-        }
+        String password = passwordChangeTo;
         String access = String.valueOf(sAComboBox.getSelectedIndex());
         String name = sNField.getText();
         Account p = new Account(username, password, Integer.valueOf(access), name);
@@ -1161,6 +1232,7 @@ public class AccountGUI extends javax.swing.JFrame {
         passwordChangeTo = "";
         list.setSelectedIndex(list.getLastVisibleIndex());
         Search(users.getElementAt(users.getSize() - 1).username);
+        }
     }
 
     /**
@@ -1648,6 +1720,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JLabel apasswordMatch;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JLabel changePasswordLabel;
+    private javax.swing.JLabel changePasswordLabel2;
     private javax.swing.JMenuItem closeItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
