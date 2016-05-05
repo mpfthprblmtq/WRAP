@@ -224,6 +224,7 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setFocusCycleRoot(true);
         f1.setFocusable(false);
 
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         loginLabel.setText(" ");
 
         menubar.setFocusable(false);
@@ -609,11 +610,18 @@ public class MainGUI extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         JOptionPane.showMessageDialog(this, "  VERSION 1.0.2  :D  ");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    /**
+     * Handles if user selects suggestion option in the menu bar
+     * Calls LaunchSuggestionReportGUI()
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
+    /**
+     * Handles when the form is loaded
+     * Sets the text with the global user
+     */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_formComponentShown

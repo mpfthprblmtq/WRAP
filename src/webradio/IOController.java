@@ -10,21 +10,11 @@ package webradio;
 // imports
 import java.io.*;
 import java.util.*;
-
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.GeneralSecurityException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
-import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.PBEParameterSpec;
-
-//import sun.misc.BASE64Decoder;
-//import sun.misc.BASE64Encoder;
 public class IOController {
 
     // global files
@@ -41,30 +31,26 @@ public class IOController {
     static ArrayList<Profile> data;
     static String s = "///";
 
-    // encryption/decryption variables
-    private static final char[] PASSWORD = "enfldsgbnlsngdlksdsgm".toCharArray();
-    private static final byte[] SALT = {
-        (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,
-        (byte) 0xde, (byte) 0x33, (byte) 0x10, (byte) 0x12,};
-
-    /*
-     * _ _
-     * | | (_)
-     * | | ___ __ _ _ _ __
-     * | | / _ \ / _` | | '_ \
-     * | |___| (_) | (_| | | | | |
-     * |______\___/ \__, |_|_| |_|
-     * __/ |
-     * |___/
-     */
+    
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    //      LOGIN AND HASHING
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    
     /**
      * Login()
      *
-     * Takes a String username and String password as parameters Generalize root
-     * login Create an encrypted version of the password given Read the users
-     * file line by line to see if you find a match based on the username and
-     * encrypted password If a match is found, return the account If no match is
-     * found, return a null account
+     * Takes a String username and String password as parameters 
+     * Generalize root login 
+     * Create an encrypted version of the password given 
+     * Read the users file line by line to see if you find a match based 
+     * on the username and encrypted password 
+     * If a match is found, return the account 
+     * If no match is found, return a null account
      *
      * @param username
      * @param password
@@ -74,20 +60,6 @@ public class IOController {
         if (username.equals("root") && password.equals("admin")) {
             return new Account("root", "admin", 0, "Pat");
         } else {
-//            // encrypted password
-//            String ePass = "";
-//
-//            try {
-//                // store the encrypted password in ePass
-//                //ePass = encrypt(password);
-//                
-//             String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));   
-//                
-//            } catch (GeneralSecurityException | UnsupportedEncodingException ex) {
-//                System.err.println(ex);
-//            }
-
-            String hashed = hashPassword(password);
 
             // instantiate the account to null, return if no match found
             Account a = null;
@@ -96,9 +68,6 @@ public class IOController {
                     String line = in.nextLine();
                     String[] str = line.split(s);
                     try {
-
-                        //System.out.println(hashed);
-                        //System.out.println(str[1]);
                         // if the username and password match
                         if (str[0].equals(username) && checkPassword(password, str[1])) {
                             // create a new account from info in file
@@ -119,6 +88,16 @@ public class IOController {
         }
     } // end Login()
 
+    /**
+     * checkPasswordForConfirmation()
+     * 
+     * Basically just takes a username and password parameter and checks in the file
+     * against the hashed versions of the passwords and checks for a match
+     * 
+     * @param username
+     * @param password
+     * @return 
+     */
     public static boolean checkPasswordForConfirmation(String username, String password) {
         try (Scanner in = new Scanner(new FileReader(accounts))) {
             while (in.hasNext()) {
@@ -136,12 +115,30 @@ public class IOController {
         return false;
     }
 
+    /**
+     * hashPassword()
+     * 
+     * Takes a plaintext password and hashes it using BCrypt
+     * 
+     * @param password_plaintext
+     * @return 
+     */
     public static String hashPassword(String password_plaintext) {
         String salt = BCrypt.gensalt(12);
         String hashed_password = BCrypt.hashpw(password_plaintext, salt);
         return (hashed_password);
     }
 
+    /**
+     * checkPassword()
+     * 
+     * Takes plaintext password and stored hashed password and compares them
+     * Returns true for a match, false otherwise
+     * 
+     * @param password_plaintext
+     * @param stored_hash
+     * @return 
+     */
     public static boolean checkPassword(String password_plaintext, String stored_hash) {
 
         boolean password_verified = false;
@@ -151,19 +148,20 @@ public class IOController {
         }
 
         password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
-        System.out.println("Password verified: " + password_verified);
 
         return (password_verified);
     }
 
-    /*
-     * _ _
-     * | | | |
-     * | | | |___ ___ _ __ ___
-     * | | | / __|/ _ \ '__/ __|
-     * | |__| \__ \ __/ | \__ \
-     * \____/|___/\___|_| |___/
-     */
+    
+    
+    
+    
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    //      USERS/ACCOUNTS
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    
     /**
      * getAllUsers()
      *
@@ -174,14 +172,20 @@ public class IOController {
      */
     public static Account[] getAllUsers() {
 
+        // get the total amount of users and make an array from that size
         int total = getTotalUsers();
         Account[] pro = new Account[total];
 
+        // read the file
         int count = 0;
         try (Scanner b_in = new Scanner(new FileReader(accounts))) {
             while (b_in.hasNext()) {
+                
+                //read the line and split it into array
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
+                
+                // create the array with new account objects
                 if (line != null) {
                     pro[count] = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
                     count++;
@@ -205,7 +209,7 @@ public class IOController {
         int total = 0;
         try (Scanner a_in = new Scanner(new FileReader(accounts))) {
             while (a_in.hasNextLine()) {
-                String line = a_in.nextLine();
+                String not_used_but_necessary_for_some_reason = a_in.nextLine();
                 total++;
             }
             a_in.close();
@@ -218,17 +222,24 @@ public class IOController {
     /**
      * CheckForUsernameDupe()
      *
-     * Checks for a username duplication, needed for adding a new user If while
-     * scanning the file, it encounters a match, return true Else return false
+     * Checks for a username duplication, needed for adding a new user 
+     * If while scanning the file, it encounters a match, return true 
+     * Else return false
      *
      * @param u, the username to search
      * @return the result of the search
      */
     public static boolean CheckForUsernameDupe(String u) {
+        
+        // read file
         try (Scanner in = new Scanner(new FileReader(accounts))) {
             while (in.hasNext()) {
+                
+                // read the line and split it
                 String line = in.nextLine();
                 String[] str = line.split(s);
+                
+                // check if username matches, return true if it does
                 try {
                     if (str[0].equals(u)) {
                         return true;
@@ -241,6 +252,7 @@ public class IOController {
         } catch (FileNotFoundException e) {
             System.err.println(e);
         }
+        // no match found, return false
         return false;
     }
 
@@ -255,6 +267,7 @@ public class IOController {
      */
     public static boolean AddUser(Account p) {
 
+        // open file
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(accounts, true)))) {
             out.println(p.getUsername() + s + hashPassword(p.getPassword()) + s + p.getAccess() + s + p.getName());
             out.close();
@@ -268,9 +281,9 @@ public class IOController {
     /**
      * SearchUser()
      *
-     * Searches for a user based on the username given in the users file While
-     * scanning the users file, if a match is found, return a new account If no
-     * match, return a null account
+     * Searches for a user based on the username given in the users file 
+     * While scanning the users file, if a match is found, return a new account 
+     * If no match, return a null account
      *
      * @param username, the account to search
      * @return the account found
@@ -278,11 +291,14 @@ public class IOController {
     public static Account SearchUser(String username) {
         Account a = null;
 
+        // read the file
         try (Scanner in = new Scanner(new FileReader(accounts))) {
             while (in.hasNext()) {
+                // read the line and split it
                 String line = in.nextLine();
                 String[] str = line.split(s);
 
+                // check if the username matches
                 if (str[0].equals(username)) {
                     a = new Account(str[0], str[1], Integer.valueOf(str[2]), str[3]);
                 }
@@ -304,7 +320,7 @@ public class IOController {
      * @return the result of the deletion
      */
     public static boolean DeleteUser(String username) {
-
+        
         int total = getTotalUsers();    // for array size
         int count = 0;                  // counter
 
@@ -343,15 +359,55 @@ public class IOController {
         }
         return true;
     }
-
-    /*
-     * _____ __ _ _
-     * | __ \ / _(_) |
-     * | |__) | __ ___ | |_ _| | ___ ___
-     * | ___/ '__/ _ \| _| | |/ _ \/ __|
-     * | | | | | (_) | | | | | __/\__ \
-     * |_| |_| \___/|_| |_|_|\___||___/
+    
+    /**
+     * changeAccountAccess()
+     * 
+     * Mainly for the root account to change the access of any account
+     * Just reads in the file and replaces the account with a new one with the
+     * desired access level
+     * 
+     * @param username
+     * @param oldAccess
+     * @param newAccess
+     * @return 
      */
+    public static boolean changeAccountAccess(String username, String oldAccess, String newAccess) {
+        
+        // read the file
+        try (Scanner b_in = new Scanner(new FileReader(accounts))) {
+             while (b_in.hasNext()) {
+                 // read the line and split it
+                String line = b_in.nextLine();      // create array from each line
+                String[] str = line.split(s);
+                
+                // if the username and access match the parameters
+                if(str[0].equals(username) && str[2].equals(oldAccess)) {
+                    // create a new account
+                    Account a = new Account(str[0], str[1], Integer.valueOf(newAccess), str[3]);
+                    // delete then add
+                    DeleteUser(username);
+                    AddUser(a);
+                    
+                    return true;
+                }
+             }
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+    
+    
+    
+    
+
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    //      PROFILES
+    //
+    ////////////////////////////////////////////////////////////////////////////
+    
     /**
      * getAllProfiles()
      *
@@ -361,26 +417,29 @@ public class IOController {
      * @return an array of Profiles
      */
     public static Profile[] getAllProfiles() {
+        // get the size and make array of that size
         int total = getTotalProfiles();
-        Profile[] profiles = new Profile[total];
+        Profile[] pro = new Profile[total];
 
         int count = 0;
 
-        try (Scanner b_in = new Scanner(new FileReader(IOController.profiles))) {
+        // read the file
+        try (Scanner b_in = new Scanner(new FileReader(profiles))) {
             while (b_in.hasNext()) {
+                // read the line and split it
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
-                profiles[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
+                
+                // create new Profile objects and increment count
+                pro[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8], 
                         Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
                 count++;
             }
-
             b_in.close();
         } catch (FileNotFoundException e) {
             System.err.println(e);
         }
-
-        return profiles;
+        return pro;
     }
 
     /**
@@ -394,7 +453,7 @@ public class IOController {
         int total = 0;
         try (Scanner a_in = new Scanner(new FileReader(profiles))) {
             while (a_in.hasNextLine()) {
-                String line = a_in.nextLine();
+                String not_used_but_necessary_for_some_reason = a_in.nextLine();
                 total++;
             }
             a_in.close();
@@ -414,10 +473,13 @@ public class IOController {
      * @return the result of the search
      */
     public static boolean CheckForIDDupe(String id) {
+        // read the file
         try (Scanner in = new Scanner(new FileReader(profiles))) {
             while (in.hasNext()) {
+                // read the line and split it
                 String line = in.nextLine();
                 String[] str = line.split(s);
+                
                 try {
                     // if the id in the file matches the parameter
                     if (str[2].equals(id)) {
@@ -446,6 +508,7 @@ public class IOController {
      */
     public static boolean AddProfile(Profile p) {
 
+        // open the file
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(profiles, true)))) {
             out.println(p.toString());
             out.close();
@@ -470,14 +533,16 @@ public class IOController {
     public static Profile SearchProfile(String id) {
         Profile p = null;
 
+        // read the file
         try (Scanner in = new Scanner(new FileReader(profiles))) {
             while (in.hasNext()) {
+                // read the line then split it
                 String line = in.nextLine();
                 String[] str = line.split(s);
 
                 // if match is found, create new profile 
                 if (str[2].equals(id)) {
-                    p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
+                    p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8], 
                             Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
                 }
             }
@@ -513,7 +578,7 @@ public class IOController {
 
                 // if the current person is NOT the person to delete, put it in the array
                 if (!str[2].equals(id)) {
-                    arr[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
+                    arr[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8], 
                             Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
                 }
                 count++;
@@ -542,9 +607,9 @@ public class IOController {
     /**
      * reportBug()
      *
-     * Creates a new file based on date and time Includes the name, date/time,
-     * and description of the bug Since word wrapping is super fun to hardcode,
-     * I did it a fun way
+     * Creates a new file based on date and time 
+     * Includes the name, date/time, and description of the bug 
+     * Since word wrapping is super not easy to hardcode, I did it a fun way
      *
      * @param name
      * @param report
@@ -576,16 +641,19 @@ public class IOController {
             }
             out.close();
         } catch (IOException e) {
-            System.err.println(e);
+            JOptionPane.showMessageDialog(null,
+                        e,
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
         }
     }
 
     /**
      * makeSuggestion()
      *
-     * Creates a new file based on date and time Includes the name, date/time,
-     * and description of the suggestion Since word wrapping is super fun to
-     * hardcode, I did it a fun way
+     * Creates a new file based on date and time 
+     * Includes the name, date/time, and description of the suggestion 
+     * Since word wrapping is super not easy to hardcode, I did it a fun way
      *
      * @param name
      * @param report
@@ -620,43 +688,4 @@ public class IOController {
             System.err.println(e);
         }
     }
-
-    /*
-     * ______ _ _
-     * | ____| | | (_)
-     * | |__ _ __ ___ _ __ _ _ _ __ | |_ _ ___ _ __
-     * | __| | '_ \ / __| '__| | | | '_ \| __| |/ _ \| '_ \
-     * | |____| | | | (__| | | |_| | |_) | |_| | (_) | | | |
-     * |______|_| |_|\___|_| \__, | .__/ \__|_|\___/|_| |_|
-     * __/ | |
-     * |___/|_|
-     *
-     */
-//    private static String encrypt(String property) throws GeneralSecurityException, UnsupportedEncodingException {
-//        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
-//        SecretKey key = keyFactory.generateSecret(new PBEKeySpec(PASSWORD));
-//        Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-//        pbeCipher.init(Cipher.ENCRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
-//        return base64Encode(pbeCipher.doFinal(property.getBytes("UTF-8")));
-//    }
-//
-//    private static String base64Encode(byte[] bytes) {
-//        // This class is internal
-//        // should probably use a different implementation
-//        return new BASE64Encoder().encode(bytes);
-//    }
-//
-//    private static String decrypt(String property) throws GeneralSecurityException, IOException {
-//        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBEWithMD5AndDES");
-//        SecretKey key = keyFactory.generateSecret(new PBEKeySpec(PASSWORD));
-//        Cipher pbeCipher = Cipher.getInstance("PBEWithMD5AndDES");
-//        pbeCipher.init(Cipher.DECRYPT_MODE, key, new PBEParameterSpec(SALT, 20));
-//        return new String(pbeCipher.doFinal(base64Decode(property)), "UTF-8");
-//    }
-//
-//    private static byte[] base64Decode(String property) throws IOException {
-//        // This class is internal
-//        // should probably use a different implemtation
-//        return new BASE64Decoder().decodeBuffer(property);
-//    }
 } // end IOController

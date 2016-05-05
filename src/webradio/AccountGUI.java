@@ -8,6 +8,7 @@ package webradio;
 
 // imports
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
@@ -77,9 +78,10 @@ public class AccountGUI extends javax.swing.JFrame {
     boolean apasswordsMatch = true;
     boolean spasswordsMatch = true;
 
+    // some temp variables for editing accounts
     String passwordChangeTo;
-    boolean usernameChanged = false;
     boolean passwordChanged = false;
+    String tempAccess;
 
     // global constants
     public static final int ADMIN = 0;
@@ -116,7 +118,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField = new javax.swing.JTextField();
         spasswordMatch = new javax.swing.JLabel();
         sAField = new javax.swing.JTextField();
-        sAComboBox = new javax.swing.JComboBox<String>();
+        sAComboBox = new javax.swing.JComboBox<>();
         sNField = new javax.swing.JTextField();
         changePasswordLabel = new javax.swing.JLabel();
         changePasswordLabel2 = new javax.swing.JLabel();
@@ -129,15 +131,16 @@ public class AccountGUI extends javax.swing.JFrame {
         aUField = new javax.swing.JTextField();
         apassField = new javax.swing.JPasswordField();
         aconfirmpassField = new javax.swing.JPasswordField();
-        apasswordMatch = new javax.swing.JLabel();
+        passwordMatch = new javax.swing.JLabel();
         aAField = new javax.swing.JTextField();
-        aAComboBox = new javax.swing.JComboBox<String>();
+        aAComboBox = new javax.swing.JComboBox<>();
         aNField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         loginLabel = new javax.swing.JLabel();
+        adminLabel = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -216,7 +219,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAField.setEditable(false);
         sAField.setEnabled(false);
 
-        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        sAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         sAComboBox.setSelectedIndex(3);
         sAComboBox.setToolTipText("");
         sAComboBox.setEnabled(false);
@@ -292,7 +295,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addComponent(changePasswordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(changePasswordLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spasswordMatch)
                     .addGroup(searchPanelLayout.createSequentialGroup()
@@ -309,7 +312,7 @@ public class AccountGUI extends javax.swing.JFrame {
                             .addComponent(editButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(submitButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(deleteButton))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -351,6 +354,9 @@ public class AccountGUI extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 apassFieldFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                apassFieldFocusLost(evt);
+            }
         });
         apassField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -364,6 +370,9 @@ public class AccountGUI extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aconfirmpassFieldFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                aconfirmpassFieldFocusLost(evt);
+            }
         });
         aconfirmpassField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -371,13 +380,13 @@ public class AccountGUI extends javax.swing.JFrame {
             }
         });
 
-        apasswordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        apasswordMatch.setText(" ");
+        passwordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        passwordMatch.setText(" ");
 
         aAField.setEditable(false);
         aAField.setBackground(new java.awt.Color(255, 255, 255));
 
-        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
+        aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
         aAComboBox.setSelectedIndex(3);
         aAComboBox.setName(""); // NOI18N
         aAComboBox.setNextFocusableComponent(aNField);
@@ -432,7 +441,7 @@ public class AccountGUI extends javax.swing.JFrame {
                             .addComponent(aNField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                                    .addComponent(apasswordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(passwordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                                     .addGap(26, 26, 26))
                                 .addComponent(aconfirmpassField, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(addPanelLayout.createSequentialGroup()
@@ -459,7 +468,7 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addComponent(aconfirmpassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L10))
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(apasswordMatch)
+                .addComponent(passwordMatch)
                 .addGap(13, 13, 13)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aAComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -479,7 +488,7 @@ public class AccountGUI extends javax.swing.JFrame {
         errLabel.setForeground(new java.awt.Color(255, 0, 0));
         errLabel.setText(" ");
 
-        list.setModel(FillList());
+        list.setModel(fillList());
         list.setFocusable(false);
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -490,6 +499,19 @@ public class AccountGUI extends javax.swing.JFrame {
 
         loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         loginLabel.setText(" ");
+
+        adminLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        adminLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminLabelMouseExited(evt);
+            }
+        });
 
         file.setText("File");
 
@@ -556,22 +578,27 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(loginLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabs)
-                    .addComponent(scrollpane))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(errLabel)
                 .addContainerGap())
         );
@@ -582,24 +609,27 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * Literally all event related methods Includes:
      *
-     * Add, Submit, and Edit : calls outside methods FormWindow events :
-     * closing, opening ListClicked : searches for element that was clicked
-     * KeyPressed : if enter was pressed, do a thing MenuBar things : things in
-     * the menu bar (exit, close, logout, help, bug, etc) ComboBox things :
-     * changes the fields when the combobox is changed GainFocus : selects all
-     * text in the field when field gains focus EnterKeyPressed : clicks a
-     * button when enter is pressed ShowPassword : changes the text on the
-     * passwordsMatch label, shows password in pop up window when clicked
+     * Add, Submit, and Edit : calls outside methods
+     * FormWindow events : closing, opening
+     * ListClicked : searches for element that was clicked
+     * KeyPressed : if enter was pressed, do a thing
+     * MenuBar things : things in the menu bar (exit, close, logout, help, bug, etc)
+     * ComboBox things : changes the fields when the combobox is changed
+     * GainFocus : selects all text in the field when field gains focus
+     * EnterKeyPressed : clicks a certain button when enter is pressed
+     * ChangePassword : pops up a dialog box for the new password
+     *
+     * Note: Most of these just call external methods in the class
      */
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods">  
     /**
-     * Handles when the ADD button is pressed Checks to see if all of the
-     * elements are kosher, then calls Add()
+     * Handles when the ADD button is pressed
+     * Checks to see if all of the elements are kosher, then calls add()
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (Main.p.getAccess() == 0) {
             if (aCheck()) {
-                Add();
+                add();
             }
         } else {
             JOptionPane.showMessageDialog(this,
@@ -612,20 +642,25 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**
-     * Handles when the window is closed When the window is closed, call
-     * Main.closeAccountGUI()
+     * Handles when the window is closed
+     * When the window is closed, call Main.closeAccountGUI()
      */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseAccountGUI();
     }//GEN-LAST:event_formWindowClosed
 
     /**
-     * Handles when the DELETE button is pressed Pops up a confirmation window,
-     * then calls Delete() if user wishes
+     * Handles when the DELETE button is pressed
+     * Pops up a confirmation window, then calls delete() if user wishes
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
 
-        if (Main.p.getAccess() == 0) {
+        if (Main.p.getUsername().equals(sUField.getText())) {
+            JOptionPane.showMessageDialog(this,
+                    "403 : Forbidden\nAccount " + sUField.getText() + " is logged in.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if (Main.p.getAccess() == 0) {
             int res = JOptionPane.showConfirmDialog(
                     null,
                     "Are you sure you want to delete user "
@@ -636,11 +671,11 @@ public class AccountGUI extends javax.swing.JFrame {
             // do a thing based on response
             switch (res) {
                 case 0:
-                    Delete();
+                    delete();
                     break;
                 default:
                 // do nothing
-            }
+                }
         } else {
             JOptionPane.showMessageDialog(this,
                     "403 : Forbidden\nAdministrator access only",
@@ -652,27 +687,30 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
-     * Handles when the SUBMIT button is pressed Checks to see if all the
-     * modified elements are okay, calls Submit() if they are
+     * Handles when the SUBMIT button is pressed
+     * Checks to see if all the modified elements are okay,
+     * calls submit() if they are
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
-            Submit();
+            submit();
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * Handles when the EDIT button is pressed
-     * IF you are editing your own account
-     * ELSE pop up error box
-     * Just calls outside method Edit()
+     * IF you are editing your own account, call edit()
+     * ELSE IF you are root account, call rootEdit()
+     * ELSE pops up error dialog and returns
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if (Main.p.getUsername().equals(sUField.getText())) {
-            Edit();
+            edit();
+        } else if (Main.p.getUsername().equals("root")) {
+            rootEdit();
         } else {
             JOptionPane.showMessageDialog(this,
-                    "403 : Administrator access only\n"
+                    "403 : Forbidden\n"
                     + "Edit usability restricted to own account",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -681,8 +719,8 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     /**
-     * Handles when the graphical list is clicked on Basically just searches for
-     * the element that was clicked on
+     * Handles when the graphical list is clicked on
+     * Basically just searches for the element that was clicked on
      */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!users.isEmpty()) {
@@ -692,9 +730,8 @@ public class AccountGUI extends javax.swing.JFrame {
 
             setSearchFieldsEditable(false);
 
-            Search(users.elementAt(list.getSelectedIndex()).username);
+            search(users.elementAt(list.getSelectedIndex()).username);
             tabs.setSelectedIndex(0);
-            //sCheckPasswordMatch();
         } else {
             // do nothing
             // it crashes otherwise
@@ -702,9 +739,9 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_listMouseClicked
 
     /**
-     * Handles when Enter was pressed while Username field (add) was in focus If
-     * enter was pressed while Username field (add) was in focus, click the Add
-     * button
+     * Handles when Enter was pressed while Username field (add) was in focus
+     * If enter was pressed while Username field (add) was in focus, click the
+     * add button
      */
     private void aUFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aUFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -715,7 +752,7 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * Handles when Enter was pressed while Access comboBox (add) was in focus
      * If enter was pressed while Access comboBox (add) was in focus, click the
-     * Add button
+     * add button
      */
     private void aAComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aAComboBoxKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -724,8 +761,8 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aAComboBoxKeyPressed
 
     /**
-     * Handles when Enter was pressed while Name field (add) was in focus If
-     * enter was pressed while Name field (add) was in focus, click the Add
+     * Handles when Enter was pressed while Name field (add) was in focus
+     * If enter was pressed while Name field (add) was in focus, click the add
      * button
      */
     private void aNFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aNFieldKeyPressed
@@ -735,16 +772,16 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aNFieldKeyPressed
 
     /**
-     * Handles if user selects close current window option in the menu bar Calls
-     * Main.CloseAccountGUI()
+     * Handles if user selects close current window option in the menu bar
+     * Calls Main.CloseAccountGUI()
      */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseAccountGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
     /**
-     * Handles if user selects logout option in the menu bar Calls
-     * Main.Logout(), setting the user to null, as well as
+     * Handles if user selects logout option in the menu bar
+     * Calls Main.Logout(), setting the user to null, as well as
      * Main.CloseAccountGUI()
      */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
@@ -754,8 +791,8 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutItemActionPerformed
 
     /**
-     * Handles if user selects exit option in the menu bar Pops up a
-     * confirmation window, then exits the program if user wishes
+     * Handles if user selects exit option in the menu bar
+     * Pops up a confirmation window, then exits the program if user wishes
      */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
@@ -775,16 +812,16 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitItemActionPerformed
 
     /**
-     * Handles if user selects bug option in the menu bar Calls
-     * LaunchBugReportGUI()
+     * Handles if user selects bug option in the menu bar
+     * Calls LaunchBugReportGUI()
      */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
     /**
-     * Handles if the comboBox index is changed (Access for add) Changes the
-     * field to match the changed index
+     * Handles if the comboBox index is changed (Access for add)
+     * Changes the field to match the changed index
      */
     private void sAComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sAComboBoxActionPerformed
         switch (sAComboBox.getSelectedIndex()) {
@@ -804,8 +841,8 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_sAComboBoxActionPerformed
 
     /**
-     * Handles if the comboBox index is changed (Access for search) Changes the
-     * field to match the changed index
+     * Handles if the comboBox index is changed (Access for search)
+     * Changes the field to match the changed index
      */
     private void aAComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aAComboBoxActionPerformed
         switch (aAComboBox.getSelectedIndex()) {
@@ -825,8 +862,9 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aAComboBoxActionPerformed
 
     /**
-     * Handles if key is pressed in the password fields (add) If enter, click
-     * the add button Else check to see if the passwords match
+     * Handles if key is pressed in the password fields (add)
+     * If enter, click the add button
+     * Else check to see if the passwords match
      */
     private void apassFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apassFieldKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -837,8 +875,9 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_apassFieldKeyReleased
 
     /**
-     * Handles if key is pressed in the password fields (add) If enter, click
-     * the add button Else check to see if the passwords match
+     * Handles if key is pressed in the password fields (add)
+     * If enter, click the add button
+     * Else check to see if the passwords match
      */
     private void aconfirmpassFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aconfirmpassFieldKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -849,69 +888,132 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aconfirmpassFieldKeyReleased
 
     /**
-     * Handles if the field gains focus Highlights the contents of the field
+     * Handles if the field gains focus
+     * Highlights the contents of the field
      */
     private void sUFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sUFieldFocusGained
         sUField.selectAll();
     }//GEN-LAST:event_sUFieldFocusGained
 
     /**
-     * Handles if the field gains focus Highlights the contents of the field
+     * Handles if the field gains focus
+     * Highlights the contents of the field
      */
     private void sNFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sNFieldFocusGained
         sNField.selectAll();
     }//GEN-LAST:event_sNFieldFocusGained
 
     /**
-     * Handles if the field gains focus Highlights the contents of the field
+     * Handles if the field gains focus
+     * Highlights the contents of the field
      */
     private void aUFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aUFieldFocusGained
         aUField.selectAll();
     }//GEN-LAST:event_aUFieldFocusGained
 
     /**
-     * Handles if the field gains focus Highlights the contents of the field
+     * Handles if the field gains focus
+     * Highlights the contents of the field
      */
     private void apassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apassFieldFocusGained
         apassField.selectAll();
+        aCheckPasswordMatch();
     }//GEN-LAST:event_apassFieldFocusGained
 
     /**
-     * Handles if the field gains focus Highlights the contents of the field
+     * Handles if the field gains focus
+     * Highlights the contents of the field
      */
     private void aconfirmpassFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aconfirmpassFieldFocusGained
         aconfirmpassField.selectAll();
+        aCheckPasswordMatch();
     }//GEN-LAST:event_aconfirmpassFieldFocusGained
 
     /**
-     * Handles if the field gains focus Highlights the contents of the field
+     * Handles if the field gains focus
+     * Highlights the contents of the field
      */
     private void aNFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNFieldFocusGained
         aNField.selectAll();
     }//GEN-LAST:event_aNFieldFocusGained
 
+    /**
+     * Handles if user selects suggestion option in the menu bar
+     * Calls LaunchSuggestionReportGUI()
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
+    /**
+     * Handles when the form is loaded
+     * Sets the text with the global user
+     */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_formComponentShown
 
+    /**
+     * Handles when the user clicks on the "Change password" label
+     * Calls changePassword() with parameter true
+     */
     private void changePasswordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordLabelMouseClicked
         changePassword(true);
     }//GEN-LAST:event_changePasswordLabelMouseClicked
 
+    /**
+     * Handles when the password textfield loses focus
+     * If the next object in focus is confirm password, check for password match
+     * Else set the text to nothing
+     */
+    private void apassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apassFieldFocusLost
+        if (aconfirmpassField.hasFocus()) {
+            aCheckPasswordMatch();
+        } else if (!aconfirmpassField.hasFocus()) {
+            passwordMatch.setText(" ");
+        }
+    }//GEN-LAST:event_apassFieldFocusLost
+
+    /**
+     * Handles when the confirm password textfield loses focus
+     * If the next object in focus is password, check for password match
+     * Else set the text to nothing
+     */
+    private void aconfirmpassFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aconfirmpassFieldFocusLost
+        if (apassField.hasFocus()) {
+            aCheckPasswordMatch();
+        } else if (!apassField.hasFocus()) {
+            passwordMatch.setText(" ");
+        }
+    }//GEN-LAST:event_aconfirmpassFieldFocusLost
+
+    private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
+        // probably some admin stuff
+        JOptionPane.showMessageDialog(this, 
+                "Probably some admin stuff here", 
+                "Advanced", 
+                JOptionPane.INFORMATION_MESSAGE);
+                
+    }//GEN-LAST:event_adminLabelMouseClicked
+
+    private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
+        loginLabel.setText("Advanced options");
+    }//GEN-LAST:event_adminLabelMouseEntered
+
+    private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_adminLabelMouseExited
+
     // </editor-fold>
     /**
-     * FillList()
+     * fillList()
      *
      * Gets all of the users from IOController and shoves them into an array
      * Then it populates the DefaultListModel of ListElements from that array
      *
      * @return the DefaultListModel to populate the JList
      */
-    public DefaultListModel FillList() {
+    public DefaultListModel fillList() {
 
         int total = IOController.getTotalUsers();       // get total
         Account[] str = IOController.getAllUsers();     // get users
@@ -924,6 +1026,7 @@ public class AccountGUI extends javax.swing.JFrame {
                         str[i].getPassword(),
                         str[i].getAccess(),
                         str[i].getName());
+                // add it to the global list
                 users.add(i, elements[i]);
             }
         }
@@ -931,14 +1034,14 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * UpdateList()
+     * updateList()
      *
      * Works with the global list of users, which updates the JList graphics
      *
-     * @param action,  the type of action (either add or remove)
+     * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
      */
-    public void UpdateList(int action, ListElement element) {
+    public void updateList(int action, ListElement element) {
         switch (action) {
             case ADD:         // add
                 users.add(users.getSize(), element);
@@ -949,121 +1052,129 @@ public class AccountGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * changePassword()
+     *
+     * Pops up a dialog box that prompts user for a new password, then a
+     * confirmation of that password
+     * If the passwords don't match, it calls itself again but with a label
+     * that says "Passwords did not match"
+     * If the passwords do match, it stores that new password globally
+     *
+     * @param b, the case of if the passwords matched or not, affects the label
+     */
     public void changePassword(boolean b) {
         JTextField password = new JPasswordField();
         JTextField confirmPassword = new JPasswordField();
+        Object[] message;
 
+        // conditional that determines if the passwords matched
         if (b) {
-            Object[] message = {
+            message = new Object[]{
                 "Password:", password,
                 "Confirm Password:", confirmPassword,
                 " "
             };
-
-            int option = JOptionPane.showConfirmDialog(null, message, "Change password", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                if (password.getText().equals(confirmPassword.getText())) {
-                    changePasswordLabel2.setForeground(Color.blue);
-                    changePasswordLabel2.setText("Password changed!");
-                    passwordChanged = true;
-                    passwordChangeTo = password.getText();
-                } else {
-                    changePassword(false);
-                }
-            } else {
-
-            }
         } else {
-            //JLabel err = new JLabel();
-            Object[] message = {
+            message = new Object[]{
                 "Password:", password,
                 "Confirm Password:", confirmPassword,
                 "Passwords did not match"
             };
+        }
 
-            int option = JOptionPane.showConfirmDialog(null, message, "Change password", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                if (password.getText().equals(confirmPassword.getText())) {
-                    changePasswordLabel2.setForeground(Color.blue);
-                    changePasswordLabel2.setText("Password changed!");
-                    passwordChanged = true;
-                    passwordChangeTo = password.getText();
-                    //submitButton.doClick();
-                } else {
-                    changePassword(false);
-                }
+        // display the dialog
+        int option = JOptionPane.showConfirmDialog(null, message, "Change password", JOptionPane.OK_CANCEL_OPTION);
+
+        // if OK is pressed
+        if (option == JOptionPane.OK_OPTION) {
+
+            // if the passwords match
+            if (password.getText().equals(confirmPassword.getText())) {
+
+                // update graphics
+                changePasswordLabel2.setForeground(Color.blue);
+                changePasswordLabel2.setText("Password changed!");
+
+                // set globals
+                passwordChanged = true;
+                passwordChangeTo = password.getText();
+
             } else {
-                // cancel
+                // passwords didn't match, try again
+                changePassword(false);
             }
+        } else {
+            // canceled
         }
     }
 
+    /**
+     * confirmPassword()
+     *
+     * Pops up a dialog for confirmation of their old password after user clicks
+     * submit
+     * Checks the password user enters against the hashed password stored
+     *
+     * @param b
+     * @return
+     */
     public boolean confirmPassword(boolean b) {
+
         JTextField password = new JPasswordField();
+        Object[] message;
 
         if (b) {
-            Object[] message = {
+            message = new Object[]{
                 "Enter your original password to confirm:",
                 "Password:", password,
-                " "
-            };
-
-            int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
-                    if (passwordChanged == false) {
-                        System.out.println("getText() : " + password.getText());
-                        passwordChangeTo = password.getText();
-                    } else {
-                        // no change in passwords
-                    }
-                    return true;
-                } else {
-                    // passwords didn't match
-                }
-            } else {
-                // canceled
-            }
-
+                " "};
         } else {
-            Object[] message = {
+            message = new Object[]{
                 "Enter your original password to confirm:",
                 "Password:", password,
-                "Invalid password"
-            };
+                "Invalid password"};
+        }
 
-            int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
-            if (option == JOptionPane.OK_OPTION) {
-                if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
-                    if (passwordChanged == false) {
-                        System.out.println("getText() : " + password.getText());
-                        passwordChangeTo = password.getText();
-                    } else {
-                        // no change
-                    }
-                    return true;
+        // display the dialog
+        int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
+
+        // if OK is pressed
+        if (option == JOptionPane.OK_OPTION) {
+
+            // if the passwords match
+            if (IOController.checkPasswordForConfirmation(Main.p.getUsername(), password.getText())) {
+                if (passwordChanged == false) {
+                    passwordChangeTo = password.getText();
                 } else {
-                    confirmPassword(false);
+                    // no change in passwords
                 }
+                return true;
             } else {
-                // canceled
+                // passwords didn't match
             }
+        } else {
+            // canceled
         }
         return false;
     }
 
     /**
-     * Add()
+     * add()
      *
-     * If the fields are all valid, this method is called Takes fields and
-     * creates Account and ListElement objects Then it calls the
-     * AccountController to add the user If the addition succeeds Confirmation
-     * on errLabel, update the list, and update graphics Else addition fails
-     * Means that the username is already taken, display error on errLabel Also
-     * does not allow any addition unless your access level is 0 (admin)
+     * If the fields are all valid, this method is called
+     * Takes fields and creates Account and ListElement objects
+     * Then it calls the AccountController to add the user
+     * If the addition succeeds
+     * Confirmation on errLabel, update the list, and update graphics
+     * Else addition fails
+     * Means that the username is already taken, display error on errLabel
+     *
+     * Also does not allow any addition unless your access level is 0 (admin)
      */
-    public void Add() {
+    public void add() {
 
+        // create account and listelement objects
         String username = aUField.getText();
         String password = apassField.getText();
         String name = aNField.getText();
@@ -1072,13 +1183,14 @@ public class AccountGUI extends javax.swing.JFrame {
         Account p = new Account(username, password, Integer.valueOf(access), name);
         ListElement element = new ListElement(username, password, Integer.valueOf(access), name);
 
+        // if addition was successful
         if (AccountController.AddUser(p)) {
             // errLabel
             errLabel.setForeground(Color.blue);
             errLabel.setText("User added successfully");
 
             // update the list
-            UpdateList(ADD, element);
+            updateList(ADD, element);
 
             // update graphics
             setAddValuesToNull();
@@ -1089,18 +1201,18 @@ public class AccountGUI extends javax.swing.JFrame {
             errLabel.setForeground(Color.red);
             errLabel.setText("Username already taken");
         }
-
     }
 
     /**
-     * Search()
+     * search()
      *
-     * Calls the SearchUser method from AccountController, which returns a valid
-     * account Update the graphics with the account credentials
+     * Calls the SearchUser method from AccountController,
+     * which returns a valid account
+     * Update the graphics with the account credentials
      *
      * @param username, the username to search
      */
-    public void Search(String username) {
+    public void search(String username) {
 
         // SearchUser()
         Account p = AccountController.SearchUser(username);
@@ -1119,12 +1231,13 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Delete()
+     * delete()
      *
-     * Creates an account with the fields given Then call DeleteUser() from
-     * AccountController If success, confirm on errLabel
+     * Creates an account with the fields given
+     * Then call DeleteUser() from AccountController
+     * If success, confirm on errLabel
      */
-    public void Delete() {
+    public void delete() {
 
         // create new Account
         Account p = new Account(sUField.getText(),
@@ -1138,7 +1251,7 @@ public class AccountGUI extends javax.swing.JFrame {
                     p.getPassword(),
                     p.getAccess(),
                     p.getName());
-            UpdateList(REMOVE, element);
+            updateList(REMOVE, element);
 
             // errLabel
             errLabel.setForeground(Color.blue);
@@ -1158,12 +1271,12 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Edit()
+     * edit()
      *
-     * Basically just sets the fields to editable Stores a temporary global
-     * account, used in the editing process in Submit()
+     * Basically just sets the fields to editable
+     * Stores a temporary global account, used in the editing process in submit()
      */
-    public void Edit() {
+    public void edit() {
 
         // create the temp Account
         String username = sUField.getText();
@@ -1182,76 +1295,153 @@ public class AccountGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Submit()
+     * rootEdit() {
      *
-     * Takes the new input as parameters for a new Account object Then it
-     * deletes the old account, then adds the new one (in that order) If
-     * success, update the graphics If failure, return and update graphics
+     * Allows the root account to change the access level of any account
+     * That's pretty much it
      */
-    public void Submit() {
+    public void rootEdit() {
+        tempAccess = String.valueOf(sAComboBox.getSelectedIndex());
+        sAComboBox.setEnabled(true);
+        sAField.setBackground(Color.white);
 
-        if (confirmPassword(true)) {
+        submitButton.setEnabled(true);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+    }
 
-            setSearchFieldsEditable(false);
+    /**
+     * rootSubmit()
+     *
+     * Allows the root account to change the access level of any account
+     * That's pretty much it
+     */
+    public void rootSubmit() {
+        String username = sUField.getText();
+        if (sAComboBox.getSelectedIndex() == 3) {
+            JOptionPane.showMessageDialog(this,
+                    "Access field invalid",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            String newAccess = String.valueOf(sAComboBox.getSelectedIndex());
+            if (IOController.changeAccountAccess(username, tempAccess, newAccess)) {
 
-            System.out.println(passwordChangeTo);
-            // create new account object
-            String username = sUField.getText();
-            String password = passwordChangeTo;
-            String access = String.valueOf(sAComboBox.getSelectedIndex());
-            String name = sNField.getText();
-            Account p = new Account(username, password, Integer.valueOf(access), name);
+                // graphics update
+                setSearchFieldsEditable(false);
 
-            // delete old, then add new
-            if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
-                errLabel.setForeground(Color.blue);
-                errLabel.setText("Account edited successfully");
+                // update the list
+                ListElement q = new ListElement(username, "whoop", Integer.valueOf(newAccess), sNField.getText());
+                updateList(REMOVE, null);
+                updateList(ADD, q);
 
-                AccountController.DeleteUser(temp.getUsername());
-                AccountController.AddUser(p);
+                // update graphics
+                deleteButton.setEnabled(false);
+                editButton.setEnabled(false);
+                submitButton.setEnabled(false);
+                changePasswordLabel.setEnabled(false);
 
-                ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
-                        temp.getAccess(), temp.getName());
-                ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
-
-                UpdateList(REMOVE, t);
-                UpdateList(ADD, q);
-            } else {
-                errLabel.setForeground(Color.red);
-                errLabel.setText("Error submitting account");
+                list.setSelectedIndex(list.getLastVisibleIndex());
+                search(users.getElementAt(users.getSize() - 1).username);
             }
 
-            // update the global account
-            Main.p.setUsername(username);
-            Main.p.setPassword(password);
-            Main.p.setAccess(sAComboBox.getSelectedIndex());
-            Main.p.setName(name);
-            
-            // update the login label
-            loginLabel.setText("Logged in as " + Main.p.getUsername());
-            
-            // update graphics
-            deleteButton.setEnabled(false);
-            editButton.setEnabled(false);
-            submitButton.setEnabled(false);
-            changePasswordLabel.setEnabled(false);
+        }
+    }
 
-            passwordChangeTo = "";
-            changePasswordLabel2.setText(" ");
-            list.setSelectedIndex(list.getLastVisibleIndex());
-            Search(users.getElementAt(users.getSize() - 1).username);
+    /**
+     * submit()
+     *
+     * Prompts user for their old password for confirmation
+     * Also checks if the user is trying to delete themselves, which won't
+     * work because, you know, logic
+     * Takes the new input as parameters for a new Account object
+     * Then it deletes the old account, then adds the new one (in that order)
+     * If success, update the graphics
+     * If failure, return and update graphics
+     */
+    public void submit() {
+
+        // if the username is NOT root
+        if (!Main.p.getUsername().equals("root")) {
+
+            // if the user tries to change theirselves in access level (no)
+            if (sAComboBox.getSelectedIndex() != temp.getAccess()) {
+                JOptionPane.showMessageDialog(this,
+                        "403 : Forbidden\nAccess cannot be changed",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // if the confirm password matches the one on file
+            if (confirmPassword(true)) {
+
+                setSearchFieldsEditable(false);
+
+                // create new account object
+                String username = sUField.getText();
+                String password = passwordChangeTo;
+                String access = String.valueOf(sAComboBox.getSelectedIndex());
+                String name = sNField.getText();
+                Account p = new Account(username, password, Integer.valueOf(access), name);
+
+                // delete old, then add new
+                if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
+                    errLabel.setForeground(Color.blue);
+                    errLabel.setText("Account edited successfully");
+
+                    AccountController.DeleteUser(temp.getUsername());
+                    AccountController.AddUser(p);
+
+                    ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
+                            temp.getAccess(), temp.getName());
+                    ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
+
+                    updateList(REMOVE, t);
+                    updateList(ADD, q);
+                } else {
+                    errLabel.setForeground(Color.red);
+                    errLabel.setText("Error submitting account");
+                }
+
+                // update the global account
+                Main.p.setUsername(username);
+                Main.p.setPassword(password);
+                Main.p.setAccess(sAComboBox.getSelectedIndex());
+                Main.p.setName(name);
+
+                // update the login label
+                loginLabel.setText("Logged in as " + Main.p.getUsername());
+
+                // update graphics
+                deleteButton.setEnabled(false);
+                editButton.setEnabled(false);
+                submitButton.setEnabled(false);
+                changePasswordLabel.setEnabled(false);
+
+                passwordChangeTo = "";
+                changePasswordLabel2.setText(" ");
+                list.setSelectedIndex(list.getLastVisibleIndex());
+                search(users.getElementAt(users.getSize() - 1).username);
+            } else {
+                // error with confirmPassword
+            }
+
+            // if user is is root
+        } else {
+            rootSubmit();
         }
     }
 
     /**
      * aCheck()
      *
-     * Checks the add panel and makes sure all the fields are kosher See
-     * comments in function for details on each element First, it "resets" by
-     * making all fields foregrounds black Then it checks each individual field,
-     * and sets the foreground red if the field has an error If it returns a
-     * true flag, there is no error It calls the setAddErrLabel to find the
-     * individual errors and updates errLabel
+     * Checks the add panel and makes sure all the fields are kosher
+     * See comments in each block for details on each element
+     * First, it "resets" by making all fields foregrounds black
+     * Then it checks each individual field, and sets the foreground red if the field has an error
+     * If it returns a true flag, there is no error
+     * It calls the setAddErrLabel to find the individual errors and updates errLabel
      *
      * @return flag, the conditional to show if the fields are valid
      */
@@ -1313,16 +1503,15 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * sCheck()
      *
-     * Checks the search panel and makes sure all the fields are kosher See
-     * comments in function for details on each element First, it "resets" by
-     * making all fields foregrounds black Then it checks each individual field,
-     * and sets the foreground red if the field has an error If it returns a
-     * true flag, there is no error It calls the setAddErrLabel to find the
-     * individual errors and updates errLabel
+     * Checks the search panel and makes sure all the fields are kosher
+     * See comments in function for details on each element
+     * First, it "resets" by making all fields foregrounds black
+     * Then it checks each individual field, and sets the foreground red if the field has an error
+     * If it returns a true flag, there is no error
+     * It calls the setAddErrLabel to find the individual errors and updates errLabel
      *
-     * UPDATE: Now when changing your username, it prompts you to log out then
-     * log in again Mostly because coding it based on my logic would mean
-     * restructuring my logic Ain't nobody got time for that
+     * UPDATE: Now when changing your anything, it prompts you for your og
+     * password
      *
      * @return flag, the conditional to show if the fields are valid
      */
@@ -1360,7 +1549,6 @@ public class AccountGUI extends javax.swing.JFrame {
             sNField.setForeground(Color.red);
         }
 
-        //}
         setSearchErrLabel();
         return flag;
     }
@@ -1368,10 +1556,11 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * setAddErrLabel()
      *
-     * Has an error count to find the total number of errors Basically just sees
-     * if the foregrounds of each field is red If they are, add 1 to count It's
-     * in reverse so it starts with the top most field Example: "Error with
-     * access field and 1 other(s)"
+     * Has an error count to find the total number of errors
+     * Basically just sees if the foregrounds of each field is red
+     * If they are, add 1 to count
+     * It's in reverse so it starts with the top most field
+     * Example: "Error with access field and 1 other(s)"
      */
     public void setAddErrLabel() {
         int errCount = 0;   // number of errors
@@ -1417,10 +1606,11 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * setSeachErrLabel()
      *
-     * Has an error count to find the total number of errors Basically just sees
-     * if the foregrounds of each field is red If they are, add 1 to count It's
-     * in reverse so it starts with the top most field Example: "Error with
-     * access field and 1 other(s)"
+     * Has an error count to find the total number of errors
+     * Basically just sees if the foregrounds of each field is red
+     * If they are, add 1 to count
+     * It's in reverse so it starts with the top most field
+     * Example: "Error with access field and 1 other(s)"
      */
     public void setSearchErrLabel() {
         int errCount = 0;   // number of errors
@@ -1438,12 +1628,6 @@ public class AccountGUI extends javax.swing.JFrame {
             err = "Error with access field";
         }
 
-//        // password field
-//        if (spassField.getForeground() == Color.red
-//                && sconfirmpassField.getForeground() == Color.red) {
-//            errCount++;
-//            err = "Error with password field(s)";
-//        }
         // username field
         if (sUField.getForeground() == Color.red) {
             errCount++;
@@ -1465,8 +1649,8 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * asetAllForeground()
      *
-     * Graphics update Just sets the foreground of all fields on add panel to a
-     * color
+     * Graphics update
+     * Just sets the foreground of all fields on add panel to a color
      *
      * @param c, the color to change the fields to
      */
@@ -1481,8 +1665,8 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * ssetAllForeground()
      *
-     * Graphics update Just sets the foreground of all fields on search panel to
-     * a color
+     * Graphics update
+     * Just sets the foreground of all fields on search panel to a color
      *
      * @param c, the color to change the fields to
      */
@@ -1499,52 +1683,39 @@ public class AccountGUI extends javax.swing.JFrame {
      * confirm field on every key release
      */
     public void aCheckPasswordMatch() {
-        if (apassField.getText().equals(aconfirmpassField.getText())) {
-            apasswordMatch.setForeground(Color.blue);
-            apasswordMatch.setText("Passwords match!");
+        if (apassField.getText().equals(aconfirmpassField.getText())
+                && (!apassField.getText().equals("")
+                && !aconfirmpassField.getText().equals(""))) {
+            passwordMatch.setForeground(Color.blue);
+            passwordMatch.setText("Passwords match!");
             apasswordsMatch = true;
         } else {
-            apasswordMatch.setForeground(Color.red);
-            apasswordMatch.setText("Passwords don't match!");
+            passwordMatch.setForeground(Color.red);
+            passwordMatch.setText("Passwords don't match!");
             apasswordsMatch = false;
         }
     }
 
     /**
-     * sCheckPasswordMatch()
-     *
-     * Checks to see if the password in first field matches the password in the
-     * confirm field on every key release
-     */
-//    public void sCheckPasswordMatch() {
-//        if (spassField.getText().equals(sconfirmpassField.getText())) {
-//            spasswordMatch.setForeground(Color.blue);
-//            spasswordMatch.setText("Passwords match!");
-//            spasswordsMatch = true;
-//        } else {
-//            spasswordMatch.setForeground(Color.red);
-//            spasswordMatch.setText("Passwords don't match!");
-//            spasswordsMatch = false;
-//        }
-//    }
-    /**
      * setAddValuesToNull()
      *
-     * Graphics update Sets all fields in add panel to blank values
+     * Graphics update
+     * Sets all fields in add panel to blank values
      */
     public void setAddValuesToNull() {
         aUField.setText("");
         apassField.setText("");
         aconfirmpassField.setText("");
         aNField.setText("");
-        apasswordMatch.setText(" ");
+        passwordMatch.setText(" ");
         aAComboBox.setSelectedIndex(3);
     }
 
     /**
      * setSearchValuesToNull()
      *
-     * Graphics update Sets all fields in search panel to blank values
+     * Graphics update
+     * Sets all fields in search panel to blank values
      */
     public void setSearchValuesToNull() {
         sUField.setText("");
@@ -1561,7 +1732,8 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * setSearchFieldsToValid()
      *
-     * Graphics update Sets all fields in search panel to valid
+     * Graphics update
+     * Sets all fields in search panel to valid
      */
     public void setSearchFieldsToValid() {
         sAField.setEnabled(true);
@@ -1573,7 +1745,8 @@ public class AccountGUI extends javax.swing.JFrame {
     /**
      * setSearchFieldsEditable()
      *
-     * Graphics update Sets all fields in search panel to editable
+     * Graphics update
+     * Sets all fields in search panel to editable
      *
      * @param b, the condition of editable
      */
@@ -1602,18 +1775,25 @@ public class AccountGUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AccountGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -1639,8 +1819,8 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField aconfirmpassField;
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
+    private javax.swing.JLabel adminLabel;
     private javax.swing.JPasswordField apassField;
-    private javax.swing.JLabel apasswordMatch;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JLabel changePasswordLabel;
     private javax.swing.JLabel changePasswordLabel2;
@@ -1655,6 +1835,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JLabel passwordMatch;
     private javax.swing.JComboBox<String> sAComboBox;
     private javax.swing.JTextField sAField;
     private javax.swing.JTextField sNField;

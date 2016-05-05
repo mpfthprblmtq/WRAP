@@ -62,7 +62,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         sp = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         errLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -79,6 +79,8 @@ public class TaskGUI extends javax.swing.JFrame {
         lNameField = new javax.swing.JTextField();
         statusField = new javax.swing.JTextField();
         gear = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        adminLabel = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -98,7 +100,7 @@ public class TaskGUI extends javax.swing.JFrame {
             }
         });
 
-        list.setModel(FillList());
+        list.setModel(fillList());
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listMouseClicked(evt);
@@ -214,7 +216,7 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addComponent(sdtBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ptiBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitButton)
                     .addComponent(editButton))
@@ -224,6 +226,22 @@ public class TaskGUI extends javax.swing.JFrame {
         gear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gearMouseClicked(evt);
+            }
+        });
+
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        loginLabel.setText(" ");
+
+        adminLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        adminLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminLabelMouseExited(evt);
             }
         });
 
@@ -287,14 +305,20 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(234, 234, 234)
+                        .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(187, 187, 187)
+                                .addGap(417, 417, 417)
                                 .addComponent(gear))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -305,9 +329,16 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addComponent(gear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(adminLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sp))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(errLabel)
                 .addContainerGap())
         );
@@ -317,14 +348,14 @@ public class TaskGUI extends javax.swing.JFrame {
 
     /**
      * Handles when the list is clicked on
-     * Basically just calls Show() if the list is not empty
+     * Basically just calls show() if the list is not empty
      *
      * @param evt
      */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!people.isEmpty()) {
             editButton.setEnabled(true);
-            Show();
+            update();
         } else {
             // do nothing
             // because it crashes if there's nothing in there
@@ -343,7 +374,8 @@ public class TaskGUI extends javax.swing.JFrame {
     /**
      * Handles when EDIT button is pressed
      * Makes the boxes and buttons editable
-     * @param evt 
+     *
+     * @param evt
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         setBoxesEnabled(true);
@@ -353,26 +385,29 @@ public class TaskGUI extends javax.swing.JFrame {
 
     /**
      * Handles when SUBMIT button is pressed
-     * Calls Submit(), then Show()
-     * @param evt 
+     * Calls submit(), then show()
+     *
+     * @param evt
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        Submit();
-        Show();
+        submit();
+        update();
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * Does an admin thing, not implemented yet
-     * @param evt 
+     *
+     * @param evt
      */
     private void gearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gearMouseClicked
-        Admin();
+        admin();
     }//GEN-LAST:event_gearMouseClicked
 
     /**
      * Handles when the close option in menu bar is chosen
      * Calls Main.CloseTaskGUI()
-     * @param evt 
+     *
+     * @param evt
      */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseTaskGUI();
@@ -381,7 +416,8 @@ public class TaskGUI extends javax.swing.JFrame {
     /**
      * Handles when the logout option in menu bar is chosen
      * Calls Main.Logout(), then Main.CloseTaskGUI()
-     * @param evt 
+     *
+     * @param evt
      */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
@@ -392,7 +428,8 @@ public class TaskGUI extends javax.swing.JFrame {
     /**
      * Handles when the exit option in menu bar is chosen
      * Pops up a confirmation dialog, then exits the program if the user wishes
-     * @param evt 
+     *
+     * @param evt
      */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
@@ -412,26 +449,59 @@ public class TaskGUI extends javax.swing.JFrame {
     /**
      * Handles when Report Bug option in menu bar is chosen
      * Calls Main.LaunchBugReportGUI()
-     * @param evt 
+     *
+     * @param evt
      */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
+    /**
+     * Handles if user selects suggestion option in the menu bar
+     * Calls Main.LaunchSuggestionReportGUI()
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
     /**
-     * FillList()
+     * Handles when the gear icon is clicked
+     * admin stuff will probably go here
+     */
+    private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
+        // probably some admin stuff
+        JOptionPane.showMessageDialog(this,
+                "Probably some admin stuff here",
+                "Advanced",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_adminLabelMouseClicked
+
+    /**
+     * Handles when the mouse enters the gear icon
+     * Sets the text of loginLabel
+     */
+    private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
+        loginLabel.setText("Advanced options");
+    }//GEN-LAST:event_adminLabelMouseEntered
+
+    /**
+     * Handles when the mouse exits the gear icon
+     * Sets the text of loginLabel
+     */
+    private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_adminLabelMouseExited
+
+    /**
+     * fillList()
      *
      * Gets all of the Profiles from IOController and shoves them into an array
      * Then it populates the DefaultListModel of ListElements from that array
      *
      * @return the DefaultListModel to populate the JList
      */
-    public DefaultListModel FillList() {
-        
+    public DefaultListModel fillList() {
+
         // create the profile array and ListElement array
         Profile[] profiles = ProfileController.sort(ProfileController.getAllProfiles());
         elements = new ListElement[profiles.length];
@@ -448,14 +518,14 @@ public class TaskGUI extends javax.swing.JFrame {
     }
 
     /**
-     * UpdateList()
+     * updateList()
      *
      * Works with the global list of Profiles, which updates the JList graphics
      *
-     * @param action,  the type of action (either add or remove)
+     * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
      */
-    public void UpdateList(int action, ListElement element) {
+    public void updateList(int action, ListElement element) {
         switch (action) {
             case ADD:         // add
                 people.add(people.getSize(), element);
@@ -467,20 +537,21 @@ public class TaskGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Show()
-     * 
-     * When a Profile is selected on the JList, show the values of boolean 
+     * update()
+     *
+     * When a Profile is selected on the JList, show the values of boolean
      * values on the checkboxes
      * Checks to see if profile is on good or bad standing
      */
-    public void Show() {
+
+    public void update() {
         // get the profile
         Profile p = ProfileController.SearchProfile(people.elementAt(list.getSelectedIndex()).id);
 
         // set name fields
         fNameField.setText(p.getfName());
         lNameField.setText(p.getlName());
-        
+
         // check standing
         if (!p.isDuesPaid() || !p.isPaperworkTurnedIn() || !p.isShowDesc_Time() || !p.isTrained()) {
             statusField.setForeground(Color.red);
@@ -499,11 +570,11 @@ public class TaskGUI extends javax.swing.JFrame {
 
     /**
      * setBoxesEnabled()
-     * 
+     *
      * Graphics update
      * Sets the checkboxes enabled on the boolean param
-     * 
-     * @param b 
+     *
+     * @param b
      */
     public void setBoxesEnabled(boolean b) {
         dpBox.setEnabled(b);
@@ -513,12 +584,12 @@ public class TaskGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Submit()
-     * 
+     * submit()
+     *
      * Creates a temp object based on old profile and new boolean values
      * Deletes the old profile then adds a new one
      */
-    public void Submit() {
+    public void submit() {
         // get values of new booleans
         boolean[] bool = new boolean[]{dpBox.isSelected(),
             ptiBox.isSelected(),
@@ -528,7 +599,7 @@ public class TaskGUI extends javax.swing.JFrame {
         // update errLabel
         errLabel.setForeground(Color.blue);
         errLabel.setText("Profile updated successfully");
-        
+
         // update graphics
         setBoxesEnabled(false);
 
@@ -557,27 +628,28 @@ public class TaskGUI extends javax.swing.JFrame {
                 p.getId());
 
         // update the list
-        UpdateList(REMOVE, t);
-        UpdateList(ADD, q);
+        updateList(REMOVE, t);
+        updateList(ADD, q);
 
         // update graphics
+        editButton.setEnabled(true);
         submitButton.setEnabled(false);
         list.setSelectedIndex(list.getLastVisibleIndex());
     }
 
     /**
-     * Admin()
+     * admin()
      * Not implemented yet
      */
-    public void Admin() {
+    public void admin() {
 
     }
-    
+
     /**
      * main()
-     * 
+     *
      * You already know what this is if you're reading this
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -608,6 +680,7 @@ public class TaskGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel adminLabel;
     private javax.swing.JCheckBox btBox;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
@@ -626,6 +699,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField lNameField;
     private javax.swing.JList<String> list;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JCheckBox ptiBox;

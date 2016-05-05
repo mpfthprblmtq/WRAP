@@ -1,3 +1,11 @@
+/**
+ * File:    BCrypt.java
+ * Desc:    Used to hash passwords
+ * 
+ * Author:  Damien Miller (see below)
+ * Edited:  Pat Ripley
+ */
+
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //
 // Permission to use, copy, modify, and distribute this software for any

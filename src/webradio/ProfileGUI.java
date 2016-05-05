@@ -8,7 +8,6 @@ package webradio;
 
 // imports
 import java.awt.Color;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
@@ -144,8 +143,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snum800Field = new javax.swing.JTextField();
         ssiueEmailField = new javax.swing.JTextField();
         sprefEmailField = new javax.swing.JTextField();
-        stypeBox = new javax.swing.JComboBox<String>();
-        spositionBox = new javax.swing.JComboBox<String>();
+        stypeBox = new javax.swing.JComboBox<>();
+        spositionBox = new javax.swing.JComboBox<>();
         stypeField = new javax.swing.JTextField();
         spositionField = new javax.swing.JTextField();
         sscrollPane = new javax.swing.JScrollPane();
@@ -175,16 +174,17 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         asiueEmailField = new javax.swing.JTextField();
         aprefEmailField = new javax.swing.JTextField();
         atypeField = new javax.swing.JTextField();
-        atypeBox = new javax.swing.JComboBox<String>();
+        atypeBox = new javax.swing.JComboBox<>();
         apositionField = new javax.swing.JTextField();
-        apositionBox = new javax.swing.JComboBox<String>();
+        apositionBox = new javax.swing.JComboBox<>();
         ascrollPane = new javax.swing.JScrollPane();
         anotesField = new javax.swing.JTextArea();
         addButton = new javax.swing.JButton();
         errLabel = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
-        jLabel19 = new javax.swing.JLabel();
+        list = new javax.swing.JList<>();
+        loginLabel = new javax.swing.JLabel();
+        adminLabel = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -198,6 +198,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         setTitle("W.R.A.P. - Profiles");
         setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -306,7 +311,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        stypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
+        stypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         stypeBox.setSelectedIndex(4);
         stypeBox.setEnabled(false);
         stypeBox.setNextFocusableComponent(spositionBox);
@@ -321,7 +326,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        spositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
+        spositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         spositionBox.setSelectedIndex(9);
         spositionBox.setEnabled(false);
         spositionBox.setNextFocusableComponent(snotesField);
@@ -537,7 +542,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                             .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deleteButton)))
                     .addComponent(jLabel18))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -682,7 +687,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         atypeField.setEditable(false);
         atypeField.setBackground(new java.awt.Color(255, 255, 255));
 
-        atypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
+        atypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         atypeBox.setSelectedIndex(4);
         atypeBox.setNextFocusableComponent(apositionBox);
         atypeBox.addActionListener(new java.awt.event.ActionListener() {
@@ -699,7 +704,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
 
-        apositionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
+        apositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
         apositionBox.setSelectedIndex(9);
         apositionBox.setNextFocusableComponent(anotesField);
         apositionBox.addActionListener(new java.awt.event.ActionListener() {
@@ -834,7 +839,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ascrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(addButton)
                 .addContainerGap())
         );
@@ -843,13 +848,29 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         errLabel.setText(" ");
 
-        list.setModel(FillList());
+        list.setModel(fillList());
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listMouseClicked(evt);
             }
         });
         sp.setViewportView(list);
+
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        loginLabel.setText(" ");
+
+        adminLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        adminLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminLabelMouseExited(evt);
+            }
+        });
 
         file.setText("File");
 
@@ -914,22 +935,27 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabs))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sp)))
+                        .addComponent(sp))
+                    .addComponent(tabs))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
                 .addContainerGap())
@@ -952,6 +978,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * EnterKeyPressed : clicks a button when enter is pressed
      */
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods"> 
+    
     /**
      * Handles when the window is closed
      * When the window is closed, call Main.closeProfileGUI()
@@ -973,7 +1000,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             setSearchFieldsEditable(false);
 
             // search for the profile
-            Search(people.elementAt(list.getSelectedIndex()).id);
+            search(people.elementAt(list.getSelectedIndex()).id);
 
             // if search tab is not in focus, put it in focus
             tabs.setSelectedIndex(0);
@@ -986,15 +1013,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles when the EDIT button is pressed
-     * Just calls outside method Edit()
+ Just calls outside method edit()
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        Edit();
+        edit();
     }//GEN-LAST:event_editButtonActionPerformed
 
     /**
      * Handles when the DELETE button is pressed
-     * Pops up a confirmation window, then calls Delete() if user wishes
+ Pops up a confirmation window, then calls delete() if user wishes
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int res = JOptionPane.showConfirmDialog(
@@ -1008,7 +1035,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // do a thing based on response
         switch (res) {
             case 0:
-                Delete();
+                delete();
                 break;
             default:
             // do nothing
@@ -1018,21 +1045,21 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles when the SUBMIT button is pressed
-     * Checks to see if all the modified elements are okay, calls Submit() if they are
+ Checks to see if all the modified elements are okay, calls submit() if they are
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
-            Submit();
+            submit();
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
      * Handles when the ADD button is pressed
-     * Checks to see if all of the elements are kosher, then calls Add() if they are
+ Checks to see if all of the elements are kosher, then calls add() if they are
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
-            Add();
+            add();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -1229,8 +1256,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if the first part of the phone (area code) is 3 characters long
      * Shifts focus to the next phone field
-     *
-     * @param evt
      */
     private void aphoneField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField1KeyReleased
         if (aphoneField1.getText().length() == 3) {
@@ -1241,8 +1266,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if the middle part of the phone is 3 characters long
      * Shifts focus to the next phone field
-     *
-     * @param evt
      */
     private void aphoneField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField2KeyReleased
         if (aphoneField2.getText().length() == 3) {
@@ -1317,8 +1340,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if the first part of the phone (area code) is 3 characters long
      * Shifts focus to the next phone field
-     *
-     * @param evt
      */
     private void sphoneField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField1KeyReleased
         if (sphoneField1.getText().length() == 3) {
@@ -1337,8 +1358,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if the middle part of the phone is 3 characters long
      * Shifts focus to the next phone field
-     *
-     * @param evt
      */
     private void sphoneField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField2KeyReleased
         if (sphoneField2.getText().length() == 3) {
@@ -1417,8 +1436,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void alNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_alNameFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1429,8 +1446,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void anum800FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anum800FieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1441,8 +1456,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void aphoneField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1453,8 +1466,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void aphoneField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField2KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1465,8 +1476,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void aphoneField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField3KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1477,8 +1486,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void asiueEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asiueEmailFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1489,8 +1496,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void aprefEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aprefEmailFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1501,8 +1506,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void anotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anotesFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1513,8 +1516,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void atypeBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_atypeBoxKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1525,8 +1526,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
      */
     private void apositionBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apositionBoxKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -1537,8 +1536,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void sfNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sfNameFieldKeyPressed
         if (submitButton.isEnabled()) {
@@ -1551,8 +1548,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void slNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_slNameFieldKeyPressed
         if (submitButton.isEnabled()) {
@@ -1565,8 +1560,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void snum800FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_snum800FieldKeyPressed
         if (submitButton.isEnabled()) {
@@ -1579,8 +1572,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void sphoneField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField1KeyPressed
         if (submitButton.isEnabled()) {
@@ -1593,8 +1584,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void sphoneField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField2KeyPressed
         if (submitButton.isEnabled()) {
@@ -1607,8 +1596,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void sphoneField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField3KeyPressed
         if (submitButton.isEnabled()) {
@@ -1621,8 +1608,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void ssiueEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ssiueEmailFieldKeyPressed
         if (submitButton.isEnabled()) {
@@ -1635,8 +1620,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void sprefEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sprefEmailFieldKeyPressed
         if (submitButton.isEnabled()) {
@@ -1649,8 +1632,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void stypeBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stypeBoxKeyPressed
         if (submitButton.isEnabled()) {
@@ -1663,8 +1644,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void spositionBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spositionBoxKeyPressed
         if (submitButton.isEnabled()) {
@@ -1677,8 +1656,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
-     *
-     * @param evt
      */
     private void snotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_snotesFieldKeyPressed
         if (submitButton.isEnabled()) {
@@ -1688,20 +1665,61 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         }
     }//GEN-LAST:event_snotesFieldKeyPressed
 
+    /**
+     * Handles if user selects suggestion option in the menu bar
+     * Calls Main.LaunchSuggestionReportGUI()
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
-    // </editor-fold>
     /**
-     * FillList()
-     *
-     * Gets all of the Profiles from IOController and shoves them into an array
-     * Then it populates the DefaultListModel of ListElements from that array
+     * Handles when the form is loaded
+     * Sets the text with the global user
+     */
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_formComponentShown
+
+    /**
+     * Handles when the gear icon is clicked
+     * Admin stuff will probably go here
+     */
+    private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
+        // probably some admin stuff
+        JOptionPane.showMessageDialog(this, 
+                "Probably some admin stuff here", 
+                "Advanced", 
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_adminLabelMouseClicked
+
+    /**
+     * Handles when the mouse enters the gear icon
+     * Sets the text of loginLabel
+     */
+    private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
+        loginLabel.setText("Advanced options");
+    }//GEN-LAST:event_adminLabelMouseEntered
+
+    /**
+     * Handles when the mouse exits the gear icon
+     * Sets the text of loginLabel
+     */
+    private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_adminLabelMouseExited
+
+    // </editor-fold>
+    
+    /**
+     * fillList()
+
+ Gets all of the Profiles from IOController and shoves them into an array
+ Then it populates the DefaultListModel of ListElements from that array
      *
      * @return the DefaultListModel to populate the JList
      */
-    public DefaultListModel FillList() {
+    public DefaultListModel fillList() {
         // get total
         int total = IOController.getTotalProfiles();
 
@@ -1722,14 +1740,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     /**
-     * UpdateList()
-     *
-     * Works with the global list of Profiles, which updates the JList graphics
+     * updateList()
+
+ Works with the global list of Profiles, which updates the JList graphics
      *
      * @param action,  the type of action (either add or remove)
      * @param element, the element to add or remove
      */
-    public void UpdateList(int action, ListElement element) {
+    public void updateList(int action, ListElement element) {
         switch (action) {
             case ADD:         // add
                 people.add(people.getSize(), element);
@@ -1741,22 +1759,22 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     /**
-     * Add()
-     *
-     * If the fields are all valid, this method is called
-     * Takes fields and creates Profile and ListElement objects
-     * Then it calls the ProfileController to add the user
-     * If the addition succeeds, update the list, and update graphics
-     * Else addition fails, means that the username is already taken, update graphics
+     * add()
+
+ If the fields are all valid, this method is called
+ Takes fields and creates Profile and ListElement objects
+ Then it calls the ProfileController to add the user
+ If the addition succeeds, update the list, and update graphics
+ Else addition fails, means that the username is already taken, update graphics
      */
-    public void Add() {
+    public void add() {
 
         // get the values from fields
         String[] str = getAddValues();
 
         // create Profile and ListElement objects
         Profile p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
-                Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
+                false, false, false, false);
         ListElement element = new ListElement(str[0], str[1], str[2]);
 
         // if the addition succeeds
@@ -1765,7 +1783,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setForeground(Color.blue);
             errLabel.setText("Profile added successfully");
 
-            UpdateList(ADD, element);
+            updateList(ADD, element);
 
             setAddValuesToNull();
             afNameField.requestFocus();
@@ -1778,14 +1796,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     /**
-     * Search()
-     *
-     * Calls the SearchUser method from ProfileController, which returns a valid Profile
-     * Update the graphics with the Profile info
+     * search()
+
+ Calls the SearchUser method from ProfileController, which returns a valid Profile
+ Update the graphics with the Profile info
      *
      * @param id, the id to search
      */
-    public void Search(String id) {
+    public void search(String id) {
 
         // get the Profile
         Profile p = ProfileController.SearchProfile(id);
@@ -1814,13 +1832,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     /**
-     * Delete()
-     *
-     * Creates an Profile with the fields given
-     * Then call DeleteUser() from ProfileController
-     * If success, confirm on errLabel
+     * delete()
+
+ Creates an Profile with the fields given
+ Then call DeleteUser() from ProfileController
+ If success, confirm on errLabel
      */
-    public void Delete() {
+    public void delete() {
 
         // get necessary fields
         String fName, lName, id;
@@ -1835,7 +1853,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             ListElement element = new ListElement(fName, lName, id);
 
             // update graphics
-            UpdateList(REMOVE, element);
+            updateList(REMOVE, element);
             errLabel.setForeground(Color.blue);
             errLabel.setText("User deleted successfully");
             setSearchValuesToNull();
@@ -1847,12 +1865,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     /**
-     * Edit()
-     *
-     * Basically just sets the fields to editable
-     * Stores a temporary global Profile, used in the editing process in Submit()
+     * edit()
+
+ Basically just sets the fields to editable
+ Stores a temporary global Profile, used in the editing process in submit()
      */
-    public void Edit() {
+    public void edit() {
 
         // create the temp Profile
         String[] str = getSearchValues();
@@ -1867,14 +1885,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     /**
-     * Submit()
-     *
-     * Takes the new input as parameters for a new Profile object
-     * Then it deletes the old account, then adds the new one (in that order)
-     * If success, update the graphics
-     * If failure, return and update graphics
+     * submit()
+
+ Takes the new input as parameters for a new Profile object
+ Then it deletes the old account, then adds the new one (in that order)
+ If success, update the graphics
+ If failure, return and update graphics
      */
-    public void Submit() {
+    public void submit() {
 
         // update graphics
         errLabel.setForeground(Color.blue);
@@ -1902,15 +1920,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 p.getId());
 
         // update graphics
-        UpdateList(REMOVE, t);
-        UpdateList(ADD, q);
+        updateList(REMOVE, t);
+        updateList(ADD, q);
         submitButton.setEnabled(false);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
 
         // reset the form, selecting the new Profile just edited
         list.setSelectedIndex(list.getLastVisibleIndex());
-        Search(people.getElementAt(people.getSize() - 1).id);
+        search(people.getElementAt(people.getSize() - 1).id);
     }
 
     /**
@@ -2162,7 +2180,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     public boolean aCheck() {
         boolean flag = true;
-        String email_regex = "[A-Z]+[a-zA-Z_]+@\b([a-zA-Z]+.){2}\b?.[a-zA-Z]+";
+        String email_regex = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
         // preconditions
         errLabel.setForeground(Color.red);
@@ -2268,17 +2286,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             asiueEmailField.setForeground(Color.red);
             asiueEmailField.setText("--");
-        }
 
-        // check for @ 
-        if (!asiueEmailField.getText().contains("@")) {
-            flag = false;
-            asiueEmailField.setForeground(Color.red);
-
-            // check for email ending
-        } else if (!asiueEmailField.getText().endsWith(".edu")) {
-            flag = false;
-            asiueEmailField.setForeground(Color.red);
+            // check for validity
+        } else if (!aprefEmailField.getText().matches(email_regex)) {
+            flag = false; 
+            aprefEmailField.setForeground(Color.red);
 
             // check for separator
         } else if (!Util.sepCheck(asiueEmailField.getText())) {
@@ -2341,6 +2353,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     public boolean sCheck() {
         boolean flag = true;
+        String email_regex = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
         // preconditions
         errLabel.setForeground(Color.red);
@@ -2485,20 +2498,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             sprefEmailField.setText("--");
             errLabel.setText("All fields required");
 
-            // check for @
-        } else if (!sprefEmailField.getText().contains("@")) {
+            // check for validity
+        } else if (!sprefEmailField.getText().matches(email_regex)) {
             flag = false;
             sprefEmailField.setForeground(Color.red);
-            errLabel.setText("Preferred email invalid");
-
-            // check ending
-        } else if (!(sprefEmailField.getText().endsWith(".com")
-                || sprefEmailField.getText().endsWith(".edu")
-                || sprefEmailField.getText().endsWith(".org")
-                || sprefEmailField.getText().endsWith(".net"))) {
-            flag = false;
-            sprefEmailField.setForeground(Color.red);
-            errLabel.setText("SIUe email invalid");
 
             // check for seperator
         } else if (!Util.sepCheck(sprefEmailField.getText())) {
@@ -2565,6 +2568,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // siue email
         if (asiueEmailField.getForeground() == Color.red) {
             errCount++;
+            err = "Error with siue email field";
         }
         // phone fields
         if (aphoneField1.getForeground() == Color.red
@@ -2708,6 +2712,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
+    private javax.swing.JLabel adminLabel;
     private javax.swing.JTextField afNameField;
     private javax.swing.JTextField alNameField;
     private javax.swing.JTextArea anotesField;
@@ -2740,7 +2745,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2750,6 +2754,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> list;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JPanel searchPanel;
