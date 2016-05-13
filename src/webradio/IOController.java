@@ -58,7 +58,7 @@ public class IOController {
      */
     public static Account Login(String username, String password) {
         if (username.equals("root") && password.equals("admin")) {
-            return new Account("root", "admin", 0, "Pat");
+            return new Account("root", "admin", 0, "root");
         } else {
 
             // instantiate the account to null, return if no match found

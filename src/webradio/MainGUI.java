@@ -114,7 +114,7 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        linkButton.setText("Links");
+        linkButton.setText("Shows");
         linkButton.setFocusable(false);
         linkButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -362,8 +362,8 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
-        //Main.LaunchLinkGUI();
-        JOptionPane.showMessageDialog(this, "  Links interface not implemented yet! :(     ");
+        Main.LaunchShowsGUI();
+        
     }//GEN-LAST:event_linkButtonActionPerformed
 
     /**

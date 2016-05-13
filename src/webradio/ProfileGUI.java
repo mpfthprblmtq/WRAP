@@ -398,7 +398,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         sphoneField1.setEditable(false);
         sphoneField1.setNextFocusableComponent(asiueEmailField);
-        aphoneField1.setDocument(new JTextFieldLimit(3));
+        sphoneField1.setDocument(new JTextFieldLimit(3));
         sphoneField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sphoneField1FocusGained(evt);
@@ -415,7 +415,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         sphoneField2.setEditable(false);
         sphoneField2.setNextFocusableComponent(asiueEmailField);
-        aphoneField2.setDocument(new JTextFieldLimit(3));
+        sphoneField2.setDocument(new JTextFieldLimit(3));
         sphoneField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sphoneField2FocusGained(evt);
@@ -432,7 +432,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         sphoneField3.setEditable(false);
         sphoneField3.setNextFocusableComponent(asiueEmailField);
-        aphoneField3.setDocument(new JTextFieldLimit(4));
+        sphoneField3.setDocument(new JTextFieldLimit(4));
         sphoneField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sphoneField3FocusGained(evt);

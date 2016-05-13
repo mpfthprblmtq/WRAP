@@ -189,7 +189,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="linkButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Links"/>
+        <Property name="text" type="java.lang.String" value="Shows"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>

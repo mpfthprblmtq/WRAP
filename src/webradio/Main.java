@@ -36,8 +36,8 @@ public class Main {
     static boolean financeGUIVisible = false;
 
     // linkGUI
-    static LinkGUI linkGUI;
-    static boolean linkGUIVisible = false;
+    static ShowInfoGUI showsGUI;
+    static boolean showsGUIVisible = false;
 
     // reportsGUI
     static ReportsGUI reportsGUI;
@@ -182,21 +182,21 @@ public class Main {
     }
 
     /**
-     * LinkGUI
-     * Controls the LinkGUI opening and closing
+     * ShowInfoGUI
+     * Controls the showsGUI opening and closing
      */
-    public static void LaunchLinkGUI() {
-        if (!linkGUIVisible) {
-            linkGUI = new LinkGUI();
-            linkGUI.setLocationRelativeTo(null);
-            linkGUI.setVisible(true);
-            linkGUIVisible = true;
+    public static void LaunchShowsGUI() {
+        if (!showsGUIVisible) {
+            showsGUI = new ShowInfoGUI();
+            showsGUI.setLocationRelativeTo(null);
+            showsGUI.setVisible(true);
+            showsGUIVisible = true;
         }
     }
 
     public static void CloseLinkGUI() {
-        linkGUI.dispose();
-        linkGUIVisible = false;
+        showsGUI.dispose();
+        showsGUIVisible = false;
     }
 
     /**

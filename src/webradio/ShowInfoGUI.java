@@ -5,6 +5,8 @@
  */
 package webradio;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -35,7 +37,7 @@ public class ShowInfoGUI extends javax.swing.JFrame {
         }
     }
     // </editor-fold>
-    
+
     /**
      * Minor inner class used to limit th amount of text in a text field
      */
@@ -66,7 +68,12 @@ public class ShowInfoGUI extends javax.swing.JFrame {
         }
     }
     // </editor-fold>
-    
+
+    // globals
+    ShowInfo temp;
+    DefaultListModel<ListElement> shows = new DefaultListModel<>();
+    ListElement[] elements;
+
     /** Creates new form ShowInfoGUI */
     public ShowInfoGUI() {
         initComponents();
@@ -81,22 +88,1357 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tabs = new javax.swing.JTabbedPane();
+        searchPanel = new javax.swing.JPanel();
+        sl1 = new javax.swing.JLabel();
+        sNameField = new javax.swing.JTextField();
+        sl2 = new javax.swing.JLabel();
+        sSP = new javax.swing.JScrollPane();
+        sDescField = new javax.swing.JTextArea();
+        sDayTimePanel = new javax.swing.JPanel();
+        sl3 = new javax.swing.JLabel();
+        sl4 = new javax.swing.JLabel();
+        sl5 = new javax.swing.JLabel();
+        sl6 = new javax.swing.JLabel();
+        sHostNumber = new javax.swing.JSpinner();
+        sDayBox1 = new javax.swing.JComboBox<>();
+        sStartBox1 = new javax.swing.JComboBox<>();
+        sEndBox1 = new javax.swing.JComboBox<>();
+        sDayBox2 = new javax.swing.JComboBox<>();
+        sStartBox2 = new javax.swing.JComboBox<>();
+        sEndBox2 = new javax.swing.JComboBox<>();
+        sDayBox3 = new javax.swing.JComboBox<>();
+        sStartBox3 = new javax.swing.JComboBox<>();
+        sEndBox3 = new javax.swing.JComboBox<>();
+        sDayBox4 = new javax.swing.JComboBox<>();
+        sStartBox4 = new javax.swing.JComboBox<>();
+        sEndBox4 = new javax.swing.JComboBox<>();
+        sDayBox5 = new javax.swing.JComboBox<>();
+        sStartBox5 = new javax.swing.JComboBox<>();
+        sEndBox5 = new javax.swing.JComboBox<>();
+        sDayBox6 = new javax.swing.JComboBox<>();
+        sStartBox6 = new javax.swing.JComboBox<>();
+        sEndBox6 = new javax.swing.JComboBox<>();
+        sDayBox7 = new javax.swing.JComboBox<>();
+        sStartBox7 = new javax.swing.JComboBox<>();
+        sEndBox7 = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        hostNumber1 = new javax.swing.JSpinner();
+        jLabel15 = new javax.swing.JLabel();
+        host5 = new javax.swing.JComboBox<>();
+        host6 = new javax.swing.JComboBox<>();
+        host7 = new javax.swing.JComboBox<>();
+        host8 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        addPanel = new javax.swing.JPanel();
+        al1 = new javax.swing.JLabel();
+        aNameField = new javax.swing.JTextField();
+        al2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        showDesc = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        hostNumber = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        host1 = new javax.swing.JComboBox<>();
+        host2 = new javax.swing.JComboBox<>();
+        host3 = new javax.swing.JComboBox<>();
+        host4 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        al3 = new javax.swing.JLabel();
+        al4 = new javax.swing.JLabel();
+        al5 = new javax.swing.JLabel();
+        al6 = new javax.swing.JLabel();
+        aShowNumSpinner = new javax.swing.JSpinner();
+        aDayBox1 = new javax.swing.JComboBox<>();
+        aStartBox1 = new javax.swing.JComboBox<>();
+        aEndBox1 = new javax.swing.JComboBox<>();
+        aDayBox2 = new javax.swing.JComboBox<>();
+        aStartBox2 = new javax.swing.JComboBox<>();
+        aEndBox2 = new javax.swing.JComboBox<>();
+        aDayBox3 = new javax.swing.JComboBox<>();
+        aStartBox3 = new javax.swing.JComboBox<>();
+        aEndBox3 = new javax.swing.JComboBox<>();
+        aDayBox4 = new javax.swing.JComboBox<>();
+        aStartBox4 = new javax.swing.JComboBox<>();
+        aEndBox4 = new javax.swing.JComboBox<>();
+        aDayBox5 = new javax.swing.JComboBox<>();
+        aStartBox5 = new javax.swing.JComboBox<>();
+        aEndBox5 = new javax.swing.JComboBox<>();
+        aDayBox6 = new javax.swing.JComboBox<>();
+        aStartBox6 = new javax.swing.JComboBox<>();
+        aEndBox6 = new javax.swing.JComboBox<>();
+        aDayBox7 = new javax.swing.JComboBox<>();
+        aStartBox7 = new javax.swing.JComboBox<>();
+        aEndBox7 = new javax.swing.JComboBox<>();
+        scrollpane = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
+        loginLabel = new javax.swing.JLabel();
+        adminLabel = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        menubar = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        closeItem = new javax.swing.JMenuItem();
+        logoutItem = new javax.swing.JMenuItem();
+        exitItem = new javax.swing.JMenuItem();
+        help = new javax.swing.JMenu();
+        bugItem = new javax.swing.JMenuItem();
+        suggestionItem = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        sl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        sl1.setText("Show Name:");
+
+        sNameField.setEnabled(false);
+
+        sl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        sl2.setText("Description:");
+
+        sSP.setEnabled(false);
+
+        sDescField.setBackground(new java.awt.Color(240, 240, 240));
+        sDescField.setColumns(20);
+        sDescField.setRows(5);
+        sDescField.setEnabled(false);
+        sSP.setViewportView(sDescField);
+
+        sDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        sDayTimePanel.setEnabled(false);
+
+        sl3.setText("How many shows per week:");
+
+        sl4.setText("Day:");
+
+        sl5.setText("Start time:");
+
+        sl6.setText("End time:");
+
+        sHostNumber.setEnabled(false);
+
+        sDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox1.setEnabled(false);
+
+        sStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox1.setEnabled(false);
+
+        sEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox1.setEnabled(false);
+
+        sDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox2.setEnabled(false);
+
+        sStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox2.setEnabled(false);
+
+        sEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox2.setEnabled(false);
+
+        sDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox3.setEnabled(false);
+
+        sStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox3.setEnabled(false);
+
+        sEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox3.setEnabled(false);
+
+        sDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox4.setEnabled(false);
+
+        sStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox4.setEnabled(false);
+
+        sEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox4.setEnabled(false);
+
+        sDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox5.setEnabled(false);
+
+        sStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox5.setEnabled(false);
+
+        sEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox5.setEnabled(false);
+
+        sDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox6.setEnabled(false);
+
+        sStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox6.setEnabled(false);
+
+        sEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox6.setEnabled(false);
+
+        sDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox7.setEnabled(false);
+
+        sStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox7.setEnabled(false);
+
+        sEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox7.setEnabled(false);
+
+        javax.swing.GroupLayout sDayTimePanelLayout = new javax.swing.GroupLayout(sDayTimePanel);
+        sDayTimePanel.setLayout(sDayTimePanelLayout);
+        sDayTimePanelLayout.setHorizontalGroup(
+            sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sDayTimePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(sDayTimePanelLayout.createSequentialGroup()
+                        .addComponent(sl3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sHostNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(sDayTimePanelLayout.createSequentialGroup()
+                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(sDayBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sDayBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(sl4))
+                        .addGap(18, 18, 18)
+                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sStartBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sStartBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sStartBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sl5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sl6)
+                            .addComponent(sEndBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sEndBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sEndBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sEndBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sEndBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        sDayTimePanelLayout.setVerticalGroup(
+            sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sDayTimePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sl3)
+                    .addComponent(sHostNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sl4)
+                    .addComponent(sl5)
+                    .addComponent(sl6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sStartBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sEndBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setEnabled(false);
+
+        hostNumber1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+        hostNumber1.setEnabled(false);
+
+        jLabel15.setText("Number of hosts:");
+
+        host5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        host5.setEnabled(false);
+
+        host6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        host6.setEnabled(false);
+
+        host7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        host7.setEnabled(false);
+
+        host8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        host8.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(host5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(host8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(host7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hostNumber1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                    .addComponent(host6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hostNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton2.setText("Edit");
+        jButton2.setEnabled(false);
+
+        jButton3.setText("Delete");
+        jButton3.setEnabled(false);
+
+        jButton4.setText("Submit");
+        jButton4.setEnabled(false);
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addComponent(sDayTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sl1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sNameField)
+                            .addComponent(sSP, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sl1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sl2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addComponent(sDayTimePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        tabs.addTab("Search", searchPanel);
+
+        al1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        al1.setText("Show Name:");
+
+        al2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        al2.setText("Description:");
+
+        showDesc.setColumns(20);
+        showDesc.setRows(5);
+        jScrollPane1.setViewportView(showDesc);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        hostNumber.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+
+        jLabel3.setText("Number of hosts:");
+
+        host1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        host2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        host3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        host4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(host1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(host4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(host3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hostNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(host2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hostNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(host4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("Add");
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        al3.setText("How many shows per week:");
+
+        al4.setText("Day:");
+
+        al5.setText("Start time:");
+
+        al6.setText("End time:");
+
+        aShowNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+        aShowNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                aShowNumSpinnerStateChanged(evt);
+            }
+        });
+
+        aDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox1.setEnabled(false);
+
+        aStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox1.setEnabled(false);
+
+        aEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox1.setEnabled(false);
+
+        aDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox2.setEnabled(false);
+
+        aStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox2.setEnabled(false);
+
+        aEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox2.setEnabled(false);
+
+        aDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox3.setEnabled(false);
+
+        aStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox3.setEnabled(false);
+
+        aEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox3.setEnabled(false);
+
+        aDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox4.setEnabled(false);
+
+        aStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox4.setEnabled(false);
+
+        aEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox4.setEnabled(false);
+
+        aDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox5.setEnabled(false);
+
+        aStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox5.setEnabled(false);
+
+        aEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox5.setEnabled(false);
+
+        aDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox6.setEnabled(false);
+
+        aStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox6.setEnabled(false);
+
+        aEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox6.setEnabled(false);
+
+        aDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox7.setEnabled(false);
+
+        aStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox7.setEnabled(false);
+
+        aEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox7.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(al3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aShowNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(aDayBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(aDayBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(al4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aStartBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aStartBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aStartBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(al5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(al6)
+                            .addComponent(aEndBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aEndBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aEndBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aEndBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aEndBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(al3)
+                    .addComponent(aShowNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(al4)
+                    .addComponent(al5)
+                    .addComponent(al6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aStartBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aEndBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
+        addPanel.setLayout(addPanelLayout);
+        addPanelLayout.setHorizontalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(al2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(aNameField)))
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton1)))))
+                .addContainerGap())
+        );
+        addPanelLayout.setVerticalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(al1)
+                    .addComponent(aNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(al2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabs.addTab("Add", addPanel);
+
+        list.setModel(fillList());
+        list.setFocusable(false);
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
+        scrollpane.setViewportView(list);
+
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        loginLabel.setText(" ");
+
+        adminLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        adminLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminLabelMouseExited(evt);
+            }
+        });
+
+        jLabel4.setText(" ");
+
+        file.setText("File");
+
+        closeItem.setText("Close");
+        closeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeItemActionPerformed(evt);
+            }
+        });
+        file.add(closeItem);
+
+        logoutItem.setText("Logout");
+        logoutItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutItemActionPerformed(evt);
+            }
+        });
+        file.add(logoutItem);
+
+        exitItem.setText("Exit");
+        exitItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitItemActionPerformed(evt);
+            }
+        });
+        file.add(exitItem);
+
+        menubar.add(file);
+
+        help.setText("Help");
+
+        bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
+        bugItem.setText("Report a bug");
+        bugItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bugItemActionPerformed(evt);
+            }
+        });
+        help.add(bugItem);
+
+        suggestionItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        suggestionItem.setText("Make a suggestion");
+        suggestionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestionItemActionPerformed(evt);
+            }
+        });
+        help.add(suggestionItem);
+
+        menubar.add(help);
+
+        setJMenuBar(menubar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(adminLabel)
+                            .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
+        Main.CloseAccountGUI();
+    }//GEN-LAST:event_closeItemActionPerformed
+
+    private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
+        Main.Logout();
+        Main.CloseAccountGUI();
+        Main.CloseMainGUI();
+    }//GEN-LAST:event_logoutItemActionPerformed
+
+    private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to exit WRAP?",
+                "",
+                JOptionPane.YES_NO_OPTION);
+
+        // do a thing based on response
+        switch (res) {
+            case 0:
+                System.exit(0);
+                break;
+            default:
+            // do nothing
+        }
+    }//GEN-LAST:event_exitItemActionPerformed
+
+    private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
+        Main.LaunchBugReportGUI();
+    }//GEN-LAST:event_bugItemActionPerformed
+
+    private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
+        Main.LaunchSuggestionReportGUI();
+    }//GEN-LAST:event_suggestionItemActionPerformed
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        if (!shows.isEmpty()) {
+            //submitButton.setEnabled(false);
+            //editButton.setEnabled(true);
+            //deleteButton.setEnabled(true);
+
+            //setSearchFieldsEditable(false);
+            //search(shows.elementAt(list.getSelectedIndex()).username);
+            tabs.setSelectedIndex(0);
+        } else {
+            // do nothing
+            // it crashes otherwise
+        }
+    }//GEN-LAST:event_listMouseClicked
+
+    private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
+        // probably some admin stuff
+        JOptionPane.showMessageDialog(this,
+                "Probably some admin stuff here",
+                "Advanced",
+                JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_adminLabelMouseClicked
+
+    private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
+        loginLabel.setText("Advanced options");
+    }//GEN-LAST:event_adminLabelMouseEntered
+
+    private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_adminLabelMouseExited
+
+    private void aShowNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aShowNumSpinnerStateChanged
+        switch(Integer.parseInt(aShowNumSpinner.getValue().toString())) {
+            case 0:
+                updateShowNumber(0);
+                break;
+            case 1:
+                updateShowNumber(1);
+                break;
+            case 2:
+                updateShowNumber(2);
+                break;
+            case 3:
+                updateShowNumber(3);
+                break;
+            case 4:
+                updateShowNumber(4);
+                break;
+            case 5:
+                updateShowNumber(5);
+                break;
+            case 6:
+                updateShowNumber(6);
+                break;
+            case 7:
+                updateShowNumber(7);
+                break;
+        }
+    }//GEN-LAST:event_aShowNumSpinnerStateChanged
+
+    
+    
+    /**
+     * fillList()
+     *
+     * Gets all of the users from IOController and shoves them into an array
+     * Then it populates the DefaultListModel of ListElements from that array
+     *
+     * @return the DefaultListModel to populate the JList
+     */
+    public DefaultListModel fillList() {
+
+//        int total = IOController.getTotalUsers();       // get total
+//        Account[] str = IOController.getAllUsers();     // get users
+//        elements = new ListElement[total];              // create array of ListElements
+//
+//        if (str != null && elements.length > 0) {
+//            // create the DefaultListModel elements
+//            for (int i = 0; i < total; i++) {
+//                elements[i] = new AccountGUI.ListElement(str[i].getUsername(),
+//                        str[i].getPassword(),
+//                        str[i].getAccess(),
+//                        str[i].getName());
+//                // add it to the global list
+//                users.add(i, elements[i]);
+//            }
+//        }
+//        return users;
+        return new DefaultListModel();
+    }
+
+    /**
+     * updateShowNumber()
+     * 
+     * Stupid crazy long function to enable the correct number of combo boxes
+     * when selecting the days and times
+     * For real, this is too long.  There has to be an easier way to do this
+     * THIS WHOLE METHOD IS 403 LINES LONG.  THAT'S WITH EMPTY LINES BUT
+     * STILL HOLY MOLY BATMAN.
+     * 
+     * @param num 
+     */
+    public void updateShowNumber(int num) {
+        switch(num) {
+            case 0:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(false);
+                aStartBox1.setEnabled(false);
+                aEndBox1.setEnabled(false);
+                
+                aDayBox2.setEnabled(false);
+                aStartBox2.setEnabled(false);
+                aEndBox2.setEnabled(false);
+                
+                aDayBox3.setEnabled(false);
+                aStartBox3.setEnabled(false);
+                aEndBox3.setEnabled(false);
+                
+                aDayBox4.setEnabled(false);
+                aStartBox4.setEnabled(false);
+                aEndBox4.setEnabled(false);
+                
+                aDayBox5.setEnabled(false);
+                aStartBox5.setEnabled(false);
+                aEndBox5.setEnabled(false);
+                
+                aDayBox6.setEnabled(false);
+                aStartBox6.setEnabled(false);
+                aEndBox6.setEnabled(false);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox1.setSelectedIndex(0);
+                aStartBox1.setSelectedIndex(0);
+                aEndBox1.setSelectedIndex(0);
+                
+                aDayBox2.setSelectedIndex(0);
+                aStartBox2.setSelectedIndex(0);
+                aEndBox2.setSelectedIndex(0);
+                
+                aDayBox3.setSelectedIndex(0);
+                aStartBox3.setSelectedIndex(0);
+                aEndBox3.setSelectedIndex(0);
+                
+                aDayBox4.setSelectedIndex(0);
+                aStartBox4.setSelectedIndex(0);
+                aEndBox4.setSelectedIndex(0);
+                
+                aDayBox5.setSelectedIndex(0);
+                aStartBox5.setSelectedIndex(0);
+                aEndBox5.setSelectedIndex(0);
+                
+                aDayBox6.setSelectedIndex(0);
+                aStartBox6.setSelectedIndex(0);
+                aEndBox6.setSelectedIndex(0);
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 1:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(false);
+                aStartBox2.setEnabled(false);
+                aEndBox2.setEnabled(false);
+                
+                aDayBox3.setEnabled(false);
+                aStartBox3.setEnabled(false);
+                aEndBox3.setEnabled(false);
+                
+                aDayBox4.setEnabled(false);
+                aStartBox4.setEnabled(false);
+                aEndBox4.setEnabled(false);
+                
+                aDayBox5.setEnabled(false);
+                aStartBox5.setEnabled(false);
+                aEndBox5.setEnabled(false);
+                
+                aDayBox6.setEnabled(false);
+                aStartBox6.setEnabled(false);
+                aEndBox6.setEnabled(false);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox2.setSelectedIndex(0);
+                aStartBox2.setSelectedIndex(0);
+                aEndBox2.setSelectedIndex(0);
+                
+                aDayBox3.setSelectedIndex(0);
+                aStartBox3.setSelectedIndex(0);
+                aEndBox3.setSelectedIndex(0);
+                
+                aDayBox4.setSelectedIndex(0);
+                aStartBox4.setSelectedIndex(0);
+                aEndBox4.setSelectedIndex(0);
+                
+                aDayBox5.setSelectedIndex(0);
+                aStartBox5.setSelectedIndex(0);
+                aEndBox5.setSelectedIndex(0);
+                
+                aDayBox6.setSelectedIndex(0);
+                aStartBox6.setSelectedIndex(0);
+                aEndBox6.setSelectedIndex(0);
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 2:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(true);
+                aStartBox2.setEnabled(true);
+                aEndBox2.setEnabled(true);
+                
+                aDayBox3.setEnabled(false);
+                aStartBox3.setEnabled(false);
+                aEndBox3.setEnabled(false);
+                
+                aDayBox4.setEnabled(false);
+                aStartBox4.setEnabled(false);
+                aEndBox4.setEnabled(false);
+                
+                aDayBox5.setEnabled(false);
+                aStartBox5.setEnabled(false);
+                aEndBox5.setEnabled(false);
+                
+                aDayBox6.setEnabled(false);
+                aStartBox6.setEnabled(false);
+                aEndBox6.setEnabled(false);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox3.setSelectedIndex(0);
+                aStartBox3.setSelectedIndex(0);
+                aEndBox3.setSelectedIndex(0);
+                
+                aDayBox4.setSelectedIndex(0);
+                aStartBox4.setSelectedIndex(0);
+                aEndBox4.setSelectedIndex(0);
+                
+                aDayBox5.setSelectedIndex(0);
+                aStartBox5.setSelectedIndex(0);
+                aEndBox5.setSelectedIndex(0);
+                
+                aDayBox6.setSelectedIndex(0);
+                aStartBox6.setSelectedIndex(0);
+                aEndBox6.setSelectedIndex(0);
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 3:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(true);
+                aStartBox2.setEnabled(true);
+                aEndBox2.setEnabled(true);
+                
+                aDayBox3.setEnabled(true);
+                aStartBox3.setEnabled(true);
+                aEndBox3.setEnabled(true);
+                
+                aDayBox4.setEnabled(false);
+                aStartBox4.setEnabled(false);
+                aEndBox4.setEnabled(false);
+                
+                aDayBox5.setEnabled(false);
+                aStartBox5.setEnabled(false);
+                aEndBox5.setEnabled(false);
+                
+                aDayBox6.setEnabled(false);
+                aStartBox6.setEnabled(false);
+                aEndBox6.setEnabled(false);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox4.setSelectedIndex(0);
+                aStartBox4.setSelectedIndex(0);
+                aEndBox4.setSelectedIndex(0);
+                
+                aDayBox5.setSelectedIndex(0);
+                aStartBox5.setSelectedIndex(0);
+                aEndBox5.setSelectedIndex(0);
+                
+                aDayBox6.setSelectedIndex(0);
+                aStartBox6.setSelectedIndex(0);
+                aEndBox6.setSelectedIndex(0);
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 4:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(true);
+                aStartBox2.setEnabled(true);
+                aEndBox2.setEnabled(true);
+                
+                aDayBox3.setEnabled(true);
+                aStartBox3.setEnabled(true);
+                aEndBox3.setEnabled(true);
+                
+                aDayBox4.setEnabled(true);
+                aStartBox4.setEnabled(true);
+                aEndBox4.setEnabled(true);
+                
+                aDayBox5.setEnabled(false);
+                aStartBox5.setEnabled(false);
+                aEndBox5.setEnabled(false);
+                
+                aDayBox6.setEnabled(false);
+                aStartBox6.setEnabled(false);
+                aEndBox6.setEnabled(false);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox5.setSelectedIndex(0);
+                aStartBox5.setSelectedIndex(0);
+                aEndBox5.setSelectedIndex(0);
+                
+                aDayBox6.setSelectedIndex(0);
+                aStartBox6.setSelectedIndex(0);
+                aEndBox6.setSelectedIndex(0);
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 5:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(true);
+                aStartBox2.setEnabled(true);
+                aEndBox2.setEnabled(true);
+                
+                aDayBox3.setEnabled(true);
+                aStartBox3.setEnabled(true);
+                aEndBox3.setEnabled(true);
+                
+                aDayBox4.setEnabled(true);
+                aStartBox4.setEnabled(true);
+                aEndBox4.setEnabled(true);
+                
+                aDayBox5.setEnabled(true);
+                aStartBox5.setEnabled(true);
+                aEndBox5.setEnabled(true);
+                
+                aDayBox6.setEnabled(false);
+                aStartBox6.setEnabled(false);
+                aEndBox6.setEnabled(false);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox6.setSelectedIndex(0);
+                aStartBox6.setSelectedIndex(0);
+                aEndBox6.setSelectedIndex(0);
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 6:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(true);
+                aStartBox2.setEnabled(true);
+                aEndBox2.setEnabled(true);
+                
+                aDayBox3.setEnabled(true);
+                aStartBox3.setEnabled(true);
+                aEndBox3.setEnabled(true);
+                
+                aDayBox4.setEnabled(true);
+                aStartBox4.setEnabled(true);
+                aEndBox4.setEnabled(true);
+                
+                aDayBox5.setEnabled(true);
+                aStartBox5.setEnabled(true);
+                aEndBox5.setEnabled(true);
+                
+                aDayBox6.setEnabled(true);
+                aStartBox6.setEnabled(true);
+                aEndBox6.setEnabled(true);
+                
+                aDayBox7.setEnabled(false);
+                aStartBox7.setEnabled(false);
+                aEndBox7.setEnabled(false);
+                
+                // reset the disabled comboBoxes
+                
+                aDayBox7.setSelectedIndex(0);
+                aStartBox7.setSelectedIndex(0);
+                aEndBox7.setSelectedIndex(0);
+                
+                break;
+                
+            case 7:
+                
+                // set the appropriate number of combo boxes
+                
+                aDayBox1.setEnabled(true);
+                aStartBox1.setEnabled(true);
+                aEndBox1.setEnabled(true);
+                
+                aDayBox2.setEnabled(true);
+                aStartBox2.setEnabled(true);
+                aEndBox2.setEnabled(true);
+                
+                aDayBox3.setEnabled(true);
+                aStartBox3.setEnabled(true);
+                aEndBox3.setEnabled(true);
+                
+                aDayBox4.setEnabled(true);
+                aStartBox4.setEnabled(true);
+                aEndBox4.setEnabled(true);
+                
+                aDayBox5.setEnabled(true);
+                aStartBox5.setEnabled(true);
+                aEndBox5.setEnabled(true);
+                
+                aDayBox6.setEnabled(true);
+                aStartBox6.setEnabled(true);
+                aEndBox6.setEnabled(true);
+                
+                aDayBox7.setEnabled(true);
+                aStartBox7.setEnabled(true);
+                aEndBox7.setEnabled(true);
+                
+                // no resetting the boxes here
+                
+                break;
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -131,5 +1473,103 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> aDayBox1;
+    private javax.swing.JComboBox<String> aDayBox2;
+    private javax.swing.JComboBox<String> aDayBox3;
+    private javax.swing.JComboBox<String> aDayBox4;
+    private javax.swing.JComboBox<String> aDayBox5;
+    private javax.swing.JComboBox<String> aDayBox6;
+    private javax.swing.JComboBox<String> aDayBox7;
+    private javax.swing.JComboBox<String> aEndBox1;
+    private javax.swing.JComboBox<String> aEndBox2;
+    private javax.swing.JComboBox<String> aEndBox3;
+    private javax.swing.JComboBox<String> aEndBox4;
+    private javax.swing.JComboBox<String> aEndBox5;
+    private javax.swing.JComboBox<String> aEndBox6;
+    private javax.swing.JComboBox<String> aEndBox7;
+    private javax.swing.JTextField aNameField;
+    private javax.swing.JSpinner aShowNumSpinner;
+    private javax.swing.JComboBox<String> aStartBox1;
+    private javax.swing.JComboBox<String> aStartBox2;
+    private javax.swing.JComboBox<String> aStartBox3;
+    private javax.swing.JComboBox<String> aStartBox4;
+    private javax.swing.JComboBox<String> aStartBox5;
+    private javax.swing.JComboBox<String> aStartBox6;
+    private javax.swing.JComboBox<String> aStartBox7;
+    private javax.swing.JPanel addPanel;
+    private javax.swing.JLabel adminLabel;
+    private javax.swing.JLabel al1;
+    private javax.swing.JLabel al2;
+    private javax.swing.JLabel al3;
+    private javax.swing.JLabel al4;
+    private javax.swing.JLabel al5;
+    private javax.swing.JLabel al6;
+    private javax.swing.JMenuItem bugItem;
+    private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenu file;
+    private javax.swing.JMenu help;
+    private javax.swing.JComboBox<String> host1;
+    private javax.swing.JComboBox<String> host2;
+    private javax.swing.JComboBox<String> host3;
+    private javax.swing.JComboBox<String> host4;
+    private javax.swing.JComboBox<String> host5;
+    private javax.swing.JComboBox<String> host6;
+    private javax.swing.JComboBox<String> host7;
+    private javax.swing.JComboBox<String> host8;
+    private javax.swing.JSpinner hostNumber;
+    private javax.swing.JSpinner hostNumber1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> list;
+    private javax.swing.JLabel loginLabel;
+    private javax.swing.JMenuItem logoutItem;
+    private javax.swing.JMenuBar menubar;
+    private javax.swing.JComboBox<String> sDayBox1;
+    private javax.swing.JComboBox<String> sDayBox2;
+    private javax.swing.JComboBox<String> sDayBox3;
+    private javax.swing.JComboBox<String> sDayBox4;
+    private javax.swing.JComboBox<String> sDayBox5;
+    private javax.swing.JComboBox<String> sDayBox6;
+    private javax.swing.JComboBox<String> sDayBox7;
+    private javax.swing.JPanel sDayTimePanel;
+    private javax.swing.JTextArea sDescField;
+    private javax.swing.JComboBox<String> sEndBox1;
+    private javax.swing.JComboBox<String> sEndBox2;
+    private javax.swing.JComboBox<String> sEndBox3;
+    private javax.swing.JComboBox<String> sEndBox4;
+    private javax.swing.JComboBox<String> sEndBox5;
+    private javax.swing.JComboBox<String> sEndBox6;
+    private javax.swing.JComboBox<String> sEndBox7;
+    private javax.swing.JSpinner sHostNumber;
+    private javax.swing.JTextField sNameField;
+    private javax.swing.JScrollPane sSP;
+    private javax.swing.JComboBox<String> sStartBox1;
+    private javax.swing.JComboBox<String> sStartBox2;
+    private javax.swing.JComboBox<String> sStartBox3;
+    private javax.swing.JComboBox<String> sStartBox4;
+    private javax.swing.JComboBox<String> sStartBox5;
+    private javax.swing.JComboBox<String> sStartBox6;
+    private javax.swing.JComboBox<String> sStartBox7;
+    private javax.swing.JScrollPane scrollpane;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JTextArea showDesc;
+    private javax.swing.JLabel sl1;
+    private javax.swing.JLabel sl2;
+    private javax.swing.JLabel sl3;
+    private javax.swing.JLabel sl4;
+    private javax.swing.JLabel sl5;
+    private javax.swing.JLabel sl6;
+    private javax.swing.JMenuItem suggestionItem;
+    private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 }

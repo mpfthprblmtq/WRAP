@@ -8,7 +8,6 @@ package webradio;
 
 // imports
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
