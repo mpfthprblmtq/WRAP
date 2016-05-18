@@ -5,9 +5,7 @@
  */
 package webradio;
 
-import java.awt.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.text.AttributeSet;
@@ -18,7 +16,7 @@ import javax.swing.text.PlainDocument;
  *
  * @author mpfthprblmtq
  */
-public class ShowInfoGUI extends javax.swing.JFrame {
+public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * Minor inner class used to create the options in the host comboboxes
@@ -33,14 +31,22 @@ public class ShowInfoGUI extends javax.swing.JFrame {
             this.lName = lName;
             this.id = id;
         }
+        
+        public ComboBoxElement() {
+            this.fName = "--";
+        }
 
         @Override
         public String toString() {
-            return lName + ", " + fName;
+            if(!fName.equals("--")) {
+                return lName + ", " + fName;
+            } else {
+                return "--";
+            }
         }
     }
     // </editor-fold>
-    
+
     /**
      * Minor inner class used to create the list on the right side of the panel
      */
@@ -92,14 +98,14 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     // </editor-fold>
 
     // globals
-    ShowInfo temp;
+    Show temp;
     DefaultListModel<ListElement> shows = new DefaultListModel<>();
     DefaultComboBoxModel<ComboBoxElement> profiles = new DefaultComboBoxModel();
     ListElement[] elements;
     ComboBoxElement[] cbElements;
 
     /** Creates new form ShowInfoGUI */
-    public ShowInfoGUI() {
+    public ShowGUI() {
         initComponents();
     }
 
@@ -115,8 +121,8 @@ public class ShowInfoGUI extends javax.swing.JFrame {
         tabs = new javax.swing.JTabbedPane();
         searchPanel = new javax.swing.JPanel();
         sl1 = new javax.swing.JLabel();
-        sNameField = new javax.swing.JTextField();
         sl2 = new javax.swing.JLabel();
+        sNameField = new javax.swing.JTextField();
         sSP = new javax.swing.JScrollPane();
         sDescField = new javax.swing.JTextArea();
         sDayTimePanel = new javax.swing.JPanel();
@@ -125,80 +131,80 @@ public class ShowInfoGUI extends javax.swing.JFrame {
         sl5 = new javax.swing.JLabel();
         sl6 = new javax.swing.JLabel();
         sShowNumSpinner = new javax.swing.JSpinner();
-        sDayBox1 = new javax.swing.JComboBox<String>();
-        sStartBox1 = new javax.swing.JComboBox<String>();
-        sEndBox1 = new javax.swing.JComboBox<String>();
-        sDayBox2 = new javax.swing.JComboBox<String>();
-        sStartBox2 = new javax.swing.JComboBox<String>();
-        sEndBox2 = new javax.swing.JComboBox<String>();
-        sDayBox3 = new javax.swing.JComboBox<String>();
-        sStartBox3 = new javax.swing.JComboBox<String>();
-        sEndBox3 = new javax.swing.JComboBox<String>();
-        sDayBox4 = new javax.swing.JComboBox<String>();
-        sStartBox4 = new javax.swing.JComboBox<String>();
-        sEndBox4 = new javax.swing.JComboBox<String>();
-        sDayBox5 = new javax.swing.JComboBox<String>();
-        sStartBox5 = new javax.swing.JComboBox<String>();
-        sEndBox5 = new javax.swing.JComboBox<String>();
-        sDayBox6 = new javax.swing.JComboBox<String>();
-        sStartBox6 = new javax.swing.JComboBox<String>();
-        sEndBox6 = new javax.swing.JComboBox<String>();
-        sDayBox7 = new javax.swing.JComboBox<String>();
-        sStartBox7 = new javax.swing.JComboBox<String>();
-        sEndBox7 = new javax.swing.JComboBox<String>();
-        jPanel2 = new javax.swing.JPanel();
-        hostNumber1 = new javax.swing.JSpinner();
-        jLabel15 = new javax.swing.JLabel();
-        host5 = new javax.swing.JComboBox<String>();
-        host6 = new javax.swing.JComboBox<String>();
-        host7 = new javax.swing.JComboBox<String>();
-        host8 = new javax.swing.JComboBox<String>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        sDayBox1 = new javax.swing.JComboBox<>();
+        sStartBox1 = new javax.swing.JComboBox<>();
+        sEndBox1 = new javax.swing.JComboBox<>();
+        sDayBox2 = new javax.swing.JComboBox<>();
+        sStartBox2 = new javax.swing.JComboBox<>();
+        sEndBox2 = new javax.swing.JComboBox<>();
+        sDayBox3 = new javax.swing.JComboBox<>();
+        sStartBox3 = new javax.swing.JComboBox<>();
+        sEndBox3 = new javax.swing.JComboBox<>();
+        sDayBox4 = new javax.swing.JComboBox<>();
+        sStartBox4 = new javax.swing.JComboBox<>();
+        sEndBox4 = new javax.swing.JComboBox<>();
+        sDayBox5 = new javax.swing.JComboBox<>();
+        sStartBox5 = new javax.swing.JComboBox<>();
+        sEndBox5 = new javax.swing.JComboBox<>();
+        sDayBox6 = new javax.swing.JComboBox<>();
+        sStartBox6 = new javax.swing.JComboBox<>();
+        sEndBox6 = new javax.swing.JComboBox<>();
+        sDayBox7 = new javax.swing.JComboBox<>();
+        sStartBox7 = new javax.swing.JComboBox<>();
+        sEndBox7 = new javax.swing.JComboBox<>();
+        sHostPanel = new javax.swing.JPanel();
+        sHostNumSpinner = new javax.swing.JSpinner();
+        sl7 = new javax.swing.JLabel();
+        sHost1 = new javax.swing.JComboBox<>();
+        sHost2 = new javax.swing.JComboBox<>();
+        sHost3 = new javax.swing.JComboBox<>();
+        sHost4 = new javax.swing.JComboBox<>();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
         addPanel = new javax.swing.JPanel();
         al1 = new javax.swing.JLabel();
-        aNameField = new javax.swing.JTextField();
         al2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        aNameField = new javax.swing.JTextField();
+        aSP = new javax.swing.JScrollPane();
         showDesc = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        hostNumber = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
-        host1 = new javax.swing.JComboBox<String>();
-        host2 = new javax.swing.JComboBox<String>();
-        host3 = new javax.swing.JComboBox<String>();
-        host4 = new javax.swing.JComboBox<String>();
-        jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        aDayTimePanel = new javax.swing.JPanel();
         al3 = new javax.swing.JLabel();
         al4 = new javax.swing.JLabel();
         al5 = new javax.swing.JLabel();
         al6 = new javax.swing.JLabel();
         aShowNumSpinner = new javax.swing.JSpinner();
-        aDayBox1 = new javax.swing.JComboBox<String>();
-        aStartBox1 = new javax.swing.JComboBox<String>();
-        aEndBox1 = new javax.swing.JComboBox<String>();
-        aDayBox2 = new javax.swing.JComboBox<String>();
-        aStartBox2 = new javax.swing.JComboBox<String>();
-        aEndBox2 = new javax.swing.JComboBox<String>();
-        aDayBox3 = new javax.swing.JComboBox<String>();
-        aStartBox3 = new javax.swing.JComboBox<String>();
-        aEndBox3 = new javax.swing.JComboBox<String>();
-        aDayBox4 = new javax.swing.JComboBox<String>();
-        aStartBox4 = new javax.swing.JComboBox<String>();
-        aEndBox4 = new javax.swing.JComboBox<String>();
-        aDayBox5 = new javax.swing.JComboBox<String>();
-        aStartBox5 = new javax.swing.JComboBox<String>();
-        aEndBox5 = new javax.swing.JComboBox<String>();
-        aDayBox6 = new javax.swing.JComboBox<String>();
-        aStartBox6 = new javax.swing.JComboBox<String>();
-        aEndBox6 = new javax.swing.JComboBox<String>();
-        aDayBox7 = new javax.swing.JComboBox<String>();
-        aStartBox7 = new javax.swing.JComboBox<String>();
-        aEndBox7 = new javax.swing.JComboBox<String>();
+        aDayBox1 = new javax.swing.JComboBox<>();
+        aStartBox1 = new javax.swing.JComboBox<>();
+        aEndBox1 = new javax.swing.JComboBox<>();
+        aDayBox2 = new javax.swing.JComboBox<>();
+        aStartBox2 = new javax.swing.JComboBox<>();
+        aEndBox2 = new javax.swing.JComboBox<>();
+        aDayBox3 = new javax.swing.JComboBox<>();
+        aStartBox3 = new javax.swing.JComboBox<>();
+        aEndBox3 = new javax.swing.JComboBox<>();
+        aDayBox4 = new javax.swing.JComboBox<>();
+        aStartBox4 = new javax.swing.JComboBox<>();
+        aEndBox4 = new javax.swing.JComboBox<>();
+        aDayBox5 = new javax.swing.JComboBox<>();
+        aStartBox5 = new javax.swing.JComboBox<>();
+        aEndBox5 = new javax.swing.JComboBox<>();
+        aDayBox6 = new javax.swing.JComboBox<>();
+        aStartBox6 = new javax.swing.JComboBox<>();
+        aEndBox6 = new javax.swing.JComboBox<>();
+        aDayBox7 = new javax.swing.JComboBox<>();
+        aStartBox7 = new javax.swing.JComboBox<>();
+        aEndBox7 = new javax.swing.JComboBox<>();
+        aHostPanel = new javax.swing.JPanel();
+        aHostNumSpinner = new javax.swing.JSpinner();
+        al7 = new javax.swing.JLabel();
+        aHost1 = new javax.swing.JComboBox<>();
+        aHost2 = new javax.swing.JComboBox<>();
+        aHost3 = new javax.swing.JComboBox<>();
+        aHost4 = new javax.swing.JComboBox<>();
+        addButton = new javax.swing.JButton();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         loginLabel = new javax.swing.JLabel();
         adminLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -211,15 +217,22 @@ public class ShowInfoGUI extends javax.swing.JFrame {
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("W.R.A.P. - Shows");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         sl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl1.setText("Show Name:");
 
-        sNameField.setEnabled(false);
-
         sl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl2.setText("Description:");
+
+        sNameField.setEnabled(false);
 
         sSP.setEnabled(false);
 
@@ -248,67 +261,67 @@ public class ShowInfoGUI extends javax.swing.JFrame {
             }
         });
 
-        sDayBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox1.setEnabled(false);
 
-        sStartBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox1.setEnabled(false);
 
-        sEndBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox1.setEnabled(false);
 
-        sDayBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox2.setEnabled(false);
 
-        sStartBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox2.setEnabled(false);
 
-        sEndBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox2.setEnabled(false);
 
-        sDayBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox3.setEnabled(false);
 
-        sStartBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox3.setEnabled(false);
 
-        sEndBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox3.setEnabled(false);
 
-        sDayBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox4.setEnabled(false);
 
-        sStartBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox4.setEnabled(false);
 
-        sEndBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox4.setEnabled(false);
 
-        sDayBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox5.setEnabled(false);
 
-        sStartBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox5.setEnabled(false);
 
-        sEndBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox5.setEnabled(false);
 
-        sDayBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox6.setEnabled(false);
 
-        sStartBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox6.setEnabled(false);
 
-        sEndBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox6.setEnabled(false);
 
-        sDayBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox7.setEnabled(false);
 
-        sStartBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox7.setEnabled(false);
 
-        sEndBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox7.setEnabled(false);
 
         javax.swing.GroupLayout sDayTimePanelLayout = new javax.swing.GroupLayout(sDayTimePanel);
@@ -405,69 +418,93 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setEnabled(false);
+        sHostPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        sHostPanel.setEnabled(false);
 
-        hostNumber1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
-        hostNumber1.setEnabled(false);
+        sHostNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+        sHostNumSpinner.setEnabled(false);
 
-        jLabel15.setText("Number of hosts:");
+        sl7.setText("Number of hosts:");
 
-        host5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        host5.setEnabled(false);
+        sHost1.setEnabled(false);
+        DefaultComboBoxModel sHost1model = new DefaultComboBoxModel(getProfiles());
+        sHost1.setModel(sHost1model);
 
-        host6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        host6.setEnabled(false);
+        sHost2.setEnabled(false);
+        DefaultComboBoxModel sHost2model = new DefaultComboBoxModel(getProfiles());
+        sHost2.setModel(sHost2model);
 
-        host7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        host7.setEnabled(false);
+        sHost3.setEnabled(false);
+        DefaultComboBoxModel sHost3model = new DefaultComboBoxModel(getProfiles());
+        sHost3.setModel(sHost3model);
 
-        host8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        host8.setEnabled(false);
+        sHost4.setEnabled(false);
+        DefaultComboBoxModel sHost4model = new DefaultComboBoxModel(getProfiles());
+        sHost4.setModel(sHost4model);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout sHostPanelLayout = new javax.swing.GroupLayout(sHostPanel);
+        sHostPanel.setLayout(sHostPanelLayout);
+        sHostPanelLayout.setHorizontalGroup(
+            sHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sHostPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(host5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(host8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(host7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(sHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sHost1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sHost4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sHost3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(sHostPanelLayout.createSequentialGroup()
+                        .addComponent(sl7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hostNumber1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                    .addComponent(host6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(sHostNumSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                    .addComponent(sHost2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        sHostPanelLayout.setVerticalGroup(
+            sHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sHostPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hostNumber1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
+                .addGroup(sHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sHostNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sl7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sHost1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sHost2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sHost3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sHost4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Edit");
-        jButton2.setEnabled(false);
+        sHost1.setSelectedIndex(0);
+        sHost2.setSelectedIndex(0);
+        sHost3.setSelectedIndex(0);
+        sHost4.setSelectedIndex(0);
 
-        jButton3.setText("Delete");
-        jButton3.setEnabled(false);
+        editButton.setText("Edit");
+        editButton.setEnabled(false);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Submit");
-        jButton4.setEnabled(false);
+        deleteButton.setText("Delete");
+        deleteButton.setEnabled(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        submitButton.setText("Submit");
+        submitButton.setEnabled(false);
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -483,10 +520,10 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                             .addGroup(searchPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(editButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(sHostPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sl1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -511,13 +548,13 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sHostPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(deleteButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(editButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
+                        .addComponent(submitButton))
                     .addComponent(sDayTimePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -532,60 +569,9 @@ public class ShowInfoGUI extends javax.swing.JFrame {
 
         showDesc.setColumns(20);
         showDesc.setRows(5);
-        jScrollPane1.setViewportView(showDesc);
+        aSP.setViewportView(showDesc);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        hostNumber.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
-
-        jLabel3.setText("Number of hosts:");
-
-        host1.setModel(getProfiles());
-
-        host2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        host3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        host4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(host1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(host4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(host3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hostNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(host2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hostNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(host4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jButton1.setText("Add");
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        aDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         al3.setText("How many shows per week:");
 
@@ -602,93 +588,93 @@ public class ShowInfoGUI extends javax.swing.JFrame {
             }
         });
 
-        aDayBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox1.setEnabled(false);
 
-        aStartBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox1.setEnabled(false);
 
-        aEndBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox1.setEnabled(false);
 
-        aDayBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox2.setEnabled(false);
 
-        aStartBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox2.setEnabled(false);
 
-        aEndBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox2.setEnabled(false);
 
-        aDayBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox3.setEnabled(false);
 
-        aStartBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox3.setEnabled(false);
 
-        aEndBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox3.setEnabled(false);
 
-        aDayBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox4.setEnabled(false);
 
-        aStartBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox4.setEnabled(false);
 
-        aEndBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox4.setEnabled(false);
 
-        aDayBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox5.setEnabled(false);
 
-        aStartBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox5.setEnabled(false);
 
-        aEndBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox5.setEnabled(false);
 
-        aDayBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox6.setEnabled(false);
 
-        aStartBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox6.setEnabled(false);
 
-        aEndBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox6.setEnabled(false);
 
-        aDayBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox7.setEnabled(false);
 
-        aStartBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox7.setEnabled(false);
 
-        aEndBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox7.setEnabled(false);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout aDayTimePanelLayout = new javax.swing.GroupLayout(aDayTimePanel);
+        aDayTimePanel.setLayout(aDayTimePanelLayout);
+        aDayTimePanelLayout.setHorizontalGroup(
+            aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aDayTimePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aDayTimePanelLayout.createSequentialGroup()
                         .addComponent(al3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(aShowNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aDayTimePanelLayout.createSequentialGroup()
+                        .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(aDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(aDayBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(aDayBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(al4))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(aStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -698,7 +684,7 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                             .addComponent(aStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(al5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(al6)
                             .addComponent(aEndBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(aEndBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -709,55 +695,129 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                             .addComponent(aEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        aDayTimePanelLayout.setVerticalGroup(
+            aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aDayTimePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(al3)
                     .addComponent(aShowNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(al4)
                     .addComponent(al5)
                     .addComponent(al6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(aDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aStartBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(aEndBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        aHostPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        aHostNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+        aHostNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                aHostNumSpinnerStateChanged(evt);
+            }
+        });
+
+        al7.setText("Number of hosts:");
+
+        aHost1.setEnabled(false);
+        DefaultComboBoxModel aHost1model = new DefaultComboBoxModel(getProfiles());
+        aHost1.setModel(aHost1model);
+
+        aHost2.setEnabled(false);
+        DefaultComboBoxModel aHost2model = new DefaultComboBoxModel(getProfiles());
+        aHost2.setModel(aHost2model);
+
+        aHost3.setEnabled(false);
+        DefaultComboBoxModel aHost3model = new DefaultComboBoxModel(getProfiles());
+        aHost3.setModel(aHost3model);
+
+        aHost4.setEnabled(false);
+        DefaultComboBoxModel aHost4model = new DefaultComboBoxModel(getProfiles());
+        aHost4.setModel(aHost4model);
+
+        javax.swing.GroupLayout aHostPanelLayout = new javax.swing.GroupLayout(aHostPanel);
+        aHostPanel.setLayout(aHostPanelLayout);
+        aHostPanelLayout.setHorizontalGroup(
+            aHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aHostPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(aHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(aHost1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(aHost4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(aHost3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aHostPanelLayout.createSequentialGroup()
+                        .addComponent(al7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aHostNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(aHost2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        aHostPanelLayout.setVerticalGroup(
+            aHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aHostPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(aHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aHostNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(al7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aHost1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aHost2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aHost3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(aHost4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        aHost1.setSelectedIndex(0);
+        aHost2.setSelectedIndex(0);
+        aHost3.setSelectedIndex(0);
+        aHost4.setSelectedIndex(0);
+
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -772,16 +832,16 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                             .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
+                            .addComponent(aSP)
                             .addComponent(aNameField)))
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aDayTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aHostPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1)))))
+                                .addComponent(addButton)))))
                 .addContainerGap())
         );
         addPanelLayout.setVerticalGroup(
@@ -794,14 +854,14 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(al2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(aSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(aHostPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(addButton))
+                    .addComponent(aDayTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -897,28 +957,28 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(adminLabel)
                             .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scrollpane))
+                    .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
@@ -963,11 +1023,11 @@ public class ShowInfoGUI extends javax.swing.JFrame {
 
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!shows.isEmpty()) {
-            //submitButton.setEnabled(false);
-            //editButton.setEnabled(true);
-            //deleteButton.setEnabled(true);
+            submitButton.setEnabled(false);
+            editButton.setEnabled(true);
+            deleteButton.setEnabled(true);
 
-            //setSearchFieldsEditable(false);
+            setSearchFieldsEditable(false);
             //search(shows.elementAt(list.getSelectedIndex()).username);
             tabs.setSelectedIndex(0);
         } else {
@@ -992,13 +1052,13 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
-    
+
     /**
      * Handles when the add ShowNumberSpinner number changes
      * Calls updateShowNumber function based on a switch statement
      */
     private void aShowNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aShowNumSpinnerStateChanged
-        switch(Integer.parseInt(aShowNumSpinner.getValue().toString())) {
+        switch (Integer.parseInt(aShowNumSpinner.getValue().toString())) {
             case 0:
                 aUpdateShowNumber(0);
                 break;
@@ -1031,7 +1091,7 @@ public class ShowInfoGUI extends javax.swing.JFrame {
      * Calls updateShowNumber function based on a switch statement
      */
     private void sShowNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sShowNumSpinnerStateChanged
-        switch(Integer.parseInt(sShowNumSpinner.getValue().toString())) {
+        switch (Integer.parseInt(sShowNumSpinner.getValue().toString())) {
             case 0:
                 sUpdateShowNumber(0);
                 break;
@@ -1059,8 +1119,48 @@ public class ShowInfoGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sShowNumSpinnerStateChanged
 
-    
-    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //getComboBoxModel();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void aHostNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aHostNumSpinnerStateChanged
+        switch (Integer.parseInt(aHostNumSpinner.getValue().toString())) {
+            case 0:
+                aUpdateHostNumber(0);
+                break;
+            case 1:
+                aUpdateHostNumber(1);
+                break;
+            case 2:
+                aUpdateHostNumber(2);
+                break;
+            case 3:
+                aUpdateHostNumber(3);
+                break;
+            case 4:
+                aUpdateHostNumber(4);
+                break;
+        }
+    }//GEN-LAST:event_aHostNumSpinnerStateChanged
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        //if(aCheck()) {
+        //    add();
+        //}
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitButtonActionPerformed
+
     /**
      * fillList()
      *
@@ -1071,876 +1171,964 @@ public class ShowInfoGUI extends javax.swing.JFrame {
      */
     public DefaultListModel fillList() {
 
-//        int total = IOController.getTotalUsers();       // get total
-//        Account[] str = IOController.getAllUsers();     // get users
-//        elements = new ListElement[total];              // create array of ListElements
-//
-//        if (str != null && elements.length > 0) {
-//            // create the DefaultListModel elements
-//            for (int i = 0; i < total; i++) {
-//                elements[i] = new AccountGUI.ListElement(str[i].getUsername(),
-//                        str[i].getPassword(),
-//                        str[i].getAccess(),
-//                        str[i].getName());
-//                // add it to the global list
-//                users.add(i, elements[i]);
-//            }
-//        }
-//        return users;
-        return new DefaultListModel();
+        int total = IOController.getTotalShows();       // get total
+        Show[] str = IOController.getAllShows();     // get users
+        elements = new ListElement[total];              // create array of ListElements
+
+        if (str != null && elements.length > 0) {
+            // create the DefaultListModel elements
+            for (int i = 0; i < total; i++) {
+                elements[i] = new ListElement(str[i].getShowName());
+                // add it to the global list
+                shows.add(i, elements[i]);
+            }
+        }
+        return shows;
     }
 
     /**
-     * getProfiles()
-     *
      * Gets all of the profiles from IOController and shoves them into an array
      * Then it populates the DefaultLComboBoxModel of ComboBoxElements from that array
      *
-     * @return the DefaultComboboxModel to populate the Combobox Elements
+     * @return
      */
-    public DefaultComboBoxModel getProfiles() {
-        int total = IOController.getTotalProfiles();
-        Profile[] pro = IOController.getAllProfiles();
-        cbElements = new ComboBoxElement[total];
+    public ComboBoxElement[] getProfiles() {
         
-        if (pro != null && cbElements.length > 0) {
-            for (int i = 0; i < total; i++) {
-                cbElements[i] = new ComboBoxElement(pro[i].getfName(),
-                    pro[i].getlName(), pro[i].getId());
-                profiles.addElement(cbElements[i]);
+        int total = IOController.getTotalProfiles();
+        if (profiles.getSize() < total + 1) {
+            Profile[] pro = IOController.getAllProfiles();
+            cbElements = new ComboBoxElement[total + 1];
+
+            // empty slot (--)
+            cbElements[0] = new ComboBoxElement();
+            
+            if (pro != null && cbElements.length > 0) {
+                for (int i = 0; i < total; i++) {
+                    cbElements[i+1] = new ComboBoxElement(pro[i].getfName(),
+                            pro[i].getlName(), pro[i].getId());
+                    //profiles.addElement(cbElements[i]);
+                }
             }
+            
         }
-        return profiles;
+        return cbElements;
     }
-    
+
     /**
      * aUpdateShowNumber()
-     * 
+     *
      * Stupid crazy long function to enable the correct number of combo boxes
      * when selecting the days and times
-     * For real, this is too long.  There has to be an easier way to do this
-     * THIS WHOLE METHOD IS 403 LINES LONG.  THAT'S WITH EMPTY LINES BUT
-     * STILL HOLY MOLY BATMAN.
-     * 
-     * @param num 
+     * For real, this is too long. There has to be an easier way to do this
+     * THIS WHOLE METHOD IS 403 LINES LONG. THAT'S WITH EMPTY LINES BUT
+     * STILL HOLY COMBO BOXES BATMAN.
+     *
+     * @param num
      */
     public void aUpdateShowNumber(int num) {
-        switch(num) {
+        switch (num) {
             case 0:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(false);
                 aStartBox1.setEnabled(false);
                 aEndBox1.setEnabled(false);
-                
+
                 aDayBox2.setEnabled(false);
                 aStartBox2.setEnabled(false);
                 aEndBox2.setEnabled(false);
-                
+
                 aDayBox3.setEnabled(false);
                 aStartBox3.setEnabled(false);
                 aEndBox3.setEnabled(false);
-                
+
                 aDayBox4.setEnabled(false);
                 aStartBox4.setEnabled(false);
                 aEndBox4.setEnabled(false);
-                
+
                 aDayBox5.setEnabled(false);
                 aStartBox5.setEnabled(false);
                 aEndBox5.setEnabled(false);
-                
+
                 aDayBox6.setEnabled(false);
                 aStartBox6.setEnabled(false);
                 aEndBox6.setEnabled(false);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox1.setSelectedIndex(0);
                 aStartBox1.setSelectedIndex(0);
                 aEndBox1.setSelectedIndex(0);
-                
+
                 aDayBox2.setSelectedIndex(0);
                 aStartBox2.setSelectedIndex(0);
                 aEndBox2.setSelectedIndex(0);
-                
+
                 aDayBox3.setSelectedIndex(0);
                 aStartBox3.setSelectedIndex(0);
                 aEndBox3.setSelectedIndex(0);
-                
+
                 aDayBox4.setSelectedIndex(0);
                 aStartBox4.setSelectedIndex(0);
                 aEndBox4.setSelectedIndex(0);
-                
+
                 aDayBox5.setSelectedIndex(0);
                 aStartBox5.setSelectedIndex(0);
                 aEndBox5.setSelectedIndex(0);
-                
+
                 aDayBox6.setSelectedIndex(0);
                 aStartBox6.setSelectedIndex(0);
                 aEndBox6.setSelectedIndex(0);
-                
+
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(false);
                 aStartBox2.setEnabled(false);
                 aEndBox2.setEnabled(false);
-                
+
                 aDayBox3.setEnabled(false);
                 aStartBox3.setEnabled(false);
                 aEndBox3.setEnabled(false);
-                
+
                 aDayBox4.setEnabled(false);
                 aStartBox4.setEnabled(false);
                 aEndBox4.setEnabled(false);
-                
+
                 aDayBox5.setEnabled(false);
                 aStartBox5.setEnabled(false);
                 aEndBox5.setEnabled(false);
-                
+
                 aDayBox6.setEnabled(false);
                 aStartBox6.setEnabled(false);
                 aEndBox6.setEnabled(false);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox2.setSelectedIndex(0);
                 aStartBox2.setSelectedIndex(0);
                 aEndBox2.setSelectedIndex(0);
-                
+
                 aDayBox3.setSelectedIndex(0);
                 aStartBox3.setSelectedIndex(0);
                 aEndBox3.setSelectedIndex(0);
-                
+
                 aDayBox4.setSelectedIndex(0);
                 aStartBox4.setSelectedIndex(0);
                 aEndBox4.setSelectedIndex(0);
-                
+
                 aDayBox5.setSelectedIndex(0);
                 aStartBox5.setSelectedIndex(0);
                 aEndBox5.setSelectedIndex(0);
-                
+
                 aDayBox6.setSelectedIndex(0);
                 aStartBox6.setSelectedIndex(0);
                 aEndBox6.setSelectedIndex(0);
-                
+
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(true);
                 aStartBox2.setEnabled(true);
                 aEndBox2.setEnabled(true);
-                
+
                 aDayBox3.setEnabled(false);
                 aStartBox3.setEnabled(false);
                 aEndBox3.setEnabled(false);
-                
+
                 aDayBox4.setEnabled(false);
                 aStartBox4.setEnabled(false);
                 aEndBox4.setEnabled(false);
-                
+
                 aDayBox5.setEnabled(false);
                 aStartBox5.setEnabled(false);
                 aEndBox5.setEnabled(false);
-                
+
                 aDayBox6.setEnabled(false);
                 aStartBox6.setEnabled(false);
                 aEndBox6.setEnabled(false);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox3.setSelectedIndex(0);
                 aStartBox3.setSelectedIndex(0);
                 aEndBox3.setSelectedIndex(0);
-                
+
                 aDayBox4.setSelectedIndex(0);
                 aStartBox4.setSelectedIndex(0);
                 aEndBox4.setSelectedIndex(0);
-                
+
                 aDayBox5.setSelectedIndex(0);
                 aStartBox5.setSelectedIndex(0);
                 aEndBox5.setSelectedIndex(0);
-                
+
                 aDayBox6.setSelectedIndex(0);
                 aStartBox6.setSelectedIndex(0);
                 aEndBox6.setSelectedIndex(0);
-                
+
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(true);
                 aStartBox2.setEnabled(true);
                 aEndBox2.setEnabled(true);
-                
+
                 aDayBox3.setEnabled(true);
                 aStartBox3.setEnabled(true);
                 aEndBox3.setEnabled(true);
-                
+
                 aDayBox4.setEnabled(false);
                 aStartBox4.setEnabled(false);
                 aEndBox4.setEnabled(false);
-                
+
                 aDayBox5.setEnabled(false);
                 aStartBox5.setEnabled(false);
                 aEndBox5.setEnabled(false);
-                
+
                 aDayBox6.setEnabled(false);
                 aStartBox6.setEnabled(false);
                 aEndBox6.setEnabled(false);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox4.setSelectedIndex(0);
                 aStartBox4.setSelectedIndex(0);
                 aEndBox4.setSelectedIndex(0);
-                
+
                 aDayBox5.setSelectedIndex(0);
                 aStartBox5.setSelectedIndex(0);
                 aEndBox5.setSelectedIndex(0);
-                
+
                 aDayBox6.setSelectedIndex(0);
                 aStartBox6.setSelectedIndex(0);
                 aEndBox6.setSelectedIndex(0);
-                
+
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 4:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(true);
                 aStartBox2.setEnabled(true);
                 aEndBox2.setEnabled(true);
-                
+
                 aDayBox3.setEnabled(true);
                 aStartBox3.setEnabled(true);
                 aEndBox3.setEnabled(true);
-                
+
                 aDayBox4.setEnabled(true);
                 aStartBox4.setEnabled(true);
                 aEndBox4.setEnabled(true);
-                
+
                 aDayBox5.setEnabled(false);
                 aStartBox5.setEnabled(false);
                 aEndBox5.setEnabled(false);
-                
+
                 aDayBox6.setEnabled(false);
                 aStartBox6.setEnabled(false);
                 aEndBox6.setEnabled(false);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox5.setSelectedIndex(0);
                 aStartBox5.setSelectedIndex(0);
                 aEndBox5.setSelectedIndex(0);
-                
+
                 aDayBox6.setSelectedIndex(0);
                 aStartBox6.setSelectedIndex(0);
                 aEndBox6.setSelectedIndex(0);
-                
+
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 5:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(true);
                 aStartBox2.setEnabled(true);
                 aEndBox2.setEnabled(true);
-                
+
                 aDayBox3.setEnabled(true);
                 aStartBox3.setEnabled(true);
                 aEndBox3.setEnabled(true);
-                
+
                 aDayBox4.setEnabled(true);
                 aStartBox4.setEnabled(true);
                 aEndBox4.setEnabled(true);
-                
+
                 aDayBox5.setEnabled(true);
                 aStartBox5.setEnabled(true);
                 aEndBox5.setEnabled(true);
-                
+
                 aDayBox6.setEnabled(false);
                 aStartBox6.setEnabled(false);
                 aEndBox6.setEnabled(false);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox6.setSelectedIndex(0);
                 aStartBox6.setSelectedIndex(0);
                 aEndBox6.setSelectedIndex(0);
-                
+
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 6:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(true);
                 aStartBox2.setEnabled(true);
                 aEndBox2.setEnabled(true);
-                
+
                 aDayBox3.setEnabled(true);
                 aStartBox3.setEnabled(true);
                 aEndBox3.setEnabled(true);
-                
+
                 aDayBox4.setEnabled(true);
                 aStartBox4.setEnabled(true);
                 aEndBox4.setEnabled(true);
-                
+
                 aDayBox5.setEnabled(true);
                 aStartBox5.setEnabled(true);
                 aEndBox5.setEnabled(true);
-                
+
                 aDayBox6.setEnabled(true);
                 aStartBox6.setEnabled(true);
                 aEndBox6.setEnabled(true);
-                
+
                 aDayBox7.setEnabled(false);
                 aStartBox7.setEnabled(false);
                 aEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 aDayBox7.setSelectedIndex(0);
                 aStartBox7.setSelectedIndex(0);
                 aEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 7:
-                
+
                 // set the appropriate number of combo boxes
-                
                 aDayBox1.setEnabled(true);
                 aStartBox1.setEnabled(true);
                 aEndBox1.setEnabled(true);
-                
+
                 aDayBox2.setEnabled(true);
                 aStartBox2.setEnabled(true);
                 aEndBox2.setEnabled(true);
-                
+
                 aDayBox3.setEnabled(true);
                 aStartBox3.setEnabled(true);
                 aEndBox3.setEnabled(true);
-                
+
                 aDayBox4.setEnabled(true);
                 aStartBox4.setEnabled(true);
                 aEndBox4.setEnabled(true);
-                
+
                 aDayBox5.setEnabled(true);
                 aStartBox5.setEnabled(true);
                 aEndBox5.setEnabled(true);
-                
+
                 aDayBox6.setEnabled(true);
                 aStartBox6.setEnabled(true);
                 aEndBox6.setEnabled(true);
-                
+
                 aDayBox7.setEnabled(true);
                 aStartBox7.setEnabled(true);
                 aEndBox7.setEnabled(true);
-                
+
                 // no resetting the boxes here
-                
                 break;
         }
     }
-    
+
     /**
      * sUpdateShowNumber()
-     * 
+     *
      * Stupid crazy long function to enable the correct number of combo boxes
      * when selecting the days and times
-     * For real, this is too long.  There has to be an easier way to do this
-     * THIS WHOLE METHOD IS 403 LINES LONG.  THAT'S WITH EMPTY LINES BUT
-     * STILL HOLY MOLY BATMAN.
-     * 
-     * @param num 
+     * For real, this is too long. There has to be an easier way to do this
+     * THIS WHOLE METHOD IS 403 LINES LONG. THAT'S WITH EMPTY LINES BUT
+     * STILL HOLY COMBO BOXES BATMAN.
+     *
+     * @param num
      */
     public void sUpdateShowNumber(int num) {
-        switch(num) {
+        switch (num) {
             case 0:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(false);
                 sStartBox1.setEnabled(false);
                 sEndBox1.setEnabled(false);
-                
+
                 sDayBox2.setEnabled(false);
                 sStartBox2.setEnabled(false);
                 sEndBox2.setEnabled(false);
-                
+
                 sDayBox3.setEnabled(false);
                 sStartBox3.setEnabled(false);
                 sEndBox3.setEnabled(false);
-                
+
                 sDayBox4.setEnabled(false);
                 sStartBox4.setEnabled(false);
                 sEndBox4.setEnabled(false);
-                
+
                 sDayBox5.setEnabled(false);
                 sStartBox5.setEnabled(false);
                 sEndBox5.setEnabled(false);
-                
+
                 sDayBox6.setEnabled(false);
                 sStartBox6.setEnabled(false);
                 sEndBox6.setEnabled(false);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox1.setSelectedIndex(0);
                 sStartBox1.setSelectedIndex(0);
                 sEndBox1.setSelectedIndex(0);
-                
+
                 sDayBox2.setSelectedIndex(0);
                 sStartBox2.setSelectedIndex(0);
                 sEndBox2.setSelectedIndex(0);
-                
+
                 sDayBox3.setSelectedIndex(0);
                 sStartBox3.setSelectedIndex(0);
                 sEndBox3.setSelectedIndex(0);
-                
+
                 sDayBox4.setSelectedIndex(0);
                 sStartBox4.setSelectedIndex(0);
                 sEndBox4.setSelectedIndex(0);
-                
+
                 sDayBox5.setSelectedIndex(0);
                 sStartBox5.setSelectedIndex(0);
                 sEndBox5.setSelectedIndex(0);
-                
+
                 sDayBox6.setSelectedIndex(0);
                 sStartBox6.setSelectedIndex(0);
                 sEndBox6.setSelectedIndex(0);
-                
+
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 1:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(false);
                 sStartBox2.setEnabled(false);
                 sEndBox2.setEnabled(false);
-                
+
                 sDayBox3.setEnabled(false);
                 sStartBox3.setEnabled(false);
                 sEndBox3.setEnabled(false);
-                
+
                 sDayBox4.setEnabled(false);
                 sStartBox4.setEnabled(false);
                 sEndBox4.setEnabled(false);
-                
+
                 sDayBox5.setEnabled(false);
                 sStartBox5.setEnabled(false);
                 sEndBox5.setEnabled(false);
-                
+
                 sDayBox6.setEnabled(false);
                 sStartBox6.setEnabled(false);
                 sEndBox6.setEnabled(false);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox2.setSelectedIndex(0);
                 sStartBox2.setSelectedIndex(0);
                 sEndBox2.setSelectedIndex(0);
-                
+
                 sDayBox3.setSelectedIndex(0);
                 sStartBox3.setSelectedIndex(0);
                 sEndBox3.setSelectedIndex(0);
-                
+
                 sDayBox4.setSelectedIndex(0);
                 sStartBox4.setSelectedIndex(0);
                 sEndBox4.setSelectedIndex(0);
-                
+
                 sDayBox5.setSelectedIndex(0);
                 sStartBox5.setSelectedIndex(0);
                 sEndBox5.setSelectedIndex(0);
-                
+
                 sDayBox6.setSelectedIndex(0);
                 sStartBox6.setSelectedIndex(0);
                 sEndBox6.setSelectedIndex(0);
-                
+
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 2:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(true);
                 sStartBox2.setEnabled(true);
                 sEndBox2.setEnabled(true);
-                
+
                 sDayBox3.setEnabled(false);
                 sStartBox3.setEnabled(false);
                 sEndBox3.setEnabled(false);
-                
+
                 sDayBox4.setEnabled(false);
                 sStartBox4.setEnabled(false);
                 sEndBox4.setEnabled(false);
-                
+
                 sDayBox5.setEnabled(false);
                 sStartBox5.setEnabled(false);
                 sEndBox5.setEnabled(false);
-                
+
                 sDayBox6.setEnabled(false);
                 sStartBox6.setEnabled(false);
                 sEndBox6.setEnabled(false);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox3.setSelectedIndex(0);
                 sStartBox3.setSelectedIndex(0);
                 sEndBox3.setSelectedIndex(0);
-                
+
                 sDayBox4.setSelectedIndex(0);
                 sStartBox4.setSelectedIndex(0);
                 sEndBox4.setSelectedIndex(0);
-                
+
                 sDayBox5.setSelectedIndex(0);
                 sStartBox5.setSelectedIndex(0);
                 sEndBox5.setSelectedIndex(0);
-                
+
                 sDayBox6.setSelectedIndex(0);
                 sStartBox6.setSelectedIndex(0);
                 sEndBox6.setSelectedIndex(0);
-                
+
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 3:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(true);
                 sStartBox2.setEnabled(true);
                 sEndBox2.setEnabled(true);
-                
+
                 sDayBox3.setEnabled(true);
                 sStartBox3.setEnabled(true);
                 sEndBox3.setEnabled(true);
-                
+
                 sDayBox4.setEnabled(false);
                 sStartBox4.setEnabled(false);
                 sEndBox4.setEnabled(false);
-                
+
                 sDayBox5.setEnabled(false);
                 sStartBox5.setEnabled(false);
                 sEndBox5.setEnabled(false);
-                
+
                 sDayBox6.setEnabled(false);
                 sStartBox6.setEnabled(false);
                 sEndBox6.setEnabled(false);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox4.setSelectedIndex(0);
                 sStartBox4.setSelectedIndex(0);
                 sEndBox4.setSelectedIndex(0);
-                
+
                 sDayBox5.setSelectedIndex(0);
                 sStartBox5.setSelectedIndex(0);
                 sEndBox5.setSelectedIndex(0);
-                
+
                 sDayBox6.setSelectedIndex(0);
                 sStartBox6.setSelectedIndex(0);
                 sEndBox6.setSelectedIndex(0);
-                
+
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 4:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(true);
                 sStartBox2.setEnabled(true);
                 sEndBox2.setEnabled(true);
-                
+
                 sDayBox3.setEnabled(true);
                 sStartBox3.setEnabled(true);
                 sEndBox3.setEnabled(true);
-                
+
                 sDayBox4.setEnabled(true);
                 sStartBox4.setEnabled(true);
                 sEndBox4.setEnabled(true);
-                
+
                 sDayBox5.setEnabled(false);
                 sStartBox5.setEnabled(false);
                 sEndBox5.setEnabled(false);
-                
+
                 sDayBox6.setEnabled(false);
                 sStartBox6.setEnabled(false);
                 sEndBox6.setEnabled(false);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox5.setSelectedIndex(0);
                 sStartBox5.setSelectedIndex(0);
                 sEndBox5.setSelectedIndex(0);
-                
+
                 sDayBox6.setSelectedIndex(0);
                 sStartBox6.setSelectedIndex(0);
                 sEndBox6.setSelectedIndex(0);
-                
+
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 5:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(true);
                 sStartBox2.setEnabled(true);
                 sEndBox2.setEnabled(true);
-                
+
                 sDayBox3.setEnabled(true);
                 sStartBox3.setEnabled(true);
                 sEndBox3.setEnabled(true);
-                
+
                 sDayBox4.setEnabled(true);
                 sStartBox4.setEnabled(true);
                 sEndBox4.setEnabled(true);
-                
+
                 sDayBox5.setEnabled(true);
                 sStartBox5.setEnabled(true);
                 sEndBox5.setEnabled(true);
-                
+
                 sDayBox6.setEnabled(false);
                 sStartBox6.setEnabled(false);
                 sEndBox6.setEnabled(false);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox6.setSelectedIndex(0);
                 sStartBox6.setSelectedIndex(0);
                 sEndBox6.setSelectedIndex(0);
-                
+
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 6:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(true);
                 sStartBox2.setEnabled(true);
                 sEndBox2.setEnabled(true);
-                
+
                 sDayBox3.setEnabled(true);
                 sStartBox3.setEnabled(true);
                 sEndBox3.setEnabled(true);
-                
+
                 sDayBox4.setEnabled(true);
                 sStartBox4.setEnabled(true);
                 sEndBox4.setEnabled(true);
-                
+
                 sDayBox5.setEnabled(true);
                 sStartBox5.setEnabled(true);
                 sEndBox5.setEnabled(true);
-                
+
                 sDayBox6.setEnabled(true);
                 sStartBox6.setEnabled(true);
                 sEndBox6.setEnabled(true);
-                
+
                 sDayBox7.setEnabled(false);
                 sStartBox7.setEnabled(false);
                 sEndBox7.setEnabled(false);
-                
+
                 // reset the disabled comboBoxes
-                
                 sDayBox7.setSelectedIndex(0);
                 sStartBox7.setSelectedIndex(0);
                 sEndBox7.setSelectedIndex(0);
-                
+
                 break;
-                
+
             case 7:
-                
+
                 // set the appropriate number of combo boxes
-                
                 sDayBox1.setEnabled(true);
                 sStartBox1.setEnabled(true);
                 sEndBox1.setEnabled(true);
-                
+
                 sDayBox2.setEnabled(true);
                 sStartBox2.setEnabled(true);
                 sEndBox2.setEnabled(true);
-                
+
                 sDayBox3.setEnabled(true);
                 sStartBox3.setEnabled(true);
                 sEndBox3.setEnabled(true);
-                
+
                 sDayBox4.setEnabled(true);
                 sStartBox4.setEnabled(true);
                 sEndBox4.setEnabled(true);
-                
+
                 sDayBox5.setEnabled(true);
                 sStartBox5.setEnabled(true);
                 sEndBox5.setEnabled(true);
-                
+
                 sDayBox6.setEnabled(true);
                 sStartBox6.setEnabled(true);
                 sEndBox6.setEnabled(true);
-                
+
                 sDayBox7.setEnabled(true);
                 sStartBox7.setEnabled(true);
                 sEndBox7.setEnabled(true);
-                
+
                 // no resetting the boxes here
-                
                 break;
         }
+    }
+
+    public void aUpdateHostNumber(int num) {
+        switch (num) {
+            case 0:
+                aHost1.setEnabled(false);
+                aHost2.setEnabled(false);
+                aHost3.setEnabled(false);
+                aHost4.setEnabled(false);
+                aHost1.setSelectedIndex(0);
+                aHost2.setSelectedIndex(0);
+                aHost3.setSelectedIndex(0);
+                aHost4.setSelectedIndex(0);
+                break;
+            case 1:
+                aHost1.setEnabled(true);
+                aHost2.setEnabled(false);
+                aHost3.setEnabled(false);
+                aHost4.setEnabled(false);
+                //aHost1.setSelectedIndex(0);
+                aHost2.setSelectedIndex(0);
+                aHost3.setSelectedIndex(0);
+                aHost4.setSelectedIndex(0);
+                break;
+            case 2:
+                aHost1.setEnabled(true);
+                aHost2.setEnabled(true);
+                aHost3.setEnabled(false);
+                aHost4.setEnabled(false);
+                //aHost1.setSelectedIndex(0);
+                //aHost2.setSelectedIndex(0);
+                aHost3.setSelectedIndex(0);
+                aHost4.setSelectedIndex(0);
+                break;
+            case 3:
+                aHost1.setEnabled(true);
+                aHost2.setEnabled(true);
+                aHost3.setEnabled(true);
+                aHost4.setEnabled(false);
+                //aHost1.setSelectedIndex(0);
+                //aHost2.setSelectedIndex(0);
+                //aHost3.setSelectedIndex(0);
+                aHost4.setSelectedIndex(0);
+                break;
+            case 4:
+                aHost1.setEnabled(true);
+                aHost2.setEnabled(true);
+                aHost3.setEnabled(true);
+                aHost4.setEnabled(true);
+                //aHost1.setSelectedIndex(0);
+                //aHost2.setSelectedIndex(0);
+                //aHost3.setSelectedIndex(0);
+                //aHost4.setSelectedIndex(0);
+                break;
+        }
+    }
+
+    public void sUpdateHostNumber(int num) {
+        switch (num) {
+            case 0:
+                sHost1.setEnabled(false);
+                sHost2.setEnabled(false);
+                sHost3.setEnabled(false);
+                sHost4.setEnabled(false);
+                sHost1.setSelectedIndex(0);
+                sHost2.setSelectedIndex(0);
+                sHost3.setSelectedIndex(0);
+                sHost4.setSelectedIndex(0);
+                break;
+            case 1:
+                sHost1.setEnabled(true);
+                sHost2.setEnabled(false);
+                sHost3.setEnabled(false);
+                sHost4.setEnabled(false);
+                //sHost1.setSelectedIndex(0);
+                sHost2.setSelectedIndex(0);
+                sHost3.setSelectedIndex(0);
+                sHost4.setSelectedIndex(0);
+                break;
+            case 2:
+                sHost1.setEnabled(true);
+                sHost2.setEnabled(true);
+                sHost3.setEnabled(false);
+                sHost4.setEnabled(false);
+                //sHost1.setSelectedIndex(0);
+                //sHost2.setSelectedIndex(0);
+                sHost3.setSelectedIndex(0);
+                sHost4.setSelectedIndex(0);
+                break;
+            case 3:
+                sHost1.setEnabled(true);
+                sHost2.setEnabled(true);
+                sHost3.setEnabled(true);
+                sHost4.setEnabled(false);
+                //sHost1.setSelectedIndex(0);
+                //sHost2.setSelectedIndex(0);
+                //sHost3.setSelectedIndex(0);
+                sHost4.setSelectedIndex(0);
+                break;
+            case 4:
+                sHost1.setEnabled(true);
+                sHost2.setEnabled(true);
+                sHost3.setEnabled(true);
+                sHost4.setEnabled(true);
+                //sHost1.setSelectedIndex(0);
+                //sHost2.setSelectedIndex(0);
+                //sHost3.setSelectedIndex(0);
+                //sHost4.setSelectedIndex(0);
+                break;
+        }
+    }
+
+    public void setSearchFieldsEditable(boolean b) {
+        sNameField.setEnabled(b);
+        sDescField.setEnabled(b);
+        sShowNumSpinner.setEnabled(b);
+        sHostNumSpinner.setEnabled(b);
+        sUpdateShowNumber(0);
+        sUpdateHostNumber(0);
     }
     
     /**
@@ -1960,19 +2148,19 @@ public class ShowInfoGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowInfoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowInfoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowInfoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowInfoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ShowInfoGUI().setVisible(true);
+            new ShowGUI().setVisible(true);
         });
     }
 
@@ -1984,6 +2172,7 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> aDayBox5;
     private javax.swing.JComboBox<String> aDayBox6;
     private javax.swing.JComboBox<String> aDayBox7;
+    private javax.swing.JPanel aDayTimePanel;
     private javax.swing.JComboBox<String> aEndBox1;
     private javax.swing.JComboBox<String> aEndBox2;
     private javax.swing.JComboBox<String> aEndBox3;
@@ -1991,7 +2180,14 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> aEndBox5;
     private javax.swing.JComboBox<String> aEndBox6;
     private javax.swing.JComboBox<String> aEndBox7;
+    private javax.swing.JComboBox<String> aHost1;
+    private javax.swing.JComboBox<String> aHost2;
+    private javax.swing.JComboBox<String> aHost3;
+    private javax.swing.JComboBox<String> aHost4;
+    private javax.swing.JSpinner aHostNumSpinner;
+    private javax.swing.JPanel aHostPanel;
     private javax.swing.JTextField aNameField;
+    private javax.swing.JScrollPane aSP;
     private javax.swing.JSpinner aShowNumSpinner;
     private javax.swing.JComboBox<String> aStartBox1;
     private javax.swing.JComboBox<String> aStartBox2;
@@ -2000,6 +2196,7 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> aStartBox5;
     private javax.swing.JComboBox<String> aStartBox6;
     private javax.swing.JComboBox<String> aStartBox7;
+    private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
     private javax.swing.JLabel adminLabel;
     private javax.swing.JLabel al1;
@@ -2008,32 +2205,15 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private javax.swing.JLabel al4;
     private javax.swing.JLabel al5;
     private javax.swing.JLabel al6;
+    private javax.swing.JLabel al7;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editButton;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
-    private javax.swing.JComboBox<String> host1;
-    private javax.swing.JComboBox<String> host2;
-    private javax.swing.JComboBox<String> host3;
-    private javax.swing.JComboBox<String> host4;
-    private javax.swing.JComboBox<String> host5;
-    private javax.swing.JComboBox<String> host6;
-    private javax.swing.JComboBox<String> host7;
-    private javax.swing.JComboBox<String> host8;
-    private javax.swing.JSpinner hostNumber;
-    private javax.swing.JSpinner hostNumber1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
@@ -2054,6 +2234,12 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> sEndBox5;
     private javax.swing.JComboBox<String> sEndBox6;
     private javax.swing.JComboBox<String> sEndBox7;
+    private javax.swing.JComboBox<String> sHost1;
+    private javax.swing.JComboBox<String> sHost2;
+    private javax.swing.JComboBox<String> sHost3;
+    private javax.swing.JComboBox<String> sHost4;
+    private javax.swing.JSpinner sHostNumSpinner;
+    private javax.swing.JPanel sHostPanel;
     private javax.swing.JTextField sNameField;
     private javax.swing.JScrollPane sSP;
     private javax.swing.JSpinner sShowNumSpinner;
@@ -2073,6 +2259,8 @@ public class ShowInfoGUI extends javax.swing.JFrame {
     private javax.swing.JLabel sl4;
     private javax.swing.JLabel sl5;
     private javax.swing.JLabel sl6;
+    private javax.swing.JLabel sl7;
+    private javax.swing.JButton submitButton;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables

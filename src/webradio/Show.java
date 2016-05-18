@@ -1,6 +1,6 @@
 package webradio;
 
-public class ShowInfo {
+public class Show {
 
     public enum Day {
         MON, TUE, WED, THU, FRI, SAT, SUN
@@ -32,12 +32,16 @@ public class ShowInfo {
      * @param days
      * @param times 
      */
-    public ShowInfo(String showName, String showDesc, Profile[] hosts, Day[] days, Time[] times) {
+    public Show(String showName, String showDesc, Profile[] hosts, Day[] days, Time[] times) {
         this.showName = showName;
         this.showDesc = showDesc;
         this.hosts = hosts;
         this.days = days;
         this.times = times;
+    }
+    
+    public Show(String blank) {
+        this.showName = blank;
     }
     
     /**
@@ -121,11 +125,15 @@ public class ShowInfo {
     
     @Override
     public String toString() {
+        if(!this.showName.equals("--")) {
         return showName + "///" + 
                 showDesc + "///" + 
                 convertArrToString(hosts)  + "///" +  
                 convertArrToString(days)  + "///" +
                 convertArrToString(times);
+        } else {
+            return "--";
+        }
     }
     
     

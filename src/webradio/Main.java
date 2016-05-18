@@ -36,7 +36,7 @@ public class Main {
     static boolean financeGUIVisible = false;
 
     // linkGUI
-    static ShowInfoGUI showsGUI;
+    static ShowGUI showsGUI;
     static boolean showsGUIVisible = false;
 
     // reportsGUI
@@ -182,12 +182,12 @@ public class Main {
     }
 
     /**
-     * ShowInfoGUI
-     * Controls the showsGUI opening and closing
+     * ShowGUI
+ Controls the showsGUI opening and closing
      */
     public static void LaunchShowsGUI() {
         if (!showsGUIVisible) {
-            showsGUI = new ShowInfoGUI();
+            showsGUI = new ShowGUI();
             showsGUI.setLocationRelativeTo(null);
             showsGUI.setVisible(true);
             showsGUIVisible = true;
