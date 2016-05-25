@@ -167,7 +167,7 @@ public class ShowGUI extends javax.swing.JFrame {
         al2 = new javax.swing.JLabel();
         aNameField = new javax.swing.JTextField();
         aSP = new javax.swing.JScrollPane();
-        showDesc = new javax.swing.JTextArea();
+        aDescField = new javax.swing.JTextArea();
         aDayTimePanel = new javax.swing.JPanel();
         al3 = new javax.swing.JLabel();
         al4 = new javax.swing.JLabel();
@@ -220,11 +220,6 @@ public class ShowGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Shows");
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
         sl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl1.setText("Show Name:");
@@ -567,9 +562,9 @@ public class ShowGUI extends javax.swing.JFrame {
         al2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         al2.setText("Description:");
 
-        showDesc.setColumns(20);
-        showDesc.setRows(5);
-        aSP.setViewportView(showDesc);
+        aDescField.setColumns(20);
+        aDescField.setRows(5);
+        aSP.setViewportView(aDescField);
 
         aDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -1028,7 +1023,7 @@ public class ShowGUI extends javax.swing.JFrame {
             deleteButton.setEnabled(true);
 
             setSearchFieldsEditable(false);
-            //search(shows.elementAt(list.getSelectedIndex()).username);
+            search(shows.elementAt(list.getSelectedIndex()).name);
             tabs.setSelectedIndex(0);
         } else {
             // do nothing
@@ -1119,10 +1114,6 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sShowNumSpinnerStateChanged
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //getComboBoxModel();
-    }//GEN-LAST:event_formWindowOpened
-
     private void aHostNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aHostNumSpinnerStateChanged
         switch (Integer.parseInt(aHostNumSpinner.getValue().toString())) {
             case 0:
@@ -1144,21 +1135,23 @@ public class ShowGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aHostNumSpinnerStateChanged
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        //if(aCheck()) {
-        //    add();
-        //}
+        if(aCheck()) {
+            add();
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+        delete();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
+        edit();
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
+        if(sCheck()) {
+            submit();
+        }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
@@ -1214,6 +1207,37 @@ public class ShowGUI extends javax.swing.JFrame {
         return cbElements;
     }
 
+    public void search(String name) {
+        
+    }
+    
+    public void add() {
+        String showName = aNameField.getText();
+        String showDesc = aDescField.getText();
+        
+        
+    }
+    
+    public void delete() {
+        
+    }
+    
+    public void edit() {
+        
+    }
+    
+    public void submit() {
+        
+    }
+    
+    public boolean sCheck() {
+        
+    }
+    
+    public boolean aCheck() {
+        
+    }
+    
     /**
      * aUpdateShowNumber()
      *
@@ -2173,6 +2197,7 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> aDayBox6;
     private javax.swing.JComboBox<String> aDayBox7;
     private javax.swing.JPanel aDayTimePanel;
+    private javax.swing.JTextArea aDescField;
     private javax.swing.JComboBox<String> aEndBox1;
     private javax.swing.JComboBox<String> aEndBox2;
     private javax.swing.JComboBox<String> aEndBox3;
@@ -2252,7 +2277,6 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> sStartBox7;
     private javax.swing.JScrollPane scrollpane;
     private javax.swing.JPanel searchPanel;
-    private javax.swing.JTextArea showDesc;
     private javax.swing.JLabel sl1;
     private javax.swing.JLabel sl2;
     private javax.swing.JLabel sl3;
