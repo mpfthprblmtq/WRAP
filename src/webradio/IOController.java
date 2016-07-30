@@ -719,6 +719,10 @@ public class IOController {
                     Day[] daysArr = convertDayArray(strDaysArr);
                     Time[] timeArr = convertTimeArray(strTimeArr);
                     
+                    for (int i = 0; i < hostArr.length; i++) {
+                        System.out.println(hostArr[i].getId());
+                    }
+                    
                     return new Show(showName, showDesc, hostArr, daysArr, timeArr);
                 }
             }

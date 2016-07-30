@@ -185,7 +185,7 @@ public class Main {
      * ShowGUI
  Controls the showsGUI opening and closing
      */
-    public static void LaunchShowsGUI() {
+    public static void LaunchShowGUI() {
         if (!showsGUIVisible) {
             showsGUI = new ShowGUI();
             showsGUI.setLocationRelativeTo(null);
@@ -194,7 +194,7 @@ public class Main {
         }
     }
 
-    public static void CloseLinkGUI() {
+    public static void CloseShowGUI() {
         showsGUI.dispose();
         showsGUIVisible = false;
     }

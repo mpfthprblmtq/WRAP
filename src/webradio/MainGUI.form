@@ -119,7 +119,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="taskButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="linkButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="showButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="financeButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -162,7 +162,7 @@
                   <Component id="profileButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="accountButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="taskButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="linkButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="showButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="financeButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="reportButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -187,15 +187,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profileButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="linkButton">
+    <Component class="javax.swing.JButton" name="showButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Shows"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="linkButtonMouseEntered"/>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="linkButtonMouseExited"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="linkButtonActionPerformed"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="showButtonMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="showButtonMouseExited"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="reportButton">

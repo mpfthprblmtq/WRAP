@@ -35,7 +35,7 @@ public class MainGUI extends javax.swing.JFrame {
                                 taskButton.doClick();
                                 break;
                             case KeyEvent.VK_F4:
-                                linkButton.doClick();
+                                showButton.doClick();
                                 break;
                             case KeyEvent.VK_F5:
                                 financeButton.doClick();
@@ -61,7 +61,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         profileButton = new javax.swing.JButton();
-        linkButton = new javax.swing.JButton();
+        showButton = new javax.swing.JButton();
         reportButton = new javax.swing.JButton();
         financeButton = new javax.swing.JButton();
         welcomeLabel = new javax.swing.JLabel();
@@ -114,19 +114,19 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        linkButton.setText("Shows");
-        linkButton.setFocusable(false);
-        linkButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        showButton.setText("Shows");
+        showButton.setFocusable(false);
+        showButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                linkButtonMouseEntered(evt);
+                showButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                linkButtonMouseExited(evt);
+                showButtonMouseExited(evt);
             }
         });
-        linkButton.addActionListener(new java.awt.event.ActionListener() {
+        showButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                linkButtonActionPerformed(evt);
+                showButtonActionPerformed(evt);
             }
         });
 
@@ -299,7 +299,7 @@ public class MainGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(taskButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(linkButton)
+                        .addComponent(showButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(financeButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -334,7 +334,7 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(profileButton)
                     .addComponent(accountButton)
                     .addComponent(taskButton)
-                    .addComponent(linkButton)
+                    .addComponent(showButton)
                     .addComponent(financeButton)
                     .addComponent(reportButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -361,10 +361,10 @@ public class MainGUI extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void linkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_linkButtonActionPerformed
-        Main.LaunchShowsGUI();
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
+        Main.LaunchShowGUI();
         
-    }//GEN-LAST:event_linkButtonActionPerformed
+    }//GEN-LAST:event_showButtonActionPerformed
 
     /**
      * Handles when Finance button is pressed
@@ -486,23 +486,23 @@ public class MainGUI extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void linkButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseEntered
+    private void showButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showButtonMouseEntered
         textHeader.setText("Links");
         text.setText("Some links to important things"
                 + "\nNOTE: May be replaced with alternate function in a future release");
         f1.setText("Shortcut key: F4");
-    }//GEN-LAST:event_linkButtonMouseEntered
+    }//GEN-LAST:event_showButtonMouseEntered
 
     /**
      * Handles when cursor leaves button frame
      *
      * @param evt
      */
-    private void linkButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_linkButtonMouseExited
+    private void showButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showButtonMouseExited
         textHeader.setText("");
         text.setText("Welcome to WRAP!");
         f1.setText("");
-    }//GEN-LAST:event_linkButtonMouseExited
+    }//GEN-LAST:event_showButtonMouseExited
 
     /**
      * Handles when cursor goes into the button frame
@@ -674,7 +674,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenu help;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JButton linkButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel logo;
     private javax.swing.JMenuItem logoutItem;
@@ -682,6 +681,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton profileButton;
     private javax.swing.JButton reportButton;
     private javax.swing.JScrollPane scrollpane;
+    private javax.swing.JButton showButton;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JButton taskButton;
     private javax.swing.JTextArea text;

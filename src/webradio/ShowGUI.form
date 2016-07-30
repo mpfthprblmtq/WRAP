@@ -77,6 +77,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -1335,7 +1338,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel sHost1model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;sHost1.setModel(sHost1model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost1.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost1.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="sHost2">
@@ -1348,7 +1351,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel sHost2model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;sHost2.setModel(sHost2model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost2.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost2.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="sHost3">
@@ -1361,7 +1364,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel sHost3model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;sHost3.setModel(sHost3model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost3.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost3.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="sHost4">
@@ -1374,7 +1377,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel sHost4model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;sHost4.setModel(sHost4model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost4.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sHost4.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -2575,7 +2578,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel aHost1model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;aHost1.setModel(aHost1model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost1.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost1.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="aHost2">
@@ -2585,7 +2588,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel aHost2model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;aHost2.setModel(aHost2model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost2.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost2.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="aHost3">
@@ -2595,7 +2598,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel aHost3model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;aHost3.setModel(aHost3model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost3.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost3.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="aHost4">
@@ -2605,7 +2608,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="DefaultComboBoxModel aHost4model = new DefaultComboBoxModel(getProfiles());&#xd;&#xa;aHost4.setModel(aHost4model);"/>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost4.setSelectedIndex(0);"/>
+                    <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aHost4.setSelectedIndex(numProfiles);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

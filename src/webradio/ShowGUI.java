@@ -6,6 +6,7 @@
 package webradio;
 
 import java.awt.Color;
+import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -104,6 +105,8 @@ public class ShowGUI extends javax.swing.JFrame {
     DefaultComboBoxModel<ComboBoxElement> profiles = new DefaultComboBoxModel();
     ListElement[] elements;
     ComboBoxElement[] cbElements;
+    
+    int numProfiles = IOController.getTotalProfiles();
 
     private static final int ADD = 0;
     private static final int REMOVE = 1;
@@ -224,6 +227,11 @@ public class ShowGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Shows");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         sl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl1.setText("Show Name:");
@@ -483,10 +491,10 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        sHost1.setSelectedIndex(0);
-        sHost2.setSelectedIndex(0);
-        sHost3.setSelectedIndex(0);
-        sHost4.setSelectedIndex(0);
+        sHost1.setSelectedIndex(numProfiles);
+        sHost2.setSelectedIndex(numProfiles);
+        sHost3.setSelectedIndex(numProfiles);
+        sHost4.setSelectedIndex(numProfiles);
 
         editButton.setText("Edit");
         editButton.setEnabled(false);
@@ -813,10 +821,10 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        aHost1.setSelectedIndex(0);
-        aHost2.setSelectedIndex(0);
-        aHost3.setSelectedIndex(0);
-        aHost4.setSelectedIndex(0);
+        aHost1.setSelectedIndex(numProfiles);
+        aHost2.setSelectedIndex(numProfiles);
+        aHost3.setSelectedIndex(numProfiles);
+        aHost4.setSelectedIndex(numProfiles);
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -993,7 +1001,7 @@ public class ShowGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
-        Main.CloseAccountGUI();
+        Main.CloseShowGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
@@ -1185,6 +1193,10 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sHostNumSpinnerStateChanged
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        Main.CloseShowGUI();
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * fillList()
      *
@@ -1212,7 +1224,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * getProfiles()
-     * 
+     *
      * Gets all of the profiles from IOController and shoves them into an array
      * Then it populates the DefaultLComboBoxModel of ComboBoxElements from that array
      *
@@ -1221,28 +1233,25 @@ public class ShowGUI extends javax.swing.JFrame {
     public ComboBoxElement[] getProfiles() {
 
         int total = IOController.getTotalProfiles();
-        if (profiles.getSize() < total + 1) {
-            Profile[] pro = IOController.getAllProfiles();
-            cbElements = new ComboBoxElement[total + 1];
+        Profile[] pro = IOController.getAllProfiles();
+        cbElements = new ComboBoxElement[total + 1];
 
-            // empty slot (--)
-            cbElements[0] = new ComboBoxElement();
-
-            if (pro != null && cbElements.length > 0) {
-                for (int i = 0; i < total; i++) {
-                    cbElements[i + 1] = new ComboBoxElement(pro[i].getfName(),
-                            pro[i].getlName(), pro[i].getId());
-                    profiles.addElement(cbElements[i]);
-                }
+        // empty slot (--)
+        //cbElements[0] = new ComboBoxElement();
+        if (pro != null && cbElements.length > 0) {
+            cbElements[total] = new ComboBoxElement();
+            for (int i = 0; i < total; i++) {
+                cbElements[i] = new ComboBoxElement(pro[i].getfName(),
+                        pro[i].getlName(), pro[i].getId());
+                profiles.addElement(cbElements[i]);
             }
-
         }
         return cbElements;
     }
 
     /**
      * updateList()
-     * 
+     *
      * Works with the global list of Profiles, which updates the JList graphics
      *
      * @param action,  the type of action (either add or remove)
@@ -1267,152 +1276,151 @@ public class ShowGUI extends javax.swing.JFrame {
         editButton.setEnabled(true);
         deleteButton.setEnabled(true);
         setSearchFieldsToValid();
-        
+
         // name and description
         sNameField.setText(s.getShowName());
         sDescField.setText(s.getShowDesc());
-        
+
         // show and host spinners
         sShowNumSpinner.setValue(s.getDays().length);
         sHostNumSpinner.setValue(s.getHosts().length);
-        
+
         // show days and times
         sUpdateShowNumber(0);
         // <editor-fold defaultstate="collapsed" desc="Show Days and Times">
-        switch(s.getDays().length) {
+        switch (s.getDays().length) {
             case 1:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 break;
             case 2:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
                 sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
                 sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
-                
+
                 break;
             case 3:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
                 sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
                 sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
-                
+
                 sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
                 sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
                 sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
-                
+
                 break;
             case 4:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
                 sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
                 sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
-                
+
                 sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
                 sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
                 sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
-                
+
                 sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
                 sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
                 sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
-                
+
                 break;
             case 5:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
                 sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
                 sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
-                
+
                 sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
                 sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
                 sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
-                
+
                 sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
                 sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
                 sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
-                
+
                 sDayBox5.setSelectedIndex(getDayIndex(s.getDays()[4]));
                 sStartBox5.setSelectedIndex(getTimeIndex(s.getTimes()[8]));
                 sEndBox5.setSelectedIndex(getTimeIndex(s.getTimes()[9]));
-                
+
                 break;
             case 6:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
                 sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
                 sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
-                
+
                 sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
                 sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
                 sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
-                
+
                 sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
                 sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
                 sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
-                
+
                 sDayBox5.setSelectedIndex(getDayIndex(s.getDays()[4]));
                 sStartBox5.setSelectedIndex(getTimeIndex(s.getTimes()[8]));
                 sEndBox5.setSelectedIndex(getTimeIndex(s.getTimes()[9]));
-                
+
                 sDayBox6.setSelectedIndex(getDayIndex(s.getDays()[5]));
                 sStartBox6.setSelectedIndex(getTimeIndex(s.getTimes()[10]));
                 sEndBox6.setSelectedIndex(getTimeIndex(s.getTimes()[11]));
-                
+
                 break;
             case 7:
                 sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
                 sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
                 sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
-                
+
                 sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
                 sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
                 sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
-                
+
                 sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
                 sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
                 sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
-                
+
                 sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
                 sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
                 sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
-                
+
                 sDayBox5.setSelectedIndex(getDayIndex(s.getDays()[4]));
                 sStartBox5.setSelectedIndex(getTimeIndex(s.getTimes()[8]));
                 sEndBox5.setSelectedIndex(getTimeIndex(s.getTimes()[9]));
-                
+
                 sDayBox6.setSelectedIndex(getDayIndex(s.getDays()[5]));
                 sStartBox6.setSelectedIndex(getTimeIndex(s.getTimes()[10]));
                 sEndBox6.setSelectedIndex(getTimeIndex(s.getTimes()[11]));
-                
+
                 sDayBox7.setSelectedIndex(getDayIndex(s.getDays()[6]));
                 sStartBox7.setSelectedIndex(getTimeIndex(s.getTimes()[12]));
                 sEndBox7.setSelectedIndex(getTimeIndex(s.getTimes()[13]));
-                
+
                 break;
         }
         // </editor-fold>
-        
+
         // hosts
         sUpdateHostNumber(0);
-        // <editor-fold defaultstate="collapsed" desc="Show Days and Times">
-        switch(s.getHosts().length) {
+        switch (s.getHosts().length) {
             case 1:
                 sHost1.setSelectedIndex(getProfileIndex(s.getHosts()[0].getId()));
                 break;
@@ -1434,19 +1442,19 @@ public class ShowGUI extends javax.swing.JFrame {
             default:
                 break;
         }
-        
-        
+
     }
 
     public int getProfileIndex(String id) {
+
         for (int i = 0; i < profiles.getSize(); i++) {
-            if(id.equals(profiles.getElementAt(i).id)) {
+            if (id.equals(profiles.getElementAt(i).id)) {
                 return i;
             }
         }
         return -1;
     }
-    
+
     public void add() {
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
@@ -1640,16 +1648,16 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     public void delete() {
-        
+
         // get the name
         String name = sNameField.getText();
-        
+
         // if deletion succeeds
         if (ShowController.deleteShow(name)) {
-            
+
             // create ListElement
             ListElement element = new ListElement(name);
-            
+
             // update graphics
             updateList(REMOVE, element);
             errLabel.setForeground(Color.blue);
@@ -1664,14 +1672,14 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * edit()
-     * 
+     *
      * Stores the current values of the search panel into the global temp variable
      * Then it sets the fields to editable
      */
     public void edit() {
         // store the current show in temp
         temp = getShow();
-        
+
         // update graphics
         setSearchFieldsEditable(true);
         submitButton.setEnabled(true);
@@ -1680,37 +1688,37 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     public void submit() {
-        
+
         // update graphics
         errLabel.setForeground(Color.blue);
         errLabel.setText("Show edited successfully");
-        
+
         // create the new show object
         Show s = getShow();
-        
+
         // more updating graphics
         setSearchFieldsEditable(false);
-        
+
         // delete then add
         ShowController.deleteShow(temp.getShowName());
         ShowController.addShow(s);
-        
+
         // create ListElements
         ListElement t = new ListElement(temp.getShowName());
         ListElement u = new ListElement(s.getShowName());
-        
+
         // even more updating graphics
         updateList(REMOVE, t);
         updateList(ADD, u);
-        
+
         submitButton.setEnabled(false);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-        
+
         // reset the form, selecting the new show just edited
         list.setSelectedIndex(list.getLastVisibleIndex());
         search(shows.getElementAt(shows.getSize() - 1).name);
-        
+
     }
 
     /**
@@ -2186,7 +2194,7 @@ public class ShowGUI extends javax.swing.JFrame {
             errLabel.setText(err);
         }
     }
-    
+
     /**
      * setAddErrLabel()
      *
@@ -3210,34 +3218,34 @@ public class ShowGUI extends javax.swing.JFrame {
                 aHost2.setEnabled(false);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                aHost1.setSelectedIndex(0);
-                aHost2.setSelectedIndex(0);
-                aHost3.setSelectedIndex(0);
-                aHost4.setSelectedIndex(0);
+                aHost1.setSelectedIndex(aHost1.getItemCount()-1);
+                aHost2.setSelectedIndex(aHost2.getItemCount()-1);
+                aHost3.setSelectedIndex(aHost3.getItemCount()-1);
+                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
                 break;
             case 1:
                 aHost1.setEnabled(true);
                 aHost2.setEnabled(false);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                aHost2.setSelectedIndex(0);
-                aHost3.setSelectedIndex(0);
-                aHost4.setSelectedIndex(0);
+                aHost2.setSelectedIndex(aHost2.getItemCount()-1);
+                aHost3.setSelectedIndex(aHost3.getItemCount()-1);
+                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
                 break;
             case 2:
                 aHost1.setEnabled(true);
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                aHost3.setSelectedIndex(0);
-                aHost4.setSelectedIndex(0);
+                aHost3.setSelectedIndex(aHost3.getItemCount()-1);
+                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
                 break;
             case 3:
                 aHost1.setEnabled(true);
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(true);
                 aHost4.setEnabled(false);
-                aHost4.setSelectedIndex(0);
+                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
                 break;
             case 4:
                 aHost1.setEnabled(true);
@@ -3263,10 +3271,10 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost2.setEnabled(false);
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
-                sHost1.setSelectedIndex(0);
-                sHost2.setSelectedIndex(0);
-                sHost3.setSelectedIndex(0);
-                sHost4.setSelectedIndex(0);
+                sHost1.setSelectedIndex(sHost1.getItemCount()-1);
+                sHost2.setSelectedIndex(sHost2.getItemCount()-1);
+                sHost3.setSelectedIndex(sHost3.getItemCount()-1);
+                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
                 break;
             case 1:
                 sHost1.setEnabled(true);
@@ -3274,9 +3282,9 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
                 //sHost1.setSelectedIndex(0);
-                sHost2.setSelectedIndex(0);
-                sHost3.setSelectedIndex(0);
-                sHost4.setSelectedIndex(0);
+                sHost2.setSelectedIndex(sHost2.getItemCount()-1);
+                sHost3.setSelectedIndex(sHost3.getItemCount()-1);
+                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
                 break;
             case 2:
                 sHost1.setEnabled(true);
@@ -3285,8 +3293,8 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost4.setEnabled(false);
                 //sHost1.setSelectedIndex(0);
                 //sHost2.setSelectedIndex(0);
-                sHost3.setSelectedIndex(0);
-                sHost4.setSelectedIndex(0);
+                sHost3.setSelectedIndex(sHost3.getItemCount()-1);
+                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
                 break;
             case 3:
                 sHost1.setEnabled(true);
@@ -3296,7 +3304,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 //sHost1.setSelectedIndex(0);
                 //sHost2.setSelectedIndex(0);
                 //sHost3.setSelectedIndex(0);
-                sHost4.setSelectedIndex(0);
+                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
                 break;
             case 4:
                 sHost1.setEnabled(true);
@@ -3313,124 +3321,128 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * getDayIndex()
-     * 
+     *
      * Helper function to set the index of the day combo boxes based on the
      * day parameter
-     * 
+     *
      * @param day
      * @return the index of the combo box
      */
     public int getDayIndex(Show.Day day) {
-        if(null != day) switch (day) {
-            case SUN:
-                return 1;
-            case MON:
-                return 2;
-            case TUE:
-                return 3;
-            case WED:
-                return 4;
-            case THU:
-                return 5;
-            case FRI:
-                return 6;
-            case SAT:
-                return 7;
-            default:
-                return -1;
+        if (null != day) {
+            switch (day) {
+                case SUN:
+                    return 1;
+                case MON:
+                    return 2;
+                case TUE:
+                    return 3;
+                case WED:
+                    return 4;
+                case THU:
+                    return 5;
+                case FRI:
+                    return 6;
+                case SAT:
+                    return 7;
+                default:
+                    return -1;
+            }
         }
         return -1;
     }
-    
+
     /**
      * getTimeIndex()
-     * 
+     *
      * Helper function to set the index of the time combo boxes based on the
      * time parameter
-     * 
+     *
      * @param time
      * @return the index of the combo box
      */
     public int getTimeIndex(Show.Time time) {
-        if(null != time) switch (time) {
-            case am0600:
-                return 1;
-            case am0630:
-                return 2;
-            case am0700:
-                return 3;
-            case am0730:
-                return 4;
-            case am0800:
-                return 5;
-            case am0830:
-                return 6;
-            case am0900:
-                return 7;
-            case am0930:
-                return 8;
-            case am1000:
-                return 9;
-            case am1030:
-                return 10;
-            case am1100:
-                return 11;
-            case am1130:
-                return 12;
-            case pm1200:
-                return 13;
-            case pm1230:
-                return 14;
-            case pm0100:
-                return 15;
-            case pm0130:
-                return 16;
-            case pm0200:
-                return 17;
-            case pm0230:
-                return 18;
-            case pm0300:
-                return 19;
-            case pm0330:
-                return 20;
-            case pm0400:
-                return 21;
-            case pm0430:
-                return 22;
-            case pm0500:
-                return 23;
-            case pm0530:
-                return 24;
-            case pm0600:
-                return 25;
-            case pm0630:
-                return 26;
-            case pm0700:
-                return 27;
-            case pm0730:
-                return 28;
-            case pm0800:
-                return 29;
-            case pm0830:
-                return 30;
-            case pm0900:
-                return 31;
-            case pm0930:
-                return 32;
-            case pm1000:
-                return 33;
-            case pm1030:
-                return 34;
-            case pm1100:
-                return 35;
-            case pm1130:
-                return 36;
-            case am1200:
-                return 37;
+        if (null != time) {
+            switch (time) {
+                case am0600:
+                    return 1;
+                case am0630:
+                    return 2;
+                case am0700:
+                    return 3;
+                case am0730:
+                    return 4;
+                case am0800:
+                    return 5;
+                case am0830:
+                    return 6;
+                case am0900:
+                    return 7;
+                case am0930:
+                    return 8;
+                case am1000:
+                    return 9;
+                case am1030:
+                    return 10;
+                case am1100:
+                    return 11;
+                case am1130:
+                    return 12;
+                case pm1200:
+                    return 13;
+                case pm1230:
+                    return 14;
+                case pm0100:
+                    return 15;
+                case pm0130:
+                    return 16;
+                case pm0200:
+                    return 17;
+                case pm0230:
+                    return 18;
+                case pm0300:
+                    return 19;
+                case pm0330:
+                    return 20;
+                case pm0400:
+                    return 21;
+                case pm0430:
+                    return 22;
+                case pm0500:
+                    return 23;
+                case pm0530:
+                    return 24;
+                case pm0600:
+                    return 25;
+                case pm0630:
+                    return 26;
+                case pm0700:
+                    return 27;
+                case pm0730:
+                    return 28;
+                case pm0800:
+                    return 29;
+                case pm0830:
+                    return 30;
+                case pm0900:
+                    return 31;
+                case pm0930:
+                    return 32;
+                case pm1000:
+                    return 33;
+                case pm1030:
+                    return 34;
+                case pm1100:
+                    return 35;
+                case pm1130:
+                    return 36;
+                case am1200:
+                    return 37;
+            }
         }
         return -1;
     }
-    
+
     public void setSearchFieldsEnabled(boolean b) {
         sNameField.setEnabled(b);
         sDescField.setEnabled(b);
@@ -3453,44 +3465,44 @@ public class ShowGUI extends javax.swing.JFrame {
         sNameField.setBackground(Color.white);
         sDescField.setBackground(Color.white);
     }
-    
+
     public void setSearchFieldsEditable(boolean b) {
         sNameField.setEditable(b);
         sDescField.setEditable(b);
-        
+
         sShowNumSpinner.setEnabled(b);
         sHostNumSpinner.setEnabled(b);
-        
-        if(b) {
-            sUpdateShowNumber((Integer)sShowNumSpinner.getValue());
-            sUpdateHostNumber((Integer)sHostNumSpinner.getValue());
+
+        if (b) {
+            sUpdateShowNumber((Integer) sShowNumSpinner.getValue());
+            sUpdateHostNumber((Integer) sHostNumSpinner.getValue());
         } else {
             sShowNumSpinner.setValue(0);
             sHostNumSpinner.setValue(0);
         }
     }
-    
+
     public void setSearchValuesToNull() {
         sNameField.setText("");
         sDescField.setText("");
         sUpdateShowNumber(0);
         sUpdateHostNumber(0);
     }
-    
+
     /**
      * getShow()
-     * 
+     *
      * Takes the values in the search panel and returns a new show based
      * on those values
-     * 
-     * @return the new show 
+     *
+     * @return the new show
      */
     public Show getShow() {
         String name = sNameField.getText();
         String desc = sDescField.getText();
-        
-        Profile[] p = new Profile[(Integer)sHostNumSpinner.getValue()];
-        switch(p.length) {
+
+        Profile[] p = new Profile[(Integer) sHostNumSpinner.getValue()];
+        switch (p.length) {
             case 1:
                 p[0] = ProfileController.SearchProfile(profiles.getElementAt(sHost1.getSelectedIndex()).id);
                 break;
@@ -3512,10 +3524,10 @@ public class ShowGUI extends javax.swing.JFrame {
             default:
                 break;
         }
-        
-        Show.Day[] d = new Show.Day[(Integer)sShowNumSpinner.getValue()];
-        Show.Time[] t = new Show.Time[(Integer)sShowNumSpinner.getValue() * 2];
-        switch(d.length) {
+
+        Show.Day[] d = new Show.Day[(Integer) sShowNumSpinner.getValue()];
+        Show.Time[] t = new Show.Time[(Integer) sShowNumSpinner.getValue() * 2];
+        switch (d.length) {
             case 1:
                 d[0] = getDay(sDayBox1.getSelectedIndex());
                 t[0] = getTime(sStartBox1.getSelectedIndex());
@@ -3533,7 +3545,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 d[0] = getDay(sDayBox1.getSelectedIndex());
                 d[1] = getDay(sDayBox2.getSelectedIndex());
                 d[2] = getDay(sDayBox3.getSelectedIndex());
-                
+
                 t[0] = getTime(sStartBox1.getSelectedIndex());
                 t[1] = getTime(sEndBox1.getSelectedIndex());
                 t[2] = getTime(sStartBox2.getSelectedIndex());
@@ -3546,7 +3558,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 d[1] = getDay(sDayBox2.getSelectedIndex());
                 d[2] = getDay(sDayBox3.getSelectedIndex());
                 d[3] = getDay(sDayBox4.getSelectedIndex());
-                
+
                 t[0] = getTime(sStartBox1.getSelectedIndex());
                 t[1] = getTime(sEndBox1.getSelectedIndex());
                 t[2] = getTime(sStartBox2.getSelectedIndex());
@@ -3562,7 +3574,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 d[2] = getDay(sDayBox3.getSelectedIndex());
                 d[3] = getDay(sDayBox4.getSelectedIndex());
                 d[4] = getDay(sDayBox5.getSelectedIndex());
-                
+
                 t[0] = getTime(sStartBox1.getSelectedIndex());
                 t[1] = getTime(sEndBox1.getSelectedIndex());
                 t[2] = getTime(sStartBox2.getSelectedIndex());
@@ -3581,7 +3593,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 d[3] = getDay(sDayBox4.getSelectedIndex());
                 d[4] = getDay(sDayBox5.getSelectedIndex());
                 d[5] = getDay(sDayBox6.getSelectedIndex());
-                
+
                 t[0] = getTime(sStartBox1.getSelectedIndex());
                 t[1] = getTime(sEndBox1.getSelectedIndex());
                 t[2] = getTime(sStartBox2.getSelectedIndex());
@@ -3603,7 +3615,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 d[4] = getDay(sDayBox5.getSelectedIndex());
                 d[5] = getDay(sDayBox6.getSelectedIndex());
                 d[6] = getDay(sDayBox7.getSelectedIndex());
-                
+
                 t[0] = getTime(sStartBox1.getSelectedIndex());
                 t[1] = getTime(sEndBox1.getSelectedIndex());
                 t[2] = getTime(sStartBox2.getSelectedIndex());
@@ -3622,7 +3634,7 @@ public class ShowGUI extends javax.swing.JFrame {
             default:
                 break;
         }
-        
+
         return new Show(name, desc, p, d, t);
     }
 
