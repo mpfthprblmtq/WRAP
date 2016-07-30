@@ -5,6 +5,7 @@
  */
 package webradio;
 
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -31,14 +32,14 @@ public class ShowGUI extends javax.swing.JFrame {
             this.lName = lName;
             this.id = id;
         }
-        
+
         public ComboBoxElement() {
             this.fName = "--";
         }
 
         @Override
         public String toString() {
-            if(!fName.equals("--")) {
+            if (!fName.equals("--")) {
                 return lName + ", " + fName;
             } else {
                 return "--";
@@ -103,6 +104,9 @@ public class ShowGUI extends javax.swing.JFrame {
     DefaultComboBoxModel<ComboBoxElement> profiles = new DefaultComboBoxModel();
     ListElement[] elements;
     ComboBoxElement[] cbElements;
+
+    private static final int ADD = 0;
+    private static final int REMOVE = 1;
 
     /** Creates new form ShowInfoGUI */
     public ShowGUI() {
@@ -207,7 +211,7 @@ public class ShowGUI extends javax.swing.JFrame {
         list = new javax.swing.JList<>();
         loginLabel = new javax.swing.JLabel();
         adminLabel = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        errLabel = new javax.swing.JLabel();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -227,10 +231,12 @@ public class ShowGUI extends javax.swing.JFrame {
         sl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl2.setText("Description:");
 
+        sNameField.setEditable(false);
         sNameField.setEnabled(false);
 
         sSP.setEnabled(false);
 
+        sDescField.setEditable(false);
         sDescField.setBackground(new java.awt.Color(240, 240, 240));
         sDescField.setColumns(20);
         sDescField.setRows(5);
@@ -418,6 +424,11 @@ public class ShowGUI extends javax.swing.JFrame {
 
         sHostNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
         sHostNumSpinner.setEnabled(false);
+        sHostNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sHostNumSpinnerStateChanged(evt);
+            }
+        });
 
         sl7.setText("Number of hosts:");
 
@@ -523,10 +534,10 @@ public class ShowGUI extends javax.swing.JFrame {
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sl1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sNameField)
-                            .addComponent(sSP, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))))
+                            .addComponent(sSP))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
@@ -827,8 +838,8 @@ public class ShowGUI extends javax.swing.JFrame {
                             .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aSP)
-                            .addComponent(aNameField)))
+                            .addComponent(aNameField)
+                            .addComponent(aSP)))
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addComponent(aDayTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -887,7 +898,7 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText(" ");
+        errLabel.setText(" ");
 
         file.setText("File");
 
@@ -948,7 +959,7 @@ public class ShowGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -974,7 +985,7 @@ public class ShowGUI extends javax.swing.JFrame {
                         .addComponent(scrollpane))
                     .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(errLabel)
                 .addContainerGap())
         );
 
@@ -1022,7 +1033,7 @@ public class ShowGUI extends javax.swing.JFrame {
             editButton.setEnabled(true);
             deleteButton.setEnabled(true);
 
-            setSearchFieldsEditable(false);
+            setSearchFieldsEnabled(false);
             search(shows.elementAt(list.getSelectedIndex()).name);
             tabs.setSelectedIndex(0);
         } else {
@@ -1135,7 +1146,7 @@ public class ShowGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_aHostNumSpinnerStateChanged
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        if(aCheck()) {
+        if (aCheck()) {
             add();
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -1149,10 +1160,30 @@ public class ShowGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        if(sCheck()) {
+        if (sCheck()) {
             submit();
         }
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void sHostNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sHostNumSpinnerStateChanged
+        switch (Integer.parseInt(sHostNumSpinner.getValue().toString())) {
+            case 0:
+                sUpdateHostNumber(0);
+                break;
+            case 1:
+                sUpdateHostNumber(1);
+                break;
+            case 2:
+                sUpdateHostNumber(2);
+                break;
+            case 3:
+                sUpdateHostNumber(3);
+                break;
+            case 4:
+                sUpdateHostNumber(4);
+                break;
+        }
+    }//GEN-LAST:event_sHostNumSpinnerStateChanged
 
     /**
      * fillList()
@@ -1180,13 +1211,15 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     /**
+     * getProfiles()
+     * 
      * Gets all of the profiles from IOController and shoves them into an array
      * Then it populates the DefaultLComboBoxModel of ComboBoxElements from that array
      *
      * @return
      */
     public ComboBoxElement[] getProfiles() {
-        
+
         int total = IOController.getTotalProfiles();
         if (profiles.getSize() < total + 1) {
             Profile[] pro = IOController.getAllProfiles();
@@ -1194,50 +1227,1176 @@ public class ShowGUI extends javax.swing.JFrame {
 
             // empty slot (--)
             cbElements[0] = new ComboBoxElement();
-            
+
             if (pro != null && cbElements.length > 0) {
                 for (int i = 0; i < total; i++) {
-                    cbElements[i+1] = new ComboBoxElement(pro[i].getfName(),
+                    cbElements[i + 1] = new ComboBoxElement(pro[i].getfName(),
                             pro[i].getlName(), pro[i].getId());
-                    //profiles.addElement(cbElements[i]);
+                    profiles.addElement(cbElements[i]);
                 }
             }
-            
+
         }
         return cbElements;
     }
 
+    /**
+     * updateList()
+     * 
+     * Works with the global list of Profiles, which updates the JList graphics
+     *
+     * @param action,  the type of action (either add or remove)
+     * @param element, the element to add or remove
+     */
+    public void updateList(int action, ListElement element) {
+        switch (action) {
+            case ADD:         // add
+                shows.add(shows.getSize(), element);
+                break;
+            case REMOVE:      // remove
+                shows.remove(list.getSelectedIndex());
+                break;
+        }
+    }
+
     public void search(String name) {
+        Show s = ShowController.searchShow(name);
+
+        // update graphics
+        errLabel.setText(" ");
+        editButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+        setSearchFieldsToValid();
         
+        // name and description
+        sNameField.setText(s.getShowName());
+        sDescField.setText(s.getShowDesc());
+        
+        // show and host spinners
+        sShowNumSpinner.setValue(s.getDays().length);
+        sHostNumSpinner.setValue(s.getHosts().length);
+        
+        // show days and times
+        sUpdateShowNumber(0);
+        // <editor-fold defaultstate="collapsed" desc="Show Days and Times">
+        switch(s.getDays().length) {
+            case 1:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                break;
+            case 2:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
+                sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
+                sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
+                
+                break;
+            case 3:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
+                sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
+                sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
+                
+                sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
+                sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
+                sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
+                
+                break;
+            case 4:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
+                sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
+                sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
+                
+                sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
+                sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
+                sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
+                
+                sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
+                sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
+                sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
+                
+                break;
+            case 5:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
+                sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
+                sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
+                
+                sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
+                sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
+                sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
+                
+                sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
+                sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
+                sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
+                
+                sDayBox5.setSelectedIndex(getDayIndex(s.getDays()[4]));
+                sStartBox5.setSelectedIndex(getTimeIndex(s.getTimes()[8]));
+                sEndBox5.setSelectedIndex(getTimeIndex(s.getTimes()[9]));
+                
+                break;
+            case 6:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
+                sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
+                sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
+                
+                sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
+                sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
+                sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
+                
+                sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
+                sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
+                sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
+                
+                sDayBox5.setSelectedIndex(getDayIndex(s.getDays()[4]));
+                sStartBox5.setSelectedIndex(getTimeIndex(s.getTimes()[8]));
+                sEndBox5.setSelectedIndex(getTimeIndex(s.getTimes()[9]));
+                
+                sDayBox6.setSelectedIndex(getDayIndex(s.getDays()[5]));
+                sStartBox6.setSelectedIndex(getTimeIndex(s.getTimes()[10]));
+                sEndBox6.setSelectedIndex(getTimeIndex(s.getTimes()[11]));
+                
+                break;
+            case 7:
+                sDayBox1.setSelectedIndex(getDayIndex(s.getDays()[0]));
+                sStartBox1.setSelectedIndex(getTimeIndex(s.getTimes()[0]));
+                sEndBox1.setSelectedIndex(getTimeIndex(s.getTimes()[1]));
+                
+                sDayBox2.setSelectedIndex(getDayIndex(s.getDays()[1]));
+                sStartBox2.setSelectedIndex(getTimeIndex(s.getTimes()[2]));
+                sEndBox2.setSelectedIndex(getTimeIndex(s.getTimes()[3]));
+                
+                sDayBox3.setSelectedIndex(getDayIndex(s.getDays()[2]));
+                sStartBox3.setSelectedIndex(getTimeIndex(s.getTimes()[4]));
+                sEndBox3.setSelectedIndex(getTimeIndex(s.getTimes()[5]));
+                
+                sDayBox4.setSelectedIndex(getDayIndex(s.getDays()[3]));
+                sStartBox4.setSelectedIndex(getTimeIndex(s.getTimes()[6]));
+                sEndBox4.setSelectedIndex(getTimeIndex(s.getTimes()[7]));
+                
+                sDayBox5.setSelectedIndex(getDayIndex(s.getDays()[4]));
+                sStartBox5.setSelectedIndex(getTimeIndex(s.getTimes()[8]));
+                sEndBox5.setSelectedIndex(getTimeIndex(s.getTimes()[9]));
+                
+                sDayBox6.setSelectedIndex(getDayIndex(s.getDays()[5]));
+                sStartBox6.setSelectedIndex(getTimeIndex(s.getTimes()[10]));
+                sEndBox6.setSelectedIndex(getTimeIndex(s.getTimes()[11]));
+                
+                sDayBox7.setSelectedIndex(getDayIndex(s.getDays()[6]));
+                sStartBox7.setSelectedIndex(getTimeIndex(s.getTimes()[12]));
+                sEndBox7.setSelectedIndex(getTimeIndex(s.getTimes()[13]));
+                
+                break;
+        }
+        // </editor-fold>
+        
+        // hosts
+        sUpdateHostNumber(0);
+        // <editor-fold defaultstate="collapsed" desc="Show Days and Times">
+        switch(s.getHosts().length) {
+            case 1:
+                sHost1.setSelectedIndex(getProfileIndex(s.getHosts()[0].getId()));
+                break;
+            case 2:
+                sHost1.setSelectedIndex(getProfileIndex(s.getHosts()[0].getId()));
+                sHost2.setSelectedIndex(getProfileIndex(s.getHosts()[1].getId()));
+                break;
+            case 3:
+                sHost1.setSelectedIndex(getProfileIndex(s.getHosts()[0].getId()));
+                sHost2.setSelectedIndex(getProfileIndex(s.getHosts()[1].getId()));
+                sHost3.setSelectedIndex(getProfileIndex(s.getHosts()[2].getId()));
+                break;
+            case 4:
+                sHost1.setSelectedIndex(getProfileIndex(s.getHosts()[0].getId()));
+                sHost2.setSelectedIndex(getProfileIndex(s.getHosts()[1].getId()));
+                sHost3.setSelectedIndex(getProfileIndex(s.getHosts()[2].getId()));
+                sHost4.setSelectedIndex(getProfileIndex(s.getHosts()[3].getId()));
+                break;
+            default:
+                break;
+        }
+        
+        
+    }
+
+    public int getProfileIndex(String id) {
+        for (int i = 0; i < profiles.getSize(); i++) {
+            if(id.equals(profiles.getElementAt(i).id)) {
+                return i;
+            }
+        }
+        return -1;
     }
     
     public void add() {
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
-        
-        
+
+        int hostNum = (Integer) aHostNumSpinner.getValue();
+        int showNum = (Integer) aShowNumSpinner.getValue();
+
+        Profile[] hostArr = new Profile[hostNum];
+        Show.Day[] daysArr = new Show.Day[showNum];
+        Show.Time[] timeArr = new Show.Time[showNum * 2];
+
+        // HOSTS
+        if (aHost1.isEnabled()) {
+            hostArr[0] = ProfileController.SearchProfile(cbElements[aHost1.getSelectedIndex()].id);
+        }
+        if (aHost2.isEnabled()) {
+            hostArr[1] = ProfileController.SearchProfile(cbElements[aHost2.getSelectedIndex()].id);
+        }
+        if (aHost3.isEnabled()) {
+            hostArr[2] = ProfileController.SearchProfile(cbElements[aHost3.getSelectedIndex()].id);
+        }
+        if (aHost4.isEnabled()) {
+            hostArr[3] = ProfileController.SearchProfile(cbElements[aHost4.getSelectedIndex()].id);
+        }
+
+        // DAYS AND TIMES
+        if (aDayBox1.isEnabled()) {
+            daysArr[0] = getDay(aDayBox1.getSelectedIndex());
+            timeArr[0] = getTime(aStartBox1.getSelectedIndex());
+            timeArr[1] = getTime(aEndBox1.getSelectedIndex());
+        }
+        if (aDayBox2.isEnabled()) {
+            daysArr[1] = getDay(aDayBox2.getSelectedIndex());
+            timeArr[2] = getTime(aStartBox2.getSelectedIndex());
+            timeArr[3] = getTime(aEndBox2.getSelectedIndex());
+        }
+        if (aDayBox3.isEnabled()) {
+            daysArr[2] = getDay(aDayBox3.getSelectedIndex());
+            timeArr[4] = getTime(aStartBox3.getSelectedIndex());
+            timeArr[5] = getTime(aEndBox3.getSelectedIndex());
+        }
+        if (aDayBox4.isEnabled()) {
+            daysArr[3] = getDay(aDayBox4.getSelectedIndex());
+            timeArr[6] = getTime(aStartBox4.getSelectedIndex());
+            timeArr[7] = getTime(aEndBox4.getSelectedIndex());
+        }
+        if (aDayBox5.isEnabled()) {
+            daysArr[4] = getDay(aDayBox5.getSelectedIndex());
+            timeArr[8] = getTime(aStartBox5.getSelectedIndex());
+            timeArr[9] = getTime(aEndBox5.getSelectedIndex());
+        }
+        if (aDayBox6.isEnabled()) {
+            daysArr[5] = getDay(aDayBox6.getSelectedIndex());
+            timeArr[10] = getTime(aStartBox6.getSelectedIndex());
+            timeArr[11] = getTime(aEndBox6.getSelectedIndex());
+        }
+        if (aDayBox7.isEnabled()) {
+            daysArr[6] = getDay(aDayBox7.getSelectedIndex());
+            timeArr[12] = getTime(aStartBox7.getSelectedIndex());
+            timeArr[13] = getTime(aEndBox7.getSelectedIndex());
+        }
+
+        Show s = new Show(showName, showDesc, hostArr, daysArr, timeArr);
+        ListElement element = new ListElement(showName);
+
+        if (ShowController.addShow(s)) {
+            // update graphics
+            errLabel.setForeground(Color.black);
+            errLabel.setText("Show added successfully");
+
+            updateList(ADD, element);
+
+            setAddValuesToNull();
+            aNameField.requestFocus();
+        }
+
     }
-    
+
+    /**
+     * Helper function to return a Day object from an index of a JComboBox
+     *
+     * @param n, the index
+     * @return the Day object
+     */
+    public Show.Day getDay(int n) {
+        switch (n) {
+            case 1:
+                return Show.Day.SUN;
+            case 2:
+                return Show.Day.MON;
+            case 3:
+                return Show.Day.TUE;
+            case 4:
+                return Show.Day.WED;
+            case 5:
+                return Show.Day.THU;
+            case 6:
+                return Show.Day.FRI;
+            case 7:
+                return Show.Day.MON;
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Helper function to return a Time object from an index of a JComboBox
+     *
+     * @param n, the index
+     * @return the Time object
+     */
+    public Show.Time getTime(int n) {
+        switch (n) {
+            case 1:
+                return Show.Time.am0600;
+            case 2:
+                return Show.Time.am0630;
+            case 3:
+                return Show.Time.am0700;
+            case 4:
+                return Show.Time.am0730;
+            case 5:
+                return Show.Time.am0800;
+            case 6:
+                return Show.Time.am0830;
+            case 7:
+                return Show.Time.am0900;
+            case 8:
+                return Show.Time.am0930;
+            case 9:
+                return Show.Time.am1000;
+            case 10:
+                return Show.Time.am1030;
+            case 11:
+                return Show.Time.am1100;
+            case 12:
+                return Show.Time.am1130;
+            case 13:
+                return Show.Time.pm1200;
+            case 14:
+                return Show.Time.pm1230;
+            case 15:
+                return Show.Time.pm0100;
+            case 16:
+                return Show.Time.pm0130;
+            case 17:
+                return Show.Time.pm0200;
+            case 18:
+                return Show.Time.pm0230;
+            case 19:
+                return Show.Time.pm0300;
+            case 20:
+                return Show.Time.pm0330;
+            case 21:
+                return Show.Time.pm0400;
+            case 22:
+                return Show.Time.pm0430;
+            case 23:
+                return Show.Time.pm0500;
+            case 24:
+                return Show.Time.pm0530;
+            case 25:
+                return Show.Time.pm0600;
+            case 26:
+                return Show.Time.pm0630;
+            case 27:
+                return Show.Time.pm0700;
+            case 28:
+                return Show.Time.pm0730;
+            case 29:
+                return Show.Time.pm0800;
+            case 30:
+                return Show.Time.pm0830;
+            case 31:
+                return Show.Time.pm0900;
+            case 32:
+                return Show.Time.pm0930;
+            case 33:
+                return Show.Time.pm1000;
+            case 34:
+                return Show.Time.pm1030;
+            case 35:
+                return Show.Time.pm1100;
+            case 36:
+                return Show.Time.pm1130;
+            case 37:
+                return Show.Time.am1200;
+            default:
+                return null;
+        }
+    }
+
     public void delete() {
         
-    }
-    
-    public void edit() {
+        // get the name
+        String name = sNameField.getText();
         
+        // if deletion succeeds
+        if (ShowController.deleteShow(name)) {
+            
+            // create ListElement
+            ListElement element = new ListElement(name);
+            
+            // update graphics
+            updateList(REMOVE, element);
+            errLabel.setForeground(Color.blue);
+            errLabel.setText("Show deleted successfully");
+            setSearchValuesToNull();
+            setSearchFieldsEditable(false);
+            editButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+            submitButton.setEnabled(false);
+        }
     }
-    
+
+    /**
+     * edit()
+     * 
+     * Stores the current values of the search panel into the global temp variable
+     * Then it sets the fields to editable
+     */
+    public void edit() {
+        // store the current show in temp
+        temp = getShow();
+        
+        // update graphics
+        setSearchFieldsEditable(true);
+        submitButton.setEnabled(true);
+        deleteButton.setEnabled(false);
+        editButton.setEnabled(false);
+    }
+
     public void submit() {
         
+        // update graphics
+        errLabel.setForeground(Color.blue);
+        errLabel.setText("Show edited successfully");
+        
+        // create the new show object
+        Show s = getShow();
+        
+        // more updating graphics
+        setSearchFieldsEditable(false);
+        
+        // delete then add
+        ShowController.deleteShow(temp.getShowName());
+        ShowController.addShow(s);
+        
+        // create ListElements
+        ListElement t = new ListElement(temp.getShowName());
+        ListElement u = new ListElement(s.getShowName());
+        
+        // even more updating graphics
+        updateList(REMOVE, t);
+        updateList(ADD, u);
+        
+        submitButton.setEnabled(false);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+        
+        // reset the form, selecting the new show just edited
+        list.setSelectedIndex(list.getLastVisibleIndex());
+        search(shows.getElementAt(shows.getSize() - 1).name);
+        
     }
-    
+
+    /**
+     * sCheck()
+     *
+     * First, it sets all foregrounds in the search panel to black to "reset"
+     * Then it checks the name and description fields and sees if they're
+     * empty or the default
+     * Then it checks each combo box that is enabled to see if they're on the
+     * default slot
+     * If anything fails, the foreground of the failing field is set to red
+     * so that setSearchErrLabel() can pick it up and report it
+     *
+     * @return flag, the success or failure of the check
+     */
     public boolean sCheck() {
-        
+        boolean flag = true;
+
+        // preconditions
+        errLabel.setForeground(Color.red);
+        asetAllForeground(Color.black);
+
+        // ShowName
+        // if it is nothing or default, throw error
+        // if it contains separator character, throw error
+        if (sNameField.getText().equals("") || sNameField.getText().equals("--")) {
+            flag = false;
+            sNameField.setForeground(Color.red);
+            sNameField.setText("--");
+        } else if (!Util.sepCheck(sNameField.getText())) {
+            flag = false;
+            sNameField.setForeground(Color.red);
+        }
+
+        // ShowDescription
+        // if it is nothing or default, throw error
+        // if it contains separator character, throw error
+        if (sDescField.getText().equals("") || sDescField.getText().equals("--")) {
+            flag = false;
+            sDescField.setForeground(Color.red);
+            sDescField.setText("--");
+        } else if (!Util.sepCheck(sDescField.getText())) {
+            flag = false;
+            sDescField.setForeground(Color.red);
+        }
+
+        // ShowNum
+        // calls external helper function
+        if (sDayBox1.isEnabled()) {
+            if (sDayBox1.getSelectedIndex() == 0
+                    || sStartBox1.getSelectedIndex() == 0
+                    || sEndBox1.getSelectedIndex() == 0) {
+                sDayBox1.setForeground(Color.red);
+                sStartBox1.setForeground(Color.red);
+                sEndBox1.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sDayBox2.isEnabled()) {
+            if (sDayBox2.getSelectedIndex() == 0
+                    || sStartBox2.getSelectedIndex() == 0
+                    || sEndBox2.getSelectedIndex() == 0) {
+                sDayBox2.setForeground(Color.red);
+                sStartBox2.setForeground(Color.red);
+                sEndBox2.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sDayBox3.isEnabled()) {
+            if (sDayBox3.getSelectedIndex() == 0
+                    || sStartBox3.getSelectedIndex() == 0
+                    || sEndBox3.getSelectedIndex() == 0) {
+                sDayBox3.setForeground(Color.red);
+                sStartBox3.setForeground(Color.red);
+                sEndBox3.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sDayBox4.isEnabled()) {
+            if (sDayBox4.getSelectedIndex() == 0
+                    || sStartBox4.getSelectedIndex() == 0
+                    || sEndBox4.getSelectedIndex() == 0) {
+                sDayBox4.setForeground(Color.red);
+                sStartBox4.setForeground(Color.red);
+                sEndBox4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sDayBox5.isEnabled()) {
+            if (sDayBox5.getSelectedIndex() == 0
+                    || sStartBox5.getSelectedIndex() == 0
+                    || sEndBox5.getSelectedIndex() == 0) {
+                sDayBox5.setForeground(Color.red);
+                sStartBox5.setForeground(Color.red);
+                sEndBox5.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sDayBox6.isEnabled()) {
+            if (sDayBox6.getSelectedIndex() == 0
+                    || sStartBox6.getSelectedIndex() == 0
+                    || sEndBox6.getSelectedIndex() == 0) {
+                sDayBox6.setForeground(Color.red);
+                sStartBox6.setForeground(Color.red);
+                sEndBox6.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sDayBox7.isEnabled()) {
+            if (sDayBox7.getSelectedIndex() == 0
+                    || sStartBox7.getSelectedIndex() == 0
+                    || sEndBox7.getSelectedIndex() == 0) {
+                sDayBox7.setForeground(Color.red);
+                sStartBox7.setForeground(Color.red);
+                sEndBox7.setForeground(Color.red);
+                flag = false;
+            }
+        }
+
+        // HostNum
+        // calls external helper function
+        if (sHost1.isEnabled()) {
+            if (sHost1.getSelectedIndex() == 0) {
+                sHost1.setForeground(Color.red);
+                flag = false;
+            }
+            if (sHost1.getSelectedIndex() == sHost2.getSelectedIndex()) {
+                sHost1.setForeground(Color.red);
+                sHost2.setForeground(Color.red);
+                flag = false;
+            }
+            if (sHost1.getSelectedIndex() == sHost3.getSelectedIndex()) {
+                sHost1.setForeground(Color.red);
+                sHost3.setForeground(Color.red);
+                flag = false;
+            }
+            if (sHost1.getSelectedIndex() == sHost4.getSelectedIndex()) {
+                sHost1.setForeground(Color.red);
+                sHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sHost2.isEnabled()) {
+            if (sHost2.getSelectedIndex() == 0) {
+                sHost2.setForeground(Color.red);
+                flag = false;
+            }
+            if (sHost2.getSelectedIndex() == sHost3.getSelectedIndex()) {
+                sHost2.setForeground(Color.red);
+                sHost3.setForeground(Color.red);
+                flag = false;
+            }
+            if (sHost2.getSelectedIndex() == sHost4.getSelectedIndex()) {
+                sHost2.setForeground(Color.red);
+                sHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sHost3.isEnabled()) {
+            if (sHost3.getSelectedIndex() == 0) {
+                sHost3.setForeground(Color.red);
+                flag = false;
+            }
+            if (sHost3.getSelectedIndex() == sHost4.getSelectedIndex()) {
+                sHost3.setForeground(Color.red);
+                sHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (sHost4.isEnabled()) {
+            if (sHost4.getSelectedIndex() == 0) {
+                sHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+
+        setSearchErrLabel();
+        return flag;
     }
-    
+
+    /**
+     * aCheck()
+     *
+     * First, it sets all foregrounds in the add panel to black to "reset"
+     * Then it checks the name and description fields and sees if they're
+     * empty or the default
+     * Then it checks each combo box that is enabled to see if they're on the
+     * default slot
+     * If anything fails, the foreground of the failing field is set to red
+     * so that setAddErrLabel() can pick it up and report it
+     *
+     * @return flag, the success or failure of the check
+     */
     public boolean aCheck() {
-        
+        boolean flag = true;
+
+        // preconditions
+        errLabel.setForeground(Color.red);
+        asetAllForeground(Color.black);
+
+        // ShowName
+        // if it is nothing or default, throw error
+        // if it contains separator character, throw error
+        if (aNameField.getText().equals("") || aNameField.getText().equals("--")) {
+            flag = false;
+            aNameField.setForeground(Color.red);
+            aNameField.setText("--");
+        } else if (!Util.sepCheck(aNameField.getText())) {
+            flag = false;
+            aNameField.setForeground(Color.red);
+        }
+
+        // ShowDescription
+        // if it is nothing or default, throw error
+        // if it contains separator character, throw error
+        if (aDescField.getText().equals("") || aDescField.getText().equals("--")) {
+            flag = false;
+            aDescField.setForeground(Color.red);
+            aDescField.setText("--");
+        } else if (!Util.sepCheck(aDescField.getText())) {
+            flag = false;
+            aDescField.setForeground(Color.red);
+        }
+
+        // ShowNum
+        // calls external helper function
+        if (aDayBox1.isEnabled()) {
+            if (aDayBox1.getSelectedIndex() == 0
+                    || aStartBox1.getSelectedIndex() == 0
+                    || aEndBox1.getSelectedIndex() == 0) {
+                aDayBox1.setForeground(Color.red);
+                aStartBox1.setForeground(Color.red);
+                aEndBox1.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aDayBox2.isEnabled()) {
+            if (aDayBox2.getSelectedIndex() == 0
+                    || aStartBox2.getSelectedIndex() == 0
+                    || aEndBox2.getSelectedIndex() == 0) {
+                aDayBox2.setForeground(Color.red);
+                aStartBox2.setForeground(Color.red);
+                aEndBox2.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aDayBox3.isEnabled()) {
+            if (aDayBox3.getSelectedIndex() == 0
+                    || aStartBox3.getSelectedIndex() == 0
+                    || aEndBox3.getSelectedIndex() == 0) {
+                aDayBox3.setForeground(Color.red);
+                aStartBox3.setForeground(Color.red);
+                aEndBox3.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aDayBox4.isEnabled()) {
+            if (aDayBox4.getSelectedIndex() == 0
+                    || aStartBox4.getSelectedIndex() == 0
+                    || aEndBox4.getSelectedIndex() == 0) {
+                aDayBox4.setForeground(Color.red);
+                aStartBox4.setForeground(Color.red);
+                aEndBox4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aDayBox5.isEnabled()) {
+            if (aDayBox5.getSelectedIndex() == 0
+                    || aStartBox5.getSelectedIndex() == 0
+                    || aEndBox5.getSelectedIndex() == 0) {
+                aDayBox5.setForeground(Color.red);
+                aStartBox5.setForeground(Color.red);
+                aEndBox5.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aDayBox6.isEnabled()) {
+            if (aDayBox6.getSelectedIndex() == 0
+                    || aStartBox6.getSelectedIndex() == 0
+                    || aEndBox6.getSelectedIndex() == 0) {
+                aDayBox6.setForeground(Color.red);
+                aStartBox6.setForeground(Color.red);
+                aEndBox6.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aDayBox7.isEnabled()) {
+            if (aDayBox7.getSelectedIndex() == 0
+                    || aStartBox7.getSelectedIndex() == 0
+                    || aEndBox7.getSelectedIndex() == 0) {
+                aDayBox7.setForeground(Color.red);
+                aStartBox7.setForeground(Color.red);
+                aEndBox7.setForeground(Color.red);
+                flag = false;
+            }
+        }
+
+        // HostNum
+        // calls external helper function
+        if (aHost1.isEnabled()) {
+            if (aHost1.getSelectedIndex() == 0) {
+                aHost1.setForeground(Color.red);
+                flag = false;
+            }
+            if (aHost1.getSelectedIndex() == aHost2.getSelectedIndex()) {
+                aHost1.setForeground(Color.red);
+                aHost2.setForeground(Color.red);
+                flag = false;
+            }
+            if (aHost1.getSelectedIndex() == aHost3.getSelectedIndex()) {
+                aHost1.setForeground(Color.red);
+                aHost3.setForeground(Color.red);
+                flag = false;
+            }
+            if (aHost1.getSelectedIndex() == aHost4.getSelectedIndex()) {
+                aHost1.setForeground(Color.red);
+                aHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aHost2.isEnabled()) {
+            if (aHost2.getSelectedIndex() == 0) {
+                aHost2.setForeground(Color.red);
+                flag = false;
+            }
+            if (aHost2.getSelectedIndex() == aHost3.getSelectedIndex()) {
+                aHost2.setForeground(Color.red);
+                aHost3.setForeground(Color.red);
+                flag = false;
+            }
+            if (aHost2.getSelectedIndex() == aHost4.getSelectedIndex()) {
+                aHost2.setForeground(Color.red);
+                aHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aHost3.isEnabled()) {
+            if (aHost3.getSelectedIndex() == 0) {
+                aHost3.setForeground(Color.red);
+                flag = false;
+            }
+            if (aHost3.getSelectedIndex() == aHost4.getSelectedIndex()) {
+                aHost3.setForeground(Color.red);
+                aHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+        if (aHost4.isEnabled()) {
+            if (aHost4.getSelectedIndex() == 0) {
+                aHost4.setForeground(Color.red);
+                flag = false;
+            }
+        }
+
+        setAddErrLabel();
+        return flag;
+    }
+
+    /**
+     * setAddErrLabel()
+     *
+     * Checks each field to see if the text color is red
+     * If it is, add to count
+     * Starts with end so it can print out "Error with ##### field and # other(s)
+     */
+    public void setAddErrLabel() {
+        int errCount = 0;
+        String err = "";
+
+        // hosts
+        if (aHost4.isEnabled()) {
+            if (aHost4.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 4";
+            }
+        }
+        if (aHost3.isEnabled()) {
+            if (aHost3.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 3";
+            }
+        }
+        if (aHost2.isEnabled()) {
+            if (aHost2.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 2";
+            }
+        }
+        if (aHost1.isEnabled()) {
+            if (aHost1.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 1";
+            }
+        }
+
+        // times
+        if (aDayBox7.isEnabled()) {
+            if (aDayBox7.getForeground() == Color.red
+                    || aStartBox7.getForeground() == Color.red
+                    || aEndBox7.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 7";
+            }
+        }
+        if (aDayBox6.isEnabled()) {
+            if (aDayBox6.getForeground() == Color.red
+                    || aStartBox6.getForeground() == Color.red
+                    || aEndBox6.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 6";
+            }
+        }
+        if (aDayBox5.isEnabled()) {
+            if (aDayBox5.getForeground() == Color.red
+                    || aStartBox5.getForeground() == Color.red
+                    || aEndBox5.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 5";
+            }
+        }
+        if (aDayBox4.isEnabled()) {
+            if (aDayBox4.getForeground() == Color.red
+                    || aStartBox4.getForeground() == Color.red
+                    || aEndBox4.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 4";
+            }
+        }
+        if (aDayBox3.isEnabled()) {
+            if (aDayBox3.getForeground() == Color.red
+                    || aStartBox3.getForeground() == Color.red
+                    || aEndBox3.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 3";
+            }
+        }
+        if (aDayBox2.isEnabled()) {
+            if (aDayBox2.getForeground() == Color.red
+                    || aStartBox2.getForeground() == Color.red
+                    || aEndBox2.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 2";
+            }
+        }
+        if (aDayBox1.isEnabled()) {
+            if (aDayBox1.getForeground() == Color.red
+                    || aStartBox1.getForeground() == Color.red
+                    || aEndBox1.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 1";
+            }
+        }
+
+        // showDesc
+        if (aDescField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with show description";
+        }
+
+        // showName
+        if (aNameField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with show name";
+        }
+
+        // if there is more than one error
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+            // if there is only one error
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
     }
     
+    /**
+     * setAddErrLabel()
+     *
+     * Checks each field to see if the text color is red
+     * If it is, add to count
+     * Starts with end so it can print out "Error with ##### field and # other(s)
+     */
+    public void setSearchErrLabel() {
+        int errCount = 0;
+        String err = "";
+
+        // hosts
+        if (sHost4.isEnabled()) {
+            if (sHost4.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 4";
+            }
+        }
+        if (sHost3.isEnabled()) {
+            if (sHost3.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 3";
+            }
+        }
+        if (sHost2.isEnabled()) {
+            if (sHost2.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 2";
+            }
+        }
+        if (sHost1.isEnabled()) {
+            if (sHost1.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with host 1";
+            }
+        }
+
+        // times
+        if (sDayBox7.isEnabled()) {
+            if (sDayBox7.getForeground() == Color.red
+                    || sStartBox7.getForeground() == Color.red
+                    || sEndBox7.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 7";
+            }
+        }
+        if (sDayBox6.isEnabled()) {
+            if (sDayBox6.getForeground() == Color.red
+                    || sStartBox6.getForeground() == Color.red
+                    || sEndBox6.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 6";
+            }
+        }
+        if (sDayBox5.isEnabled()) {
+            if (sDayBox5.getForeground() == Color.red
+                    || sStartBox5.getForeground() == Color.red
+                    || sEndBox5.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 5";
+            }
+        }
+        if (sDayBox4.isEnabled()) {
+            if (sDayBox4.getForeground() == Color.red
+                    || sStartBox4.getForeground() == Color.red
+                    || sEndBox4.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 4";
+            }
+        }
+        if (sDayBox3.isEnabled()) {
+            if (sDayBox3.getForeground() == Color.red
+                    || sStartBox3.getForeground() == Color.red
+                    || sEndBox3.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 3";
+            }
+        }
+        if (sDayBox2.isEnabled()) {
+            if (sDayBox2.getForeground() == Color.red
+                    || sStartBox2.getForeground() == Color.red
+                    || sEndBox2.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 2";
+            }
+        }
+        if (sDayBox1.isEnabled()) {
+            if (sDayBox1.getForeground() == Color.red
+                    || sStartBox1.getForeground() == Color.red
+                    || sEndBox1.getForeground() == Color.red) {
+                errCount++;
+                err = "Error with day slot 1";
+            }
+        }
+
+        // showDesc
+        if (sDescField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with show description";
+        }
+
+        // showName
+        if (sNameField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with show name";
+        }
+
+        // if there is more than one error
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+            // if there is only one error
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
+    }
+
+    /**
+     * asetAllForeground()
+     *
+     * Helper function to set add fields' foregrounds
+     * Used to error check
+     *
+     * @param c
+     */
+    public void asetAllForeground(Color c) {
+        aNameField.setForeground(c);
+        aDescField.setForeground(c);
+
+        aDayBox1.setForeground(c);
+        aStartBox1.setForeground(c);
+        aEndBox1.setForeground(c);
+
+        aDayBox2.setForeground(c);
+        aStartBox2.setForeground(c);
+        aEndBox2.setForeground(c);
+
+        aDayBox3.setForeground(c);
+        aStartBox3.setForeground(c);
+        aEndBox3.setForeground(c);
+
+        aDayBox4.setForeground(c);
+        aStartBox4.setForeground(c);
+        aEndBox4.setForeground(c);
+
+        aDayBox5.setForeground(c);
+        aStartBox5.setForeground(c);
+        aEndBox5.setForeground(c);
+
+        aDayBox6.setForeground(c);
+        aStartBox6.setForeground(c);
+        aEndBox6.setForeground(c);
+
+        aDayBox7.setForeground(c);
+        aStartBox7.setForeground(c);
+        aEndBox7.setForeground(c);
+
+        aHost1.setForeground(c);
+        aHost2.setForeground(c);
+        aHost3.setForeground(c);
+        aHost4.setForeground(c);
+    }
+
+    /**
+     * ssetAllForeground()
+     *
+     * Helper function to set search fields' foregrounds
+     * Used to error check
+     *
+     * @param c
+     */
+    public void ssetAllForeground(Color c) {
+        sNameField.setForeground(c);
+        sDescField.setForeground(c);
+
+        sDayBox1.setForeground(c);
+        sStartBox1.setForeground(c);
+        sEndBox1.setForeground(c);
+
+        sDayBox2.setForeground(c);
+        sStartBox2.setForeground(c);
+        sEndBox2.setForeground(c);
+
+        sDayBox3.setForeground(c);
+        sStartBox3.setForeground(c);
+        sEndBox3.setForeground(c);
+
+        sDayBox4.setForeground(c);
+        sStartBox4.setForeground(c);
+        sEndBox4.setForeground(c);
+
+        sDayBox5.setForeground(c);
+        sStartBox5.setForeground(c);
+        sEndBox5.setForeground(c);
+
+        sDayBox6.setForeground(c);
+        sStartBox6.setForeground(c);
+        sEndBox6.setForeground(c);
+
+        sDayBox7.setForeground(c);
+        sStartBox7.setForeground(c);
+        sEndBox7.setForeground(c);
+
+        sHost1.setForeground(c);
+        sHost2.setForeground(c);
+        sHost3.setForeground(c);
+        sHost4.setForeground(c);
+    }
+
     /**
      * aUpdateShowNumber()
      *
@@ -2036,6 +3195,14 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * aUpdateHostNumber()
+     *
+     * Helper function to update the number of ComboBoxes to enable based
+     * on the spinner
+     *
+     * @param num
+     */
     public void aUpdateHostNumber(int num) {
         switch (num) {
             case 0:
@@ -2053,7 +3220,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 aHost2.setEnabled(false);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                //aHost1.setSelectedIndex(0);
                 aHost2.setSelectedIndex(0);
                 aHost3.setSelectedIndex(0);
                 aHost4.setSelectedIndex(0);
@@ -2063,8 +3229,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                //aHost1.setSelectedIndex(0);
-                //aHost2.setSelectedIndex(0);
                 aHost3.setSelectedIndex(0);
                 aHost4.setSelectedIndex(0);
                 break;
@@ -2073,9 +3237,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(true);
                 aHost4.setEnabled(false);
-                //aHost1.setSelectedIndex(0);
-                //aHost2.setSelectedIndex(0);
-                //aHost3.setSelectedIndex(0);
                 aHost4.setSelectedIndex(0);
                 break;
             case 4:
@@ -2083,14 +3244,18 @@ public class ShowGUI extends javax.swing.JFrame {
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(true);
                 aHost4.setEnabled(true);
-                //aHost1.setSelectedIndex(0);
-                //aHost2.setSelectedIndex(0);
-                //aHost3.setSelectedIndex(0);
-                //aHost4.setSelectedIndex(0);
                 break;
         }
     }
 
+    /**
+     * sUpdateHostNumber()
+     *
+     * Helper function to update the number of ComboBoxes to enable based
+     * on the spinner
+     *
+     * @param num
+     */
     public void sUpdateHostNumber(int num) {
         switch (num) {
             case 0:
@@ -2146,7 +3311,127 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }
 
-    public void setSearchFieldsEditable(boolean b) {
+    /**
+     * getDayIndex()
+     * 
+     * Helper function to set the index of the day combo boxes based on the
+     * day parameter
+     * 
+     * @param day
+     * @return the index of the combo box
+     */
+    public int getDayIndex(Show.Day day) {
+        if(null != day) switch (day) {
+            case SUN:
+                return 1;
+            case MON:
+                return 2;
+            case TUE:
+                return 3;
+            case WED:
+                return 4;
+            case THU:
+                return 5;
+            case FRI:
+                return 6;
+            case SAT:
+                return 7;
+            default:
+                return -1;
+        }
+        return -1;
+    }
+    
+    /**
+     * getTimeIndex()
+     * 
+     * Helper function to set the index of the time combo boxes based on the
+     * time parameter
+     * 
+     * @param time
+     * @return the index of the combo box
+     */
+    public int getTimeIndex(Show.Time time) {
+        if(null != time) switch (time) {
+            case am0600:
+                return 1;
+            case am0630:
+                return 2;
+            case am0700:
+                return 3;
+            case am0730:
+                return 4;
+            case am0800:
+                return 5;
+            case am0830:
+                return 6;
+            case am0900:
+                return 7;
+            case am0930:
+                return 8;
+            case am1000:
+                return 9;
+            case am1030:
+                return 10;
+            case am1100:
+                return 11;
+            case am1130:
+                return 12;
+            case pm1200:
+                return 13;
+            case pm1230:
+                return 14;
+            case pm0100:
+                return 15;
+            case pm0130:
+                return 16;
+            case pm0200:
+                return 17;
+            case pm0230:
+                return 18;
+            case pm0300:
+                return 19;
+            case pm0330:
+                return 20;
+            case pm0400:
+                return 21;
+            case pm0430:
+                return 22;
+            case pm0500:
+                return 23;
+            case pm0530:
+                return 24;
+            case pm0600:
+                return 25;
+            case pm0630:
+                return 26;
+            case pm0700:
+                return 27;
+            case pm0730:
+                return 28;
+            case pm0800:
+                return 29;
+            case pm0830:
+                return 30;
+            case pm0900:
+                return 31;
+            case pm0930:
+                return 32;
+            case pm1000:
+                return 33;
+            case pm1030:
+                return 34;
+            case pm1100:
+                return 35;
+            case pm1130:
+                return 36;
+            case am1200:
+                return 37;
+        }
+        return -1;
+    }
+    
+    public void setSearchFieldsEnabled(boolean b) {
         sNameField.setEnabled(b);
         sDescField.setEnabled(b);
         sShowNumSpinner.setEnabled(b);
@@ -2154,7 +3439,193 @@ public class ShowGUI extends javax.swing.JFrame {
         sUpdateShowNumber(0);
         sUpdateHostNumber(0);
     }
+
+    public void setAddValuesToNull() {
+        aNameField.setText("");
+        aDescField.setText("");
+        aShowNumSpinner.setValue(0);
+        aHostNumSpinner.setValue(0);
+    }
+
+    public void setSearchFieldsToValid() {
+        sNameField.setEnabled(true);
+        sDescField.setEnabled(true);
+        sNameField.setBackground(Color.white);
+        sDescField.setBackground(Color.white);
+    }
     
+    public void setSearchFieldsEditable(boolean b) {
+        sNameField.setEditable(b);
+        sDescField.setEditable(b);
+        
+        sShowNumSpinner.setEnabled(b);
+        sHostNumSpinner.setEnabled(b);
+        
+        if(b) {
+            sUpdateShowNumber((Integer)sShowNumSpinner.getValue());
+            sUpdateHostNumber((Integer)sHostNumSpinner.getValue());
+        } else {
+            sShowNumSpinner.setValue(0);
+            sHostNumSpinner.setValue(0);
+        }
+    }
+    
+    public void setSearchValuesToNull() {
+        sNameField.setText("");
+        sDescField.setText("");
+        sUpdateShowNumber(0);
+        sUpdateHostNumber(0);
+    }
+    
+    /**
+     * getShow()
+     * 
+     * Takes the values in the search panel and returns a new show based
+     * on those values
+     * 
+     * @return the new show 
+     */
+    public Show getShow() {
+        String name = sNameField.getText();
+        String desc = sDescField.getText();
+        
+        Profile[] p = new Profile[(Integer)sHostNumSpinner.getValue()];
+        switch(p.length) {
+            case 1:
+                p[0] = ProfileController.SearchProfile(profiles.getElementAt(sHost1.getSelectedIndex()).id);
+                break;
+            case 2:
+                p[0] = ProfileController.SearchProfile(profiles.getElementAt(sHost1.getSelectedIndex()).id);
+                p[1] = ProfileController.SearchProfile(profiles.getElementAt(sHost2.getSelectedIndex()).id);
+                break;
+            case 3:
+                p[0] = ProfileController.SearchProfile(profiles.getElementAt(sHost1.getSelectedIndex()).id);
+                p[1] = ProfileController.SearchProfile(profiles.getElementAt(sHost2.getSelectedIndex()).id);
+                p[2] = ProfileController.SearchProfile(profiles.getElementAt(sHost3.getSelectedIndex()).id);
+                break;
+            case 4:
+                p[0] = ProfileController.SearchProfile(profiles.getElementAt(sHost1.getSelectedIndex()).id);
+                p[1] = ProfileController.SearchProfile(profiles.getElementAt(sHost2.getSelectedIndex()).id);
+                p[2] = ProfileController.SearchProfile(profiles.getElementAt(sHost3.getSelectedIndex()).id);
+                p[3] = ProfileController.SearchProfile(profiles.getElementAt(sHost4.getSelectedIndex()).id);
+                break;
+            default:
+                break;
+        }
+        
+        Show.Day[] d = new Show.Day[(Integer)sShowNumSpinner.getValue()];
+        Show.Time[] t = new Show.Time[(Integer)sShowNumSpinner.getValue() * 2];
+        switch(d.length) {
+            case 1:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                break;
+            case 2:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                d[1] = getDay(sDayBox2.getSelectedIndex());
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                t[2] = getTime(sStartBox2.getSelectedIndex());
+                t[3] = getTime(sEndBox3.getSelectedIndex());
+                break;
+            case 3:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                d[1] = getDay(sDayBox2.getSelectedIndex());
+                d[2] = getDay(sDayBox3.getSelectedIndex());
+                
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                t[2] = getTime(sStartBox2.getSelectedIndex());
+                t[3] = getTime(sEndBox2.getSelectedIndex());
+                t[4] = getTime(sStartBox3.getSelectedIndex());
+                t[5] = getTime(sEndBox3.getSelectedIndex());
+                break;
+            case 4:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                d[1] = getDay(sDayBox2.getSelectedIndex());
+                d[2] = getDay(sDayBox3.getSelectedIndex());
+                d[3] = getDay(sDayBox4.getSelectedIndex());
+                
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                t[2] = getTime(sStartBox2.getSelectedIndex());
+                t[3] = getTime(sEndBox2.getSelectedIndex());
+                t[4] = getTime(sStartBox3.getSelectedIndex());
+                t[5] = getTime(sEndBox3.getSelectedIndex());
+                t[6] = getTime(sStartBox4.getSelectedIndex());
+                t[7] = getTime(sEndBox4.getSelectedIndex());
+                break;
+            case 5:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                d[1] = getDay(sDayBox2.getSelectedIndex());
+                d[2] = getDay(sDayBox3.getSelectedIndex());
+                d[3] = getDay(sDayBox4.getSelectedIndex());
+                d[4] = getDay(sDayBox5.getSelectedIndex());
+                
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                t[2] = getTime(sStartBox2.getSelectedIndex());
+                t[3] = getTime(sEndBox2.getSelectedIndex());
+                t[4] = getTime(sStartBox3.getSelectedIndex());
+                t[5] = getTime(sEndBox3.getSelectedIndex());
+                t[6] = getTime(sStartBox4.getSelectedIndex());
+                t[7] = getTime(sEndBox4.getSelectedIndex());
+                t[8] = getTime(sStartBox5.getSelectedIndex());
+                t[9] = getTime(sEndBox5.getSelectedIndex());
+                break;
+            case 6:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                d[1] = getDay(sDayBox2.getSelectedIndex());
+                d[2] = getDay(sDayBox3.getSelectedIndex());
+                d[3] = getDay(sDayBox4.getSelectedIndex());
+                d[4] = getDay(sDayBox5.getSelectedIndex());
+                d[5] = getDay(sDayBox6.getSelectedIndex());
+                
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                t[2] = getTime(sStartBox2.getSelectedIndex());
+                t[3] = getTime(sEndBox2.getSelectedIndex());
+                t[4] = getTime(sStartBox3.getSelectedIndex());
+                t[5] = getTime(sEndBox3.getSelectedIndex());
+                t[6] = getTime(sStartBox4.getSelectedIndex());
+                t[7] = getTime(sEndBox4.getSelectedIndex());
+                t[8] = getTime(sStartBox5.getSelectedIndex());
+                t[9] = getTime(sEndBox5.getSelectedIndex());
+                t[10] = getTime(sStartBox6.getSelectedIndex());
+                t[11] = getTime(sEndBox6.getSelectedIndex());
+                break;
+            case 7:
+                d[0] = getDay(sDayBox1.getSelectedIndex());
+                d[1] = getDay(sDayBox2.getSelectedIndex());
+                d[2] = getDay(sDayBox3.getSelectedIndex());
+                d[3] = getDay(sDayBox4.getSelectedIndex());
+                d[4] = getDay(sDayBox5.getSelectedIndex());
+                d[5] = getDay(sDayBox6.getSelectedIndex());
+                d[6] = getDay(sDayBox7.getSelectedIndex());
+                
+                t[0] = getTime(sStartBox1.getSelectedIndex());
+                t[1] = getTime(sEndBox1.getSelectedIndex());
+                t[2] = getTime(sStartBox2.getSelectedIndex());
+                t[3] = getTime(sEndBox2.getSelectedIndex());
+                t[4] = getTime(sStartBox3.getSelectedIndex());
+                t[5] = getTime(sEndBox3.getSelectedIndex());
+                t[6] = getTime(sStartBox4.getSelectedIndex());
+                t[7] = getTime(sEndBox4.getSelectedIndex());
+                t[8] = getTime(sStartBox5.getSelectedIndex());
+                t[9] = getTime(sEndBox5.getSelectedIndex());
+                t[10] = getTime(sStartBox6.getSelectedIndex());
+                t[11] = getTime(sEndBox6.getSelectedIndex());
+                t[12] = getTime(sStartBox7.getSelectedIndex());
+                t[13] = getTime(sEndBox7.getSelectedIndex());
+                break;
+            default:
+                break;
+        }
+        
+        return new Show(name, desc, p, d, t);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -2235,10 +3706,10 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem closeItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
+    private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;

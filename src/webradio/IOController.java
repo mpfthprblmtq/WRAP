@@ -825,148 +825,148 @@ public class IOController {
         Show.Time[] timeArr = new Show.Time[arr.length];
         for (int i = 0; i < arr.length; i++) {
             switch (arr[i]) {
-                case "1200AM":
+                case "am1200":
                     timeArr[i] = Time.am1200;
                     break;
-                case "1230AM":
+                case "am1230":
                     timeArr[i] = Time.am1230;
                     break;
-                case "0100AM":
+                case "am0100":
                     timeArr[i] = Time.am0100;
                     break;
-                case "0130AM":
+                case "am0130":
                     timeArr[i] = Time.am0130;
                     break;
-                case "0200AM":
+                case "am0200":
                     timeArr[i] = Time.am0200;
                     break;
-                case "0230AM":
+                case "am0230":
                     timeArr[i] = Time.am0230;
                     break;
-                case "0300AM":
+                case "am0300":
                     timeArr[i] = Time.am0300;
                     break;
-                case "0330AM":
+                case "am0330":
                     timeArr[i] = Time.am0330;
                     break;
-                case "0400AM":
+                case "am0400":
                     timeArr[i] = Time.am0400;
                     break;
-                case "0430AM":
+                case "am0430":
                     timeArr[i] = Time.am0430;
                     break;
-                case "0500AM":
+                case "am0500":
                     timeArr[i] = Time.am0500;
                     break;
-                case "0530AM":
+                case "am0530":
                     timeArr[i] = Time.am0530;
                     break;
-                case "0600AM":
+                case "am0600":
                     timeArr[i] = Time.am0600;
                     break;
-                case "0630AM":
+                case "am0630":
                     timeArr[i] = Time.am0630;
                     break;
-                case "0700AM":
+                case "am0700":
                     timeArr[i] = Time.am0700;
                     break;
-                case "0730AM":
+                case "am0730":
                     timeArr[i] = Time.am0730;
                     break;
-                case "0800AM":
+                case "am0800":
                     timeArr[i] = Time.am0800;
                     break;
-                case "0830AM":
+                case "am0830":
                     timeArr[i] = Time.am0830;
                     break;
-                case "0900AM":
+                case "am0900":
                     timeArr[i] = Time.am0900;
                     break;
-                case "0930AM":
+                case "am0930":
                     timeArr[i] = Time.am0930;
                     break;
-                case "1000AM":
+                case "am1000":
                     timeArr[i] = Time.am1000;
                     break;
-                case "1030AM":
+                case "am1030":
                     timeArr[i] = Time.am1030;
                     break;
-                case "1100AM":
+                case "am1100":
                     timeArr[i] = Time.am1100;
                     break;
-                case "1130AM":
+                case "am1130":
                     timeArr[i] = Time.am1130;
                     break;
-                case "1200PM":
+                case "pm1200":
                     timeArr[i] = Time.pm1200;
                     break;
-                case "1230PM":
+                case "pm1230":
                     timeArr[i] = Time.pm1230;
                     break;
-                case "0100PM":
+                case "pm0100":
                     timeArr[i] = Time.pm0100;
                     break;
-                case "0130PM":
+                case "pm0130":
                     timeArr[i] = Time.pm0130;
                     break;
-                case "0200PM":
+                case "pm0200":
                     timeArr[i] = Time.pm0200;
                     break;
-                case "0230PM":
+                case "pm0230":
                     timeArr[i] = Time.pm0230;
                     break;
-                case "0300PM":
+                case "pm0300":
                     timeArr[i] = Time.pm0300;
                     break;
-                case "0330PM":
+                case "pm0330":
                     timeArr[i] = Time.pm0330;
                     break;
-                case "0400PM":
+                case "pm0400":
                     timeArr[i] = Time.pm0400;
                     break;
-                case "0430PM":
+                case "pm0430":
                     timeArr[i] = Time.pm0430;
                     break;
-                case "0500PM":
+                case "pm0500":
                     timeArr[i] = Time.pm0500;
                     break;
-                case "0530PM":
+                case "pm0530":
                     timeArr[i] = Time.pm0530;
                     break;
-                case "0600PM":
+                case "pm0600":
                     timeArr[i] = Time.pm0600;
                     break;
-                case "0630PM":
+                case "pm0630":
                     timeArr[i] = Time.pm0630;
                     break;
-                case "0700PM":
+                case "pm0700":
                     timeArr[i] = Time.pm0700;
                     break;
-                case "0730PM":
+                case "pm0730":
                     timeArr[i] = Time.pm0730;
                     break;
-                case "0800PM":
+                case "pm0800":
                     timeArr[i] = Time.pm0800;
                     break;
-                case "0830PM":
+                case "pm0830":
                     timeArr[i] = Time.pm0830;
                     break;
-                case "0900PM":
+                case "pm0900":
                     timeArr[i] = Time.pm0900;
                     break;
-                case "0930PM":
+                case "pm0930":
                     timeArr[i] = Time.pm0930;
                     break;
-                case "1000PM":
+                case "pm1000":
                     timeArr[i] = Time.pm1000;
                     break;
-                case "1030PM":
+                case "pm1030":
                     timeArr[i] = Time.pm1030;
                     break;
-                case "1100PM":
+                case "pm1100":
                     timeArr[i] = Time.pm1100;
                     break;
-                case "1130PM":
+                case "pm1130":
                     timeArr[i] = Time.pm1130;
                     break;
                 default:

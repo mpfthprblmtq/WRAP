@@ -1,5 +1,7 @@
 package webradio;
 
+import java.util.Arrays;
+
 public class Show {
 
     public enum Day {
@@ -119,7 +121,18 @@ public class Show {
         for (int i = 0; i < arr.length-1; i++) {
             ret += arr[i] + ",";
         }
-        ret += arr[arr.length];
+        ret += arr[arr.length - 1];
+        return ret;
+    }
+    
+    public String convertProfileArrToString(Profile[] arr) {
+        String ret = "";
+        for (int i = 0; i < arr.length-1; i++) {
+            ret += arr[i].getId() + ",";
+        }
+        System.out.println("ret: " + ret);
+        System.out.println("arr: " + Arrays.toString(arr));
+        ret += arr[arr.length - 1].getId();
         return ret;
     }
     
@@ -128,7 +141,7 @@ public class Show {
         if(!this.showName.equals("--")) {
         return showName + "///" + 
                 showDesc + "///" + 
-                convertArrToString(hosts)  + "///" +  
+                convertProfileArrToString(hosts)  + "///" +  
                 convertArrToString(days)  + "///" +
                 convertArrToString(times);
         } else {

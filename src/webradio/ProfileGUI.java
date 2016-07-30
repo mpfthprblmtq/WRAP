@@ -1896,7 +1896,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // update graphics
         errLabel.setForeground(Color.blue);
-        errLabel.setText("User edited successfully");
+        errLabel.setText("Profile edited successfully");
 
         // create new Profile object
         String[] str = getSearchValues();
