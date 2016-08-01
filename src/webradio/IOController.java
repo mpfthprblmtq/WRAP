@@ -596,6 +596,78 @@ public class IOController {
         return true;
     }
 
+    static void deleteProfilesShowsAsWell(String id) {
+        try (Scanner b_in = new Scanner(new FileReader(shows))) {
+            while (b_in.hasNext()) {
+                String line = b_in.nextLine();      // create array from each line
+                String[] str = line.split(s);       // split it on /// symbol
+
+                String[] str2 = str[2].split(",");
+                for (int i = 0; i < str2.length; i++) {
+                    if(str2[i].equals(id)) {
+                        deleteShow(str[0]);
+                    }
+                }
+            }
+            b_in.close();
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+    }
+
+    static void replaceProfileWithBlank(String id) {
+        try (Scanner b_in = new Scanner(new FileReader(shows))) {
+            while (b_in.hasNext()) {
+                String line = b_in.nextLine();      // create array from each line
+                String[] str = line.split(s);       // split it on /// symbol
+
+                String[] str2 = str[2].split(",");
+                for (int i = 0; i < str2.length; i++) {
+                    if(str2[i].equals(id)) {
+                        Show s1 = searchShow(str[0]);
+                        deleteShow(s1.getShowName());
+                        
+                        Profile[] newHosts = s1.getHosts();
+                        for (int j = 0; j < s1.getHosts().length; j++) {
+                            if(newHosts[j].getId().equals(id)) {
+                                newHosts[j].setId("0");
+                            }
+                        }
+                        
+                        // make new show and replace the host array
+                        Show s2 = s1;
+                        s2.setHosts(newHosts);
+                        
+                        addShow(s2);
+                    }
+                }
+            }
+            b_in.close();
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+    }
+    
+    public static boolean checkIfProfileHasAShow(String id) {
+        try (Scanner b_in = new Scanner(new FileReader(shows))) {
+            while (b_in.hasNext()) {
+                String line = b_in.nextLine();      // create array from each line
+                String[] str = line.split(s);       // split it on /// symbol
+
+                String[] str2 = str[2].split(",");
+                for (int i = 0; i < str2.length; i++) {
+                    if(str2[i].equals(id)) {
+                        return true;
+                    }
+                }
+            }
+            b_in.close();
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+
     // </editor-fold>
     
     
@@ -606,6 +678,7 @@ public class IOController {
     //
     ////////////////////////////////////////////////////////////////////////////
     
+    // <editor-fold defaultstate="collapsed" desc="SHOWS">
     public static Show[] getAllShows() {
         // get the size and make array of that size
         int total = getTotalShows();
@@ -719,9 +792,9 @@ public class IOController {
                     Day[] daysArr = convertDayArray(strDaysArr);
                     Time[] timeArr = convertTimeArray(strTimeArr);
                     
-                    for (int i = 0; i < hostArr.length; i++) {
-                        System.out.println(hostArr[i].getId());
-                    }
+//                    for (int i = 0; i < hostArr.length; i++) {
+//                        System.out.println(hostArr[i].getId());
+//                    }
                     
                     return new Show(showName, showDesc, hostArr, daysArr, timeArr);
                 }
@@ -980,6 +1053,8 @@ public class IOController {
         return timeArr;
     }
 
+    // </editor-fold>
+    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      BUGS AND SUGGESTION REPORTING

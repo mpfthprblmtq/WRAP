@@ -978,7 +978,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * EnterKeyPressed : clicks a button when enter is pressed
      */
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods"> 
-    
     /**
      * Handles when the window is closed
      * When the window is closed, call Main.closeProfileGUI()
@@ -993,17 +992,21 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!people.isEmpty()) {
-            // graphics update
-            submitButton.setEnabled(false);
-            editButton.setEnabled(true);
-            deleteButton.setEnabled(true);
-            setSearchFieldsEditable(false);
+            if (list.getSelectedIndex() == 0) {
+                // do nothing, blank value
+            } else {
+                // graphics update
+                submitButton.setEnabled(false);
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+                setSearchFieldsEditable(false);
 
-            // search for the profile
-            search(people.elementAt(list.getSelectedIndex()).id);
+                // search for the profile
+                search(people.elementAt(list.getSelectedIndex()).id);
 
-            // if search tab is not in focus, put it in focus
-            tabs.setSelectedIndex(0);
+                // if search tab is not in focus, put it in focus
+                tabs.setSelectedIndex(0);
+            }
         } else {
             // do nothing
             // it'll crash otherwise
@@ -1013,7 +1016,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles when the EDIT button is pressed
- Just calls outside method edit()
+     * Just calls outside method edit()
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         edit();
@@ -1021,7 +1024,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles when the DELETE button is pressed
- Pops up a confirmation window, then calls delete() if user wishes
+     * Pops up a confirmation window, then calls delete() if user wishes
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int res = JOptionPane.showConfirmDialog(
@@ -1035,8 +1038,41 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // do a thing based on response
         switch (res) {
             case 0:
-                delete();
-                break;
+                String[] options = new String[]{"Delete Show", "Replace"};
+//                int res2 = JOptionPane.showConfirmDialog(
+//                null,
+//                sfNameField.getText() + " currently is \n"
+//                        + "hosting a show.  Would you \n"
+//                        + "like to delete that show as well \n"
+//                        + "or just replace their name with \n"
+//                        + "a blank spot?",
+//                "Confirm Deletion",
+//                JOptionPane.YES_NO_OPTION);
+                if (IOController.checkIfProfileHasAShow(snum800Field.getText())) {
+                    int res2 = JOptionPane.showOptionDialog(null,
+                            sfNameField.getText() + " currently is \n"
+                            + "hosting a show.  Would you \n"
+                            + "like to delete that show as well \n"
+                            + "or just replace their name with \n"
+                            + "a blank spot?",
+                            "Confirm Deletion",
+                            0,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            options,
+                            null);
+
+                    switch (res2) {
+                        case 0:
+                            delete();
+                            ProfileController.deleteProfilesShowsAsWell(snum800Field.getText());
+                            break;
+                        case 1:
+                            delete();
+                            ProfileController.replaceProfileWithBlank(snum800Field.getText());
+                    }
+                    break;
+                }
             default:
             // do nothing
         }
@@ -1045,7 +1081,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles when the SUBMIT button is pressed
- Checks to see if all the modified elements are okay, calls submit() if they are
+     * Checks to see if all the modified elements are okay, calls submit() if they are
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
@@ -1055,7 +1091,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles when the ADD button is pressed
- Checks to see if all of the elements are kosher, then calls add() if they are
+     * Checks to see if all of the elements are kosher, then calls add() if they are
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
@@ -1687,9 +1723,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
-        JOptionPane.showMessageDialog(this, 
-                "Probably some admin stuff here", 
-                "Advanced", 
+        JOptionPane.showMessageDialog(this,
+                "Probably some admin stuff here",
+                "Advanced",
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_adminLabelMouseClicked
 
@@ -1710,12 +1746,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_adminLabelMouseExited
 
     // </editor-fold>
-    
     /**
      * fillList()
-
- Gets all of the Profiles from IOController and shoves them into an array
- Then it populates the DefaultListModel of ListElements from that array
+     *
+     * Gets all of the Profiles from IOController and shoves them into an array
+     * Then it populates the DefaultListModel of ListElements from that array
      *
      * @return the DefaultListModel to populate the JList
      */
@@ -1741,8 +1776,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * updateList()
-
- Works with the global list of Profiles, which updates the JList graphics
+     *
+     * Works with the global list of Profiles, which updates the JList graphics
      *
      * @param action,  the type of action (either add or remove)
      * @param element, the element to add or remove
@@ -1760,12 +1795,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * add()
-
- If the fields are all valid, this method is called
- Takes fields and creates Profile and ListElement objects
- Then it calls the ProfileController to add the user
- If the addition succeeds, update the list, and update graphics
- Else addition fails, means that the username is already taken, update graphics
+     *
+     * If the fields are all valid, this method is called
+     * Takes fields and creates Profile and ListElement objects
+     * Then it calls the ProfileController to add the user
+     * If the addition succeeds, update the list, and update graphics
+     * Else addition fails, means that the username is already taken, update graphics
      */
     public void add() {
 
@@ -1797,9 +1832,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * search()
-
- Calls the SearchUser method from ProfileController, which returns a valid Profile
- Update the graphics with the Profile info
+     *
+     * Calls the SearchUser method from ProfileController, which returns a valid Profile
+     * Update the graphics with the Profile info
      *
      * @param id, the id to search
      */
@@ -1833,10 +1868,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * delete()
-
- Creates an Profile with the fields given
- Then call DeleteUser() from ProfileController
- If success, confirm on errLabel
+     *
+     * Creates an Profile with the fields given
+     * Then call DeleteUser() from ProfileController
+     * If success, confirm on errLabel
      */
     public void delete() {
 
@@ -1866,9 +1901,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * edit()
-
- Basically just sets the fields to editable
- Stores a temporary global Profile, used in the editing process in submit()
+     *
+     * Basically just sets the fields to editable
+     * Stores a temporary global Profile, used in the editing process in submit()
      */
     public void edit() {
 
@@ -1886,11 +1921,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * submit()
-
- Takes the new input as parameters for a new Profile object
- Then it deletes the old account, then adds the new one (in that order)
- If success, update the graphics
- If failure, return and update graphics
+     *
+     * Takes the new input as parameters for a new Profile object
+     * Then it deletes the old account, then adds the new one (in that order)
+     * If success, update the graphics
+     * If failure, return and update graphics
      */
     public void submit() {
 
@@ -2289,7 +2324,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
             // check for validity
         } else if (!aprefEmailField.getText().matches(email_regex)) {
-            flag = false; 
+            flag = false;
             aprefEmailField.setForeground(Color.red);
 
             // check for separator

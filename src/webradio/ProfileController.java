@@ -67,6 +67,14 @@ public class ProfileController implements Comparator<Profile> {
         return arr;
     }
 
+    public static void deleteProfilesShowsAsWell(String id) {
+        IOController.deleteProfilesShowsAsWell(id);
+    }
+    
+    public static void replaceProfileWithBlank(String id) {
+        IOController.replaceProfileWithBlank(id);
+    }
+    
     /**
      * sort()
      * 
