@@ -32,13 +32,14 @@ public class IOController {
     // globals
     static ArrayList<Profile> data;
     static String s = "///";
+    static Profile blankProfile = new Profile("<blank>", "<blank>", "000000000", "0000000000", "<blank>", "<blank>", -1, -1, "<blank>", false, false, false, false);
 
     ////////////////////////////////////////////////////////////////////////////
     //
     //      LOGIN AND HASHING
     //
     ////////////////////////////////////////////////////////////////////////////
-    // <editor-fold defaultstate="collapsed" desc="LOGIN AND HASHING">
+            // <editor-fold defaultstate="collapsed" desc="LOGIN AND HASHING">
     /**
      * Login()
      *
@@ -151,12 +152,14 @@ public class IOController {
     }
 
     // </editor-fold>
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      USERS/ACCOUNTS
     //
     ////////////////////////////////////////////////////////////////////////////
-    // <editor-fold defaultstate="collapsed" desc="USERS/ACCOUNTS">
+            // <editor-fold defaultstate="collapsed" desc="USERS/ACCOUNTS">
     /**
      * getAllUsers()
      *
@@ -394,12 +397,14 @@ public class IOController {
     }
 
     // </editor-fold>
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      PROFILES
     //
     ////////////////////////////////////////////////////////////////////////////
-    // <editor-fold defaultstate="collapsed" desc="PROFILES">
+            // <editor-fold defaultstate="collapsed" desc="PROFILES">
     /**
      * getAllProfiles()
      *
@@ -602,9 +607,13 @@ public class IOController {
                 String line = b_in.nextLine();      // create array from each line
                 String[] str = line.split(s);       // split it on /// symbol
 
+                System.out.println("id: " + id);
+                
                 String[] str2 = str[2].split(",");
                 for (int i = 0; i < str2.length; i++) {
+                    System.out.println("Comparing " + id + " with " + str2[i]);
                     if(str2[i].equals(id)) {
+                        System.out.println("Deleting show " + str[0]);
                         deleteShow(str[0]);
                     }
                 }
@@ -624,19 +633,15 @@ public class IOController {
                 String[] str2 = str[2].split(",");
                 for (int i = 0; i < str2.length; i++) {
                     if(str2[i].equals(id)) {
+                        
+                        str2[i] = "000000000";
+                        
                         Show s1 = searchShow(str[0]);
                         deleteShow(s1.getShowName());
                         
-                        Profile[] newHosts = s1.getHosts();
-                        for (int j = 0; j < s1.getHosts().length; j++) {
-                            if(newHosts[j].getId().equals(id)) {
-                                newHosts[j].setId("0");
-                            }
-                        }
-                        
                         // make new show and replace the host array
                         Show s2 = s1;
-                        s2.setHosts(newHosts);
+                        s2.setHosts(convertProfileArray(str2));
                         
                         addShow(s2);
                     }
@@ -671,14 +676,12 @@ public class IOController {
     // </editor-fold>
     
     
-    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      SHOWS
     //
     ////////////////////////////////////////////////////////////////////////////
-    
-    // <editor-fold defaultstate="collapsed" desc="SHOWS">
+            // <editor-fold defaultstate="collapsed" desc="SHOWS">
     public static Show[] getAllShows() {
         // get the size and make array of that size
         int total = getTotalShows();
@@ -1060,7 +1063,7 @@ public class IOController {
     //      BUGS AND SUGGESTION REPORTING
     //
     ////////////////////////////////////////////////////////////////////////////
-    // <editor-fold defaultstate="collapsed" desc="BUGS AND SUGGESTION REPORTING">
+            // <editor-fold defaultstate="collapsed" desc="BUGS AND SUGGESTION REPORTING">
     /**
      * reportBug()
      *

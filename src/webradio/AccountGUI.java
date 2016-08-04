@@ -957,7 +957,9 @@ public class AccountGUI extends javax.swing.JFrame {
      * Calls changePassword() with parameter true
      */
     private void changePasswordLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordLabelMouseClicked
-        changePassword(true);
+        if (changePasswordLabel.isEnabled()) {
+            changePassword(true);
+        }
     }//GEN-LAST:event_changePasswordLabelMouseClicked
 
     /**
@@ -1289,7 +1291,6 @@ public class AccountGUI extends javax.swing.JFrame {
         submitButton.setEnabled(true);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-        changePasswordLabel.setEnabled(true);
 
     }
 
@@ -1304,6 +1305,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sAComboBox.setEnabled(true);
         sAField.setBackground(Color.white);
 
+        changePasswordLabel.setEnabled(true);
         submitButton.setEnabled(true);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
@@ -1753,6 +1755,7 @@ public class AccountGUI extends javax.swing.JFrame {
         sUField.setEditable(b);
         sAComboBox.setEnabled(b);
         sNField.setEditable(b);
+        changePasswordLabel.setEnabled(b);
     }
 
     /**

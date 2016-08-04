@@ -353,7 +353,7 @@ public class TaskGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        if (!people.isEmpty()) {
+        if (!people.isEmpty() && !!people.get(list.getSelectedIndex()).id.equals("000000000")) {
             editButton.setEnabled(true);
             update();
         } else {

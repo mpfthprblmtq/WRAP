@@ -206,7 +206,7 @@ public class MainGUI extends javax.swing.JFrame {
         scrollpane.setFocusable(false);
 
         text.setEditable(false);
-        text.setBackground(new java.awt.Color(240, 240, 240));
+        text.setBackground(new java.awt.Color(250, 250, 250));
         text.setColumns(20);
         text.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         text.setRows(5);

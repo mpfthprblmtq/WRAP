@@ -991,10 +991,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Basically just searches for the element that was clicked on
      */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
-        if (!people.isEmpty()) {
-            if (list.getSelectedIndex() == 0) {
-                // do nothing, blank value
-            } else {
+        if (!people.isEmpty() && !people.get(list.getSelectedIndex()).id.equals("000000000")) {
+            
                 // graphics update
                 submitButton.setEnabled(false);
                 editButton.setEnabled(true);
@@ -1006,7 +1004,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
                 // if search tab is not in focus, put it in focus
                 tabs.setSelectedIndex(0);
-            }
         } else {
             // do nothing
             // it'll crash otherwise
@@ -1039,22 +1036,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         switch (res) {
             case 0:
                 String[] options = new String[]{"Delete Show", "Replace"};
-//                int res2 = JOptionPane.showConfirmDialog(
-//                null,
-//                sfNameField.getText() + " currently is \n"
-//                        + "hosting a show.  Would you \n"
-//                        + "like to delete that show as well \n"
-//                        + "or just replace their name with \n"
-//                        + "a blank spot?",
-//                "Confirm Deletion",
-//                JOptionPane.YES_NO_OPTION);
+
                 if (IOController.checkIfProfileHasAShow(snum800Field.getText())) {
                     int res2 = JOptionPane.showOptionDialog(null,
-                            sfNameField.getText() + " currently is \n"
-                            + "hosting a show.  Would you \n"
-                            + "like to delete that show as well \n"
-                            + "or just replace their name with \n"
-                            + "a blank spot?",
+                            sfNameField.getText() + " is currently hosting a show.\n"
+                            + "Would you like to delete that show or keep it?",
                             "Confirm Deletion",
                             0,
                             JOptionPane.INFORMATION_MESSAGE,
@@ -1062,16 +1048,19 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                             options,
                             null);
 
+                    String id = snum800Field.getText();
                     switch (res2) {
                         case 0:
                             delete();
-                            ProfileController.deleteProfilesShowsAsWell(snum800Field.getText());
+                            ProfileController.deleteProfilesShowsAsWell(id);
                             break;
                         case 1:
                             delete();
-                            ProfileController.replaceProfileWithBlank(snum800Field.getText());
+                            ProfileController.replaceProfileWithBlank(id);
                     }
                     break;
+                } else {
+                    delete();
                 }
             default:
             // do nothing

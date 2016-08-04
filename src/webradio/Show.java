@@ -7,16 +7,16 @@ public class Show {
     public enum Day {
         MON, TUE, WED, THU, FRI, SAT, SUN
     }
-    
+
     public enum Time {
-        am1200, am1230, am0100, am0130, am0200, am0230, am0300, am0330, 
-        am0400, am0430, am0500, am0530, am0600, am0630, am0700, am0730, 
+        am1200, am1230, am0100, am0130, am0200, am0230, am0300, am0330,
+        am0400, am0430, am0500, am0530, am0600, am0630, am0700, am0730,
         am0800, am0830, am0900, am0930, am1000, am1030, am1100, am1130,
-        pm1200, pm1230, pm0100, pm0130, pm0200, pm0230, pm0300, pm0330, 
-        pm0400, pm0430, pm0500, pm0530, pm0600, pm0630, pm0700, pm0730, 
+        pm1200, pm1230, pm0100, pm0130, pm0200, pm0230, pm0300, pm0330,
+        pm0400, pm0430, pm0500, pm0530, pm0600, pm0630, pm0700, pm0730,
         pm0800, pm0830, pm0900, pm0930, pm1000, pm1030, pm1100, pm1130
     }
-    
+
     // ivars
     private String showName;
     private String showDesc;
@@ -27,12 +27,12 @@ public class Show {
     /**
      * ShowInfo()
      * Fully loaded constructor
-     * 
+     *
      * @param showName
      * @param showDesc
      * @param hosts
      * @param days
-     * @param times 
+     * @param times
      */
     public Show(String showName, String showDesc, Profile[] hosts, Day[] days, Time[] times) {
         this.showName = showName;
@@ -41,11 +41,11 @@ public class Show {
         this.days = days;
         this.times = times;
     }
-    
+
     public Show(String blank) {
         this.showName = blank;
     }
-    
+
     /**
      * @return the showName
      */
@@ -118,16 +118,16 @@ public class Show {
 
     public <E> String convertArrToString(E[] arr) {
         String ret = "";
-        for (int i = 0; i < arr.length-1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             ret += arr[i] + ",";
         }
         ret += arr[arr.length - 1];
         return ret;
     }
-    
-    public String convertProfileArrToString(Profile[] arr) {
+
+    public String convertProfileArrToStringOLD(Profile[] arr) {
         String ret = "";
-        for (int i = 0; i < arr.length-1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             ret += arr[i].getId() + ",";
         }
         System.out.println("ret: " + ret);
@@ -135,19 +135,36 @@ public class Show {
         ret += arr[arr.length - 1].getId();
         return ret;
     }
-    
+
+    public String convertProfileArrToString(Profile[] arr) {
+        String ret = "";
+
+        if (arr.length == 1 && arr[0] == null) {
+            return "0";
+        } else {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] != null) {
+                    ret += arr[i].getId() + ",";
+                }
+            }
+
+            ret = ret.substring(0, ret.length() - 1);
+        }
+        
+        return ret;
+    }
+
     @Override
     public String toString() {
-        if(!this.showName.equals("--")) {
-        return showName + "///" + 
-                showDesc + "///" + 
-                convertProfileArrToString(hosts)  + "///" +  
-                convertArrToString(days)  + "///" +
-                convertArrToString(times);
+        if (!this.showName.equals("--")) {
+            return showName + "///"
+                    + showDesc + "///"
+                    + convertProfileArrToString(hosts) + "///"
+                    + convertArrToString(days) + "///"
+                    + convertArrToString(times);
         } else {
             return "--";
         }
     }
-    
-    
+
 }
