@@ -183,7 +183,7 @@ public class Main {
 
     /**
      * ShowGUI
- Controls the showsGUI opening and closing
+     * Controls the showsGUI opening and closing
      */
     public static void LaunchShowGUI() {
         if (!showsGUIVisible) {

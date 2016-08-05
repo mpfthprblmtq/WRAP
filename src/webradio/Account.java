@@ -27,8 +27,8 @@ public class Account {
     public Account(String username, String password, int access, String name) {
         this.username = username;
         this.password = password;
-        this.access   = access;
-        this.name     = name;
+        this.access = access;
+        this.name = name;
     }
     
     /** 

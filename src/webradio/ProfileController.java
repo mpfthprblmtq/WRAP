@@ -67,10 +67,26 @@ public class ProfileController implements Comparator<Profile> {
         return arr;
     }
 
+    /**
+     * deleteProfilesShowsAsWell()
+     * 
+     * When deleting a profile while they have a show, this option lets you
+     * delete their shows that they are hosts of
+     * 
+     * @param id 
+     */
     public static void deleteProfilesShowsAsWell(String id) {
         IOController.deleteProfilesShowsAsWell(id);
     }
     
+    /**
+     * replaceProfileWithBlank()
+     * 
+     * When deleting a profile while they have a show, this option lets you
+     * replace their name with a blank spot
+     * 
+     * @param id 
+     */
     public static void replaceProfileWithBlank(String id) {
         IOController.replaceProfileWithBlank(id);
     }

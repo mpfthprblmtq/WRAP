@@ -682,6 +682,14 @@ public class IOController {
     //
     ////////////////////////////////////////////////////////////////////////////
             // <editor-fold defaultstate="collapsed" desc="SHOWS">
+    
+    /**
+     * getAllShows()
+     * 
+     * Reads the shows file and returns an array of show objects
+     * 
+     * @return the array of shows 
+     */
     public static Show[] getAllShows() {
         // get the size and make array of that size
         int total = getTotalShows();
@@ -719,6 +727,13 @@ public class IOController {
         return show;
     }
 
+    /**
+     * getTotalShows()
+     * 
+     * Scans the shows file and counts the shows
+     * 
+     * @return the number of shows 
+     */
     public static int getTotalShows() {
         int total = 0;
         try (Scanner a_in = new Scanner(new FileReader(shows))) {
@@ -733,6 +748,17 @@ public class IOController {
         return total;
     }
     
+    /**
+     * checkForShowDupe()
+     * 
+     * Scans the file, and compares each name of the show with the given String
+     * parameter
+     * If it matches, return true (match found)
+     * If it parses through the file with no matches, return false (no match found)
+     * 
+     * @param showName
+     * @return false for no dupe, true for dupe
+     */
     public static boolean CheckForShowDupe(String showName) {
         // read the file
         try (Scanner in = new Scanner(new FileReader(shows))) {
@@ -759,6 +785,14 @@ public class IOController {
         return false;
     }
     
+    /**
+     * addShow()
+     * 
+     * Adds the show object to the end of the shows file
+     * 
+     * @param show
+     * @return the boolean result of the addition
+     */
     public static boolean addShow(Show show) {
 
         // open the file
@@ -773,6 +807,15 @@ public class IOController {
         return true;
     }
     
+    /**
+     * searchShow()
+     * 
+     * Scans the shows file searching for the name parameter
+     * If it finds a match, return the show with that name
+     * 
+     * @param name
+     * @return the found show
+     */
     public static Show searchShow(String name) {
 
         // read the file
@@ -782,7 +825,7 @@ public class IOController {
                 String line = in.nextLine();
                 String[] str = line.split(s);
 
-                // if match is found, create new profile 
+                // if match is found, create new show 
                 if (str[0].equals(name)) {
                     String showName = str[0];
                     String showDesc = str[1];
@@ -791,14 +834,12 @@ public class IOController {
                     String[] strDaysArr = str[3].split(",");
                     String[] strTimeArr = str[4].split(",");
 
+                    // use utility functions to create the right type of array
                     Profile[] hostArr = convertProfileArray(strHostArr);
                     Day[] daysArr = convertDayArray(strDaysArr);
                     Time[] timeArr = convertTimeArray(strTimeArr);
                     
-//                    for (int i = 0; i < hostArr.length; i++) {
-//                        System.out.println(hostArr[i].getId());
-//                    }
-                    
+                    // return that new show
                     return new Show(showName, showDesc, hostArr, daysArr, timeArr);
                 }
             }
@@ -810,6 +851,17 @@ public class IOController {
         return null;
     }
     
+    /**
+     * deleteShow()
+     * 
+     * Scans the shows file, finds the show with the name given
+     * When it finds a match, makes that line null
+     * It then recreates another array of shows, skipping the now null show
+     * Prints that new show array to the output file again
+     * 
+     * @param name
+     * @return 
+     */
     public static boolean deleteShow(String name) {
         int total = getTotalShows();        // for array size
         int count = 0;                      // counter
@@ -861,6 +913,14 @@ public class IOController {
         return true;
     }
 
+    /**
+     * convertProfileArray()
+     * 
+     * Utility function to create an array of Profiles from a String array
+     * 
+     * @param arr
+     * @return the array of profiles
+     */
     public static Profile[] convertProfileArray(String[] arr) {
         Profile[] hostArr = new Profile[arr.length];
         for (int i = 0; i < arr.length; i++) {
@@ -869,6 +929,14 @@ public class IOController {
         return hostArr;
     }
 
+    /**
+     * convertDayArray()
+     * 
+     * Utility function to create an array of Days from a String array
+     * 
+     * @param arr
+     * @return the array of days
+     */
     public static Show.Day[] convertDayArray(String[] arr) {
         Show.Day[] daysArr = new Show.Day[arr.length];
         for (int i = 0; i < arr.length; i++) {
@@ -901,6 +969,14 @@ public class IOController {
         return daysArr;
     }
 
+    /**
+     * convertTimeArray()
+     * 
+     * Utility function to create an array of Times from a String array
+     * 
+     * @param arr
+     * @return the array of times
+     */
     public static Show.Time[] convertTimeArray(String[] arr) {
         Show.Time[] timeArr = new Show.Time[arr.length];
         for (int i = 0; i < arr.length; i++) {
@@ -1058,12 +1134,14 @@ public class IOController {
 
     // </editor-fold>
     
+    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      BUGS AND SUGGESTION REPORTING
     //
     ////////////////////////////////////////////////////////////////////////////
             // <editor-fold defaultstate="collapsed" desc="BUGS AND SUGGESTION REPORTING">
+    
     /**
      * reportBug()
      *
@@ -1150,4 +1228,5 @@ public class IOController {
     }
 
     // </editor-fold>
+    
 } // end IOController

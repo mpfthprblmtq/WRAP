@@ -4,6 +4,7 @@
  *
  * Author: Pat Ripley
  */
+
 package webradio;
 
 // imports
@@ -40,7 +41,7 @@ public class AccountGUI extends javax.swing.JFrame {
     // </editor-fold>
 
     /**
-     * Minor inner class used to limit th amount of text in a text field
+     * Minor inner class used to limit the amount of text in a text field
      */
     // <editor-fold defaultstate="collapsed" desc="JTextFieldLimit">
     class JTextFieldLimit extends PlainDocument {
@@ -1006,6 +1007,7 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_adminLabelMouseExited
 
     // </editor-fold>
+    
     /**
      * fillList()
      *
@@ -1318,7 +1320,11 @@ public class AccountGUI extends javax.swing.JFrame {
      * That's pretty much it
      */
     public void rootSubmit() {
+        
+        // get the username from the field
         String username = sUField.getText();
+        
+        // manual error checking
         if (sAComboBox.getSelectedIndex() == 3) {
             JOptionPane.showMessageDialog(this,
                     "Access field invalid",
@@ -1342,6 +1348,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 submitButton.setEnabled(false);
                 changePasswordLabel.setEnabled(false);
 
+                // sends the updated account to the end of the list, then
+                // selets it
                 list.setSelectedIndex(list.getLastVisibleIndex());
                 search(users.getElementAt(users.getSize() - 1).username);
             }

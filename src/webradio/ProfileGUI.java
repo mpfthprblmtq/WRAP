@@ -95,26 +95,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Creates new form ProfileGUI
      */
     public ProfileGUI() {
-
-//        KeyboardFocusManager.getCurrentKeyboardFocusManager()
-//                .addKeyEventDispatcher((KeyEvent e) -> {
-//                    if (this.isFocusOwner()) {
-//                        switch (e.getKeyCode()) {
-//                            case KeyEvent.VK_UP:
-//                                if(!list.hasFocus()) {
-//                                    list.requestFocus();
-//                                    list.setSelectedIndex(0);
-//                                } else {
-//                                    if(list.getSelectedIndex() == 0) {
-//                                        list.setSelectedIndex(list.getLastVisibleIndex());
-//                                    } else if(list.getSelectedIndex() != 0) {
-//                                        list.setSelectedIndex(list.getSelectedIndex()+1);
-//                                    }
-//                                }
-//                        }
-//                    }
-//                    return false;
-//                });
         initComponents();
     }
 
@@ -1024,6 +1004,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Pops up a confirmation window, then calls delete() if user wishes
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        
+        // confirmation on delete
         int res = JOptionPane.showConfirmDialog(
                 null,
                 "Are you sure you want to delete "
@@ -1032,12 +1014,16 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 "Confirm Deletion",
                 JOptionPane.YES_NO_OPTION);
 
-        // do a thing based on response
+        // if they select yes
         switch (res) {
             case 0:
-                String[] options = new String[]{"Delete Show", "Replace"};
 
+                // checks to see if they have a show
                 if (IOController.checkIfProfileHasAShow(snum800Field.getText())) {
+                    String[] options = new String[]{"Delete Show", "Keep Show"};
+                    
+                    // more delete confirmation
+                    // asks if you want to delete the show as well or just keep it
                     int res2 = JOptionPane.showOptionDialog(null,
                             sfNameField.getText() + " is currently hosting a show.\n"
                             + "Would you like to delete that show or keep it?",
@@ -1050,18 +1036,24 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
                     String id = snum800Field.getText();
                     switch (res2) {
+                        // if they select delete show
                         case 0:
                             delete();
                             ProfileController.deleteProfilesShowsAsWell(id);
                             break;
+                        // if they select replace
                         case 1:
                             delete();
                             ProfileController.replaceProfileWithBlank(id);
                     }
                     break;
+                    
+                // if they don't have a show, delete like normal
                 } else {
                     delete();
                 }
+                
+            // if they selected no
             default:
             // do nothing
         }
@@ -1233,7 +1225,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if user selects logout option in the menu bar
      * Calls Main.Logout(), setting the user to null, as well as
-     * Main.CloseAccountGUI()
+     * Main.CloseProfileGUI()
      */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
@@ -1735,6 +1727,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_adminLabelMouseExited
 
     // </editor-fold>
+    
     /**
      * fillList()
      *

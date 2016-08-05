@@ -1,7 +1,7 @@
 /**
  * File: ProfileController.java
  * Desc: Takes input from the Profile list and displays results in the form
- * of checkboxes
+ *       of checkboxes
  *
  * Author: Pat Ripley
  */
@@ -349,6 +349,7 @@ public class TaskGUI extends javax.swing.JFrame {
     /**
      * Handles when the list is clicked on
      * Basically just calls show() if the list is not empty
+     * If the profile selected is the blank object, do nothing
      *
      * @param evt
      */

@@ -1,13 +1,22 @@
+/**
+ * File: Show.java
+ * Desc: Show object class
+ *
+ * Author: Pat Ripley
+ */
+
 package webradio;
 
 import java.util.Arrays;
 
 public class Show {
 
+    // enum used for Day object
     public enum Day {
         MON, TUE, WED, THU, FRI, SAT, SUN
     }
 
+    // enum used for Time object
     public enum Time {
         am1200, am1230, am0100, am0130, am0200, am0230, am0300, am0330,
         am0400, am0430, am0500, am0530, am0600, am0630, am0700, am0730,
@@ -40,10 +49,6 @@ public class Show {
         this.hosts = hosts;
         this.days = days;
         this.times = times;
-    }
-
-    public Show(String blank) {
-        this.showName = blank;
     }
 
     /**
@@ -116,6 +121,15 @@ public class Show {
         this.times = times;
     }
 
+    /**
+     * convertArrToString()
+     * 
+     * Utility function used to convert an object array into a String
+     * 
+     * @param <E>
+     * @param arr
+     * @return the string representation of the object array
+     */
     public <E> String convertArrToString(E[] arr) {
         String ret = "";
         for (int i = 0; i < arr.length - 1; i++) {
@@ -125,17 +139,14 @@ public class Show {
         return ret;
     }
 
-    public String convertProfileArrToStringOLD(Profile[] arr) {
-        String ret = "";
-        for (int i = 0; i < arr.length - 1; i++) {
-            ret += arr[i].getId() + ",";
-        }
-        System.out.println("ret: " + ret);
-        System.out.println("arr: " + Arrays.toString(arr));
-        ret += arr[arr.length - 1].getId();
-        return ret;
-    }
-
+    /**
+     * convertProfileArrToString()
+     * 
+     * Utility function used to convert an Profile array into a String
+     * 
+     * @param arr
+     * @return the string representation of the object array
+     */
     public String convertProfileArrToString(Profile[] arr) {
         String ret = "";
 
@@ -154,6 +165,13 @@ public class Show {
         return ret;
     }
 
+    /**
+     * toString()
+     * 
+     * Returns the String representation of the show for the text file
+     * 
+     * @return string
+     */
     @Override
     public String toString() {
         if (!this.showName.equals("--")) {

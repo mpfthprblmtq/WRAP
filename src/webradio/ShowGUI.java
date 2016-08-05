@@ -1,12 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: ShowGUI.java
+ * Desc: Sends input to ShowController and handles all the GUI related events
+ *
+ * Author: Pat Ripley
  */
+
 package webradio;
 
 import java.awt.Color;
-import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -14,10 +15,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-/**
- *
- * @author mpfthprblmtq
- */
 public class ShowGUI extends javax.swing.JFrame {
 
     /**
@@ -111,7 +108,7 @@ public class ShowGUI extends javax.swing.JFrame {
     private static final int ADD = 0;
     private static final int REMOVE = 1;
 
-    /** Creates new form ShowInfoGUI */
+    /** Creates new form ShowGUI */
     public ShowGUI() {
         initComponents();
     }
@@ -1000,16 +997,29 @@ public class ShowGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handles when the window is closed
+     * When the window is closed, call Main.closeShowGUI()
+     */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseShowGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
+    /**
+     * Handles if user selects logout option in the menu bar
+     * Calls Main.Logout(), setting the user to null, as well as
+     * Main.CloseShowGUI()
+     */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseAccountGUI();
         Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
+    /**
+     * Handles if user selects exit option in the menu bar
+     * Pops up a confirmation window, then exits the program if user wishes
+     */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
                 null,
@@ -1027,14 +1037,26 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitItemActionPerformed
 
+    /**
+     * Handles if user selects bug option in the menu bar
+     * Calls Main.LaunchBugReportGUI()
+     */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
+    /**
+     * Handles if user selects suggestion option in the menu bar
+     * Calls Main.LaunchSuggestionReportGUI()
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
+    /**
+     * Handles when the graphical list is clicked on
+     * Basically just searches for the element that was clicked on
+     */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!shows.isEmpty()) {
             submitButton.setEnabled(false);
@@ -1050,6 +1072,10 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listMouseClicked
 
+    /**
+     * Handles if the gear is clicked on
+     * @param evt 
+     */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
         JOptionPane.showMessageDialog(this,
@@ -1059,10 +1085,18 @@ public class ShowGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_adminLabelMouseClicked
 
+    /**
+     * Handles if the cursor hovers over the gear
+     * @param evt 
+     */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
         loginLabel.setText("Advanced options");
     }//GEN-LAST:event_adminLabelMouseEntered
 
+    /**
+     * Handles if the cursor moves out of the gear, setting it back to normal
+     * @param evt 
+     */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
@@ -1133,6 +1167,10 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sShowNumSpinnerStateChanged
 
+    /**
+     * Handles when the add HostNumSpinner number changes
+     * Calls updateHostNumber function based on a switch statement
+     */
     private void aHostNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aHostNumSpinnerStateChanged
         switch (Integer.parseInt(aHostNumSpinner.getValue().toString())) {
             case 0:
@@ -1153,26 +1191,48 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_aHostNumSpinnerStateChanged
 
+    /**
+     * Handles if the add button is clicked
+     * If all the fields are kosher, based on aCheck(), add()
+     * @param evt 
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
             add();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
+    /**
+     * Handles if the delete button is pressed
+     * @param evt 
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         delete();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    /**
+     * Handles if the edit button is pressed
+     * @param evt 
+     */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         edit();
     }//GEN-LAST:event_editButtonActionPerformed
 
+    /**
+     * Handles if the submit button is clicked
+     * If all the fields are kosher, based on sCheck(), submit()
+     * @param evt 
+     */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
             submit();
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
+    /**
+     * Handles when the search HostNumSpinner number changes
+     * Calls updateHostNumber function based on a switch statement
+     */
     private void sHostNumSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sHostNumSpinnerStateChanged
         switch (Integer.parseInt(sHostNumSpinner.getValue().toString())) {
             case 0:
@@ -1193,6 +1253,11 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sHostNumSpinnerStateChanged
 
+    /**
+     * Handles when the window is closed
+     * Calls Main.CloseShowGUI()
+     * @param evt 
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseShowGUI();
     }//GEN-LAST:event_formWindowClosed
@@ -1268,6 +1333,14 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * search()
+     * 
+     * Searches for the show based on the name, then populates the search
+     * panel with the show information
+     * 
+     * @param name 
+     */
     public void search(String name) {
         Show s = ShowController.searchShow(name);
 
@@ -1445,8 +1518,15 @@ public class ShowGUI extends javax.swing.JFrame {
 
     }
 
+    /**
+     * getProfileIndex()
+     * 
+     * Returns the index to choose on the Host comboboxes
+     * 
+     * @param id
+     * @return the index to choose
+     */
     public int getProfileIndex(String id) {
-
         for (int i = 0; i < profiles.getSize(); i++) {
             if (id.equals(profiles.getElementAt(i).id)) {
                 return i;
@@ -1455,6 +1535,13 @@ public class ShowGUI extends javax.swing.JFrame {
         return -1;
     }
 
+    /**
+     * add()
+     * 
+     * Creates the show object out of the fields on add panel, then sends
+     * it over to IOController to be put into the file
+     * 
+     */
     public void add() {
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
@@ -1517,6 +1604,7 @@ public class ShowGUI extends javax.swing.JFrame {
             timeArr[13] = getTime(aEndBox7.getSelectedIndex());
         }
 
+        // create the show and listelement
         Show s = new Show(showName, showDesc, hostArr, daysArr, timeArr);
         ListElement element = new ListElement(showName);
 
@@ -1530,7 +1618,6 @@ public class ShowGUI extends javax.swing.JFrame {
             setAddValuesToNull();
             aNameField.requestFocus();
         }
-
     }
 
     /**
@@ -1647,6 +1734,11 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * delete()
+     * 
+     * Grabs the name of the show to delete and sends it to IOController
+     */
     public void delete() {
 
         // get the name
@@ -1687,6 +1779,12 @@ public class ShowGUI extends javax.swing.JFrame {
         editButton.setEnabled(false);
     }
 
+    /**
+     * submit()
+     * 
+     * Deletes the temporary show stored from edit(), then adds a new show based
+     * on new information in search panel
+     */
     public void submit() {
 
         // update graphics
@@ -3281,7 +3379,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost2.setEnabled(false);
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
-                //sHost1.setSelectedIndex(0);
                 sHost2.setSelectedIndex(sHost2.getItemCount()-1);
                 sHost3.setSelectedIndex(sHost3.getItemCount()-1);
                 sHost4.setSelectedIndex(sHost4.getItemCount()-1);
@@ -3291,8 +3388,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost2.setEnabled(true);
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
-                //sHost1.setSelectedIndex(0);
-                //sHost2.setSelectedIndex(0);
                 sHost3.setSelectedIndex(sHost3.getItemCount()-1);
                 sHost4.setSelectedIndex(sHost4.getItemCount()-1);
                 break;
@@ -3301,9 +3396,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost2.setEnabled(true);
                 sHost3.setEnabled(true);
                 sHost4.setEnabled(false);
-                //sHost1.setSelectedIndex(0);
-                //sHost2.setSelectedIndex(0);
-                //sHost3.setSelectedIndex(0);
                 sHost4.setSelectedIndex(sHost4.getItemCount()-1);
                 break;
             case 4:
@@ -3311,10 +3403,6 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost2.setEnabled(true);
                 sHost3.setEnabled(true);
                 sHost4.setEnabled(true);
-                //sHost1.setSelectedIndex(0);
-                //sHost2.setSelectedIndex(0);
-                //sHost3.setSelectedIndex(0);
-                //sHost4.setSelectedIndex(0);
                 break;
         }
     }
@@ -3443,6 +3531,13 @@ public class ShowGUI extends javax.swing.JFrame {
         return -1;
     }
 
+    /**
+     * setSearchFieldsEnabled()
+     * 
+     * Graphics updating
+     * 
+     * @param b 
+     */
     public void setSearchFieldsEnabled(boolean b) {
         sNameField.setEnabled(b);
         sDescField.setEnabled(b);
@@ -3452,6 +3547,11 @@ public class ShowGUI extends javax.swing.JFrame {
         sUpdateHostNumber(0);
     }
 
+    /**
+     * setAddValuesToNull()
+     * 
+     * Graphics updating
+     */
     public void setAddValuesToNull() {
         aNameField.setText("");
         aDescField.setText("");
@@ -3459,6 +3559,11 @@ public class ShowGUI extends javax.swing.JFrame {
         aHostNumSpinner.setValue(0);
     }
 
+    /**
+     * setSearchFieldsToValid()
+     * 
+     * Graphics updating
+     */
     public void setSearchFieldsToValid() {
         sNameField.setEnabled(true);
         sDescField.setEnabled(true);
@@ -3466,6 +3571,13 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setBackground(Color.white);
     }
 
+    /**
+     * setSearchFieldsEditable()
+     * 
+     * Graphics updating
+     * 
+     * @param b 
+     */
     public void setSearchFieldsEditable(boolean b) {
         sNameField.setEditable(b);
         sDescField.setEditable(b);
@@ -3482,6 +3594,11 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * setSearchFieldsToValid()
+     * 
+     * Graphics updating
+     */
     public void setSearchValuesToNull() {
         sNameField.setText("");
         sDescField.setText("");
@@ -3639,6 +3756,10 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     /**
+     * main()
+     * 
+     * You already know what main does if you're reading this
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

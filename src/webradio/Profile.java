@@ -251,7 +251,7 @@ public class Profile {
 
     /**
      * toString()
-     * @return string representation of object
+     * @return string representation of object to go into the profiles file
      */
     @Override
     public String toString() {
