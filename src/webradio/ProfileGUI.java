@@ -2296,8 +2296,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // siue email
         // if it is empty or the default, throw error
-        // if it does not contain an @, throw error
-        // if it doesn't end with email ending, throw error
+        // if it doesn't match the regex, throw error
         // if it contains separator, throw error
         if (asiueEmailField.getText().equals("") || asiueEmailField.getText().equals("--")) {
             flag = false;
@@ -2305,9 +2304,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             asiueEmailField.setText("--");
 
             // check for validity
-        } else if (!aprefEmailField.getText().matches(email_regex)) {
+        } else if (!asiueEmailField.getText().matches(email_regex)) {
             flag = false;
-            aprefEmailField.setForeground(Color.red);
+            asiueEmailField.setForeground(Color.red);
 
             // check for separator
         } else if (!Util.sepCheck(asiueEmailField.getText())) {
@@ -2383,7 +2382,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             sfNameField.setForeground(Color.red);
             sfNameField.setText("--");
-            errLabel.setText("All fields required");
         } else if (!Util.sepCheck(sfNameField.getText())) {
             flag = false;
             sfNameField.setForeground(Color.red);
@@ -2396,7 +2394,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             slNameField.setForeground(Color.red);
             slNameField.setText("--");
-            errLabel.setText("All fields required");
         } else if (!Util.sepCheck(slNameField.getText())) {
             flag = false;
             slNameField.setForeground(Color.red);
@@ -2410,7 +2407,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             if (snum800Field.getText().equals("") || snum800Field.getText().equals("--")) {
                 flag = false;
                 snum800Field.setForeground(Color.red);
-                errLabel.setText("All fields required");
                 snum800Field.setText("--");
             } else {
                 // try to make it an integer
@@ -2420,7 +2416,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             // if it's not an integer
             flag = false;
             snum800Field.setForeground(Color.red);
-            errLabel.setText("800 Number field invalid");
         }
 
         // Phone number
@@ -2436,7 +2431,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 sphoneField1.setForeground(Color.red);
                 sphoneField2.setForeground(Color.red);
                 sphoneField3.setForeground(Color.red);
-                errLabel.setText("All fields required");
                 sphoneField1.setText("--");
                 sphoneField2.setText("--");
                 sphoneField3.setText("--");
@@ -2449,7 +2443,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 sphoneField1.setForeground(Color.red);
                 sphoneField2.setForeground(Color.red);
                 sphoneField3.setForeground(Color.red);
-                errLabel.setText("Phone number field invalid");
 
                 // check for 555 on first and second fields
             } else if (sphoneField1.getText().equals("555")
@@ -2471,35 +2464,23 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             sphoneField1.setForeground(Color.red);
             sphoneField2.setForeground(Color.red);
             sphoneField3.setForeground(Color.red);
-            errLabel.setText("Phone number field invalid");
         }
 
         // siue email
         // if it is empty or the default, throw error
-        // if it does not contain an @, throw error
-        // if it doesn't end with email ending, throw error
+        // if it doesn't match the regex, throw error
+        // if it contains separator, throw error
         if (ssiueEmailField.getText().equals("") || ssiueEmailField.getText().equals("--")) {
             flag = false;
             ssiueEmailField.setForeground(Color.red);
             ssiueEmailField.setText("--");
-            errLabel.setText("All filds required");
-        }
-        // check for @
-        if (!ssiueEmailField.getText().contains("@")) {
+
+            // check for validity
+        } else if (!ssiueEmailField.getText().matches(email_regex)) {
             flag = false;
             ssiueEmailField.setForeground(Color.red);
-            errLabel.setText("SIUe email invalid");
 
-            // check ending
-        } else if (!(ssiueEmailField.getText().endsWith(".com")
-                || ssiueEmailField.getText().endsWith(".edu")
-                || ssiueEmailField.getText().endsWith(".org")
-                || ssiueEmailField.getText().endsWith(".net"))) {
-            flag = false;
-            ssiueEmailField.setForeground(Color.red);
-            errLabel.setText("SIUe email invalid");
-
-            // check for seperator
+            // check for separator
         } else if (!Util.sepCheck(ssiueEmailField.getText())) {
             flag = false;
             ssiueEmailField.setForeground(Color.red);
@@ -2513,7 +2494,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             sprefEmailField.setForeground(Color.red);
             sprefEmailField.setText("--");
-            errLabel.setText("All fields required");
 
             // check for validity
         } else if (!sprefEmailField.getText().matches(email_regex)) {
@@ -2531,7 +2511,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (stypeBox.getSelectedIndex() == 4) {
             flag = false;
             stypeBox.setForeground(Color.red);
-            errLabel.setText("All fields required");
         }
 
         // position
@@ -2539,7 +2518,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (spositionBox.getSelectedIndex() == 9) {
             flag = false;
             spositionBox.setForeground(Color.red);
-            errLabel.setText("All fields required");
         }
 
         if (!Util.sepCheck(snotesField.getText())) {

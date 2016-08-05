@@ -1610,7 +1610,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         if (ShowController.addShow(s)) {
             // update graphics
-            errLabel.setForeground(Color.black);
+            errLabel.setForeground(Color.blue);
             errLabel.setText("Show added successfully");
 
             updateList(ADD, element);

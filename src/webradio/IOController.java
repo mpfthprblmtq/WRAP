@@ -601,19 +601,23 @@ public class IOController {
         return true;
     }
 
+    /**
+     * deleteProfilesShowsAsWell()
+     * 
+     * When deleting a profile while they have a show, this option lets you
+     * delete their shows that they are hosts of
+     * 
+     * @param id 
+     */
     static void deleteProfilesShowsAsWell(String id) {
         try (Scanner b_in = new Scanner(new FileReader(shows))) {
             while (b_in.hasNext()) {
                 String line = b_in.nextLine();      // create array from each line
                 String[] str = line.split(s);       // split it on /// symbol
 
-                System.out.println("id: " + id);
-                
                 String[] str2 = str[2].split(",");
                 for (int i = 0; i < str2.length; i++) {
-                    System.out.println("Comparing " + id + " with " + str2[i]);
                     if(str2[i].equals(id)) {
-                        System.out.println("Deleting show " + str[0]);
                         deleteShow(str[0]);
                     }
                 }
@@ -624,6 +628,14 @@ public class IOController {
         }
     }
 
+    /**
+     * replaceProfileWithBlank()
+     * 
+     * When deleting a profile while they have a show, this option lets you
+     * replace their name with a blank spot
+     * 
+     * @param id 
+     */
     static void replaceProfileWithBlank(String id) {
         try (Scanner b_in = new Scanner(new FileReader(shows))) {
             while (b_in.hasNext()) {
@@ -634,8 +646,10 @@ public class IOController {
                 for (int i = 0; i < str2.length; i++) {
                     if(str2[i].equals(id)) {
                         
+                        // set that host's id to blank
                         str2[i] = "000000000";
                         
+                        // delete that old show
                         Show s1 = searchShow(str[0]);
                         deleteShow(s1.getShowName());
                         
@@ -643,6 +657,7 @@ public class IOController {
                         Show s2 = s1;
                         s2.setHosts(convertProfileArray(str2));
                         
+                        // add the new show
                         addShow(s2);
                     }
                 }
@@ -653,6 +668,16 @@ public class IOController {
         }
     }
     
+    /**
+     * checkIfProfileHasAShow()
+     * 
+     * Checks if the profile has a show
+     * Yeah, the name is pretty self explanatory
+     * Searches the show file, if the id matches any of the hosts, returns true
+     * 
+     * @param id
+     * @return the case of if the profile has a show or not
+     */
     public static boolean checkIfProfileHasAShow(String id) {
         try (Scanner b_in = new Scanner(new FileReader(shows))) {
             while (b_in.hasNext()) {

@@ -79,6 +79,8 @@ public class MainGUI extends javax.swing.JFrame {
         exitItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
@@ -259,6 +261,22 @@ public class MainGUI extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem3.setText("Developer");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("Special Thanks");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         menubar.add(jMenu1);
 
         help.setText("Help");
@@ -363,7 +381,7 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
         Main.LaunchShowGUI();
-        
+
     }//GEN-LAST:event_showButtonActionPerformed
 
     /**
@@ -442,7 +460,7 @@ public class MainGUI extends javax.swing.JFrame {
         textHeader.setText("Accounts");
         text.setText("Allows addition and deletion of users of W.R.A.P. along"
                 + "\nwith the editing of existing users."
-                + "\nNote: Admin access only");
+                + "\nNote: You can only edit your own profile.");
         f1.setText("Shortcut key: F2");
     }//GEN-LAST:event_accountButtonMouseEntered
 
@@ -487,9 +505,9 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void showButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showButtonMouseEntered
-        textHeader.setText("Links");
-        text.setText("Some links to important things"
-                + "\nNOTE: May be replaced with alternate function in a future release");
+        textHeader.setText("Shows");
+        text.setText("Allows the addition or deletion of shows where you can add"
+                + "\nthe show name, description, times, and hosts.");
         f1.setText("Shortcut key: F4");
     }//GEN-LAST:event_showButtonMouseEntered
 
@@ -608,7 +626,12 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        JOptionPane.showMessageDialog(this, "  VERSION 1.0.2  :D  ");
+        JOptionPane.showMessageDialog(this, "W.R.A.P. - Web Radio Assistance Program\n"
+                + "Version 1.0  :D \n\n"
+                + "Profiles:  Manage contact info of club members\n"
+                + "Accounts:  Manage user accounts (username, password, access, and name)\n"
+                + "Tasks:     Manage members' requirements to join/remain in the club\n"
+                + "Shows:     Manage shows, including names, descriptions, times, and hosts");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     /**
      * Handles if user selects suggestion option in the menu bar
@@ -625,6 +648,20 @@ public class MainGUI extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_formComponentShown
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JOptionPane.showMessageDialog(this,
+                "Pat Ripley\n"
+                        + "(618)-570-5661\n"
+                        + "ripley307@gmail.com\n\n"
+                        + "Coded independantly since Fall 2015\n"
+                        + "Since I don't have copyrights, please don't\n"
+                        + "steal my code...");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * main()
@@ -674,6 +711,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenu help;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel logo;
     private javax.swing.JMenuItem logoutItem;
