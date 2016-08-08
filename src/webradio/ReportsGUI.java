@@ -1,10 +1,13 @@
 /**
- * File: ReportsGUI.java
- * Desc: Not implemented yet
+ * File: ProfileGUI.java
+ * Desc: Sends input to ReportsController and handles all the GUI related events
  *
  * Author: Pat Ripley
  */
 package webradio;
+
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class ReportsGUI extends javax.swing.JFrame {
 
@@ -24,6 +27,31 @@ public class ReportsGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        adminLabel = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        errLabel = new javax.swing.JLabel();
+        profileSimpleRadio = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        profileFullRadio = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        menubar = new javax.swing.JMenuBar();
+        file = new javax.swing.JMenu();
+        closeItem = new javax.swing.JMenuItem();
+        logoutItem = new javax.swing.JMenuItem();
+        exitItem = new javax.swing.JMenuItem();
+        help = new javax.swing.JMenu();
+        bugItem = new javax.swing.JMenuItem();
+        suggestionItem = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -31,15 +59,190 @@ public class ReportsGUI extends javax.swing.JFrame {
             }
         });
 
+        adminLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        adminLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminLabelMouseExited(evt);
+            }
+        });
+
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        loginLabel.setText(" ");
+
+        errLabel.setForeground(new java.awt.Color(255, 0, 0));
+        errLabel.setText(" ");
+
+        profileSimpleRadio.setText("Profiles (Simple)");
+
+        jRadioButton2.setText("Profiles (Contact)");
+
+        profileFullRadio.setText("Profiles (Full)");
+
+        jRadioButton4.setText("Accounts");
+
+        jRadioButton5.setText("Tasks (Dues)");
+
+        jRadioButton6.setText("Tasks (Trained)");
+
+        jRadioButton7.setText("Tasks (Paperwork)");
+
+        jRadioButton9.setText("Tasks (Show Desc & Time)");
+
+        jRadioButton8.setText("Tasks (Full)");
+
+        jRadioButton10.setText("Shows");
+
+        jRadioButton11.setText("Finances (Transactions)");
+
+        jRadioButton12.setText("Finances (Full)");
+
+        jButton1.setText("Generate");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        file.setText("File");
+
+        closeItem.setText("Close");
+        closeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeItemActionPerformed(evt);
+            }
+        });
+        file.add(closeItem);
+
+        logoutItem.setText("Logout");
+        logoutItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutItemActionPerformed(evt);
+            }
+        });
+        file.add(logoutItem);
+
+        exitItem.setText("Exit");
+        exitItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitItemActionPerformed(evt);
+            }
+        });
+        file.add(exitItem);
+
+        menubar.add(file);
+
+        help.setText("Help");
+
+        bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
+        bugItem.setText("Report a bug");
+        bugItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bugItemActionPerformed(evt);
+            }
+        });
+        help.add(bugItem);
+
+        suggestionItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        suggestionItem.setText("Make a suggestion");
+        suggestionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suggestionItemActionPerformed(evt);
+            }
+        });
+        help.add(suggestionItem);
+
+        menubar.add(help);
+
+        setJMenuBar(menubar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton10)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(profileSimpleRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButton2)
+                                    .addComponent(profileFullRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jRadioButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jRadioButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jRadioButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(profileSimpleRadio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(profileFullRadio)
+                        .addGap(23, 23, 23)
+                        .addComponent(jRadioButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton5)
+                            .addComponent(jRadioButton11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButton6)
+                                    .addComponent(jRadioButton12))
+                                .addGap(69, 69, 69))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton8)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errLabel)
+                .addContainerGap())
         );
 
         pack();
@@ -48,6 +251,94 @@ public class ReportsGUI extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseReportsGUI();
     }//GEN-LAST:event_formWindowClosed
+
+    private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
+        Main.CloseAccountGUI();
+    }//GEN-LAST:event_closeItemActionPerformed
+
+    private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
+        Main.Logout();
+        Main.CloseAccountGUI();
+        Main.CloseMainGUI();
+    }//GEN-LAST:event_logoutItemActionPerformed
+
+    private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
+        int res = JOptionPane.showConfirmDialog(
+            null,
+            "Are you sure you want to exit WRAP?",
+            "",
+            JOptionPane.YES_NO_OPTION);
+
+        // do a thing based on response
+        switch (res) {
+            case 0:
+            System.exit(0);
+            break;
+            default:
+            // do nothing
+        }
+    }//GEN-LAST:event_exitItemActionPerformed
+
+    private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
+        Main.LaunchBugReportGUI();
+    }//GEN-LAST:event_bugItemActionPerformed
+
+    private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
+        Main.LaunchSuggestionReportGUI();
+    }//GEN-LAST:event_suggestionItemActionPerformed
+
+    private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
+        // probably some admin stuff
+        JOptionPane.showMessageDialog(this,
+            "Probably some admin stuff here",
+            "Advanced",
+            JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_adminLabelMouseClicked
+
+    private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
+        loginLabel.setText("Advanced options");
+    }//GEN-LAST:event_adminLabelMouseEntered
+
+    private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_adminLabelMouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        // simple profile
+        if(profileSimpleRadio.isSelected()) {
+            if(ReportsController.profileSimple()) {
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Report generated successfully");
+            } else {
+                errLabel.setForeground(Color.red);
+                errLabel.setText("Report generation failed");
+            }
+        }
+        
+        // profile contact
+        if(profileSimpleRadio.isSelected()) {
+            if(ReportsController.profileSimple()) {
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Report generated successfully");
+            } else {
+                errLabel.setForeground(Color.red);
+                errLabel.setText("Report generation failed");
+            }
+        }
+        
+        // profile full
+        if(profileFullRadio.isSelected()) {
+            if(ReportsController.profileFull()) {
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Report generated successfully");
+            } else {
+                errLabel.setForeground(Color.red);
+                errLabel.setText("Report generation failed");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -83,5 +374,29 @@ public class ReportsGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel adminLabel;
+    private javax.swing.JMenuItem bugItem;
+    private javax.swing.JMenuItem closeItem;
+    private javax.swing.JLabel errLabel;
+    private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenu file;
+    private javax.swing.JMenu help;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JLabel loginLabel;
+    private javax.swing.JMenuItem logoutItem;
+    private javax.swing.JMenuBar menubar;
+    private javax.swing.JRadioButton profileFullRadio;
+    private javax.swing.JRadioButton profileSimpleRadio;
+    private javax.swing.JMenuItem suggestionItem;
     // End of variables declaration//GEN-END:variables
 }

@@ -402,8 +402,7 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void reportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportButtonActionPerformed
-        //Main.LaunchReportsGUI();
-        JOptionPane.showMessageDialog(this, "  Reports interface not implemented yet! :(     ");
+        Main.LaunchReportsGUI();
     }//GEN-LAST:event_reportButtonActionPerformed
 
     /**

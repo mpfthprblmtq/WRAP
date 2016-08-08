@@ -655,11 +655,14 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
 
+        // if they tried to delete themselves
         if (Main.p.getUsername().equals(sUField.getText())) {
             JOptionPane.showMessageDialog(this,
                     "403 : Forbidden\nAccount " + sUField.getText() + " is logged in.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
+            
+        // make sure they're admin
         } else if (Main.p.getAccess() == 0) {
             int res = JOptionPane.showConfirmDialog(
                     null,
@@ -676,6 +679,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 default:
                 // do nothing
                 }
+        
+        // if they are not admin
         } else {
             JOptionPane.showMessageDialog(this,
                     "403 : Forbidden\nAdministrator access only",
