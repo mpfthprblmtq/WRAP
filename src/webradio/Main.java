@@ -50,6 +50,10 @@ public class Main {
     // suggestionReportGUI
     static SuggestionReportGUI suggestionreportGUI;
     static boolean suggestionreportGUIVisible = false;
+    
+    // helpGUI
+    static HelpGUI helpGUI;
+    static boolean helpGUIVisible = false;
 
     /**
      * main()
@@ -249,5 +253,22 @@ public class Main {
 
     public static void CloseSuggestionReportGUI() {
         suggestionreportGUIVisible = false;
+    }
+    
+    /**
+     * HelpGUI
+     * Controls the HelpGUI opening and closing
+     */
+    public static void LaunchHelpGUI() {
+        if (!helpGUIVisible) {
+            helpGUI = new HelpGUI();
+            helpGUI.setLocationRelativeTo(null);
+            helpGUI.setVisible(true);
+            helpGUIVisible = true;
+        }
+    }
+
+    public static void CloseHelpGUI() {
+        helpGUIVisible = false;
     }
 } // end Main

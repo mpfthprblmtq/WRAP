@@ -39,7 +39,7 @@ public class IOController {
     //      LOGIN AND HASHING
     //
     ////////////////////////////////////////////////////////////////////////////
-            // <editor-fold defaultstate="collapsed" desc="LOGIN AND HASHING">
+    // <editor-fold defaultstate="collapsed" desc="LOGIN AND HASHING">
     /**
      * Login()
      *
@@ -152,14 +152,12 @@ public class IOController {
     }
 
     // </editor-fold>
-    
-    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      USERS/ACCOUNTS
     //
     ////////////////////////////////////////////////////////////////////////////
-            // <editor-fold defaultstate="collapsed" desc="USERS/ACCOUNTS">
+    // <editor-fold defaultstate="collapsed" desc="USERS/ACCOUNTS">
     /**
      * getAllUsers()
      *
@@ -397,14 +395,12 @@ public class IOController {
     }
 
     // </editor-fold>
-    
-    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      PROFILES
     //
     ////////////////////////////////////////////////////////////////////////////
-            // <editor-fold defaultstate="collapsed" desc="PROFILES">
+    // <editor-fold defaultstate="collapsed" desc="PROFILES">
     /**
      * getAllProfiles()
      *
@@ -603,11 +599,11 @@ public class IOController {
 
     /**
      * deleteProfilesShowsAsWell()
-     * 
+     *
      * When deleting a profile while they have a show, this option lets you
      * delete their shows that they are hosts of
-     * 
-     * @param id 
+     *
+     * @param id
      */
     static void deleteProfilesShowsAsWell(String id) {
         try (Scanner b_in = new Scanner(new FileReader(shows))) {
@@ -617,7 +613,7 @@ public class IOController {
 
                 String[] str2 = str[2].split(",");
                 for (int i = 0; i < str2.length; i++) {
-                    if(str2[i].equals(id)) {
+                    if (str2[i].equals(id)) {
                         deleteShow(str[0]);
                     }
                 }
@@ -630,11 +626,11 @@ public class IOController {
 
     /**
      * replaceProfileWithBlank()
-     * 
+     *
      * When deleting a profile while they have a show, this option lets you
      * replace their name with a blank spot
-     * 
-     * @param id 
+     *
+     * @param id
      */
     static void replaceProfileWithBlank(String id) {
         try (Scanner b_in = new Scanner(new FileReader(shows))) {
@@ -644,19 +640,19 @@ public class IOController {
 
                 String[] str2 = str[2].split(",");
                 for (int i = 0; i < str2.length; i++) {
-                    if(str2[i].equals(id)) {
-                        
+                    if (str2[i].equals(id)) {
+
                         // set that host's id to blank
                         str2[i] = "000000000";
-                        
+
                         // delete that old show
                         Show s1 = searchShow(str[0]);
                         deleteShow(s1.getShowName());
-                        
+
                         // make new show and replace the host array
                         Show s2 = s1;
                         s2.setHosts(convertProfileArray(str2));
-                        
+
                         // add the new show
                         addShow(s2);
                     }
@@ -667,14 +663,14 @@ public class IOController {
             System.err.println(e);
         }
     }
-    
+
     /**
      * checkIfProfileHasAShow()
-     * 
+     *
      * Checks if the profile has a show
      * Yeah, the name is pretty self explanatory
      * Searches the show file, if the id matches any of the hosts, returns true
-     * 
+     *
      * @param id
      * @return the case of if the profile has a show or not
      */
@@ -686,7 +682,7 @@ public class IOController {
 
                 String[] str2 = str[2].split(",");
                 for (int i = 0; i < str2.length; i++) {
-                    if(str2[i].equals(id)) {
+                    if (str2[i].equals(id)) {
                         return true;
                     }
                 }
@@ -699,21 +695,18 @@ public class IOController {
     }
 
     // </editor-fold>
-    
-    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      SHOWS
     //
     ////////////////////////////////////////////////////////////////////////////
-            // <editor-fold defaultstate="collapsed" desc="SHOWS">
-    
+    // <editor-fold defaultstate="collapsed" desc="SHOWS">
     /**
      * getAllShows()
-     * 
+     *
      * Reads the shows file and returns an array of show objects
-     * 
-     * @return the array of shows 
+     *
+     * @return the array of shows
      */
     public static Show[] getAllShows() {
         // get the size and make array of that size
@@ -732,7 +725,7 @@ public class IOController {
 
                 String showName = str[0];
                 String showDesc = str[1];
-                
+
                 String[] strHostArr = str[2].split(",");
                 String[] strDaysArr = str[3].split(",");
                 String[] strTimeArr = str[4].split(",");
@@ -754,10 +747,10 @@ public class IOController {
 
     /**
      * getTotalShows()
-     * 
+     *
      * Scans the shows file and counts the shows
-     * 
-     * @return the number of shows 
+     *
+     * @return the number of shows
      */
     public static int getTotalShows() {
         int total = 0;
@@ -772,15 +765,15 @@ public class IOController {
         }
         return total;
     }
-    
+
     /**
      * checkForShowDupe()
-     * 
+     *
      * Scans the file, and compares each name of the show with the given String
      * parameter
      * If it matches, return true (match found)
      * If it parses through the file with no matches, return false (no match found)
-     * 
+     *
      * @param showName
      * @return false for no dupe, true for dupe
      */
@@ -809,12 +802,12 @@ public class IOController {
         // return false if no match found
         return false;
     }
-    
+
     /**
      * addShow()
-     * 
+     *
      * Adds the show object to the end of the shows file
-     * 
+     *
      * @param show
      * @return the boolean result of the addition
      */
@@ -831,13 +824,13 @@ public class IOController {
 
         return true;
     }
-    
+
     /**
      * searchShow()
-     * 
+     *
      * Scans the shows file searching for the name parameter
      * If it finds a match, return the show with that name
-     * 
+     *
      * @param name
      * @return the found show
      */
@@ -854,7 +847,7 @@ public class IOController {
                 if (str[0].equals(name)) {
                     String showName = str[0];
                     String showDesc = str[1];
-                
+
                     String[] strHostArr = str[2].split(",");
                     String[] strDaysArr = str[3].split(",");
                     String[] strTimeArr = str[4].split(",");
@@ -863,7 +856,7 @@ public class IOController {
                     Profile[] hostArr = convertProfileArray(strHostArr);
                     Day[] daysArr = convertDayArray(strDaysArr);
                     Time[] timeArr = convertTimeArray(strTimeArr);
-                    
+
                     // return that new show
                     return new Show(showName, showDesc, hostArr, daysArr, timeArr);
                 }
@@ -875,17 +868,17 @@ public class IOController {
         // if no match found, return the null show
         return null;
     }
-    
+
     /**
      * deleteShow()
-     * 
+     *
      * Scans the shows file, finds the show with the name given
      * When it finds a match, makes that line null
      * It then recreates another array of shows, skipping the now null show
      * Prints that new show array to the output file again
-     * 
+     *
      * @param name
-     * @return 
+     * @return
      */
     public static boolean deleteShow(String name) {
         int total = getTotalShows();        // for array size
@@ -904,7 +897,7 @@ public class IOController {
                 if (!str[0].equals(name)) {
                     String showName = str[0];
                     String showDesc = str[1];
-                
+
                     String[] strHostArr = str[2].split(",");
                     String[] strDaysArr = str[3].split(",");
                     String[] strTimeArr = str[4].split(",");
@@ -912,7 +905,7 @@ public class IOController {
                     Profile[] hostArr = convertProfileArray(strHostArr);
                     Day[] daysArr = convertDayArray(strDaysArr);
                     Time[] timeArr = convertTimeArray(strTimeArr);
-                    
+
                     arr[count] = new Show(showName, showDesc, hostArr, daysArr, timeArr);
                 }
                 count++;
@@ -940,9 +933,9 @@ public class IOController {
 
     /**
      * convertProfileArray()
-     * 
+     *
      * Utility function to create an array of Profiles from a String array
-     * 
+     *
      * @param arr
      * @return the array of profiles
      */
@@ -956,9 +949,9 @@ public class IOController {
 
     /**
      * convertDayArray()
-     * 
+     *
      * Utility function to create an array of Days from a String array
-     * 
+     *
      * @param arr
      * @return the array of days
      */
@@ -996,9 +989,9 @@ public class IOController {
 
     /**
      * convertTimeArray()
-     * 
+     *
      * Utility function to create an array of Times from a String array
-     * 
+     *
      * @param arr
      * @return the array of times
      */
@@ -1158,15 +1151,12 @@ public class IOController {
     }
 
     // </editor-fold>
-    
-    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      BUGS AND SUGGESTION REPORTING
     //
     ////////////////////////////////////////////////////////////////////////////
-            // <editor-fold defaultstate="collapsed" desc="BUGS AND SUGGESTION REPORTING">
-    
+    // <editor-fold defaultstate="collapsed" desc="BUGS AND SUGGESTION REPORTING">
     /**
      * reportBug()
      *
@@ -1253,33 +1243,57 @@ public class IOController {
     }
 
     // </editor-fold>
-
-    
     ////////////////////////////////////////////////////////////////////////////
     //
     //      REPORTS
     //
     ////////////////////////////////////////////////////////////////////////////
-            // <editor-fold defaultstate="collapsed" desc="REPORTS">
-    
-    static boolean profileSimple() {
-        Profile[] p = getAllProfiles();
+    // <editor-fold defaultstate="collapsed" desc="REPORTS">
+    /**
+     * getHeader()
+     *
+     * Returns the header for each report
+     *
+     * @return
+     */
+    public static String getHeader() {
+        return " __          _______            _____      ####################################################################\r\n"
+                + " \\ \\        / /  __ \\     /\\   |  __ \\     #                                                                  #\r\n"
+                + "  \\ \\  /\\  / /| |__) |   /  \\  | |__) |    #    Report generated by W.R.A.P. - Web Radio Assistant Program    #\r\n"
+                + "   \\ \\/  \\/ / |  _  /   / /\\ \\ |  ___/     #    For best viewing in Notepad, go to Format -> Font... and      #\r\n"
+                + "    \\  /\\  /  | | \\ \\  / ____ \\| |         #    set your Font to Consolas, and your font size to 12.          #\r\n"
+                + "     \\/  \\/   |_|  \\_\\/_/    \\_\\_|         #                                                                  #\r\n"
+                + "                                           ####################################################################";
+    }
+
+    /**
+     * profileSimple()
+     *
+     * Generates a simple report that includes just the name and id
+     *
+     * @param p
+     * @return
+     */
+    public static boolean profileSimple(Profile[] p) {
 
         // creating the file name
         Date date = new Date();
         String filename = "Profiles (Simple) " + filedf.format(date);
         File report = new File("Reports\\" + filename + ".txt");
-        
+
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
             out.println("Profiles (Simple)");
             out.println("Date: " + df.format(date));
             out.println("Generated by: " + Main.p.getUsername());
             out.println();
-            out.printf("%-15s %-15s %-12s %n", "Last Name", "First Name", "SIUe ID");
+            out.printf("%-3s %-15s %-15s %-12s %n", "#", "Last Name", "First Name", "SIUe ID");
             out.println("------------------------------------------------");
             for (int i = 0; i < p.length; i++) {
-                out.printf( "%-15s %-15s %-12s %n", p[i].getlName(), p[i].getfName(), p[i].getId());
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %n", i, p[i].getlName(), p[i].getfName(), p[i].getId());
+                }
             }
             out.close();
             return true;
@@ -1288,29 +1302,84 @@ public class IOController {
             return false;
         }
     }
-    
-    static boolean profileContact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    /**
+     * profileContact()
+     *
+     * Generates a report for contact information, including
+     * Last name, First name, ID, phone, and emails
+     *
+     * @param p
+     * @return
+     */
+    public static boolean profileContact(Profile[] p) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Profiles (Contact) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Profiles (Contact)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-12s %-18s %-20s %-30s %n", "#", "Last Name", "First Name", "SIUe ID", "Phone", "SIUe Email", "Preferred Email");
+            out.println("-------------------------------------------------------"
+                    + "-------------------------------------------------------");
+            for (int i = 0; i < p.length; i++) {
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %-18s %-20s %-30s %n",
+                            i, p[i].getlName(), p[i].getfName(), p[i].getId(), Util.getPhone(p[i].getPhone()),
+                            p[i].getSiueEmail(), p[i].getPrefEmail());
+                }
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static boolean profileFull() {
-        Profile[] p = getAllProfiles();
+    /**
+     * profileFull()
+     *
+     * Generates a full report of all profiles
+     *
+     * @param p
+     * @return
+     */
+    public static boolean profileFull(Profile[] p) {
 
         // creating the file name
         Date date = new Date();
         String filename = "Profiles (Full) " + filedf.format(date);
         File report = new File("Reports\\" + filename + ".txt");
-        
+
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+
+            out.println(getHeader());
             out.println("Profiles (Full)");
             out.println("Date: " + df.format(date));
             out.println("Generated by: " + Main.p.getUsername());
             out.println();
-            out.printf("%-15s %-15s %-12s %n", "Last Name", "First Name", "SIUe ID");
-            out.println("------------------------------------------------");
+            out.printf("%-15s %-15s %-12s %-18s %-20s %-30s %-10s %-15s %-20s %n",
+                    "Last Name", "First Name", "SIUe ID", "Phone", "SIUe Email", "Preferred Email",
+                    "Type", "Position", "Notes");
+            out.println("-------------------------------------------------------"
+                    + "-------------------------------------------------------"
+                    + "-------------------------------------------------------");
             for (int i = 0; i < p.length; i++) {
-                out.printf( "%-15s %-15s %-12s %n", p[i].getlName(), p[i].getfName(), p[i].getId());
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-15s %-15s %-12s %-18s %-20s %-30s %-10s %-15s %-20s %n",
+                            p[i].getlName(), p[i].getfName(), p[i].getId(), Util.getPhone(p[i].getPhone()),
+                            p[i].getSiueEmail(), p[i].getPrefEmail(), getType(p[i].getType()),
+                            getPosition(p[i].getPosition()), p[i].getNotes());
+                }
             }
             out.close();
             return true;
@@ -1320,41 +1389,418 @@ public class IOController {
         }
     }
 
-    static void accounts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * accountSimple()
+     *
+     * Generates a simple report that includes just the username and access
+     *
+     * @param a
+     * @return
+     */
+    public static boolean accountSimple(Account[] a) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Accounts (Simple) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Accounts (Simple)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-6s %n", "#", "Username", "Access");
+            out.println("------------------------------------------------");
+            for (int i = 0; i < a.length; i++) {
+                out.printf("%-3s %-15s %-6s %n", i + 1, a[i].getUsername(), a[i].getAccess());
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void shows() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * accountsFull()
+     *
+     * Generates a report of accounts that includes the username, access and name
+     *
+     * @param a
+     * @return
+     */
+    public static boolean accountFull(Account[] a) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Accounts (Full) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Accounts (Full)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-6s %n", "#", "Username", "Name", "Access");
+            out.println("------------------------------------------------");
+            for (int i = 0; i < a.length; i++) {
+                out.printf("%-3s %-15s %-15s %-6s %n", i + 1, a[i].getUsername(), a[i].getName(), a[i].getAccess());
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void tasksDues() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * taskDues()
+     *
+     * Generates the report for dues paid
+     *
+     * @param p
+     * @return
+     */
+    public static boolean taskDues(Profile[] p) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Tasks (Dues) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Tasks (Dues)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-12s %-5s %n", "#", "Last Name", "First Name", "SIUe ID", "Dues Paid");
+            out.println("------------------------------------------------------------");
+            for (int i = 0; i < p.length; i++) {
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %-5s %n",
+                            i, p[i].getlName(), p[i].getfName(), p[i].getId(), getTask(p[i].isDuesPaid()));
+                }
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void tasksTrained() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * taskTrained()
+     *
+     * Generates the report for being board trained
+     *
+     * @param p
+     * @return
+     */
+    public static boolean taskTrained(Profile[] p) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Tasks (Trained) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Tasks (Trained)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-12s %-5s %n", "#", "Last Name", "First Name", "SIUe ID", "Trained");
+            out.println("------------------------------------------------------------");
+            for (int i = 0; i < p.length; i++) {
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %-5s %n",
+                            i, p[i].getlName(), p[i].getfName(), p[i].getId(), getTask(p[i].isTrained()));
+                }
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void tasksPaperwork() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * taskDues()
+     *
+     * Generates the report for paperwork turned in
+     *
+     * @param p
+     * @return
+     */
+    public static boolean taskPaperwork(Profile[] p) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Tasks (Paperwork) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Tasks (Paperwork)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-12s %-5s %n", "#", "Last Name", "First Name", "SIUe ID", "Paperwork");
+            out.println("------------------------------------------------------------");
+            for (int i = 0; i < p.length; i++) {
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %-5s %n",
+                            i, p[i].getlName(), p[i].getfName(), p[i].getId(), getTask(p[i].isPaperworkTurnedIn()));
+                }
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void tasksShowDescTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * taskDues()
+     *
+     * Generates the report for a show description and time
+     * turned in
+     *
+     * @param p
+     * @return
+     */
+    public static boolean taskShowDescTime(Profile[] p) {
+        // creating the file name
+        Date date = new Date();
+        String filename = "Tasks (Show Desc_Time) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Tasks (Show Desc/Time)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-12s %-5s %n", "#", "Last Name", "First Name", "SIUe ID", "Show Desc/Time");
+            out.println("------------------------------------------------------------");
+            for (int i = 0; i < p.length; i++) {
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %-5s %n",
+                            i, p[i].getlName(), p[i].getfName(), p[i].getId(), getTask(p[i].isShowDesc_Time()));
+                }
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void tasksFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * taskDues()
+     *
+     * Generates the full report for tasks
+     *
+     * @param p
+     * @return
+     */
+    public static boolean taskFull(Profile[] p) {
+
+// creating the file name
+        Date date = new Date();
+        String filename = "Tasks (Full) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Tasks (Full)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-15s %-15s %-12s %-5s %-8s %-10s %-15s %n",
+                    "#", "Last Name", "First Name", "SIUe ID", "Dues", "Trained", "Paperwork", "Show Desc/Time");
+            out.println("------------------------------------------------------------------------------");
+            for (int i = 0; i < p.length; i++) {
+                if (!p[i].getId().equals("000000000")) {
+                    out.printf("%-3s %-15s %-15s %-12s %-5s %-8s %-10s %-15s %n",
+                            i, p[i].getlName(), p[i].getfName(), p[i].getId(),
+                            getTask(p[i].isDuesPaid()), getTask(p[i].isTrained()),
+                            getTask(p[i].isPaperworkTurnedIn()), getTask(p[i].isShowDesc_Time()));
+                }
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void financesTransactions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * showSimple()
+     *
+     * Generates a simple report of all shows
+     *
+     * @param s
+     * @return
+     */
+    public static boolean showSimple(Show[] s) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Shows (Simple) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Shows (Simple)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+            out.println();
+            out.printf("%-3s %-30s %n", "#", "Show Name");
+            out.println("---------------------------------------");
+            for (int i = 0; i < s.length; i++) {
+                out.printf("%-3s %-30s %n", i + 1, s[i].getShowName());
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
     }
 
-    static void financesFull() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * showFull()
+     *
+     * Generates a full report of all shows
+     *
+     * @param s
+     * @return
+     */
+    public static boolean showFull(Show[] s) {
+
+        // creating the file name
+        Date date = new Date();
+        String filename = "Shows (Full) " + filedf.format(date);
+        File report = new File("Reports\\" + filename + ".txt");
+
+        // refilling the text file with new array
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
+            out.println(getHeader());
+            out.println("Shows (Full)");
+            out.println("Date: " + df.format(date));
+            out.println("Generated by: " + Main.p.getUsername());
+
+            for (int i = 0; i < s.length; i++) {
+                out.println();
+                out.println("-------------------------------------------------------");
+                out.println();
+                out.println("Show Name:    " + s[i].getShowName());
+                out.println("Host(s):      " + s[i].getHostsString());
+                out.println();
+                out.println("Show time(s): " + s[i].getDays_Times());
+                out.println();
+                out.println("Description:\n");
+                String desc = s[i].getShowDesc();
+                String[] str = desc.split(" ");
+                for (int j = 0; j < str.length; j++) {
+                    out.print(str[j] + " ");
+                    if (j % 10 == 0 && j != 0) {
+                        out.print("\r\n");
+                    }
+                }
+                out.println();
+            }
+            out.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * getType()
+     *
+     * returns the type of profile based on a number
+     *
+     * @param type
+     * @return
+     */
+    public static String getType(int type) {
+        switch (type) {
+            case 0:
+                return "DJ";
+            case 1:
+                return "Member";
+            case 2:
+                return "Prospect";
+            case 3:
+                return "Advisor";
+            default:
+                return "";
+        }
+    }
+
+    /**
+     * getPosition()
+     *
+     * Returns the position of a profile based on a number
+     *
+     * @param position
+     * @return
+     */
+    public static String getPosition(int position) {
+        switch (position) {
+            case 0:
+                return "President";
+            case 1:
+                return "Vice President";
+            case 2:
+                return "Treasurer";
+            case 3:
+                return "SM Manager";
+            case 4:
+                return "Secretary";
+            case 5:
+                return "Tech Officer";
+            default:
+                return "";
+        }
+    }
+
+    /**
+     * getTask()
+     *
+     * returns an "X" if the task is true
+     *
+     * @param b
+     * @return
+     */
+    public static String getTask(boolean b) {
+        if (b) {
+            return "X";
+        } else {
+            return "";
+        }
     }
     // </editor-fold>
-    
 } // end IOController

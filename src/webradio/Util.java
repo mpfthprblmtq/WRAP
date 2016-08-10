@@ -32,4 +32,31 @@ public interface Util {
         return str.equals("true");
     }
     
+    /**
+     * getPhone()
+     * 
+     * Converts a ten digit phone number into a formatted string
+     * 
+     * @param str
+     * @return result of formatting
+     */
+    static String getPhone(String str) {
+        String[] arr = str.split("");
+        String s = "";
+        s += "(";
+        s += arr[0];
+        s += arr[1];
+        s += arr[2];
+        s += ")";
+        s += "-";
+        s += arr[3];
+        s += arr[4];
+        s += arr[5];
+        s += "-";
+        s += arr[6];
+        s += arr[7];
+        s += arr[8];
+        s += arr[9];
+        return s;
+    }
 }

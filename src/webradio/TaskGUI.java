@@ -87,6 +87,7 @@ public class TaskGUI extends javax.swing.JFrame {
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
+        helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
@@ -275,6 +276,15 @@ public class TaskGUI extends javax.swing.JFrame {
 
         help.setText("Help");
 
+        helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
+        helpItem.setText("Open Help...");
+        helpItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpItemActionPerformed(evt);
+            }
+        });
+        help.add(helpItem);
+
         bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
         bugItem.setText("Report a bug");
         bugItem.addActionListener(new java.awt.event.ActionListener() {
@@ -307,8 +317,8 @@ public class TaskGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(234, 234, 234)
                         .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addComponent(adminLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -329,16 +339,14 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addComponent(gear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(adminLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sp))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(sp))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errLabel)
                 .addContainerGap())
         );
@@ -472,7 +480,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
         JOptionPane.showMessageDialog(this,
-                "Probably some admin stuff here",
+                "Administration features\nNot implemented yet",
                 "Advanced",
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_adminLabelMouseClicked
@@ -492,6 +500,10 @@ public class TaskGUI extends javax.swing.JFrame {
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
+
+    private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
+        Main.LaunchHelpGUI();
+    }//GEN-LAST:event_helpItemActionPerformed
 
     /**
      * fillList()
@@ -635,7 +647,7 @@ public class TaskGUI extends javax.swing.JFrame {
         // update graphics
         editButton.setEnabled(true);
         submitButton.setEnabled(false);
-        list.setSelectedIndex(list.getLastVisibleIndex());
+        list.setSelectedIndex(people.getSize()-1);
     }
 
     /**
@@ -693,6 +705,7 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JMenu file;
     private javax.swing.JLabel gear;
     private javax.swing.JMenu help;
+    private javax.swing.JMenuItem helpItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

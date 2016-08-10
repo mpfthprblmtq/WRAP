@@ -78,10 +78,11 @@ public class MainGUI extends javax.swing.JFrame {
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        verstionItem = new javax.swing.JMenuItem();
+        devItem = new javax.swing.JMenuItem();
+        thanksItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
+        helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
@@ -253,33 +254,42 @@ public class MainGUI extends javax.swing.JFrame {
 
         jMenu1.setText("About");
 
-        jMenuItem1.setText("Version");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        verstionItem.setText("Version");
+        verstionItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                verstionItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(verstionItem);
 
-        jMenuItem3.setText("Developer");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        devItem.setText("Developer");
+        devItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                devItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(devItem);
 
-        jMenuItem2.setText("Special Thanks");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        thanksItem.setText("Special Thanks");
+        thanksItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                thanksItemActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(thanksItem);
 
         menubar.add(jMenu1);
 
         help.setText("Help");
+
+        helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
+        helpItem.setText("Open Help...");
+        helpItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpItemActionPerformed(evt);
+            }
+        });
+        help.add(helpItem);
 
         bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
         bugItem.setText("Report a bug");
@@ -624,14 +634,14 @@ public class MainGUI extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void verstionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verstionItemActionPerformed
         JOptionPane.showMessageDialog(this, "W.R.A.P. - Web Radio Assistance Program\n"
                 + "Version 1.0  :D \n\n"
                 + "Profiles:  Manage contact info of club members\n"
                 + "Accounts:  Manage user accounts (username, password, access, and name)\n"
                 + "Tasks:     Manage members' requirements to join/remain in the club\n"
                 + "Shows:     Manage shows, including names, descriptions, times, and hosts");
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_verstionItemActionPerformed
     /**
      * Handles if user selects suggestion option in the menu bar
      * Calls LaunchSuggestionReportGUI()
@@ -648,19 +658,34 @@ public class MainGUI extends javax.swing.JFrame {
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_formComponentShown
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    /**
+     * Handles if user selects the special thanks option in the menu bar
+     * @param evt 
+     */
+    private void thanksItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanksItemActionPerformed
+        JOptionPane.showMessageDialog(this,
+                "Special thanks to:\n"
+                + "\t- Brian Stevens, for finding a lot of initial bugs in Phase I of testing\n"
+                + "\t- Steve Buscemi, for his life of influential works");
+    }//GEN-LAST:event_thanksItemActionPerformed
+
+    /**
+     * Handles if user selects the Dev option in the menu bar
+     * @param evt 
+     */
+    private void devItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devItemActionPerformed
         JOptionPane.showMessageDialog(this,
                 "Pat Ripley\n"
-                        + "(618)-570-5661\n"
-                        + "ripley307@gmail.com\n\n"
-                        + "Coded independantly since Fall 2015\n"
-                        + "Since I don't have copyrights, please don't\n"
-                        + "steal my code...");
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+                + "(618)-570-5661\n"
+                + "ripley307@gmail.com\n\n"
+                + "Coded independantly since Fall 2015\n"
+                + "Since I don't have copyrights, please don't\n"
+                + "steal my code...");
+    }//GEN-LAST:event_devItemActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
+        Main.LaunchHelpGUI();
+    }//GEN-LAST:event_helpItemActionPerformed
 
     /**
      * main()
@@ -703,15 +728,14 @@ public class MainGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton;
     private javax.swing.JMenuItem bugItem;
+    private javax.swing.JMenuItem devItem;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JLabel f1;
     private javax.swing.JMenu file;
     private javax.swing.JButton financeButton;
     private javax.swing.JMenu help;
+    private javax.swing.JMenuItem helpItem;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel logo;
     private javax.swing.JMenuItem logoutItem;
@@ -724,6 +748,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JButton taskButton;
     private javax.swing.JTextArea text;
     private javax.swing.JLabel textHeader;
+    private javax.swing.JMenuItem thanksItem;
+    private javax.swing.JMenuItem verstionItem;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 } // end MainGUI

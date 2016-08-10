@@ -218,6 +218,7 @@ public class ShowGUI extends javax.swing.JFrame {
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
+        helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
@@ -244,7 +245,10 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setEditable(false);
         sDescField.setBackground(new java.awt.Color(240, 240, 240));
         sDescField.setColumns(20);
+        sDescField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        sDescField.setLineWrap(true);
         sDescField.setRows(5);
+        sDescField.setWrapStyleWord(true);
         sDescField.setEnabled(false);
         sSP.setViewportView(sDescField);
 
@@ -556,7 +560,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sl2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                         .addComponent(sHostPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -935,6 +939,15 @@ public class ShowGUI extends javax.swing.JFrame {
 
         help.setText("Help");
 
+        helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
+        helpItem.setText("Open Help...");
+        helpItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpItemActionPerformed(evt);
+            }
+        });
+        help.add(helpItem);
+
         bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
         bugItem.setText("Report a bug");
         bugItem.addActionListener(new java.awt.event.ActionListener() {
@@ -968,12 +981,12 @@ public class ShowGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -983,9 +996,9 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adminLabel)
-                            .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollpane))
                     .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1079,10 +1092,9 @@ public class ShowGUI extends javax.swing.JFrame {
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
         JOptionPane.showMessageDialog(this,
-                "Probably some admin stuff here",
+                "Administration features\nNot implemented yet",
                 "Advanced",
                 JOptionPane.INFORMATION_MESSAGE);
-
     }//GEN-LAST:event_adminLabelMouseClicked
 
     /**
@@ -1207,7 +1219,23 @@ public class ShowGUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        delete();
+        // confirmation on delete
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to delete "
+                + sNameField.getText() + "?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION);
+
+        // if they select yes
+        switch (res) {
+            case 0:
+                delete();
+                break;
+            case 1:
+                // do nothing
+                break;
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
@@ -1261,6 +1289,10 @@ public class ShowGUI extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseShowGUI();
     }//GEN-LAST:event_formWindowClosed
+
+    private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
+        Main.LaunchHelpGUI();
+    }//GEN-LAST:event_helpItemActionPerformed
 
     /**
      * fillList()
@@ -3843,6 +3875,7 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
+    private javax.swing.JMenuItem helpItem;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;

@@ -147,6 +147,7 @@ public class AccountGUI extends javax.swing.JFrame {
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
+        helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
@@ -543,6 +544,15 @@ public class AccountGUI extends javax.swing.JFrame {
 
         help.setText("Help");
 
+        helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
+        helpItem.setText("Open Help...");
+        helpItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpItemActionPerformed(evt);
+            }
+        });
+        help.add(helpItem);
+
         bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
         bugItem.setText("Report a bug");
         bugItem.addActionListener(new java.awt.event.ActionListener() {
@@ -582,8 +592,8 @@ public class AccountGUI extends javax.swing.JFrame {
                             .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(1, 1, 1)
+                                .addComponent(adminLabel)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -593,8 +603,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -996,11 +1006,10 @@ public class AccountGUI extends javax.swing.JFrame {
 
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
-        JOptionPane.showMessageDialog(this, 
-                "Probably some admin stuff here", 
-                "Advanced", 
+        JOptionPane.showMessageDialog(this,
+                "Administration features\nNot implemented yet",
+                "Advanced",
                 JOptionPane.INFORMATION_MESSAGE);
-                
     }//GEN-LAST:event_adminLabelMouseClicked
 
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
@@ -1010,6 +1019,10 @@ public class AccountGUI extends javax.swing.JFrame {
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
+
+    private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
+        Main.LaunchHelpGUI();
+    }//GEN-LAST:event_helpItemActionPerformed
 
     // </editor-fold>
     
@@ -1312,7 +1325,6 @@ public class AccountGUI extends javax.swing.JFrame {
         sAComboBox.setEnabled(true);
         sAField.setBackground(Color.white);
 
-        changePasswordLabel.setEnabled(true);
         submitButton.setEnabled(true);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
@@ -1846,6 +1858,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
+    private javax.swing.JMenuItem helpItem;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;

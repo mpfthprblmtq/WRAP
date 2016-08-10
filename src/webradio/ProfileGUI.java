@@ -171,6 +171,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
+        helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
@@ -306,8 +307,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
-        spositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
-        spositionBox.setSelectedIndex(9);
+        spositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "None", "--" }));
+        spositionBox.setSelectedIndex(7);
         spositionBox.setEnabled(false);
         spositionBox.setNextFocusableComponent(snotesField);
         spositionBox.addActionListener(new java.awt.event.ActionListener() {
@@ -684,8 +685,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
 
-        apositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "President/Tech", "VP/Secretary", "None", "--" }));
-        apositionBox.setSelectedIndex(9);
+        apositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "None", "--" }));
+        apositionBox.setSelectedIndex(7);
         apositionBox.setNextFocusableComponent(anotesField);
         apositionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -882,6 +883,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         help.setText("Help");
 
+        helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
+        helpItem.setText("Open Help...");
+        helpItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpItemActionPerformed(evt);
+            }
+        });
+        help.add(helpItem);
+
         bugItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bug_PNG3980.png"))); // NOI18N
         bugItem.setText("Report a bug");
         bugItem.addActionListener(new java.awt.event.ActionListener() {
@@ -915,12 +925,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(1, 1, 1)
+                                .addComponent(adminLabel))
+                            .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)))
                 .addContainerGap())
         );
@@ -931,8 +941,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sp))
                     .addComponent(tabs))
@@ -972,18 +982,18 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!people.isEmpty() && !people.get(list.getSelectedIndex()).id.equals("000000000")) {
-            
-                // graphics update
-                submitButton.setEnabled(false);
-                editButton.setEnabled(true);
-                deleteButton.setEnabled(true);
-                setSearchFieldsEditable(false);
 
-                // search for the profile
-                search(people.elementAt(list.getSelectedIndex()).id);
+            // graphics update
+            submitButton.setEnabled(false);
+            editButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+            setSearchFieldsEditable(false);
 
-                // if search tab is not in focus, put it in focus
-                tabs.setSelectedIndex(0);
+            // search for the profile
+            search(people.elementAt(list.getSelectedIndex()).id);
+
+            // if search tab is not in focus, put it in focus
+            tabs.setSelectedIndex(0);
         } else {
             // do nothing
             // it'll crash otherwise
@@ -1004,7 +1014,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Pops up a confirmation window, then calls delete() if user wishes
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        
+
         // confirmation on delete
         int res = JOptionPane.showConfirmDialog(
                 null,
@@ -1021,7 +1031,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 // checks to see if they have a show
                 if (IOController.checkIfProfileHasAShow(snum800Field.getText())) {
                     String[] options = new String[]{"Delete Show", "Keep Show"};
-                    
+
                     // more delete confirmation
                     // asks if you want to delete the show as well or just keep it
                     int res2 = JOptionPane.showOptionDialog(null,
@@ -1047,12 +1057,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                             ProfileController.replaceProfileWithBlank(id);
                     }
                     break;
-                    
-                // if they don't have a show, delete like normal
+
+                    // if they don't have a show, delete like normal
                 } else {
                     delete();
                 }
-                
+
             // if they selected no
             default:
             // do nothing
@@ -1129,15 +1139,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 spositionField.setText("Tech Officer");
                 break;
             case 6:
-                spositionField.setText("President/Tech");
-                break;
-            case 7:
-                spositionField.setText("VP/Secretary");
-                break;
-            case 8:
                 spositionField.setText("None");
                 break;
-            case 9:
+            case 7:
                 spositionField.setText("");
                 break;
         }
@@ -1192,15 +1196,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 apositionField.setText("Tech Officer");
                 break;
             case 6:
-                apositionField.setText("President/Tech");
-                break;
-            case 7:
-                apositionField.setText("VP/Secretary");
-                break;
-            case 8:
                 apositionField.setText("None");
                 break;
-            case 9:
+            case 7:
                 apositionField.setText("");
                 break;
         }
@@ -1705,7 +1703,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
         JOptionPane.showMessageDialog(this,
-                "Probably some admin stuff here",
+                "Administration features\nNot implemented yet",
                 "Advanced",
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_adminLabelMouseClicked
@@ -1726,8 +1724,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
 
+    private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
+        Main.LaunchHelpGUI();
+    }//GEN-LAST:event_helpItemActionPerformed
+
     // </editor-fold>
-    
     /**
      * fillList()
      *
@@ -1747,10 +1748,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         elements = new ListElement[total];
         if (str != null) {
             for (int i = 0; i < total; i++) {
-                elements[i] = new ListElement(str[i].getfName(),
-                        str[i].getlName(),
-                        str[i].getId());
-                people.add(i, elements[i]);
+                    elements[i] = new ListElement(str[i].getfName(),
+                            str[i].getlName(),
+                            str[i].getId());
+                    people.add(i, elements[i]);
+                
             }
         }
         return people;
@@ -1761,7 +1763,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      *
      * Works with the global list of Profiles, which updates the JList graphics
      *
-     * @param action,  the type of action (either add or remove)
+     * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -1944,7 +1946,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         deleteButton.setEnabled(false);
 
         // reset the form, selecting the new Profile just edited
-        list.setSelectedIndex(list.getLastVisibleIndex());
+        list.setSelectedIndex(people.getSize() - 1);
         search(people.getElementAt(people.getSize() - 1).id);
     }
 
@@ -1986,7 +1988,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         asiueEmailField.setText("");
         aprefEmailField.setText("");
         atypeBox.setSelectedIndex(4);
-        apositionBox.setSelectedIndex(9);
+        apositionBox.setSelectedIndex(7);
         anotesField.setText("");
     }
 
@@ -2006,7 +2008,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         ssiueEmailField.setBackground(Color.white);
         sprefEmailField.setBackground(Color.white);
         stypeBox.setSelectedIndex(4);
-        spositionBox.setSelectedIndex(9);
+        spositionBox.setSelectedIndex(7);
         stypeField.setBackground(Color.white);
         spositionField.setBackground(Color.white);
         snotesField.setBackground(Color.white);
@@ -2034,7 +2036,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snotesField.setEditable(b);
         if (!b) {
             stypeBox.setSelectedIndex(4);
-            spositionBox.setSelectedIndex(9);
+            spositionBox.setSelectedIndex(7);
         }
 
         if (!b) {
@@ -2109,7 +2111,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[5] = aprefEmailField.getText();
         str[6] = String.valueOf(atypeBox.getSelectedIndex());
         str[7] = String.valueOf(apositionBox.getSelectedIndex());
-        str[8] = anotesField.getText();
+        if (str[8] != null) {
+            if (str[8].contains("\\n")) {
+                str[8] = "";
+            } else {
+                str[8] = anotesField.getText();
+            }
+        } else {
+            str[8] = "";
+        }
         str[9] = "false";
         str[10] = "false";
         str[11] = "false";
@@ -2730,6 +2740,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
+    private javax.swing.JMenuItem helpItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -7,8 +7,6 @@
 
 package webradio;
 
-import java.util.Arrays;
-
 public class Show {
 
     // enum used for Day object
@@ -164,7 +162,256 @@ public class Show {
         
         return ret;
     }
+    
+    /**
+     * getHostsString()
+     * 
+     * Utility function used to convert the hosts into a String
+     * 
+     * @return the string representation of hosts
+     */
+    public String getHostsString() {
+        String ret = "";
 
+        if (hosts.length == 1 && hosts[0] == null) {
+            return "0";
+        } else {
+            for (int i = 0; i < hosts.length; i++) {
+                if (hosts[i] != null) {
+                    ret += hosts[i].getfName() + " " 
+                            + hosts[i].getlName() + ", ";
+                }
+            }
+            ret = ret.substring(0, ret.length() - 2);
+        }
+        return ret;
+    }
+    
+    /**
+     * getDays_Times()
+     * 
+     * Utility function used to convert the days and times into a String
+     * @return 
+     */
+    public String getDays_Times() {
+        String ret = "";
+        switch(days.length) {
+            case 1:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                break;
+            case 2:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                ret += "\r\n              ";
+                ret += getDay(days[1]) + " ";
+                ret += getTime(times[2]) + "-" + getTime(times[3]);
+                break;
+            case 3:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                ret += "\r\n              ";
+                ret += getDay(days[1]) + " ";
+                ret += getTime(times[2]) + "-" + getTime(times[3]);
+                ret += "\r\n              ";
+                ret += getDay(days[2]) + " ";
+                ret += getTime(times[4]) + "-" + getTime(times[5]);
+                break;
+            case 4:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                ret += "\r\n              ";
+                ret += getDay(days[1]) + " ";
+                ret += getTime(times[2]) + "-" + getTime(times[3]);
+                ret += "\r\n              ";
+                ret += getDay(days[2]) + " ";
+                ret += getTime(times[4]) + "-" + getTime(times[5]);
+                ret += "\r\n              ";
+                ret += getDay(days[3]) + " ";
+                ret += getTime(times[6]) + "-" + getTime(times[7]);
+                break;
+            case 5:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                ret += "\r\n              ";
+                ret += getDay(days[1]) + " ";
+                ret += getTime(times[2]) + "-" + getTime(times[3]);
+                ret += "\r\n              ";
+                ret += getDay(days[2]) + " ";
+                ret += getTime(times[4]) + "-" + getTime(times[5]);
+                ret += "\r\n              ";
+                ret += getDay(days[3]) + " ";
+                ret += getTime(times[6]) + "-" + getTime(times[7]);
+                ret += "\r\n              ";
+                ret += getDay(days[4]) + " ";
+                ret += getTime(times[8]) + "-" + getTime(times[9]);
+                break;
+            case 6:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                ret += "\r\n              ";
+                ret += getDay(days[1]) + " ";
+                ret += getTime(times[2]) + "-" + getTime(times[3]);
+                ret += "\r\n              ";
+                ret += getDay(days[2]) + " ";
+                ret += getTime(times[4]) + "-" + getTime(times[5]);
+                ret += "\r\n              ";
+                ret += getDay(days[3]) + " ";
+                ret += getTime(times[6]) + "-" + getTime(times[7]);
+                ret += "\r\n              ";
+                ret += getDay(days[4]) + " ";
+                ret += getTime(times[8]) + "-" + getTime(times[9]);
+                ret += "\r\n              ";
+                ret += getDay(days[5]) + " ";
+                ret += getTime(times[10]) + "-" + getTime(times[11]);
+                break;
+            case 7:
+                ret += getDay(days[0]) + " ";
+                ret += getTime(times[0]) + "-" + getTime(times[1]);
+                ret += "\r\n              ";
+                ret += getDay(days[1]) + " ";
+                ret += getTime(times[2]) + "-" + getTime(times[3]);
+                ret += "\r\n              ";
+                ret += getDay(days[2]) + " ";
+                ret += getTime(times[4]) + "-" + getTime(times[5]);
+                ret += "\r\n              ";
+                ret += getDay(days[3]) + " ";
+                ret += getTime(times[6]) + "-" + getTime(times[7]);
+                ret += "\r\n              ";
+                ret += getDay(days[4]) + " ";
+                ret += getTime(times[8]) + "-" + getTime(times[9]);
+                ret += "\r\n              ";
+                ret += getDay(days[5]) + " ";
+                ret += getTime(times[10]) + "-" + getTime(times[11]);
+                ret += "\r\n              ";
+                ret += getDay(days[6]) + " ";
+                ret += getTime(times[12]) + "-" + getTime(times[13]);
+                break;
+            default:
+                ret += "null";
+        }
+        return ret;
+    }
+    
+    /**
+     * getDay()
+     * 
+     * Returns a String representation of a Day object
+     * 
+     * @param day
+     * @return 
+     */
+    public String getDay(Day day) {
+        switch(day) {
+            case SUN:
+                return "Sunday";
+            case MON:
+                return "Monday";
+            case TUE:
+                return "Tuesday";
+            case WED:
+                return "Wednesday";
+            case THU:
+                return "Thursday";
+            case FRI:
+                return "Friday";
+            case SAT:
+                return "Saturday";
+            default:
+                return "";
+        }
+    }
+    
+    /**
+     * getTime()
+     * 
+     * Returns a String representation of a Time object
+     * 
+     * @param time
+     * @return 
+     */
+    public String getTime(Time time) {
+        switch (time) {
+                case am0600:
+                    return "6:00am";
+                case am0630:
+                    return "6:30am";
+                case am0700:
+                    return "7:00am";
+                case am0730:
+                    return "7:30am";
+                case am0800:
+                    return "8:00am";
+                case am0830:
+                    return "8:30am";
+                case am0900:
+                    return "9:00am";
+                case am0930:
+                    return "9:30am";
+                case am1000:
+                    return "10:00am";
+                case am1030:
+                    return "10:30am";
+                case am1100:
+                    return "11:00am";
+                case am1130:
+                    return "11:30am";
+                case pm1200:
+                    return "12:00pm";
+                case pm1230:
+                    return "12:30pm";
+                case pm0100:
+                    return "1:00pm";
+                case pm0130:
+                    return "1:30pm";
+                case pm0200:
+                    return "2:00pm";
+                case pm0230:
+                    return "2:30pm";
+                case pm0300:
+                    return "3:00pm";
+                case pm0330:
+                    return "3:30pm";
+                case pm0400:
+                    return "4:00pm";
+                case pm0430:
+                    return "4:30pm";
+                case pm0500:
+                    return "5:00pm";
+                case pm0530:
+                    return "5:30pm";
+                case pm0600:
+                    return "6:00pm";
+                case pm0630:
+                    return "6:30pm";
+                case pm0700:
+                    return "7:00pm";
+                case pm0730:
+                    return "7:30pm";
+                case pm0800:
+                    return "8:00pm";
+                case pm0830:
+                    return "8:30pm";
+                case pm0900:
+                    return "9:00pm";
+                case pm0930:
+                    return "9:30pm";
+                case pm1000:
+                    return "10:00pm";
+                case pm1030:
+                    return "10:30pm";
+                case pm1100:
+                    return "11:00pm";
+                case pm1130:
+                    return "11:30pm";
+                case am1200:
+                    return "12:00am";
+                default:
+                    return "";
+            }
+    }
+    
+    
     /**
      * toString()
      * 
