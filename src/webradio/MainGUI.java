@@ -401,8 +401,7 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void financeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financeButtonActionPerformed
-        //Main.LaunchFinanceGUI();
-        JOptionPane.showMessageDialog(this, "  Finance interface not implemented yet! :(     ");
+        Main.LaunchFinanceGUI();
     }//GEN-LAST:event_financeButtonActionPerformed
 
     /**
