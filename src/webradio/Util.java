@@ -6,6 +6,8 @@
  */
 package webradio;
 
+import java.util.Random;
+
 public interface Util {
     
     /**
@@ -58,5 +60,21 @@ public interface Util {
         s += arr[8];
         s += arr[9];
         return s;
+    }
+    
+    /**
+     * generateID()
+     * 
+     * creates a 9-digit unique ID
+     * @return 
+     */
+    static int generateID() {
+        Random rand = new Random();
+        int num = rand.nextInt(999999999);
+        if(IOController.checkAllIDsForDupe(num)) {
+            return num;
+        } else {
+            return generateID();
+        }
     }
 }

@@ -100,6 +100,7 @@ public class LoginGUI extends javax.swing.JFrame {
                         .addComponent(headerLabel)
                         .addGap(0, 151, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
                         .addComponent(ErrLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(SubmitButton))

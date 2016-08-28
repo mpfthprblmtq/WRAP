@@ -178,6 +178,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Profiles");
         setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
+        setPreferredSize(null);
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1807,6 +1808,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             setAddValuesToNull();
             afNameField.requestFocus();
 
+            // log
+            EventLog.add("added profile " + p.getId() 
+                    + " (" + p.getlName() + ", " + p.getfName() + ")");
+            
             // else if addition fails
         } else {
             errLabel.setForeground(Color.red);
@@ -1923,7 +1928,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
 
         // update graphics
-        // this was an error, if the box was disabled, it automatically chose the last index
         setSearchFieldsEditable(false);
 
         // delete then add
@@ -1968,7 +1972,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         stypeField.setText("");
         spositionField.setText("");
         stypeBox.setSelectedIndex(4);
-        spositionBox.setSelectedIndex(9);
+        spositionBox.setSelectedIndex(7);
         snotesField.setText("");
     }
 
@@ -2608,7 +2612,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText(err);
         }
 
-        // if there are no errors, this method isn't called
     }
 
     /**

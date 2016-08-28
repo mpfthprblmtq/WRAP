@@ -1,9 +1,16 @@
 /**
- * Not fully implmented yet
+ * File: FinanceGUI.java
+ * Desc: Sends input to FinanceController and handles all the GUI related events
+ *
+ * Author: Pat Ripley
  */
 package webradio;
 
+import java.awt.Color;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.text.AttributeSet;
@@ -11,6 +18,28 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 public class FinanceGUI extends javax.swing.JFrame {
+
+    /**
+     * Minor inner class used to create the list on the right side of the panel
+     */
+    // <editor-fold defaultstate="collapsed" desc="ListElement">
+    public class ListElement {
+
+        String amount, store, id;
+
+        public ListElement(String amount, String store, String id) {
+            this.amount = amount;
+            this.store = store;
+            this.id = id;
+        }
+
+        @Override
+        public String toString() {
+            double d = Double.valueOf(amount);
+            return "$" + money.format(d) + " - " + store;
+        }
+    }
+    // </editor-fold>
 
     /**
      * Minor inner class used to limit th amount of text in a text field
@@ -42,7 +71,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }
     // </editor-fold>
-    
+
     DecimalFormat money = new DecimalFormat("0.00");
     double pennies;
     double nickels;
@@ -56,7 +85,13 @@ public class FinanceGUI extends javax.swing.JFrame {
     double twenties;
     double fifties;
     double hundreds;
-    
+
+    DefaultListModel<ListElement> transactions = new DefaultListModel<>();
+    Transaction temp;
+
+    public static final int ADD = 0;
+    public static final int REMOVE = 1;
+
     /**
      * Creates new form FinanceGUI
      */
@@ -74,6 +109,70 @@ public class FinanceGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        transactionPanel = new javax.swing.JPanel();
+        transactionsTP = new javax.swing.JTabbedPane();
+        searchPanel = new javax.swing.JPanel();
+        L1 = new javax.swing.JLabel();
+        L2 = new javax.swing.JLabel();
+        L3 = new javax.swing.JLabel();
+        L4 = new javax.swing.JLabel();
+        L5 = new javax.swing.JLabel();
+        L6 = new javax.swing.JLabel();
+        sStoreField = new javax.swing.JTextField();
+        sMonthBox = new javax.swing.JComboBox<>();
+        sDateBox = new javax.swing.JComboBox<>();
+        sYearBox = new javax.swing.JComboBox<>();
+        sPurchaserField = new javax.swing.JTextField();
+        sAmountField = new javax.swing.JFormattedTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        sReasonField = new javax.swing.JTextArea();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        sNotesField = new javax.swing.JTextArea();
+        submitButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        addPanel = new javax.swing.JPanel();
+        L7 = new javax.swing.JLabel();
+        L8 = new javax.swing.JLabel();
+        L9 = new javax.swing.JLabel();
+        L10 = new javax.swing.JLabel();
+        L11 = new javax.swing.JLabel();
+        L12 = new javax.swing.JLabel();
+        aStoreField = new javax.swing.JTextField();
+        aMonthBox = new javax.swing.JComboBox<>();
+        aDateBox = new javax.swing.JComboBox<>();
+        aYearBox = new javax.swing.JComboBox<>();
+        aPurchaserField = new javax.swing.JTextField();
+        aAmountField = new javax.swing.JFormattedTextField();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        aReasonField = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        aNotesField = new javax.swing.JTextArea();
+        addButton = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        list = new javax.swing.JList<>();
+        accountsPanel = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        bankPanel = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        bankField = new javax.swing.JTextField();
+        bankSubmitButton = new javax.swing.JButton();
+        bankEditButton = new javax.swing.JButton();
+        cashPanel = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        cashField = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        cashEditButton = new javax.swing.JButton();
+        cashSubmitButton = new javax.swing.JButton();
+        atePanel = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        ateField = new javax.swing.JTextField();
+        ateEditButton = new javax.swing.JButton();
+        ateSubmitButton = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        totalField = new javax.swing.JTextField();
         moneycounterPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -114,8 +213,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         hundredSpinner = new javax.swing.JSpinner();
         hundredL = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         errLabel = new javax.swing.JLabel();
+        adminLabel = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        calcButton = new javax.swing.JButton();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -127,12 +228,575 @@ public class FinanceGUI extends javax.swing.JFrame {
         suggestionItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("W.R.A.P. - Finances");
         setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
+
+        L1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L1.setText("Store:");
+
+        L2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L2.setText("Date:");
+
+        L3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L3.setText("Purchaser:");
+
+        L4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L4.setText("Amount:");
+
+        L5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L5.setText("Reason:");
+
+        L6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L6.setText("Notes:");
+
+        sStoreField.setEditable(false);
+        sStoreField.setPreferredSize(new java.awt.Dimension(166, 20));
+        sStoreField.setDocument(new JTextFieldLimit(30));
+
+        sMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        sMonthBox.setEnabled(false);
+
+        sDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        sDateBox.setEnabled(false);
+
+        sYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
+        sYearBox.setEnabled(false);
+
+        sPurchaserField.setEditable(false);
+        sPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
+        sPurchaserField.setDocument(new JTextFieldLimit(30));
+
+        sAmountField.setEditable(false);
+        sAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        sAmountField.setPreferredSize(new java.awt.Dimension(156, 20));
+        sAmountField.setDocument(new JTextFieldLimit(10));
+
+        jScrollPane8.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        sReasonField.setEditable(false);
+        sReasonField.setBackground(new java.awt.Color(240, 240, 240));
+        sReasonField.setColumns(20);
+        sReasonField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        sReasonField.setLineWrap(true);
+        sReasonField.setRows(5);
+        sReasonField.setWrapStyleWord(true);
+        sReasonField.setDocument(new JTextFieldLimit(60));
+        jScrollPane8.setViewportView(sReasonField);
+
+        jScrollPane9.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        sNotesField.setEditable(false);
+        sNotesField.setBackground(new java.awt.Color(240, 240, 240));
+        sNotesField.setColumns(20);
+        sNotesField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        sNotesField.setLineWrap(true);
+        sNotesField.setRows(5);
+        sNotesField.setWrapStyleWord(true);
+        sNotesField.setDocument(new JTextFieldLimit(60));
+        jScrollPane9.setViewportView(sNotesField);
+
+        submitButton.setText("Submit");
+        submitButton.setEnabled(false);
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitButtonActionPerformed(evt);
+            }
+        });
+
+        editButton.setText("Edit");
+        editButton.setEnabled(false);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Delete");
+        deleteButton.setEnabled(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(deleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(submitButton))
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(L4, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                            .addComponent(L2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane8)
+                            .addComponent(sPurchaserField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStoreField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane9)
+                            .addComponent(sAmountField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sStoreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sPurchaserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sAmountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L4))
+                .addGap(8, 8, 8)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(L6)))
+                    .addComponent(L5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitButton)
+                    .addComponent(editButton)
+                    .addComponent(deleteButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        transactionsTP.addTab("Search", searchPanel);
+
+        L7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L7.setText("Store:");
+
+        L8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L8.setText("Date:");
+
+        L9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L9.setText("Purchaser:");
+
+        L10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L10.setText("Amount:");
+
+        L11.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L11.setText("Notes:");
+
+        L12.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        L12.setText("Reason:");
+
+        aStoreField.setMinimumSize(new java.awt.Dimension(166, 20));
+        aStoreField.setDocument(new JTextFieldLimit(30));
+
+        aMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+
+        aDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        aYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
+
+        aPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
+        aPurchaserField.setDocument(new JTextFieldLimit(30));
+
+        aAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        aAmountField.setPreferredSize(new java.awt.Dimension(166, 20));
+        aAmountField.setDocument(new JTextFieldLimit(10));
+
+        jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        aReasonField.setColumns(20);
+        aReasonField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        aReasonField.setLineWrap(true);
+        aReasonField.setRows(5);
+        aReasonField.setWrapStyleWord(true);
+        aReasonField.setDocument(new JTextFieldLimit(60));
+        jScrollPane5.setViewportView(aReasonField);
+
+        jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        aNotesField.setColumns(20);
+        aNotesField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        aNotesField.setLineWrap(true);
+        aNotesField.setRows(5);
+        aNotesField.setWrapStyleWord(true);
+        aNotesField.setDocument(new JTextFieldLimit(60));
+        jScrollPane6.setViewportView(aNotesField);
+
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
+        addPanel.setLayout(addPanelLayout);
+        addPanelLayout.setHorizontalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPanelLayout.createSequentialGroup()
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(L12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aStoreField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(aPurchaserField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(addPanelLayout.createSequentialGroup()
+                                .addComponent(aMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(aDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(aYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(aAmountField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(addButton)))
+                .addContainerGap())
+        );
+        addPanelLayout.setVerticalGroup(
+            addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aStoreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aPurchaserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aAmountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(L10))
+                .addGap(8, 8, 8)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(L11)))
+                    .addComponent(L12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        transactionsTP.addTab("Add", addPanel);
+
+        list.setModel(fillList());
+        list.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listMouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(list);
+
+        javax.swing.GroupLayout transactionPanelLayout = new javax.swing.GroupLayout(transactionPanel);
+        transactionPanel.setLayout(transactionPanelLayout);
+        transactionPanelLayout.setHorizontalGroup(
+            transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(transactionsTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        transactionPanelLayout.setVerticalGroup(
+            transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionPanelLayout.createSequentialGroup()
+                .addGroup(transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transactionPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(transactionsTP))
+                    .addGroup(transactionPanelLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane7)))
+                .addContainerGap())
+        );
+
+        transactionsTP.getAccessibleContext().setAccessibleName("Add");
+
+        jTabbedPane1.addTab("Transactions", transactionPanel);
+
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
+
+        jLabel15.setText("Account with the Bank of Edwardsville:");
+
+        jLabel16.setText("Balance:");
+
+        bankField.setEditable(false);
+        bankField.setBackground(new java.awt.Color(255, 255, 255));
+
+        bankSubmitButton.setText("Submit");
+        bankSubmitButton.setEnabled(false);
+        bankSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bankSubmitButtonActionPerformed(evt);
+            }
+        });
+
+        bankEditButton.setText("Edit");
+        bankEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bankEditButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout bankPanelLayout = new javax.swing.GroupLayout(bankPanel);
+        bankPanel.setLayout(bankPanelLayout);
+        bankPanelLayout.setHorizontalGroup(
+            bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bankPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(bankPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bankField)))
+                .addContainerGap(218, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bankPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bankEditButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bankSubmitButton)
+                .addContainerGap())
+        );
+        bankPanelLayout.setVerticalGroup(
+            bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bankPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(bankField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bankSubmitButton)
+                    .addComponent(bankEditButton))
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("Bank Account", bankPanel);
+
+        jLabel18.setText("Balance:");
+
+        cashField.setEditable(false);
+        cashField.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel20.setText("Cash (in cash box):");
+
+        cashEditButton.setText("Edit");
+        cashEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashEditButtonActionPerformed(evt);
+            }
+        });
+
+        cashSubmitButton.setText("Submit");
+        cashSubmitButton.setEnabled(false);
+        cashSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashSubmitButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout cashPanelLayout = new javax.swing.GroupLayout(cashPanel);
+        cashPanel.setLayout(cashPanelLayout);
+        cashPanelLayout.setHorizontalGroup(
+            cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cashPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(cashPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cashField))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(218, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cashPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cashEditButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cashSubmitButton)
+                .addContainerGap())
+        );
+        cashPanelLayout.setVerticalGroup(
+            cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cashPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel20)
+                .addGap(18, 18, 18)
+                .addGroup(cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cashSubmitButton)
+                    .addComponent(cashEditButton))
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("Cash", cashPanel);
+
+        jLabel17.setText("8-Account with SIUE:");
+
+        jLabel19.setText("Balance:");
+
+        ateField.setEditable(false);
+        ateField.setBackground(new java.awt.Color(255, 255, 255));
+
+        ateEditButton.setText("Edit");
+        ateEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ateEditButtonActionPerformed(evt);
+            }
+        });
+
+        ateSubmitButton.setText("Submit");
+        ateSubmitButton.setEnabled(false);
+        ateSubmitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ateSubmitButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout atePanelLayout = new javax.swing.GroupLayout(atePanel);
+        atePanel.setLayout(atePanelLayout);
+        atePanelLayout.setHorizontalGroup(
+            atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(atePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addGroup(atePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ateField)))
+                .addContainerGap(218, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ateEditButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ateSubmitButton)
+                .addContainerGap())
+        );
+        atePanelLayout.setVerticalGroup(
+            atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(atePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addGroup(atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(ateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ateSubmitButton)
+                    .addComponent(ateEditButton))
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("8-Account", atePanel);
+
+        jLabel21.setText("Total funds:");
+
+        totalField.setEditable(false);
+        totalField.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout accountsPanelLayout = new javax.swing.GroupLayout(accountsPanel);
+        accountsPanel.setLayout(accountsPanelLayout);
+        accountsPanelLayout.setHorizontalGroup(
+            accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane2)
+                    .addGroup(accountsPanelLayout.createSequentialGroup()
+                        .addGroup(accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        accountsPanelLayout.setVerticalGroup(
+            accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(accountsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Accounts", accountsPanel);
 
         moneycounterPanel.setName("Funds Calc"); // NOI18N
 
@@ -308,62 +972,59 @@ public class FinanceGUI extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quarterSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(halfdollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dollarcoinSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fiveSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(twentySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fiftySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dimeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(halfdollarL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dollarcoinL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nickelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(moneycounterPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nickelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quarterSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(halfdollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dollarcoinSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fiveSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(twentySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fiftySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(dimeL, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                                .addComponent(quarterL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(halfdollarL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dollarcoinL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(moneycounterPanelLayout.createSequentialGroup()
-                                    .addComponent(pennyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(nickelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(quarterL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dollarL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fiveL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tenL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(twentyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fiftyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hundredL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(moneycounterPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(totalL, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(hundredL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(moneycounterPanelLayout.createSequentialGroup()
+                                .addComponent(pennyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(totalL, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         moneycounterPanelLayout.setVerticalGroup(
             moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(moneycounterPanelLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(totalL)
-                        .addComponent(jLabel14)))
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(pennyL)
-                    .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(totalL)
+                        .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -389,7 +1050,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(dollarcoinL)
                     .addComponent(dollarcoinSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(dollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,25 +1080,35 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hundredL))
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Funds Calculator", moneycounterPanel);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("tab1", jPanel1);
-
         errLabel.setText(" ");
+
+        adminLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gear.png"))); // NOI18N
+        adminLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                adminLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                adminLabelMouseExited(evt);
+            }
+        });
+
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        loginLabel.setText(" ");
+
+        calcButton.setText("Open Local Calculator");
+        calcButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcButtonActionPerformed(evt);
+            }
+        });
 
         file.setText("File");
 
@@ -506,15 +1177,30 @@ public class FinanceGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(calcButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(adminLabel)
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calcButton)
+                    .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -540,16 +1226,16 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
-            null,
-            "Are you sure you want to exit WRAP?",
-            "",
-            JOptionPane.YES_NO_OPTION);
+                null,
+                "Are you sure you want to exit WRAP?",
+                "",
+                JOptionPane.YES_NO_OPTION);
 
         // do a thing based on response
         switch (res) {
             case 0:
-            System.exit(0);
-            break;
+                System.exit(0);
+                break;
             default:
             // do nothing
         }
@@ -569,35 +1255,35 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     private void pennySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pennySpinnerStateChanged
         pennies = Integer.valueOf(pennySpinner.getValue().toString());
-        double d = pennies/100;
+        double d = pennies / 100;
         pennyL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_pennySpinnerStateChanged
 
     private void nickelSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nickelSpinnerStateChanged
         nickels = Integer.valueOf(nickelSpinner.getValue().toString());
-        double d = nickels/20;
+        double d = nickels / 20;
         nickelL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_nickelSpinnerStateChanged
 
     private void dimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dimeSpinnerStateChanged
         dimes = Integer.valueOf(dimeSpinner.getValue().toString());
-        double d = dimes/10;
+        double d = dimes / 10;
         dimeL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_dimeSpinnerStateChanged
 
     private void quarterSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_quarterSpinnerStateChanged
         quarters = Integer.valueOf(quarterSpinner.getValue().toString());
-        double d = quarters/4;
+        double d = quarters / 4;
         quarterL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_quarterSpinnerStateChanged
 
     private void halfdollarSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_halfdollarSpinnerStateChanged
         halfdollars = Integer.valueOf(halfdollarSpinner.getValue().toString());
-        double d = halfdollars/2;
+        double d = halfdollars / 2;
         halfdollarL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_halfdollarSpinnerStateChanged
@@ -618,62 +1304,816 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     private void fiveSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fiveSpinnerStateChanged
         fives = Integer.valueOf(fiveSpinner.getValue().toString());
-        double d = fives*5;
+        double d = fives * 5;
         fiveL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_fiveSpinnerStateChanged
 
     private void tenSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tenSpinnerStateChanged
         tens = Integer.valueOf(tenSpinner.getValue().toString());
-        double d = tens*10;
+        double d = tens * 10;
         tenL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_tenSpinnerStateChanged
 
     private void twentySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_twentySpinnerStateChanged
         twenties = Integer.valueOf(twentySpinner.getValue().toString());
-        double d = twenties*20;
+        double d = twenties * 20;
         twentyL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_twentySpinnerStateChanged
 
     private void fiftySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fiftySpinnerStateChanged
         fifties = Integer.valueOf(fiftySpinner.getValue().toString());
-        double d = fifties*50;
+        double d = fifties * 50;
         fiftyL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_fiftySpinnerStateChanged
 
     private void hundredSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hundredSpinnerStateChanged
         hundreds = Integer.valueOf(hundredSpinner.getValue().toString());
-        double d = hundreds*100;
+        double d = hundreds * 100;
         hundredL.setText("$" + money.format(d));
         updateTotal();
     }//GEN-LAST:event_hundredSpinnerStateChanged
 
+    private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
+        // probably some admin stuff
+        JOptionPane.showMessageDialog(this,
+                "Administration features\nNot implemented yet",
+                "Advanced",
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_adminLabelMouseClicked
+
+    private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
+        loginLabel.setText("Advanced options");
+    }//GEN-LAST:event_adminLabelMouseEntered
+
+    private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+    }//GEN-LAST:event_adminLabelMouseExited
+
+    private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
+        try {
+            Runtime.getRuntime().exec("calc");
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }//GEN-LAST:event_calcButtonActionPerformed
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        if (aCheck()) {
+            add();
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
+        if (!transactions.isEmpty()) {
+
+            // graphics update
+            submitButton.setEnabled(false);
+            editButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+            setSearchFieldsEditable(false);
+
+            // search for the profile
+            search(transactions.elementAt(list.getSelectedIndex()).id);
+
+            // if search tab is not in focus, put it in focus
+            transactionsTP.setSelectedIndex(0);
+        } else {
+            // do nothing
+            // it'll crash otherwise
+        }
+    }//GEN-LAST:event_listMouseClicked
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        edit();
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
+        if (sCheck()) {
+            submit();
+        }
+    }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        delete();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        double[] d = FinanceController.getAccountTotals();
+        bankField.setText("$" + money.format(d[0]));
+        cashField.setText("$" + money.format(d[1]));
+        ateField.setText("$" + money.format(d[2]));
+
+        double total = d[0] + d[1] + d[2];
+        totalField.setText("$" + money.format(total));
+
+    }//GEN-LAST:event_formComponentShown
+
+    private void bankEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankEditButtonActionPerformed
+        bankField.setEditable(true);
+        bankSubmitButton.setEnabled(true);
+        bankEditButton.setEnabled(false);
+    }//GEN-LAST:event_bankEditButtonActionPerformed
+
+    private void cashEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashEditButtonActionPerformed
+        cashField.setEditable(true);
+        cashSubmitButton.setEnabled(true);
+        cashEditButton.setEnabled(false);
+    }//GEN-LAST:event_cashEditButtonActionPerformed
+
+    private void ateEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ateEditButtonActionPerformed
+        ateField.setEditable(true);
+        ateSubmitButton.setEnabled(true);
+        ateEditButton.setEnabled(false);
+    }//GEN-LAST:event_ateEditButtonActionPerformed
+
+    private void bankSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankSubmitButtonActionPerformed
+        updateAccountTotals();
+        bankField.setEditable(false);
+        bankSubmitButton.setEnabled(false);
+        bankEditButton.setEnabled(true);
+    }//GEN-LAST:event_bankSubmitButtonActionPerformed
+
+    private void cashSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashSubmitButtonActionPerformed
+        updateAccountTotals();
+        cashField.setEditable(false);
+        cashSubmitButton.setEnabled(false);
+        cashEditButton.setEnabled(true);
+    }//GEN-LAST:event_cashSubmitButtonActionPerformed
+
+    private void ateSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ateSubmitButtonActionPerformed
+        updateAccountTotals();
+        ateField.setEditable(false);
+        ateSubmitButton.setEnabled(false);
+        ateEditButton.setEnabled(true);
+    }//GEN-LAST:event_ateSubmitButtonActionPerformed
+
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+        bankField.setEditable(false);
+        bankSubmitButton.setEnabled(false);
+        bankEditButton.setEnabled(true);
+        cashField.setEditable(false);
+        cashSubmitButton.setEnabled(false);
+        cashEditButton.setEnabled(true);
+        ateField.setEditable(false);
+        ateSubmitButton.setEnabled(false);
+        ateEditButton.setEnabled(true);
+        
+    }//GEN-LAST:event_jTabbedPane2StateChanged
+
     public void updateTotal() {
 
         double total = 0;
-        
-        total += pennies/100;
-        total += nickels/20;
-        total += dimes/10;
-        total += quarters/4;
-        total += halfdollars/2;
+
+        total += pennies / 100;
+        total += nickels / 20;
+        total += dimes / 10;
+        total += quarters / 4;
+        total += halfdollars / 2;
         total += dollarcoins;
         total += dollars;
-        total += fives*5;
-        total += tens*10;
-        total += twenties*20;
-        total += fifties*50;
-        total += hundreds*100;
+        total += fives * 5;
+        total += tens * 10;
+        total += twenties * 20;
+        total += fifties * 50;
+        total += hundreds * 100;
 
-        
         totalL.setText("$" + money.format(total));
 
     }
 
+    public void updateAccountTotals() {
+
+        // create a new double array
+        double[] d = new double[] {
+            Double.valueOf(bankField.getText().replace("$", "")),
+            Double.valueOf(cashField.getText().replace("$", "")),
+            Double.valueOf(ateField.getText().replace("$", ""))
+        };
+        
+        // update them in the file
+        FinanceController.updateAccountTotals(d);
+        
+        // update them in the gui
+        bankField.setText("$" + money.format(d[0]));
+        cashField.setText("$" + money.format(d[1]));
+        ateField.setText("$" + money.format(d[2]));
+        
+        double total = d[0] + d[1] + d[2];
+        totalField.setText("$" + money.format(total));
+    }
+
+    public DefaultListModel fillList() {
+
+        int total = IOController.getTotalTransactions();
+        Transaction[] trans = FinanceController.getAllTransactions();
+
+        for (int i = 0; i < total; i++) {
+            transactions.add(i, new ListElement(
+                    String.valueOf(trans[i].getAmount()),
+                    trans[i].getStore(),
+                    String.valueOf(trans[i].getID())
+            ));
+        }
+        return transactions;
+    }
+
     /**
+     * updateList()
+     *
+     * Works with the global list of Profiles, which updates the JList graphics
+     *
+     * @param action, the type of action (either add or remove)
+     * @param element, the element to add or remove
+     */
+    public void updateList(int action, ListElement element) {
+        switch (action) {
+            case ADD:         // add
+                transactions.add(transactions.getSize(), element);
+                break;
+            case REMOVE:      // remove
+                transactions.remove(list.getSelectedIndex());
+                break;
+        }
+    }
+
+    public void add() {
+        String store = aStoreField.getText();
+        String purchaser = aPurchaserField.getText();
+        double amount = Double.valueOf(aAmountField.getText().replace(",", ""));
+        String reason = aReasonField.getText();
+        String notes = aNotesField.getText();
+
+        int id = Util.generateID();
+
+        Date date = new Date();
+        date.setMonth(aMonthBox.getSelectedIndex() - 1);
+        date.setDate(aDateBox.getSelectedIndex());
+        date.setYear(aYearBox.getSelectedIndex() + 109);
+
+        Transaction t = new Transaction(id, store, date, purchaser, amount, reason, notes);
+        ListElement e = new ListElement(String.valueOf(amount), store, String.valueOf(id));
+
+        if (FinanceController.addTransaction(t)) {
+            // update graphics
+            errLabel.setForeground(Color.blue);
+            errLabel.setText("Transaction added successfully");
+
+            updateList(ADD, e);
+
+            setAddValuesToNull();
+            aStoreField.requestFocus();
+
+            // else if addition fails
+        } else {
+            errLabel.setForeground(Color.red);
+            errLabel.setText("Transaction addition failed");
+        }
+    }
+
+    public void search(String id) {
+        // get the transaction
+        Transaction t = FinanceController.searchTransaction(id);
+
+        // update graphics
+        errLabel.setText(" ");
+        editButton.setEnabled(true);
+        deleteButton.setEnabled(true);
+        setSearchFieldsToValid();
+
+        // update fields with transaction info
+        sStoreField.setText(t.getStore());
+        sMonthBox.setSelectedIndex(t.getDate().getMonth() + 1);
+        sDateBox.setSelectedIndex(t.getDate().getDate());
+        sYearBox.setSelectedIndex(t.getDate().getYear() - 109);
+        sPurchaserField.setText(t.getName());
+        sAmountField.setText(money.format(t.getAmount()));
+        sReasonField.setText(t.getReason());
+        sNotesField.setText(t.getNotes());
+
+    }
+
+    public void edit() {
+
+        String store = sStoreField.getText();
+        String purchaser = sPurchaserField.getText();
+        double amount = Double.valueOf(sAmountField.getText());
+        String reason = sReasonField.getText();
+        String notes = sNotesField.getText();
+
+        Date date = new Date();
+        date.setMonth(sMonthBox.getSelectedIndex() - 1);
+        date.setDate(sDateBox.getSelectedIndex());
+        date.setYear(sYearBox.getSelectedIndex() + 109);
+
+        int id = Integer.valueOf(transactions.get(list.getSelectedIndex()).id);
+
+        // create the temp Transaction
+        temp = new Transaction(id, store, date, purchaser, amount, reason, notes);
+
+        // update graphics
+        setSearchFieldsEditable(true);
+        submitButton.setEnabled(true);
+        deleteButton.setEnabled(false);
+        editButton.setEnabled(false);
+    }
+
+    public void delete() {
+        String id = transactions.get(list.getSelectedIndex()).id;
+        String store = sStoreField.getText();
+        String amount = sAmountField.getText();
+
+        if (FinanceController.deleteTransaction(id)) {
+
+            // create ListElement
+            ListElement e = new ListElement(amount, store, id);
+
+            // update graphics
+            updateList(REMOVE, e);
+            errLabel.setForeground(Color.blue);
+            errLabel.setText("Transaction deleted successfully");
+            setSearchValuesToNull();
+            setSearchFieldsEditable(false);
+            editButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+            submitButton.setEnabled(false);
+        }
+    }
+
+    public void submit() {
+        // update graphics
+        errLabel.setForeground(Color.blue);
+        errLabel.setText("Transaction edited successfully");
+
+        // get things from searchPanel
+        String store = sStoreField.getText();
+        String purchaser = sPurchaserField.getText();
+        double amount = Double.valueOf(sAmountField.getText());
+        String reason = sReasonField.getText();
+        String notes = sNotesField.getText();
+
+        Date date = new Date();
+        date.setMonth(sMonthBox.getSelectedIndex() - 1);
+        date.setDate(sDateBox.getSelectedIndex());
+        date.setYear(sYearBox.getSelectedIndex() + 109);
+
+        int id = Integer.valueOf(transactions.get(list.getSelectedIndex()).id);
+
+        // create new transaction
+        Transaction t = new Transaction(id, store, date, purchaser, amount, reason, notes);
+
+        // update graphics
+        setSearchFieldsEditable(false);
+
+        // delete then add
+        FinanceController.deleteTransaction(String.valueOf(temp.id));
+        FinanceController.addTransaction(t);
+
+        // create ListElements
+        ListElement p = new ListElement(String.valueOf(temp.getAmount()),
+                temp.getStore(),
+                String.valueOf(temp.getID()));
+        ListElement q = new ListElement(String.valueOf(t.getAmount()),
+                t.getStore(),
+                String.valueOf(t.getID()));
+
+        // update graphics
+        updateList(REMOVE, p);
+        updateList(ADD, q);
+        submitButton.setEnabled(false);
+        editButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+
+        // reset the form, selecting the new Profile just edited
+        list.setSelectedIndex(transactions.getSize() - 1);
+        search(transactions.getElementAt(transactions.getSize() - 1).id);
+
+    }
+
+    /**
+     * aCheck()
+     *
+     * Checks the add panel and makes sure all the fields are kosher
+     * See comments in function for details on each element
+     * First, it "resets" by making all fields foregrounds black
+     * Then it checks each individual field, and sets the foreground red if the field has an error
+     * If it returns a true flag, there is no error
+     * It calls the setAddErrLabel to find the individual errors and updates errLabel
+     *
+     * @return flag, the conditional to show if the fields are valid
+     */
+    public boolean aCheck() {
+        boolean flag = true;
+
+        // preconditions
+        errLabel.setForeground(Color.red);
+        aSetAllForeground(Color.black);
+
+        // Store
+        if (aStoreField.getText().equals("") || aStoreField.getText().equals("--")) {
+            flag = false;
+            aStoreField.setForeground(Color.red);
+            aStoreField.setText("--");
+        } else if (!Util.sepCheck(aStoreField.getText())) {
+            flag = false;
+            aStoreField.setForeground(Color.red);
+        }
+
+        // Month, Day, and Year
+        if (aMonthBox.getSelectedIndex() == 0) {
+            flag = false;
+            aMonthBox.setForeground(Color.red);
+        }
+        if (aDateBox.getSelectedIndex() == 0) {
+            flag = false;
+            aDateBox.setForeground(Color.red);
+        }
+        if (aYearBox.getSelectedIndex() == 0) {
+            flag = false;
+            aYearBox.setForeground(Color.red);
+        }
+
+        // Purchaser
+        if (aPurchaserField.getText().equals("") || aPurchaserField.getText().equals("--")) {
+            flag = false;
+            aPurchaserField.setForeground(Color.red);
+            aPurchaserField.setText("--");
+        } else if (!Util.sepCheck(aPurchaserField.getText())) {
+            flag = false;
+            aPurchaserField.setForeground(Color.red);
+        }
+
+        // Amount
+        if (aAmountField.getText().equals("") || aAmountField.getText().equals("--")) {
+            flag = false;
+            aAmountField.setForeground(Color.red);
+            aAmountField.setText("--");
+        }
+
+        // Reason
+        if (aReasonField.getText().equals("") || aReasonField.getText().equals("--")) {
+            flag = false;
+            aReasonField.setForeground(Color.red);
+            aReasonField.setText("--");
+        } else if (!Util.sepCheck(aReasonField.getText())) {
+            flag = false;
+            aReasonField.setForeground(Color.red);
+        }
+
+        // Notes
+        if (aNotesField.getText().equals("") || aNotesField.getText().equals("--")) {
+            flag = false;
+            aNotesField.setForeground(Color.red);
+            aNotesField.setText("--");
+        } else if (!Util.sepCheck(aNotesField.getText())) {
+            flag = false;
+            aNotesField.setForeground(Color.red);
+        }
+
+        setAddErrLabel();
+        return flag;
+    }
+
+    /**
+     * setAddErrLabel()
+     *
+     * Checks each field to see if the text color is red
+     * If it is, add to count
+     * Starts with end so it can print out "Error with ##### field and # other(s)
+     */
+    public void setAddErrLabel() {
+        int errCount = 0;
+        String err = "";
+
+        // notes
+        if (aNotesField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with notes field";
+        }
+        // reason
+        if (aReasonField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with reason field";
+        }
+        // amount
+        if (aAmountField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with amount field";
+        }
+        // purchaser
+        if (aPurchaserField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with purchaser field";
+        }
+        // year
+        if (aMonthBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with month field";
+        }
+        // day
+        if (aDateBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with day field";
+        }
+        // month
+        if (aMonthBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with month field";
+        }
+        // store
+        if (aStoreField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with store field";
+        }
+
+        // if there is more than one error
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+            // if there's only one
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
+
+    }
+
+    /**
+     * sCheck()
+     *
+     * Checks the search panel and makes sure all the fields are kosher
+     * See comments in function for details on each element
+     * First, it "resets" by making all fields foregrounds black
+     * Then it checks each individual field, and sets the foreground red if the field has an error
+     * If it returns a true flag, there is no error
+     * It calls the setSearchErrLabel to find the individual errors and updates errLabel
+     *
+     * @return flag, the conditional to show if the fields are valid
+     */
+    public boolean sCheck() {
+        boolean flag = true;
+
+        // preconditions
+        errLabel.setForeground(Color.red);
+        sSetAllForeground(Color.black);
+
+        // Store
+        if (sStoreField.getText().equals("") || sStoreField.getText().equals("--")) {
+            flag = false;
+            sStoreField.setForeground(Color.red);
+            sStoreField.setText("--");
+        } else if (!Util.sepCheck(sStoreField.getText())) {
+            flag = false;
+            sStoreField.setForeground(Color.red);
+        }
+
+        // Month, Day, and Year
+        if (sMonthBox.getSelectedIndex() == 0) {
+            flag = false;
+            aMonthBox.setForeground(Color.red);
+        }
+        if (sDateBox.getSelectedIndex() == 0) {
+            flag = false;
+            sDateBox.setForeground(Color.red);
+        }
+        if (sYearBox.getSelectedIndex() == 0) {
+            flag = false;
+            sYearBox.setForeground(Color.red);
+        }
+
+        // Purchaser
+        if (sPurchaserField.getText().equals("") || sPurchaserField.getText().equals("--")) {
+            flag = false;
+            sPurchaserField.setForeground(Color.red);
+            sPurchaserField.setText("--");
+        } else if (!Util.sepCheck(sPurchaserField.getText())) {
+            flag = false;
+            sPurchaserField.setForeground(Color.red);
+        }
+
+        // Amount
+        if (sAmountField.getText().equals("") || sAmountField.getText().equals("--")) {
+            flag = false;
+            sAmountField.setForeground(Color.red);
+            sAmountField.setText("--");
+        }
+
+        // Reason
+        if (sReasonField.getText().equals("") || sReasonField.getText().equals("--")) {
+            flag = false;
+            sReasonField.setForeground(Color.red);
+            sReasonField.setText("--");
+        } else if (!Util.sepCheck(sReasonField.getText())) {
+            flag = false;
+            sReasonField.setForeground(Color.red);
+        }
+
+        // Notes
+        if (sNotesField.getText().equals("") || sNotesField.getText().equals("--")) {
+            flag = false;
+            sNotesField.setForeground(Color.red);
+            sNotesField.setText("--");
+        } else if (!Util.sepCheck(sNotesField.getText())) {
+            flag = false;
+            sNotesField.setForeground(Color.red);
+        }
+
+        setSearchErrLabel();
+        return flag;
+    }
+
+    /**
+     * setSearchErrLabel()
+     *
+     * Checks each field to see if the text color is red
+     * If it is, add to count
+     * Starts with end so it can print out "Error with ##### field and # other(s)
+     */
+    public void setSearchErrLabel() {
+        int errCount = 0;
+        String err = "";
+
+        // notes
+        if (sNotesField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with notes field";
+        }
+        // reason
+        if (sReasonField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with reason field";
+        }
+        // amount
+        if (sAmountField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with amount field";
+        }
+        // purchaser
+        if (sPurchaserField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with purchaser field";
+        }
+        // year
+        if (sMonthBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with month field";
+        }
+        // day
+        if (sDateBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with day field";
+        }
+        // month
+        if (sMonthBox.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with month field";
+        }
+        // store
+        if (sStoreField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with store field";
+        }
+
+        // if there is more than one error
+        if (errCount > 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err + " and " + (errCount - 1) + " other(s)");
+            // if there's only one
+        } else if (errCount == 1) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText(err);
+        }
+    }
+
+    /**
+     * aSetAllForeground()
+     * Graphics update
+     *
+     * @param c
+     */
+    public void aSetAllForeground(Color c) {
+        aStoreField.setForeground(c);
+        aMonthBox.setForeground(c);
+        aDateBox.setForeground(c);
+        aYearBox.setForeground(c);
+        aAmountField.setForeground(c);
+        aPurchaserField.setForeground(c);
+        aReasonField.setForeground(c);
+        aNotesField.setForeground(c);
+    }
+
+    /**
+     * sSetAllForeground()
+     * Graphics update
+     *
+     * @param c
+     */
+    public void sSetAllForeground(Color c) {
+        sStoreField.setForeground(c);
+        sMonthBox.setForeground(c);
+        sDateBox.setForeground(c);
+        sYearBox.setForeground(c);
+        sAmountField.setForeground(c);
+        sPurchaserField.setForeground(c);
+        sReasonField.setForeground(c);
+        sNotesField.setForeground(c);
+    }
+
+    /**
+     * setAddValuesToNull()
+     *
+     * Graphics update
+     * Resets the add panel with null values
+     */
+    public void setAddValuesToNull() {
+        aStoreField.setText("");
+        aMonthBox.setSelectedIndex(0);
+        aDateBox.setSelectedIndex(0);
+        aYearBox.setSelectedIndex(0);
+        aAmountField.setText("");
+        aPurchaserField.setText("");
+        aReasonField.setText("");
+        aNotesField.setText("");
+    }
+
+    /**
+     * setSearchValuesToNull()
+     *
+     * Graphics update
+     * Resets the serach panel with null values
+     */
+    public void setSearchValuesToNull() {
+        sStoreField.setText("");
+        sMonthBox.setSelectedIndex(0);
+        sDateBox.setSelectedIndex(0);
+        sYearBox.setSelectedIndex(0);
+        sAmountField.setText("");
+        sPurchaserField.setText("");
+        sReasonField.setText("");
+        sNotesField.setText("");
+    }
+
+    /**
+     * setSearchFieldsToValid()
+     *
+     * Graphics update
+     * Sets the search panel to accept valid values
+     */
+    public void setSearchFieldsToValid() {
+        sStoreField.setBackground(Color.white);
+        sMonthBox.setSelectedIndex(0);
+        sDateBox.setSelectedIndex(0);
+        sYearBox.setSelectedIndex(0);
+        sAmountField.setBackground(Color.white);
+        sPurchaserField.setBackground(Color.white);
+        sReasonField.setBackground(Color.white);
+        sNotesField.setBackground(Color.white);
+    }
+
+    /**
+     * setSearchFieldsEditable()
+     *
+     * Graphics update
+     * Sets the search fields editable based on boolean parameter
+     *
+     * @param b, the conditional to change the editability of the fields
+     */
+    public void setSearchFieldsEditable(boolean b) {
+        sStoreField.setEditable(b);
+        sAmountField.setEditable(b);
+        sPurchaserField.setEditable(b);
+        sReasonField.setEditable(b);
+        sNotesField.setEditable(b);
+        if (!b) {
+            sMonthBox.setSelectedIndex(0);
+            sDateBox.setSelectedIndex(0);
+            sYearBox.setSelectedIndex(0);
+        }
+
+        if (!b) {
+            sStoreField.setBackground(new Color(240, 240, 240));
+            sAmountField.setBackground(new Color(240, 240, 240));
+            sPurchaserField.setBackground(new Color(240, 240, 240));
+            sReasonField.setBackground(new Color(240, 240, 240));
+            sNotesField.setBackground(new Color(240, 240, 240));
+        } else {
+            sStoreField.setBackground(Color.white);
+            sAmountField.setBackground(Color.white);
+            sPurchaserField.setBackground(Color.white);
+            sReasonField.setBackground(Color.white);
+            sNotesField.setBackground(Color.white);
+        }
+
+    }
+
+    /**
+     * main()
+     *
+     * You already know what main is if you're reading this
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -706,15 +2146,55 @@ public class FinanceGUI extends javax.swing.JFrame {
         });
     }
 
+    // <editor-fold defaultstate="collapsed" desc="I'll modify what I want">
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel L1;
+    private javax.swing.JLabel L10;
+    private javax.swing.JLabel L11;
+    private javax.swing.JLabel L12;
+    private javax.swing.JLabel L2;
+    private javax.swing.JLabel L3;
+    private javax.swing.JLabel L4;
+    private javax.swing.JLabel L5;
+    private javax.swing.JLabel L6;
+    private javax.swing.JLabel L7;
+    private javax.swing.JLabel L8;
+    private javax.swing.JLabel L9;
+    private javax.swing.JFormattedTextField aAmountField;
+    private javax.swing.JComboBox<String> aDateBox;
+    private javax.swing.JComboBox<String> aMonthBox;
+    private javax.swing.JTextArea aNotesField;
+    private javax.swing.JTextField aPurchaserField;
+    private javax.swing.JTextArea aReasonField;
+    private javax.swing.JTextField aStoreField;
+    private javax.swing.JComboBox<String> aYearBox;
+    private javax.swing.JPanel accountsPanel;
+    private javax.swing.JButton addButton;
+    private javax.swing.JPanel addPanel;
+    private javax.swing.JLabel adminLabel;
+    private javax.swing.JButton ateEditButton;
+    private javax.swing.JTextField ateField;
+    private javax.swing.JPanel atePanel;
+    private javax.swing.JButton ateSubmitButton;
+    private javax.swing.JButton bankEditButton;
+    private javax.swing.JTextField bankField;
+    private javax.swing.JPanel bankPanel;
+    private javax.swing.JButton bankSubmitButton;
     private javax.swing.JMenuItem bugItem;
+    private javax.swing.JButton calcButton;
+    private javax.swing.JButton cashEditButton;
+    private javax.swing.JTextField cashField;
+    private javax.swing.JPanel cashPanel;
+    private javax.swing.JButton cashSubmitButton;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel dimeL;
     private javax.swing.JSpinner dimeSpinner;
     private javax.swing.JLabel dollarL;
     private javax.swing.JSpinner dollarSpinner;
     private javax.swing.JLabel dollarcoinL;
     private javax.swing.JSpinner dollarcoinSpinner;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JLabel fiftyL;
@@ -734,7 +2214,14 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -742,8 +2229,15 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JList<String> list;
+    private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JPanel moneycounterPanel;
@@ -753,11 +2247,25 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner pennySpinner;
     private javax.swing.JLabel quarterL;
     private javax.swing.JSpinner quarterSpinner;
+    private javax.swing.JFormattedTextField sAmountField;
+    private javax.swing.JComboBox<String> sDateBox;
+    private javax.swing.JComboBox<String> sMonthBox;
+    private javax.swing.JTextArea sNotesField;
+    private javax.swing.JTextField sPurchaserField;
+    private javax.swing.JTextArea sReasonField;
+    private javax.swing.JTextField sStoreField;
+    private javax.swing.JComboBox<String> sYearBox;
+    private javax.swing.JPanel searchPanel;
+    private javax.swing.JButton submitButton;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JLabel tenL;
     private javax.swing.JSpinner tenSpinner;
+    private javax.swing.JTextField totalField;
     private javax.swing.JLabel totalL;
+    private javax.swing.JPanel transactionPanel;
+    private javax.swing.JTabbedPane transactionsTP;
     private javax.swing.JLabel twentyL;
     private javax.swing.JSpinner twentySpinner;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
 }

@@ -6,6 +6,9 @@
  */
 package webradio;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class ReportsController {
@@ -39,7 +42,9 @@ public class ReportsController {
     public static final int SHOWS_SORTBY_SHOWNAME = 1;
     public static final int SHOWS_SORTBY_DAY = 2;
     public static final int FINANCES_SORTBY_DATE = 1;
-    public static final int FINANCES_SORTBY_PROFILE = 2;
+    public static final int FINANCES_SORTBY_AMOUNT = 2;
+    
+    private static final DateFormat df = new SimpleDateFormat("yyyyMMdd");
 
     /**
      * profiles()
@@ -49,7 +54,7 @@ public class ReportsController {
      * @param sortby
      * @return result of the file generation
      */
-    public static boolean profiles(int type, int sortby) {
+    public static File profiles(int type, int sortby) {
         Profile[] p = sort(IOController.getAllProfiles(), sortby);
         switch(type) {
             case PROFILE_SIMPLE:
@@ -58,8 +63,9 @@ public class ReportsController {
                 return IOController.profileContact(p);
             case PROFILE_FULL:
                 return IOController.profileFull(p);
+            default:
+                return null;
         }
-        return true;
     }
 
     /**
@@ -105,15 +111,16 @@ public class ReportsController {
      * @param sortby
      * @return result of the file generation
      */
-    public static boolean accounts(int type, int sortby) {
+    public static File accounts(int type, int sortby) {
         Account[] a = sort(IOController.getAllUsers(), sortby);
         switch(type) {
             case ACCOUNTS_SIMPLE:
                 return IOController.accountSimple(a);
             case ACCOUNTS_FULL:
                 return IOController.accountFull(a);
+            default:
+                return null;
         }
-        return true;
     }
     
     /**
@@ -150,7 +157,7 @@ public class ReportsController {
      * @param sortby
      * @return result of the file generation
      */
-    public static boolean tasks(int type, int sortby) {
+    public static File tasks(int type, int sortby) {
         Profile[] p = sortTasks(IOController.getAllProfiles(), sortby);
         switch(type) {
             case TASKS_DUES:
@@ -163,8 +170,9 @@ public class ReportsController {
                 return IOController.taskShowDescTime(p);
             case TASKS_FULL:
                 return IOController.taskFull(p);
+            default:
+                return null;
         }
-        return true;
     }
     
     /**
@@ -217,15 +225,16 @@ public class ReportsController {
      * @param sortby
      * @return result of the file generation
      */
-    public static boolean shows(int type, int sortby) {
+    public static File shows(int type, int sortby) {
         Show[] s = sort(IOController.getAllShows(), sortby);
         switch(type) {
             case SHOWS_SIMPLE:
                 return IOController.showSimple(s);
             case SHOWS_FULL:
                 return IOController.showFull(s);
+            default:
+                return null;
         }
-        return true;
     }
 
     /**
@@ -253,4 +262,53 @@ public class ReportsController {
         }
         return arr;
     }
+    
+    /**
+     * finances()
+     * 
+     * Sends signal to IOController
+     *
+     * @param type
+     * @param sortby
+     * @return result of the file generation
+     */
+    public static File finances(int type, int sortby) {
+        Transaction[] t = sort(IOController.getAllTransactions(), sortby);
+        switch(type) {
+            case FINANCES_TRANSACTIONS:
+                return IOController.financeTransactions(t);
+            case FINANCES_FULL:
+                return IOController.financeFull(t);
+            default:
+                return null;
+        }
+    }
+    
+    /**
+     * sort()
+     *
+     * Sorts the array of Transactions returned from IOController
+     * Uses compare()
+     *
+     * @param arr
+     * @param sortby
+     * @return the sorted array of Transactions
+     */
+    public static Transaction[] sort(Transaction[] arr, int sortby) {
+        switch(sortby) {
+            case FINANCES_SORTBY_DATE:
+                Arrays.sort(arr, (Transaction o1, Transaction o2)
+                        -> df.format(o1.getDate()).compareTo(df.format(o2.getDate()))
+                );
+                break;
+            case FINANCES_SORTBY_AMOUNT:
+                Arrays.sort(arr, (Transaction o1, Transaction o2)
+                        -> String.valueOf(o1.getAmount()).compareTo(String.valueOf(o2.getAmount()))
+                );
+                break;
+        }
+        return arr;
+    }
+    
+    
 }

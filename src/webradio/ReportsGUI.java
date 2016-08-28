@@ -7,39 +7,14 @@
 package webradio;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class ReportsGUI extends javax.swing.JFrame {
-
-    public static final int PROFILE_SIMPLE = 1;
-    public static final int PROFILE_CONTACT = 2;
-    public static final int PROFILE_FULL = 3;
-    public static final int ACCOUNTS_SIMPLE = 1;
-    public static final int ACCOUNTS_FULL = 2;
-    public static final int TASKS_DUES = 1;
-    public static final int TASKS_TRAINED = 2;
-    public static final int TASKS_PAPERWORK = 3;
-    public static final int TASKS_SHOWDESCTIME = 4;
-    public static final int TASKS_FULL = 5;
-    public static final int SHOWS_SIMPLE = 1;
-    public static final int SHOWS_FULL = 2;
-    public static final int FINANCES_TRANSACTIONS = 1;
-    public static final int FINANCES_FULL = 2;
     
-    public static final int PROFILES_SORTBY_LASTNAME = 1;
-    public static final int PROFILES_SORTBY_FIRSTNAME = 2;
-    public static final int PROFILES_SORTBY_TYPE = 3;
-    public static final int PROFILES_SORTBY_POSITION = 4;
-    public static final int ACCOUNTS_SORTBY_USERNAME = 1;
-    public static final int ACCOUNTS_SORTBY_ACCESS = 2;
-    public static final int TASKS_SORTBY_LASTNAME = 1;
-    public static final int TASKS_SORTBY_DUES = 2;
-    public static final int TASKS_SORTBY_TRAINED = 3;
-    public static final int TASKS_SORTBY_PAPERWORK = 4;
-    public static final int TASKS_SORTBY_SHOWDESCTIME = 5;
-    public static final int SHOWS_SORTBY_SHOWNAME = 6;
-    public static final int FINANCES_SORTBY_DATE = 1;
-    public static final int FINANCES_SORTBY_PROFILE = 2;
+    File f;
     
     /**
      * Creates new form ReportsGUI
@@ -62,6 +37,7 @@ public class ReportsGUI extends javax.swing.JFrame {
         loginLabel = new javax.swing.JLabel();
         errLabel = new javax.swing.JLabel();
         generateButton = new javax.swing.JButton();
+        openButton = new javax.swing.JButton();
         profilesRadio = new javax.swing.JRadioButton();
         accountsRadio = new javax.swing.JRadioButton();
         tasksRadio = new javax.swing.JRadioButton();
@@ -129,6 +105,14 @@ public class ReportsGUI extends javax.swing.JFrame {
         generateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateButtonActionPerformed(evt);
+            }
+        });
+
+        openButton.setText("Open");
+        openButton.setEnabled(false);
+        openButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openButtonActionPerformed(evt);
             }
         });
 
@@ -205,7 +189,7 @@ public class ReportsGUI extends javax.swing.JFrame {
         showsSortByBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Show Name", "Day" }));
         showsSortByBox.setEnabled(false);
 
-        financesSortByBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Date", "Profile" }));
+        financesSortByBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Date", "Amount" }));
         financesSortByBox.setEnabled(false);
 
         jRadioButton1.setSelected(true);
@@ -324,14 +308,15 @@ public class ReportsGUI extends javax.swing.JFrame {
                             .addComponent(financesSortByBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(11, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(generateButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(generateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(openButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -374,12 +359,14 @@ public class ReportsGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(generateButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(generateButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButton2)
+                            .addComponent(openButton)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
                 .addContainerGap())
@@ -499,6 +486,14 @@ public class ReportsGUI extends javax.swing.JFrame {
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
+    private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
+        try {
+            Desktop.getDesktop().edit(f);
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
+    }//GEN-LAST:event_openButtonActionPerformed
+
     /**
      * generate()
      * 
@@ -512,49 +507,64 @@ public class ReportsGUI extends javax.swing.JFrame {
         
         // send it to ReportsController
         if (profilesRadio.isSelected()) {
-            if (ReportsController.profiles(profilesTypeBox.getSelectedIndex(), profilesSortByBox.getSelectedIndex())) {
+            f = ReportsController.profiles(profilesTypeBox.getSelectedIndex(), profilesSortByBox.getSelectedIndex());
+            if (f != null) {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Profiles report generated successfully");
+                openButton.setEnabled(true);
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Profiles report generation failed");
+                openButton.setEnabled(false);
             }
                 
         } else if (accountsRadio.isSelected()) {
-            if (ReportsController.accounts(accountsTypeBox.getSelectedIndex(), accountsSortByBox.getSelectedIndex())) {
+            f = ReportsController.accounts(accountsTypeBox.getSelectedIndex(), accountsSortByBox.getSelectedIndex());
+            if (f != null) {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Accounts report generated successfully");
+                openButton.setEnabled(true);
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Accounts report generation failed");
+                openButton.setEnabled(false);
             }
             
         } else if (tasksRadio.isSelected()) {
-            if (ReportsController.tasks(tasksTypeBox.getSelectedIndex(), tasksSortByBox.getSelectedIndex())) {
+            f = ReportsController.tasks(tasksTypeBox.getSelectedIndex(), tasksSortByBox.getSelectedIndex());
+            if (f != null) {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Tasks report generated successfully");
+                openButton.setEnabled(true);
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Tasks report generation failed");
+                openButton.setEnabled(false);
             }
             
         } else if (showsRadio.isSelected()) {
-            if(ReportsController.shows(showsTypeBox.getSelectedIndex(), showsSortByBox.getSelectedIndex())) {
+            f = ReportsController.shows(showsTypeBox.getSelectedIndex(), showsSortByBox.getSelectedIndex());
+            if(f != null) {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Shows report generated successfully");
+                openButton.setEnabled(true);
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Shows report generation failed");
+                openButton.setEnabled(false);
             }
-        } //else if (financesRadio.isSelected()) {
-//            if(ReportsController.finances(financesTypeBox.getSelectedIndex(), financesSortByBox.getSelectedIndex())) {
-//                errLabel.setForeground(Color.blue);
-//                errLabel.setText("Finances report generated successfully");
-//            } else {
-//                errLabel.setForeground(Color.red);
-//                errLabel.setText("Finances report generation failed");
-//            }
-//        }
+        } else if (financesRadio.isSelected()) {
+            f = ReportsController.finances(financesTypeBox.getSelectedIndex(), financesSortByBox.getSelectedIndex());
+            if(f != null) {
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Finances report generated successfully");
+                openButton.setEnabled(true);
+            } else {
+                errLabel.setForeground(Color.red);
+                errLabel.setText("Finances report generation failed");
+                openButton.setEnabled(false);
+            }
+        }
     }
     
     /**
@@ -684,6 +694,7 @@ public class ReportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JButton openButton;
     private javax.swing.JRadioButton profilesRadio;
     private javax.swing.JComboBox<String> profilesSortByBox;
     private javax.swing.JComboBox<String> profilesTypeBox;
