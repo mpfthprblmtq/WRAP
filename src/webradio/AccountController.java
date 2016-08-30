@@ -1,7 +1,7 @@
 /**
  * File: AccountController.java
  * Desc: Takes input from AccountGUI and communicates with IOController to read
- * and write to files
+ *       and write to files
  *
  * Author: Pat Ripley
  */

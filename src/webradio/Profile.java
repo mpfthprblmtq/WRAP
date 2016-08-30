@@ -267,6 +267,6 @@ public class Profile {
                 isDuesPaid() + "///" +
                 isTrained() + "///" +
                 isShowDesc_Time() + "///" +
-                isPaperworkTurnedIn();
+                isPaperworkTurnedIn() + "///";
     }
 } // end Profile

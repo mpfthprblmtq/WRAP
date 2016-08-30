@@ -1085,6 +1085,7 @@ public class AccountGUI extends javax.swing.JFrame {
      * @param b, the case of if the passwords matched or not, affects the label
      */
     public void changePassword(boolean b) {
+        // get values from form
         JTextField password = new JPasswordField();
         JTextField confirmPassword = new JPasswordField();
         Object[] message;
@@ -1142,9 +1143,11 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     public boolean confirmPassword(boolean b) {
 
+        // get field from form
         JTextField password = new JPasswordField();
         Object[] message;
 
+        // conditional that determines if the passwords matched
         if (b) {
             message = new Object[]{
                 "Enter your original password to confirm:",
@@ -1195,12 +1198,13 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     public void add() {
 
-        // create account and listelement objects
+        // get fields from form
         String username = aUField.getText();
         String password = apassField.getText();
         String name = aNField.getText();
         String access = String.valueOf(aAComboBox.getSelectedIndex());
 
+        // create account and listelement objects
         Account p = new Account(username, password, Integer.valueOf(access), name);
         ListElement element = new ListElement(username, password, Integer.valueOf(access), name);
 
@@ -1370,7 +1374,6 @@ public class AccountGUI extends javax.swing.JFrame {
                 list.setSelectedIndex(list.getLastVisibleIndex());
                 search(users.getElementAt(users.getSize() - 1).username);
             }
-
         }
     }
 
@@ -1416,15 +1419,15 @@ public class AccountGUI extends javax.swing.JFrame {
                     errLabel.setForeground(Color.blue);
                     errLabel.setText("Account edited successfully");
 
-                    AccountController.DeleteUser(temp.getUsername());
-                    AccountController.AddUser(p);
-
+                    // create list elements
                     ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
                             temp.getAccess(), temp.getName());
                     ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
 
+                    // update the list
                     updateList(REMOVE, t);
                     updateList(ADD, q);
+                    
                 } else {
                     errLabel.setForeground(Color.red);
                     errLabel.setText("Error submitting account");
@@ -1447,12 +1450,12 @@ public class AccountGUI extends javax.swing.JFrame {
 
                 passwordChangeTo = "";
                 changePasswordLabel2.setText(" ");
+                
                 list.setSelectedIndex(list.getLastVisibleIndex());
                 search(users.getElementAt(users.getSize() - 1).username);
             } else {
                 // error with confirmPassword
             }
-
             // if user is is root
         } else {
             rootSubmit();
@@ -1829,6 +1832,7 @@ public class AccountGUI extends javax.swing.JFrame {
         });
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Form variables declarations"> 
     // I'll modify what I want
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel L1;
@@ -1875,4 +1879,5 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
 } // End AccountGUI

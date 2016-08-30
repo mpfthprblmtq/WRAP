@@ -126,9 +126,11 @@ public class ShowGUI extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         sl1 = new javax.swing.JLabel();
         sl2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         sNameField = new javax.swing.JTextField();
         sSP = new javax.swing.JScrollPane();
         sDescField = new javax.swing.JTextArea();
+        sSMField = new javax.swing.JTextField();
         sDayTimePanel = new javax.swing.JPanel();
         sl3 = new javax.swing.JLabel();
         sl4 = new javax.swing.JLabel();
@@ -172,6 +174,7 @@ public class ShowGUI extends javax.swing.JFrame {
         aNameField = new javax.swing.JTextField();
         aSP = new javax.swing.JScrollPane();
         aDescField = new javax.swing.JTextArea();
+        aSMField = new javax.swing.JTextField();
         aDayTimePanel = new javax.swing.JPanel();
         al3 = new javax.swing.JLabel();
         al4 = new javax.swing.JLabel();
@@ -207,6 +210,7 @@ public class ShowGUI extends javax.swing.JFrame {
         aHost3 = new javax.swing.JComboBox<>();
         aHost4 = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         loginLabel = new javax.swing.JLabel();
@@ -242,6 +246,8 @@ public class ShowGUI extends javax.swing.JFrame {
         sl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl2.setText("Description:");
 
+        jLabel1.setText("Primary SM:");
+
         sNameField.setEditable(false);
         sNameField.setEnabled(false);
 
@@ -256,6 +262,8 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setWrapStyleWord(true);
         sDescField.setEnabled(false);
         sSP.setViewportView(sDescField);
+
+        sSMField.setEnabled(false);
 
         sDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         sDayTimePanel.setEnabled(false);
@@ -544,14 +552,16 @@ public class ShowGUI extends javax.swing.JFrame {
                                     .addComponent(editButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(sHostPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                    .addGroup(searchPanelLayout.createSequentialGroup()
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sl1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sNameField)
-                            .addComponent(sSP))))
+                            .addComponent(sSP)
+                            .addComponent(sSMField))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
@@ -565,7 +575,11 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sl2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sSMField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                         .addComponent(sHostPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -586,6 +600,9 @@ public class ShowGUI extends javax.swing.JFrame {
 
         al2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         al2.setText("Description:");
+
+        aSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        aSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         aDescField.setColumns(20);
         aDescField.setRows(5);
@@ -839,6 +856,9 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("Primary SM:");
+
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
         addPanelLayout.setHorizontalGroup(
@@ -847,21 +867,23 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(al2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aNameField)
-                            .addComponent(aSP)))
-                    .addGroup(addPanelLayout.createSequentialGroup()
                         .addComponent(aDayTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(aHostPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(addButton)))))
+                                .addComponent(addButton))))
+                    .addGroup(addPanelLayout.createSequentialGroup()
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(al2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(aSMField)
+                            .addComponent(aNameField)
+                            .addComponent(aSP))))
                 .addContainerGap())
         );
         addPanelLayout.setVerticalGroup(
@@ -874,15 +896,19 @@ public class ShowGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(al2)
-                    .addComponent(aSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(aSP, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aSMField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addComponent(aHostPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addButton))
                     .addComponent(aDayTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         tabs.addTab("Add", addPanel);
@@ -3857,6 +3883,7 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner aHostNumSpinner;
     private javax.swing.JPanel aHostPanel;
     private javax.swing.JTextField aNameField;
+    private javax.swing.JTextField aSMField;
     private javax.swing.JScrollPane aSP;
     private javax.swing.JSpinner aShowNumSpinner;
     private javax.swing.JComboBox<String> aStartBox1;
@@ -3885,6 +3912,8 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
@@ -3912,6 +3941,7 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JSpinner sHostNumSpinner;
     private javax.swing.JPanel sHostPanel;
     private javax.swing.JTextField sNameField;
+    private javax.swing.JTextField sSMField;
     private javax.swing.JScrollPane sSP;
     private javax.swing.JSpinner sShowNumSpinner;
     private javax.swing.JComboBox<String> sStartBox1;

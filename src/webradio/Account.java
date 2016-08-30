@@ -119,7 +119,7 @@ public class Account {
      */
     @Override
     public String toString() {
-        return getUsername() + "///" + getPassword() + "///" + getAccess() + "///" + getName();
+        return getUsername() + "///" + getPassword() + "///" + getAccess() + "///" + getName() + "///";
     }
     
 } // end Account

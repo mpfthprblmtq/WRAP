@@ -210,7 +210,9 @@ public class BugReportGUI extends javax.swing.JFrame {
             new BugReportGUI().setVisible(true);
         });
     }
-
+    
+    // <editor-fold defaultstate="collapsed" desc="Form variables declarations"> 
+    // I'll modify what I want
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea desc;
     private javax.swing.JLabel errLabel;
@@ -226,4 +228,5 @@ public class BugReportGUI extends javax.swing.JFrame {
     private javax.swing.JTextField nameField;
     private javax.swing.JButton submitButton;
     // End of variables declaration//GEN-END:variables
-}
+    // </editor-fold>
+}   // end BugReportGUI

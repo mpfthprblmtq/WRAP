@@ -66,6 +66,7 @@ import java.security.SecureRandom;
  * 10, and the valid range is 4 to 30.
  *
  * @author Damien Miller
+ * @author edited by Pat Ripley
  * @version 0.2
  */
 public class BCrypt {

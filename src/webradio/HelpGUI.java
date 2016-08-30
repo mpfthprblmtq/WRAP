@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * File: HelpGUI.java
+ * Desc: GUI interface for help
+ *
+ * Author: Pat Ripley
  */
+
 package webradio;
 
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
-
-/**
- *
- * @author Pat
- */
 public class HelpGUI extends javax.swing.JFrame {
 
     /** Creates new form HelpGUI */
@@ -38,7 +33,7 @@ public class HelpGUI extends javax.swing.JFrame {
         tree = new javax.swing.JTree();
         textSP = new javax.swing.JScrollPane();
         textArea = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        videoButton = new javax.swing.JButton();
         menubar = new javax.swing.JMenuBar();
         file = new javax.swing.JMenu();
         closeItem = new javax.swing.JMenuItem();
@@ -121,10 +116,10 @@ public class HelpGUI extends javax.swing.JFrame {
         textArea.setWrapStyleWord(true);
         textSP.setViewportView(textArea);
 
-        jButton1.setText("Open Instructional Video");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        videoButton.setText("Open Instructional Video");
+        videoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                videoButtonActionPerformed(evt);
             }
         });
 
@@ -192,15 +187,15 @@ public class HelpGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textSP, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(videoButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(videoButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(treeSP, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
@@ -210,17 +205,26 @@ public class HelpGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Handles when user chooses close option in the menu bar
+     */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseAccountGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
+    /**
+     * Handles when user chooses logout option in the menu bar
+     */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseAccountGUI();
         Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
+    /**
+     * Handles when user chooses exit option in the menu bar
+     */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
                 null,
@@ -238,18 +242,31 @@ public class HelpGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitItemActionPerformed
 
+    /**
+     * Handles when user chooses "Report a Bug" option in the menu bar
+     */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
+    /**
+     * Handles when user chooses "Make Suggestion" option in the menu bar
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
+    /**
+     * Handles when user closes window
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseHelpGUI();
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Handles when user clicks on different options in the tree
+     * @param evt 
+     */
     private void treeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_treeValueChanged
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 
@@ -316,19 +333,23 @@ public class HelpGUI extends javax.swing.JFrame {
             case "Generating reports":
                 textArea.setText(HelpController.getGeneratingReports());
                 break;
-
             default:
                 break;
         }
     }//GEN-LAST:event_treeValueChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+     * Handles when user clicks on "Open Instructional Video" 
+     * Opens video in local default video player
+     * @param evt 
+     */
+    private void videoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_videoButtonActionPerformed
         try {
             Desktop.getDesktop().open(new File("src\\dugs.mp4"));
         } catch (IOException ex) {
             System.err.println(ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_videoButtonActionPerformed
 
     /**
      * main()
@@ -373,7 +394,6 @@ public class HelpGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JMenuItem suggestionItem;
@@ -381,5 +401,6 @@ public class HelpGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane textSP;
     private javax.swing.JTree tree;
     private javax.swing.JScrollPane treeSP;
+    private javax.swing.JButton videoButton;
     // End of variables declaration//GEN-END:variables
 }

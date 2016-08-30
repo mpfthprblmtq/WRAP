@@ -14,8 +14,6 @@ public class Main {
     // global account
     public static Account p;
 
-    // All of these are the actual GUI, and a boolean to see if they are open or not
-    
     // mainGUI
     static MainGUI mainGUI;
 

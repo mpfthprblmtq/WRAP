@@ -6,7 +6,9 @@
  */
 package webradio;
 
+// imports
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Date;
@@ -72,6 +74,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     }
     // </editor-fold>
 
+    // things that have to do with money
     DecimalFormat money = new DecimalFormat("0.00");
     double pennies;
     double nickels;
@@ -86,6 +89,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     double fifties;
     double hundreds;
 
+    // transaction variables, global list of transactions and temp for editing
     DefaultListModel<ListElement> transactions = new DefaultListModel<>();
     Transaction temp;
 
@@ -152,7 +156,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         accountsPanel = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        accountsTP = new javax.swing.JTabbedPane();
         bankPanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -262,6 +266,16 @@ public class FinanceGUI extends javax.swing.JFrame {
         sStoreField.setEditable(false);
         sStoreField.setPreferredSize(new java.awt.Dimension(166, 20));
         sStoreField.setDocument(new JTextFieldLimit(30));
+        sStoreField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sStoreFieldFocusGained(evt);
+            }
+        });
+        sStoreField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sStoreFieldKeyPressed(evt);
+            }
+        });
 
         sMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         sMonthBox.setEnabled(false);
@@ -275,11 +289,31 @@ public class FinanceGUI extends javax.swing.JFrame {
         sPurchaserField.setEditable(false);
         sPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
         sPurchaserField.setDocument(new JTextFieldLimit(30));
+        sPurchaserField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sPurchaserFieldFocusGained(evt);
+            }
+        });
+        sPurchaserField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sPurchaserFieldKeyPressed(evt);
+            }
+        });
 
         sAmountField.setEditable(false);
         sAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         sAmountField.setPreferredSize(new java.awt.Dimension(156, 20));
         sAmountField.setDocument(new JTextFieldLimit(10));
+        sAmountField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sAmountFieldFocusGained(evt);
+            }
+        });
+        sAmountField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sAmountFieldKeyPressed(evt);
+            }
+        });
 
         jScrollPane8.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -292,7 +326,18 @@ public class FinanceGUI extends javax.swing.JFrame {
         sReasonField.setRows(5);
         sReasonField.setWrapStyleWord(true);
         sReasonField.setDocument(new JTextFieldLimit(60));
+        sReasonField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sReasonFieldFocusGained(evt);
+            }
+        });
+        sReasonField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sReasonFieldKeyPressed(evt);
+            }
+        });
         jScrollPane8.setViewportView(sReasonField);
+        sReasonField.setTabSize(0);
 
         jScrollPane9.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -305,7 +350,18 @@ public class FinanceGUI extends javax.swing.JFrame {
         sNotesField.setRows(5);
         sNotesField.setWrapStyleWord(true);
         sNotesField.setDocument(new JTextFieldLimit(60));
+        sNotesField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sNotesFieldFocusGained(evt);
+            }
+        });
+        sNotesField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sNotesFieldKeyPressed(evt);
+            }
+        });
         jScrollPane9.setViewportView(sNotesField);
+        sNotesField.setTabSize(0);
 
         submitButton.setText("Submit");
         submitButton.setEnabled(false);
@@ -427,20 +483,57 @@ public class FinanceGUI extends javax.swing.JFrame {
         L12.setText("Reason:");
 
         aStoreField.setMinimumSize(new java.awt.Dimension(166, 20));
+        aStoreField.setNextFocusableComponent(aMonthBox);
         aStoreField.setDocument(new JTextFieldLimit(30));
+        aStoreField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aStoreFieldFocusGained(evt);
+            }
+        });
+        aStoreField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aStoreFieldKeyPressed(evt);
+            }
+        });
 
         aMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+        aMonthBox.setName(""); // NOI18N
+        aMonthBox.setNextFocusableComponent(aDateBox);
 
         aDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        aDateBox.setNextFocusableComponent(aYearBox);
 
         aYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
+        aYearBox.setNextFocusableComponent(aPurchaserField);
 
+        aPurchaserField.setNextFocusableComponent(aAmountField);
         aPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
         aPurchaserField.setDocument(new JTextFieldLimit(30));
+        aPurchaserField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aPurchaserFieldFocusGained(evt);
+            }
+        });
+        aPurchaserField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aPurchaserFieldKeyPressed(evt);
+            }
+        });
 
         aAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+        aAmountField.setNextFocusableComponent(aReasonField);
         aAmountField.setPreferredSize(new java.awt.Dimension(166, 20));
         aAmountField.setDocument(new JTextFieldLimit(10));
+        aAmountField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aAmountFieldFocusGained(evt);
+            }
+        });
+        aAmountField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aAmountFieldKeyPressed(evt);
+            }
+        });
 
         jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -450,8 +543,20 @@ public class FinanceGUI extends javax.swing.JFrame {
         aReasonField.setLineWrap(true);
         aReasonField.setRows(5);
         aReasonField.setWrapStyleWord(true);
+        aReasonField.setNextFocusableComponent(aNotesField);
         aReasonField.setDocument(new JTextFieldLimit(60));
+        aReasonField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aReasonFieldFocusGained(evt);
+            }
+        });
+        aReasonField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aReasonFieldKeyPressed(evt);
+            }
+        });
         jScrollPane5.setViewportView(aReasonField);
+        aReasonField.setTabSize(0);
 
         jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -461,8 +566,20 @@ public class FinanceGUI extends javax.swing.JFrame {
         aNotesField.setLineWrap(true);
         aNotesField.setRows(5);
         aNotesField.setWrapStyleWord(true);
+        aNotesField.setNextFocusableComponent(aStoreField);
         aNotesField.setDocument(new JTextFieldLimit(60));
+        aNotesField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aNotesFieldFocusGained(evt);
+            }
+        });
+        aNotesField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aNotesFieldKeyPressed(evt);
+            }
+        });
         jScrollPane6.setViewportView(aNotesField);
+        aNotesField.setTabSize(0);
 
         addButton.setText("Add");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -578,9 +695,9 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Transactions", transactionPanel);
 
-        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+        accountsTP.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedPane2StateChanged(evt);
+                accountsTPStateChanged(evt);
             }
         });
 
@@ -590,6 +707,11 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         bankField.setEditable(false);
         bankField.setBackground(new java.awt.Color(255, 255, 255));
+        bankField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                bankFieldKeyPressed(evt);
+            }
+        });
 
         bankSubmitButton.setText("Submit");
         bankSubmitButton.setEnabled(false);
@@ -642,12 +764,17 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Bank Account", bankPanel);
+        accountsTP.addTab("Bank Account", bankPanel);
 
         jLabel18.setText("Balance:");
 
         cashField.setEditable(false);
         cashField.setBackground(new java.awt.Color(255, 255, 255));
+        cashField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cashFieldKeyPressed(evt);
+            }
+        });
 
         jLabel20.setText("Cash (in cash box):");
 
@@ -702,7 +829,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("Cash", cashPanel);
+        accountsTP.addTab("Cash", cashPanel);
 
         jLabel17.setText("8-Account with SIUE:");
 
@@ -710,6 +837,11 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         ateField.setEditable(false);
         ateField.setBackground(new java.awt.Color(255, 255, 255));
+        ateField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ateFieldKeyPressed(evt);
+            }
+        });
 
         ateEditButton.setText("Edit");
         ateEditButton.addActionListener(new java.awt.event.ActionListener() {
@@ -762,7 +894,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane2.addTab("8-Account", atePanel);
+        accountsTP.addTab("8-Account", atePanel);
 
         jLabel21.setText("Total funds:");
 
@@ -776,7 +908,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             .addGroup(accountsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane2)
+                    .addComponent(accountsTP)
                     .addGroup(accountsPanelLayout.createSequentialGroup()
                         .addGroup(accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
@@ -788,7 +920,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accountsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(accountsTP, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1018,13 +1150,14 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(pennyL)
-                    .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(totalL)
-                        .addComponent(jLabel14)))
+                        .addComponent(jLabel14))
+                    .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(pennyL)
+                        .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -1178,19 +1311,17 @@ public class FinanceGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1)
-                        .addContainerGap())
+                    .addComponent(jTabbedPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(calcButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(adminLabel)
-                        .addGap(10, 10, 10))))
+                        .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1199,7 +1330,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(calcButton)
-                    .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1210,20 +1341,45 @@ public class FinanceGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Literally all event related methods
+     * Includes:
+     *
+     * Add, Submit, and Edit : calls outside methods for Transactions
+     * FormWindow events : closing, opening
+     * ListClicked : searches for element that was clicked
+     * MenuBar things : things in the menu bar (exit, close, logout, help, bug, etc)
+     * GainFocus : selects all text in the field when field gains focus
+     * EnterKeyPressed : clicks a button when enter is pressed
+     */
+    // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods"> 
+    
+    /**
+     * Handles when user closes the window
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseFinanceGUI();
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Handles when user chooses close option in menu bar
+     */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
         Main.CloseProfileGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
+    /**
+     * Handles when user chooses logout option in menu bar
+     */
     private void logoutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutItemActionPerformed
         Main.Logout();
         Main.CloseProfileGUI();
         Main.CloseMainGUI();
     }//GEN-LAST:event_logoutItemActionPerformed
 
+    /**
+     * Handles when user chooses exit option in menu bar
+     */
     private void exitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitItemActionPerformed
         int res = JOptionPane.showConfirmDialog(
                 null,
@@ -1241,18 +1397,31 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitItemActionPerformed
 
+    /**
+     * Handles when user chooses Help option in menu bar
+     */
     private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
+    /**
+     * Handles when user chooses "Report a Bug" option in menu bar
+     */
     private void bugItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bugItemActionPerformed
         Main.LaunchBugReportGUI();
     }//GEN-LAST:event_bugItemActionPerformed
 
+    /**
+     * Handles when user chooses "Make a Suggestion" option in menu bar
+     */
     private void suggestionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suggestionItemActionPerformed
         Main.LaunchSuggestionReportGUI();
     }//GEN-LAST:event_suggestionItemActionPerformed
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void pennySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pennySpinnerStateChanged
         pennies = Integer.valueOf(pennySpinner.getValue().toString());
         double d = pennies / 100;
@@ -1260,6 +1429,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_pennySpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void nickelSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nickelSpinnerStateChanged
         nickels = Integer.valueOf(nickelSpinner.getValue().toString());
         double d = nickels / 20;
@@ -1267,6 +1440,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_nickelSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void dimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dimeSpinnerStateChanged
         dimes = Integer.valueOf(dimeSpinner.getValue().toString());
         double d = dimes / 10;
@@ -1274,6 +1451,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_dimeSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void quarterSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_quarterSpinnerStateChanged
         quarters = Integer.valueOf(quarterSpinner.getValue().toString());
         double d = quarters / 4;
@@ -1281,6 +1462,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_quarterSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void halfdollarSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_halfdollarSpinnerStateChanged
         halfdollars = Integer.valueOf(halfdollarSpinner.getValue().toString());
         double d = halfdollars / 2;
@@ -1288,6 +1473,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_halfdollarSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void dollarcoinSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dollarcoinSpinnerStateChanged
         dollarcoins = Integer.valueOf(dollarcoinSpinner.getValue().toString());
         double d = dollarcoins;
@@ -1295,6 +1484,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_dollarcoinSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void dollarSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dollarSpinnerStateChanged
         dollars = Integer.valueOf(dollarSpinner.getValue().toString());
         double d = dollars;
@@ -1302,6 +1495,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_dollarSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void fiveSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fiveSpinnerStateChanged
         fives = Integer.valueOf(fiveSpinner.getValue().toString());
         double d = fives * 5;
@@ -1309,6 +1506,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_fiveSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void tenSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tenSpinnerStateChanged
         tens = Integer.valueOf(tenSpinner.getValue().toString());
         double d = tens * 10;
@@ -1316,6 +1517,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_tenSpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void twentySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_twentySpinnerStateChanged
         twenties = Integer.valueOf(twentySpinner.getValue().toString());
         double d = twenties * 20;
@@ -1323,6 +1528,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_twentySpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void fiftySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fiftySpinnerStateChanged
         fifties = Integer.valueOf(fiftySpinner.getValue().toString());
         double d = fifties * 50;
@@ -1330,6 +1539,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_fiftySpinnerStateChanged
 
+    /**
+     * Handles when the specified spinner value is changed
+     * Updates the label associated with it as well as the total label
+     */
     private void hundredSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hundredSpinnerStateChanged
         hundreds = Integer.valueOf(hundredSpinner.getValue().toString());
         double d = hundreds * 100;
@@ -1337,6 +1550,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         updateTotal();
     }//GEN-LAST:event_hundredSpinnerStateChanged
 
+    /**
+     * Handles when the gear icon is clicked on
+     */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
         JOptionPane.showMessageDialog(this,
@@ -1345,14 +1561,24 @@ public class FinanceGUI extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_adminLabelMouseClicked
 
+    /**
+     * Handles when the mouse enters the gear icon
+     */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
         loginLabel.setText("Advanced options");
     }//GEN-LAST:event_adminLabelMouseEntered
 
+    /**
+     * Handles when the mouse leaves the gear icon
+     */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
 
+    /**
+     * Handles when "Launch Local Calculator" button is clicked
+     * Opens the local calculator
+     */
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
         try {
             Runtime.getRuntime().exec("calc");
@@ -1361,12 +1587,18 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_calcButtonActionPerformed
 
+    /**
+     * Handles when add button is pressed on Transactions panel
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
             add();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
+    /**
+     * Handles when the list is clicked on on Transactions panel
+     */
     private void listMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listMouseClicked
         if (!transactions.isEmpty()) {
 
@@ -1387,21 +1619,54 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listMouseClicked
 
+    /**
+     * Handles when edit button is pressed on Transactions panel
+     */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         edit();
     }//GEN-LAST:event_editButtonActionPerformed
 
+    /**
+     * Handles when submit button is pressed on Transactions panel
+     */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
             submit();
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
+    /**
+     * Handles when delete button is pressed on Transactions panel
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        delete();
+        // confirmation on delete
+        int res = JOptionPane.showConfirmDialog(
+                null,
+                "Are you sure you want to delete the transaction from\n"
+                + sStoreField.getText() + " for " 
+                + sAmountField.getText() + "?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION);
+
+        // if they select yes
+        switch (res) {
+            case 0:
+                delete();
+                break;
+            default:
+                // do nothing
+                break;
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    /**
+     * Handles when the form is shown
+     * Updates loginLabel
+     * Updates account totals on the accounts tab
+     */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        loginLabel.setText("Logged in as " + Main.p.getUsername());
+        
         double[] d = FinanceController.getAccountTotals();
         bankField.setText("$" + money.format(d[0]));
         cashField.setText("$" + money.format(d[1]));
@@ -1412,24 +1677,36 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formComponentShown
 
+    /**
+     * Handles when submit is pressed on bank tab in Accounts tab
+     */
     private void bankEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankEditButtonActionPerformed
         bankField.setEditable(true);
         bankSubmitButton.setEnabled(true);
         bankEditButton.setEnabled(false);
     }//GEN-LAST:event_bankEditButtonActionPerformed
 
+    /**
+     * Handles when edit is pressed on cash tab in Accounts tab
+     */
     private void cashEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashEditButtonActionPerformed
         cashField.setEditable(true);
         cashSubmitButton.setEnabled(true);
         cashEditButton.setEnabled(false);
     }//GEN-LAST:event_cashEditButtonActionPerformed
 
+    /**
+     * Handles when edit is pressed on 8-Account tab in Accounts tab
+     */
     private void ateEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ateEditButtonActionPerformed
         ateField.setEditable(true);
         ateSubmitButton.setEnabled(true);
         ateEditButton.setEnabled(false);
     }//GEN-LAST:event_ateEditButtonActionPerformed
 
+    /**
+     * Handles when submit is pressed on bank tab in Accounts tab
+     */
     private void bankSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankSubmitButtonActionPerformed
         updateAccountTotals();
         bankField.setEditable(false);
@@ -1437,6 +1714,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         bankEditButton.setEnabled(true);
     }//GEN-LAST:event_bankSubmitButtonActionPerformed
 
+    /**
+     * Handles when submit is pressed on cash tab in Accounts tab
+     */
     private void cashSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashSubmitButtonActionPerformed
         updateAccountTotals();
         cashField.setEditable(false);
@@ -1444,6 +1724,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         cashEditButton.setEnabled(true);
     }//GEN-LAST:event_cashSubmitButtonActionPerformed
 
+    /**
+     * Handles when submit is pressed on 8-Account tab in Accounts tab
+     */
     private void ateSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ateSubmitButtonActionPerformed
         updateAccountTotals();
         ateField.setEditable(false);
@@ -1451,7 +1734,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         ateEditButton.setEnabled(true);
     }//GEN-LAST:event_ateSubmitButtonActionPerformed
 
-    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+    /**
+     * Handles when the tab changes on the Accounts tab
+     */
+    private void accountsTPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_accountsTPStateChanged
         bankField.setEditable(false);
         bankSubmitButton.setEnabled(false);
         bankEditButton.setEnabled(true);
@@ -1461,13 +1747,213 @@ public class FinanceGUI extends javax.swing.JFrame {
         ateField.setEditable(false);
         ateSubmitButton.setEnabled(false);
         ateEditButton.setEnabled(true);
-        
-    }//GEN-LAST:event_jTabbedPane2StateChanged
+    }//GEN-LAST:event_accountsTPStateChanged
 
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void sStoreFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sStoreFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        }
+    }//GEN-LAST:event_sStoreFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void sPurchaserFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sPurchaserFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        }
+    }//GEN-LAST:event_sPurchaserFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void sAmountFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sAmountFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        }
+    }//GEN-LAST:event_sAmountFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void sReasonFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sReasonFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            sNotesField.requestFocus();
+        }
+    }//GEN-LAST:event_sReasonFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void sNotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sNotesFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            submitButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            sStoreField.requestFocus();
+        }
+    }//GEN-LAST:event_sNotesFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses add
+     */
+    private void aStoreFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aStoreFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aStoreFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses add
+     */
+    private void aPurchaserFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aPurchaserFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aPurchaserFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses add
+     */
+    private void aAmountFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aAmountFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        }
+    }//GEN-LAST:event_aAmountFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses add
+     */
+    private void aReasonFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aReasonFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            aNotesField.requestFocus();
+        }
+    }//GEN-LAST:event_aReasonFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses add
+     */
+    private void aNotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aNotesFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            addButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            aStoreField.requestFocus();
+        }
+    }//GEN-LAST:event_aNotesFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void bankFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bankFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            bankSubmitButton.doClick();
+        }
+    }//GEN-LAST:event_bankFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void cashFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cashSubmitButton.doClick();
+        }
+    }//GEN-LAST:event_cashFieldKeyPressed
+
+    /**
+     * Handles if enter is pressed while field is in focus, presses submit
+     */
+    private void ateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ateFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ateSubmitButton.doClick();
+        }
+    }//GEN-LAST:event_ateFieldKeyPressed
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void sStoreFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sStoreFieldFocusGained
+        sStoreField.selectAll();
+    }//GEN-LAST:event_sStoreFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void sPurchaserFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sPurchaserFieldFocusGained
+        sPurchaserField.selectAll();
+    }//GEN-LAST:event_sPurchaserFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void sAmountFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sAmountFieldFocusGained
+        sAmountField.selectAll();
+    }//GEN-LAST:event_sAmountFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void sReasonFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sReasonFieldFocusGained
+        //sReasonField.selectAll();
+    }//GEN-LAST:event_sReasonFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void sNotesFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sNotesFieldFocusGained
+        //sNotesField.selectAll();
+    }//GEN-LAST:event_sNotesFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void aStoreFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aStoreFieldFocusGained
+        aStoreField.selectAll();
+    }//GEN-LAST:event_aStoreFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void aPurchaserFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aPurchaserFieldFocusGained
+        aPurchaserField.selectAll();
+    }//GEN-LAST:event_aPurchaserFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void aAmountFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aAmountFieldFocusGained
+        aAmountField.selectAll();
+    }//GEN-LAST:event_aAmountFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void aReasonFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aReasonFieldFocusGained
+        //aReasonField.selectAll();
+    }//GEN-LAST:event_aReasonFieldFocusGained
+
+    /**
+     * Handles when field gains focus, selects all text in the field
+     */
+    private void aNotesFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNotesFieldFocusGained
+        //aNotesField.selectAll();
+    }//GEN-LAST:event_aNotesFieldFocusGained
+
+    // </editor-fold>
+    
+    /**
+     * updateTotal()
+     * 
+     * Updates the total on the money counter when user changes something
+     */
     public void updateTotal() {
 
         double total = 0;
-
         total += pennies / 100;
         total += nickels / 20;
         total += dimes / 10;
@@ -1482,9 +1968,14 @@ public class FinanceGUI extends javax.swing.JFrame {
         total += hundreds * 100;
 
         totalL.setText("$" + money.format(total));
-
     }
 
+    /**
+     * updateAccountTotals()
+     * 
+     * Takes the values of the three accounts and sends them to IOController\
+     * to update that file
+     */
     public void updateAccountTotals() {
 
         // create a new double array
@@ -1502,10 +1993,19 @@ public class FinanceGUI extends javax.swing.JFrame {
         cashField.setText("$" + money.format(d[1]));
         ateField.setText("$" + money.format(d[2]));
         
+        // total
         double total = d[0] + d[1] + d[2];
         totalField.setText("$" + money.format(total));
     }
 
+    /**
+     * fillList()
+     *
+     * Gets all of the Transactions from IOController and shoves them into an array
+     * Then it populates the DefaultListModel of ListElements from that array
+     *
+     * @return the DefaultListModel to populate the JList
+     */
     public DefaultListModel fillList() {
 
         int total = IOController.getTotalTransactions();
@@ -1524,7 +2024,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * updateList()
      *
-     * Works with the global list of Profiles, which updates the JList graphics
+     * Works with the global list of Transactions, which updates the JList graphics
      *
      * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
@@ -1540,6 +2040,14 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * add()
+     *
+     * If the fields are all valid, this method is called
+     * Takes fields and creates Transaction and ListElement objects
+     * Then it calls the FinanceController to add the Transaction
+     * If the addition succeeds, update the list, and update graphics
+     */
     public void add() {
         String store = aStoreField.getText();
         String purchaser = aPurchaserField.getText();
@@ -1574,6 +2082,15 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * search()
+     *
+     * Calls the searchTransaction() method from FinanceController, which 
+     * returns a valid Transaction
+     * Update the graphics with the Transaction info
+     *
+     * @param id, the id to search
+     */
     public void search(String id) {
         // get the transaction
         Transaction t = FinanceController.searchTransaction(id);
@@ -1596,6 +2113,12 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     }
 
+    /**
+     * edit()
+     *
+     * Basically just sets the fields to editable
+     * Stores a temporary global Transaction, used in the editing process in submit()
+     */
     public void edit() {
 
         String store = sStoreField.getText();
@@ -1621,6 +2144,13 @@ public class FinanceGUI extends javax.swing.JFrame {
         editButton.setEnabled(false);
     }
 
+    /**
+     * delete()
+     *
+     * Creates a Transaction with the fields given
+     * Then call deleteTransaction() from FinanceController
+     * If success, confirm on errLabel
+     */
     public void delete() {
         String id = transactions.get(list.getSelectedIndex()).id;
         String store = sStoreField.getText();
@@ -1643,6 +2173,14 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * submit()
+     *
+     * Takes the new input as parameters for a new Transaction object
+     * Then it deletes the old transaction, then adds the new one (in that order)
+     * If success, update the graphics
+     * If failure, return and update graphics
+     */
     public void submit() {
         // update graphics
         errLabel.setForeground(Color.blue);
@@ -1761,16 +2299,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         } else if (!Util.sepCheck(aReasonField.getText())) {
             flag = false;
             aReasonField.setForeground(Color.red);
-        }
-
-        // Notes
-        if (aNotesField.getText().equals("") || aNotesField.getText().equals("--")) {
-            flag = false;
-            aNotesField.setForeground(Color.red);
-            aNotesField.setText("--");
-        } else if (!Util.sepCheck(aNotesField.getText())) {
-            flag = false;
-            aNotesField.setForeground(Color.red);
         }
 
         setAddErrLabel();
@@ -1911,16 +2439,6 @@ public class FinanceGUI extends javax.swing.JFrame {
             sReasonField.setForeground(Color.red);
         }
 
-        // Notes
-        if (sNotesField.getText().equals("") || sNotesField.getText().equals("--")) {
-            flag = false;
-            sNotesField.setForeground(Color.red);
-            sNotesField.setText("--");
-        } else if (!Util.sepCheck(sNotesField.getText())) {
-            flag = false;
-            sNotesField.setForeground(Color.red);
-        }
-
         setSearchErrLabel();
         return flag;
     }
@@ -2043,6 +2561,7 @@ public class FinanceGUI extends javax.swing.JFrame {
      * setSearchValuesToNull()
      *
      * Graphics update
+     * 
      * Resets the serach panel with null values
      */
     public void setSearchValuesToNull() {
@@ -2169,6 +2688,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JTextField aStoreField;
     private javax.swing.JComboBox<String> aYearBox;
     private javax.swing.JPanel accountsPanel;
+    private javax.swing.JTabbedPane accountsTP;
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
     private javax.swing.JLabel adminLabel;
@@ -2235,7 +2755,6 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;

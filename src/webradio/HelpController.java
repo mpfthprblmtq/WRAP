@@ -1,3 +1,11 @@
+/**
+ * File: HelpController.java
+ * Desc: Basically just serves as the holding area for text to show up in
+ *          the text are in the Help GUI
+ *
+ * Author: Pat Ripley
+ */
+
 package webradio;
 
 public class HelpController {

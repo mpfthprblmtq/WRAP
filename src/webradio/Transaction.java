@@ -7,7 +7,6 @@
 package webradio;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -160,6 +159,6 @@ public class Transaction {
                 + name + "///"
                 + amount + "///"
                 + reason + "///"
-                + notes;
+                + notes + "///";
     }
 }

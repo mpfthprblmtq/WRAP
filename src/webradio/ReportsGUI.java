@@ -97,6 +97,7 @@ public class ReportsGUI extends javax.swing.JFrame {
 
         loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         loginLabel.setText(" ");
+        loginLabel.setToolTipText("");
 
         errLabel.setForeground(new java.awt.Color(255, 0, 0));
         errLabel.setText(" ");

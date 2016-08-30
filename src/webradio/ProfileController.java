@@ -1,6 +1,7 @@
 /**
  * File: ProfileController.java
- * Desc: Takes input from ProfileGUI and sends it to IOController
+ * Desc: Takes input from ProfileGUI and sends it to IOController to be written 
+ *          the appropriate file
  *
  * Author: Pat Ripley
  */

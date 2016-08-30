@@ -44,12 +44,73 @@ public class MainGUI extends javax.swing.JFrame {
                                 reportButton.doClick();
                                 break;
                         }
+
+                        // <editor-fold defaultstate="collapsed" desc="sooper secret settings">
+                        if (e.getKeyCode() == KeyEvent.VK_S) {
+                            l();
+                        } else {
+                        }
+                        // </editor-fold>
                     }
                     return false;
                 });
 
         initComponents();
     }
+
+    // <editor-fold defaultstate="collapsed" desc="sooper secret settings">
+    void l() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (this.isFocusOwner()) {
+                        if (e.getKeyCode() == KeyEvent.VK_L) {
+                            o();
+                        } else {
+                        }
+                    }
+                    return false;
+                });
+    }
+    
+    void o() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (this.isFocusOwner()) {
+                        if (e.getKeyCode() == KeyEvent.VK_O) {
+                            t();
+                        } else {
+                        }
+                    }
+                    return false;
+                });
+    }
+    
+    void t() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (this.isFocusOwner()) {
+                        if (e.getKeyCode() == KeyEvent.VK_T) {
+                            h();
+                        } else {
+                        }
+                    }
+                    return false;
+                });
+    }
+    
+    void h() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (this.isFocusOwner()) {
+                        if (e.getKeyCode() == KeyEvent.VK_H) {
+                            logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sloth.png")));
+                        } else {
+                        }
+                    }
+                    return false;
+                });
+    }
+    // </editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -659,7 +720,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles if user selects the special thanks option in the menu bar
-     * @param evt 
+     *
+     * @param evt
      */
     private void thanksItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thanksItemActionPerformed
         JOptionPane.showMessageDialog(this,
@@ -670,7 +732,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     /**
      * Handles if user selects the Dev option in the menu bar
-     * @param evt 
+     *
+     * @param evt
      */
     private void devItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_devItemActionPerformed
         JOptionPane.showMessageDialog(this,

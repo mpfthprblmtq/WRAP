@@ -259,7 +259,8 @@ public class LoginGUI extends javax.swing.JFrame {
             new LoginGUI().setVisible(true);
         });
     }
-
+    // <editor-fold defaultstate="collapsed" desc="GUI Variables Declaration">
+    // I'll modify what I want
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ErrLabel;
     private javax.swing.JButton SubmitButton;
@@ -270,4 +271,6 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JLabel uLabel;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
+    
 } // end LoginGUI

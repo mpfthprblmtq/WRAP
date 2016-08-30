@@ -112,23 +112,20 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jTabbedPane1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="errLabel" min="-2" pref="343" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="calcButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loginLabel" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="adminLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="adminLabel" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -139,7 +136,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="loginLabel" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="calcButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="adminLabel" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="adminLabel" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
@@ -347,6 +344,10 @@
                           <Dimension value="[166, 20]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sStoreFieldFocusGained"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sStoreFieldKeyPressed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sStoreField.setDocument(new JTextFieldLimit(30));"/>
                       </AuxValues>
@@ -451,6 +452,10 @@
                           <Dimension value="[166, 20]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sPurchaserFieldFocusGained"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sPurchaserFieldKeyPressed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sPurchaserField.setDocument(new JTextFieldLimit(30));"/>
                       </AuxValues>
@@ -465,6 +470,10 @@
                           <Dimension value="[156, 20]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sAmountFieldFocusGained"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sAmountFieldKeyPressed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sAmountField.setDocument(new JTextFieldLimit(10));"/>
                       </AuxValues>
@@ -494,8 +503,13 @@
                             <Property name="rows" type="int" value="5"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sReasonFieldFocusGained"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sReasonFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sReasonField.setDocument(new JTextFieldLimit(60));"/>
+                            <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sReasonField.setTabSize(0);"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
@@ -525,8 +539,13 @@
                             <Property name="rows" type="int" value="5"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sNotesFieldFocusGained"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sNotesFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="sNotesField.setDocument(new JTextFieldLimit(60));"/>
+                            <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="sNotesField.setTabSize(0);"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
@@ -696,7 +715,14 @@
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
                         </Property>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="aMonthBox"/>
+                        </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aStoreFieldFocusGained"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aStoreFieldKeyPressed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aStoreField.setDocument(new JTextFieldLimit(30));"/>
                       </AuxValues>
@@ -719,6 +745,10 @@
                             <StringItem index="11" value="Nov"/>
                             <StringItem index="12" value="Dec"/>
                           </StringArray>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="aDateBox"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -763,6 +793,9 @@
                             <StringItem index="31" value="31"/>
                           </StringArray>
                         </Property>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="aYearBox"/>
+                        </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -786,6 +819,9 @@
                             <StringItem index="11" value="2020"/>
                           </StringArray>
                         </Property>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="aPurchaserField"/>
+                        </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -793,10 +829,17 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="aPurchaserField">
                       <Properties>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="aAmountField"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aPurchaserFieldFocusGained"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aPurchaserFieldKeyPressed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aPurchaserField.setDocument(new JTextFieldLimit(30));"/>
                       </AuxValues>
@@ -806,10 +849,17 @@
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                           <Format format="#,###.00" subtype="-1" type="0"/>
                         </Property>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="aReasonField"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aAmountFieldFocusGained"/>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aAmountFieldKeyPressed"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aAmountField.setDocument(new JTextFieldLimit(10));"/>
                       </AuxValues>
@@ -834,9 +884,17 @@
                             <Property name="lineWrap" type="boolean" value="true"/>
                             <Property name="rows" type="int" value="5"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
+                            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                              <ComponentRef name="aNotesField"/>
+                            </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aReasonFieldFocusGained"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aReasonFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aReasonField.setDocument(new JTextFieldLimit(60));"/>
+                            <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aReasonField.setTabSize(0);"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
@@ -861,9 +919,17 @@
                             <Property name="lineWrap" type="boolean" value="true"/>
                             <Property name="rows" type="int" value="5"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
+                            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                              <ComponentRef name="aStoreField"/>
+                            </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aNotesFieldFocusGained"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aNotesFieldKeyPressed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="aNotesField.setDocument(new JTextFieldLimit(60));"/>
+                            <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="aNotesField.setTabSize(0);"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
@@ -919,7 +985,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTabbedPane2" max="32767" attributes="0"/>
+                          <Component id="accountsTP" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -936,7 +1002,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTabbedPane2" min="-2" pref="145" max="-2" attributes="0"/>
+                      <Component id="accountsTP" min="-2" pref="145" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -947,9 +1013,9 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
+            <Container class="javax.swing.JTabbedPane" name="accountsTP">
               <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTabbedPane2StateChanged"/>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="accountsTPStateChanged"/>
               </Events>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -1025,6 +1091,9 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="bankFieldKeyPressed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="bankSubmitButton">
                       <Properties>
@@ -1111,6 +1180,9 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cashFieldKeyPressed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel20">
                       <Properties>
@@ -1207,6 +1279,9 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ateFieldKeyPressed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="ateEditButton">
                       <Properties>
@@ -1329,13 +1404,15 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="pennyL" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="pennySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="totalL" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="pennyL" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="pennySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

@@ -8,7 +8,11 @@ package webradio;
 
 // imports
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -80,8 +84,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     public static final int SM_MANAGER = 3;
     public static final int SECRETARY = 4;
     public static final int TECH_OFFICER = 5;
-    public static final int PREZ_TECH = 6;
-    public static final int VP_SECRETARY = 7;
 
     private static final int ADD = 0;
     private static final int REMOVE = 1;
@@ -170,6 +172,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        facebookItem = new javax.swing.JMenuItem();
+        collegiatelinkItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -178,7 +183,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Profiles");
         setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
-        setPreferredSize(null);
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -518,13 +522,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(sscrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton)
                             .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deleteButton)))
                     .addComponent(jLabel18))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -821,7 +825,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ascrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addButton)
                 .addContainerGap())
         );
@@ -882,6 +886,28 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         menubar.add(file);
 
+        links.setText("Links");
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        links.add(facebookItem);
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        links.add(collegiatelinkItem);
+
+        menubar.add(links);
+
         help.setText("Help");
 
         helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
@@ -921,9 +947,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -943,7 +969,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(adminLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sp))
                     .addComponent(tabs))
@@ -1729,7 +1755,24 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
     // </editor-fold>
+    
     /**
      * fillList()
      *
@@ -1749,11 +1792,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         elements = new ListElement[total];
         if (str != null) {
             for (int i = 0; i < total; i++) {
-                    elements[i] = new ListElement(str[i].getfName(),
-                            str[i].getlName(),
-                            str[i].getId());
-                    people.add(i, elements[i]);
-                
+                elements[i] = new ListElement(str[i].getfName(),
+                        str[i].getlName(),
+                        str[i].getId());
+                people.add(i, elements[i]);
+
             }
         }
         return people;
@@ -1804,14 +1847,27 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText("Profile added successfully");
 
             updateList(ADD, element);
+            
+            people.removeAllElements();
+            list.setModel(fillList());
 
             setAddValuesToNull();
             afNameField.requestFocus();
 
             // log
-            EventLog.add("added profile " + p.getId() 
+            EventLog.add("added profile " + p.getId()
                     + " (" + p.getlName() + ", " + p.getfName() + ")");
-            
+
+            // show dialog for adding to facebook and collegiatelink
+            JOptionPane.showMessageDialog(this,
+                    "Remember to add them to Facebook and CollegiateLink!\n"
+                    + "(In the Links option on the Menu Bar)",
+                    "Extra Additions Required",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            // opens the menu
+            links.doClick();
+
             // else if addition fails
         } else {
             errLabel.setForeground(Color.red);
@@ -2737,10 +2793,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JTextField atypeField;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
@@ -2762,6 +2820,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;

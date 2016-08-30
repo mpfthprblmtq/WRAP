@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 public class ReportsController {
 
+    // constants used to determine the type of reports
     public static final int PROFILE_SIMPLE = 1;
     public static final int PROFILE_CONTACT = 2;
     public static final int PROFILE_FULL = 3;
@@ -28,6 +29,7 @@ public class ReportsController {
     public static final int FINANCES_TRANSACTIONS = 1;
     public static final int FINANCES_FULL = 2;
 
+    // constants used to determine what to sort the report by
     public static final int PROFILES_SORTBY_LASTNAME = 1;
     public static final int PROFILES_SORTBY_FIRSTNAME = 2;
     public static final int PROFILES_SORTBY_TYPE = 3;
@@ -44,6 +46,7 @@ public class ReportsController {
     public static final int FINANCES_SORTBY_DATE = 1;
     public static final int FINANCES_SORTBY_AMOUNT = 2;
     
+    // date formatting
     private static final DateFormat df = new SimpleDateFormat("yyyyMMdd");
 
     /**
@@ -309,6 +312,4 @@ public class ReportsController {
         }
         return arr;
     }
-    
-    
-}
+}   // end ReportsController
