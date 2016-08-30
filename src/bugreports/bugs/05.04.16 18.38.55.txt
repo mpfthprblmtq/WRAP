@@ -1,7 +1,0 @@
-Name:         asdf
-Date:         05/04/16 18:38
-Reported by:  root
-
-Description:
-
-asfdasdf 

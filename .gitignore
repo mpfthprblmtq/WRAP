@@ -4,6 +4,7 @@ build/
 nbproject/
 dist/
 test/
+Reports/
 *.mf
 *.xml
 
