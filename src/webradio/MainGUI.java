@@ -8,8 +8,12 @@
 package webradio;
 
 // imports
+import java.awt.Desktop;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.*;
 
 public class MainGUI extends javax.swing.JFrame {
@@ -142,6 +146,15 @@ public class MainGUI extends javax.swing.JFrame {
         verstionItem = new javax.swing.JMenuItem();
         devItem = new javax.swing.JMenuItem();
         thanksItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -149,7 +162,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W.R.A.P. - Web Radio Assistant Program");
-        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
+        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -264,9 +277,11 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/wraplogo smaller.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/wraplogo_smaller.png"))); // NOI18N
         logo.setFocusable(false);
 
+        scrollpane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollpane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollpane.setFocusable(false);
 
         text.setEditable(false);
@@ -288,7 +303,6 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setFocusCycleRoot(true);
         f1.setFocusable(false);
 
-        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         loginLabel.setText(" ");
 
         menubar.setFocusable(false);
@@ -340,6 +354,62 @@ public class MainGUI extends javax.swing.JFrame {
         jMenu1.add(thanksItem);
 
         menubar.add(jMenu1);
+
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
 
         help.setText("Help");
 
@@ -396,40 +466,41 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(scrollpane)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(textHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(f1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logo))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(f1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(profileButton)
-                    .addComponent(accountButton)
-                    .addComponent(taskButton)
-                    .addComponent(showButton)
-                    .addComponent(financeButton)
-                    .addComponent(reportButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(f1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(profileButton)
+                            .addComponent(accountButton)
+                            .addComponent(taskButton)
+                            .addComponent(showButton)
+                            .addComponent(financeButton)
+                            .addComponent(reportButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loginLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(logo)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -749,6 +820,38 @@ public class MainGUI extends javax.swing.JFrame {
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
+
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
     /**
      * main()
      *
@@ -788,21 +891,29 @@ public class MainGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JButton accountButton;
     private javax.swing.JMenuItem bugItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JMenuItem devItem;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JLabel f1;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
     private javax.swing.JButton financeButton;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu links;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JLabel logo;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JMenuItem paypalItem;
     private javax.swing.JButton profileButton;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JButton reportButton;
     private javax.swing.JScrollPane scrollpane;
     private javax.swing.JButton showButton;
@@ -812,6 +923,7 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JLabel textHeader;
     private javax.swing.JMenuItem thanksItem;
     private javax.swing.JMenuItem verstionItem;
+    private javax.swing.JMenuItem webradioItem;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 } // end MainGUI

@@ -173,8 +173,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
         links = new javax.swing.JMenu();
-        facebookItem = new javax.swing.JMenuItem();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
         collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -182,7 +188,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Profiles");
-        setIconImage(new ImageIcon("src\\images\\imageicon.png").getImage());
+        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -888,14 +894,24 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         links.setText("Links");
 
-        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
-        facebookItem.setText("Facebook (Show Hosts)");
-        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                facebookItemActionPerformed(evt);
+                webradioItemActionPerformed(evt);
             }
         });
-        links.add(facebookItem);
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
 
         collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
         collegiatelinkItem.setText("CollegiateLink");
@@ -904,7 +920,31 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 collegiatelinkItemActionPerformed(evt);
             }
         });
-        links.add(collegiatelinkItem);
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
 
         menubar.add(links);
 
@@ -1755,13 +1795,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
-    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString());
         }
-    }//GEN-LAST:event_facebookItemActionPerformed
+    }//GEN-LAST:event_webradioItemActionPerformed
 
     private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
         try {
@@ -1770,6 +1810,22 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             Util.error(ex.toString());
         }
     }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
 
     // </editor-fold>
     
@@ -1866,7 +1922,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     JOptionPane.INFORMATION_MESSAGE);
 
             // opens the menu
-            links.doClick();
+            profilesMenu.doClick();
 
             // else if addition fails
         } else {
@@ -2774,6 +2830,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
     private javax.swing.JLabel adminLabel;
@@ -2800,6 +2857,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JLabel jLabel1;
@@ -2820,11 +2878,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JMenuItem paypalItem;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JTextField sfNameField;
     private javax.swing.JTextField slNameField;
@@ -2844,5 +2905,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private javax.swing.JButton submitButton;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
 } // end ProfileGUI

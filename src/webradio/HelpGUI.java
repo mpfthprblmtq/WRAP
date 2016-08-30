@@ -13,6 +13,8 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
+import javax.swing.ImageIcon;
+
 public class HelpGUI extends javax.swing.JFrame {
 
     /** Creates new form HelpGUI */
@@ -45,6 +47,7 @@ public class HelpGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Help");
+        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);

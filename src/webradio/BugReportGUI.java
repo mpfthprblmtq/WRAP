@@ -8,6 +8,8 @@
  */
 package webradio;
 
+import javax.swing.ImageIcon;
+
 public class BugReportGUI extends javax.swing.JFrame {
 
     /**
@@ -42,6 +44,7 @@ public class BugReportGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Bug Report");
+        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {

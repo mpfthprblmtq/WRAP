@@ -30,6 +30,7 @@ public class Show {
     private Profile[] hosts;
     private Day[] days;
     private Time[] times;
+    private String smURL;
 
     /**
      * ShowInfo()
@@ -41,12 +42,13 @@ public class Show {
      * @param days
      * @param times
      */
-    public Show(String showName, String showDesc, Profile[] hosts, Day[] days, Time[] times) {
+    public Show(String showName, String showDesc, Profile[] hosts, Day[] days, Time[] times, String smURL) {
         this.showName = showName;
         this.showDesc = showDesc;
         this.hosts = hosts;
         this.days = days;
         this.times = times;
+        this.smURL = smURL;
     }
 
     /**
@@ -117,6 +119,20 @@ public class Show {
      */
     public void setTimes(Time[] times) {
         this.times = times;
+    }
+    
+    /**
+     * @return the smURL
+     */
+    public String getSMURL() {
+        return smURL;
+    }
+
+    /**
+     * @param smURL the smURL to set
+     */
+    public void setSMURL(String smURL) {
+        this.smURL = smURL;
     }
 
     /**

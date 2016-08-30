@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
+import javax.swing.ImageIcon;
 
 public class ShowGUI extends javax.swing.JFrame {
 
@@ -228,6 +229,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Shows");
+        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -1612,6 +1614,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void add() {
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
+        String smURL = aSMField.getText();
 
         int hostNum = (Integer) aHostNumSpinner.getValue();
         int showNum = (Integer) aShowNumSpinner.getValue();
@@ -1672,7 +1675,7 @@ public class ShowGUI extends javax.swing.JFrame {
         }
 
         // create the show and listelement
-        Show s = new Show(showName, showDesc, hostArr, daysArr, timeArr);
+        Show s = new Show(showName, showDesc, hostArr, daysArr, timeArr, smURL);
         ListElement element = new ListElement(showName);
 
         if (ShowController.addShow(s)) {

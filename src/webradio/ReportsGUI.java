@@ -11,6 +11,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 
 public class ReportsGUI extends javax.swing.JFrame {
     
@@ -71,6 +72,7 @@ public class ReportsGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Reports");
+        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
