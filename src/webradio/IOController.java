@@ -23,11 +23,11 @@ public class IOController {
 
     // global files
     static File config = new File("config.txt");
-    static File accounts = new File("src\\app_ext\\uDistrib6.dll");
-    static File profiles = new File("src\\app_ext\\rDistrib5.dll");
-    static File shows = new File("src\\app_ext\\sDistrib4.dll");
-    static File finances = new File("src\\app_ext\\fDistrib7.dll");
-    static File totals = new File("src\\app_ext\\fDistrib8.dll");
+    static File accounts = new File("src/app_ext/uDistrib6.dll");
+    static File profiles = new File("src/app_ext/rDistrib5.dll");
+    static File shows = new File("src/app_ext/sDistrib4.dll");
+    static File finances = new File("src/app_ext/fDistrib7.dll");
+    static File totals = new File("src/app_ext/fDistrib8.dll");
 
     // date/time formatting
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
@@ -784,6 +784,7 @@ public class IOController {
 
                 String showName = str[0];
                 String showDesc = str[1];
+                String url = str[5];
 
                 String[] strHostArr = str[2].split(",");
                 String[] strDaysArr = str[3].split(",");
@@ -794,7 +795,7 @@ public class IOController {
                 Time[] timeArr = convertTimeArray(strTimeArr);
 
                 // create new Show objects and increment count
-                show[count] = new Show(showName, showDesc, hostArr, daysArr, timeArr);
+                show[count] = new Show(showName, showDesc, hostArr, daysArr, timeArr, url);
                 count++;
             }
             b_in.close();
@@ -906,6 +907,7 @@ public class IOController {
                 if (str[0].equals(name)) {
                     String showName = str[0];
                     String showDesc = str[1];
+                    String url = str[5];
 
                     String[] strHostArr = str[2].split(",");
                     String[] strDaysArr = str[3].split(",");
@@ -917,7 +919,7 @@ public class IOController {
                     Time[] timeArr = convertTimeArray(strTimeArr);
 
                     // return that new show
-                    return new Show(showName, showDesc, hostArr, daysArr, timeArr);
+                    return new Show(showName, showDesc, hostArr, daysArr, timeArr, url);
                 }
             }
             in.close();
@@ -956,6 +958,7 @@ public class IOController {
                 if (!str[0].equals(name)) {
                     String showName = str[0];
                     String showDesc = str[1];
+                    String url = str[5];
 
                     String[] strHostArr = str[2].split(",");
                     String[] strDaysArr = str[3].split(",");
@@ -965,7 +968,7 @@ public class IOController {
                     Day[] daysArr = convertDayArray(strDaysArr);
                     Time[] timeArr = convertTimeArray(strTimeArr);
 
-                    arr[count] = new Show(showName, showDesc, hostArr, daysArr, timeArr);
+                    arr[count] = new Show(showName, showDesc, hostArr, daysArr, timeArr, url);
                 }
                 count++;
             }

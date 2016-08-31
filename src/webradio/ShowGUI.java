@@ -265,6 +265,7 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setEnabled(false);
         sSP.setViewportView(sDescField);
 
+        sSMField.setEditable(false);
         sSMField.setEnabled(false);
 
         sDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1370,8 +1371,6 @@ public class ShowGUI extends javax.swing.JFrame {
         Profile[] pro = IOController.getAllProfiles();
         cbElements = new ComboBoxElement[total + 1];
 
-        // empty slot (--)
-        //cbElements[0] = new ComboBoxElement();
         if (pro != null && cbElements.length > 0) {
             cbElements[total] = new ComboBoxElement();
             for (int i = 0; i < total; i++) {
@@ -1422,6 +1421,7 @@ public class ShowGUI extends javax.swing.JFrame {
         // name and description
         sNameField.setText(s.getShowName());
         sDescField.setText(s.getShowDesc());
+        sSMField.setText(s.getSMURL());
 
         // show and host spinners
         sShowNumSpinner.setValue(s.getDays().length);
@@ -1614,7 +1614,14 @@ public class ShowGUI extends javax.swing.JFrame {
     public void add() {
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
-        String smURL = aSMField.getText();
+        
+        // for some reason, this cannot be blank
+        String smURL;
+        if(!aSMField.getText().equals("")) {
+            smURL = aSMField.getText();
+        } else {
+            smURL = "null";
+        }
 
         int hostNum = (Integer) aHostNumSpinner.getValue();
         int showNum = (Integer) aShowNumSpinner.getValue();
@@ -1933,6 +1940,13 @@ public class ShowGUI extends javax.swing.JFrame {
             sDescField.setForeground(Color.red);
         }
 
+        // PrimarySM
+        // if it contains separator character, throw error
+        if (!Util.sepCheck(sSMField.getText())) {
+            flag = false;
+            sSMField.setForeground(Color.red);
+        }
+        
         // ShowNum
         // calls external helper function
         if (sDayBox1.isEnabled()) {
@@ -2009,7 +2023,8 @@ public class ShowGUI extends javax.swing.JFrame {
         // HostNum
         // calls external helper function
         if (sHost1.isEnabled()) {
-            if (sHost1.getSelectedIndex() == 0) {
+            if (sHost1.getSelectedIndex() == profiles.getSize()
+                    && sHost1.isEnabled()) {
                 sHost1.setForeground(Color.red);
                 flag = false;
             }
@@ -2030,7 +2045,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (sHost2.isEnabled()) {
-            if (sHost2.getSelectedIndex() == 0) {
+            if (sHost2.getSelectedIndex() == profiles.getSize()
+                    && sHost2.isEnabled()) {
                 sHost2.setForeground(Color.red);
                 flag = false;
             }
@@ -2046,7 +2062,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (sHost3.isEnabled()) {
-            if (sHost3.getSelectedIndex() == 0) {
+            if (sHost3.getSelectedIndex() == profiles.getSize()
+                    && sHost3.isEnabled()) {
                 sHost3.setForeground(Color.red);
                 flag = false;
             }
@@ -2057,10 +2074,18 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (sHost4.isEnabled()) {
-            if (sHost4.getSelectedIndex() == 0) {
+            if (sHost4.getSelectedIndex() == profiles.getSize()
+                    && sHost4.isEnabled()) {
                 sHost4.setForeground(Color.red);
                 flag = false;
             }
+        }
+        if (!sHost1.isEnabled()
+                && !sHost2.isEnabled()
+                && !sHost3.isEnabled()
+                && !sHost4.isEnabled()) {
+            sHost1.setForeground(Color.red);
+            flag = false;
         }
 
         setSearchErrLabel();
@@ -2111,6 +2136,13 @@ public class ShowGUI extends javax.swing.JFrame {
             aDescField.setForeground(Color.red);
         }
 
+        // PrimarySM
+        // if it contains separator character, throw error
+        if (!Util.sepCheck(aSMField.getText())) {
+            flag = false;
+            aSMField.setForeground(Color.red);
+        }
+        
         // ShowNum
         // calls external helper function
         if (aDayBox1.isEnabled()) {
@@ -2187,7 +2219,8 @@ public class ShowGUI extends javax.swing.JFrame {
         // HostNum
         // calls external helper function
         if (aHost1.isEnabled()) {
-            if (aHost1.getSelectedIndex() == 0) {
+            if (aHost1.getSelectedIndex() == profiles.getSize()
+                    && aHost1.isEnabled()) {
                 aHost1.setForeground(Color.red);
                 flag = false;
             }
@@ -2208,7 +2241,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (aHost2.isEnabled()) {
-            if (aHost2.getSelectedIndex() == 0) {
+            if (aHost2.getSelectedIndex() == profiles.getSize()
+                    && aHost2.isEnabled()) {
                 aHost2.setForeground(Color.red);
                 flag = false;
             }
@@ -2224,7 +2258,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (aHost3.isEnabled()) {
-            if (aHost3.getSelectedIndex() == 0) {
+            if (aHost3.getSelectedIndex() == profiles.getSize()
+                    && aHost3.isEnabled()) {
                 aHost3.setForeground(Color.red);
                 flag = false;
             }
@@ -2235,11 +2270,19 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (aHost4.isEnabled()) {
-            if (aHost4.getSelectedIndex() == 0) {
+            if (aHost4.getSelectedIndex() == profiles.getSize()
+                    && aHost4.isEnabled()) {
                 aHost4.setForeground(Color.red);
                 flag = false;
             }
         }
+//        if (!aHost1.isEnabled()
+//                && !aHost2.isEnabled()
+//                && !aHost3.isEnabled()
+//                && !aHost4.isEnabled()) {
+//            aHost1.setForeground(Color.red);
+//            flag = false;
+//        }
 
         setAddErrLabel();
         return flag;
@@ -2257,30 +2300,37 @@ public class ShowGUI extends javax.swing.JFrame {
         String err = "";
 
         // hosts
-        if (aHost4.isEnabled()) {
+        //if (aHost4.isEnabled()) {
             if (aHost4.getForeground() == Color.red) {
                 errCount++;
                 err = "Error with host 4";
             }
-        }
-        if (aHost3.isEnabled()) {
+        //}
+        //if (aHost3.isEnabled()) {
             if (aHost3.getForeground() == Color.red) {
                 errCount++;
                 err = "Error with host 3";
             }
-        }
-        if (aHost2.isEnabled()) {
+        //}
+        //if (aHost2.isEnabled()) {
             if (aHost2.getForeground() == Color.red) {
                 errCount++;
                 err = "Error with host 2";
             }
-        }
-        if (aHost1.isEnabled()) {
+        //}
+        //if (aHost1.isEnabled()) {
             if (aHost1.getForeground() == Color.red) {
                 errCount++;
                 err = "Error with host 1";
             }
-        }
+        //}
+//        if (!aHost1.isEnabled()
+//                && !aHost2.isEnabled()
+//                && !aHost3.isEnabled()
+//                && !aHost4.isEnabled()) {
+//            errCount++;
+//            err = "Error with host fields";
+//        }
 
         // times
         if (aDayBox7.isEnabled()) {
@@ -2340,6 +2390,12 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
 
+        // primary sm
+        if (aSMField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with primary social media field";
+        }
+        
         // showDesc
         if (aDescField.getForeground() == Color.red) {
             errCount++;
@@ -2364,7 +2420,7 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     /**
-     * setAddErrLabel()
+     * setSearchErrLabel()
      *
      * Checks each field to see if the text color is red
      * If it is, add to count
@@ -2398,6 +2454,13 @@ public class ShowGUI extends javax.swing.JFrame {
                 errCount++;
                 err = "Error with host 1";
             }
+        }
+        if (!sHost1.isEnabled()
+                && !sHost2.isEnabled()
+                && !sHost3.isEnabled()
+                && !sHost4.isEnabled()) {
+            errCount++;
+            err = "Error with host fields";
         }
 
         // times
@@ -2458,6 +2521,12 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
 
+        // primary sm
+        if (sSMField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with primary social media field";
+        }
+        
         // showDesc
         if (sDescField.getForeground() == Color.red) {
             errCount++;
@@ -2492,6 +2561,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void asetAllForeground(Color c) {
         aNameField.setForeground(c);
         aDescField.setForeground(c);
+        aSMField.setForeground(c);
 
         aDayBox1.setForeground(c);
         aStartBox1.setForeground(c);
@@ -2538,6 +2608,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void ssetAllForeground(Color c) {
         sNameField.setForeground(c);
         sDescField.setForeground(c);
+        sSMField.setForeground(c);
 
         sDayBox1.setForeground(c);
         sStartBox1.setForeground(c);
@@ -3611,6 +3682,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void setSearchFieldsEnabled(boolean b) {
         sNameField.setEnabled(b);
         sDescField.setEnabled(b);
+        sSMField.setEnabled(b);
         sShowNumSpinner.setEnabled(b);
         sHostNumSpinner.setEnabled(b);
         sUpdateShowNumber(0);
@@ -3625,6 +3697,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void setAddValuesToNull() {
         aNameField.setText("");
         aDescField.setText("");
+        aSMField.setText("");
         aShowNumSpinner.setValue(0);
         aHostNumSpinner.setValue(0);
     }
@@ -3637,8 +3710,10 @@ public class ShowGUI extends javax.swing.JFrame {
     public void setSearchFieldsToValid() {
         sNameField.setEnabled(true);
         sDescField.setEnabled(true);
+        sSMField.setEnabled(true);
         sNameField.setBackground(Color.white);
         sDescField.setBackground(Color.white);
+        sSMField.setBackground(Color.white);
     }
 
     /**
@@ -3651,6 +3726,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void setSearchFieldsEditable(boolean b) {
         sNameField.setEditable(b);
         sDescField.setEditable(b);
+        sSMField.setEditable(b);
 
         sShowNumSpinner.setEnabled(b);
         sHostNumSpinner.setEnabled(b);
@@ -3672,6 +3748,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void setSearchValuesToNull() {
         sNameField.setText("");
         sDescField.setText("");
+        sSMField.setText("");
         sUpdateShowNumber(0);
         sUpdateHostNumber(0);
     }
@@ -3687,6 +3764,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public Show getShow() {
         String name = sNameField.getText();
         String desc = sDescField.getText();
+        String url = sSMField.getText();
 
         Profile[] p = new Profile[(Integer) sHostNumSpinner.getValue()];
         switch (p.length) {
@@ -3822,7 +3900,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 break;
         }
 
-        return new Show(name, desc, p, d, t);
+        return new Show(name, desc, p, d, t, url);
     }
 
     /**

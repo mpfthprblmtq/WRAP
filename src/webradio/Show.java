@@ -442,7 +442,8 @@ public class Show {
                     + showDesc + "///"
                     + convertProfileArrToString(hosts) + "///"
                     + convertArrToString(days) + "///"
-                    + convertArrToString(times) + "///";
+                    + convertArrToString(times) + "///"
+                    + smURL + "///";
         } else {
             return "--";
         }
