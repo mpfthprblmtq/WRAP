@@ -3687,6 +3687,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public Show getShow() {
         String name = sNameField.getText();
         String desc = sDescField.getText();
+        String url = sSMField.getText();
 
         Profile[] p = new Profile[(Integer) sHostNumSpinner.getValue()];
         switch (p.length) {
@@ -3822,7 +3823,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 break;
         }
 
-        return new Show(name, desc, p, d, t);
+        return new Show(name, desc, p, d, t, url);
     }
 
     /**

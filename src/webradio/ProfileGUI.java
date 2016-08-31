@@ -1799,7 +1799,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         try {
             Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_webradioItemActionPerformed
 
@@ -1807,7 +1807,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         try {
             Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_collegiatelinkItemActionPerformed
 
@@ -1815,7 +1815,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         try {
             Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_facebookItemActionPerformed
 
@@ -1823,7 +1823,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         try {
             Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_paypalItemActionPerformed
 

@@ -62,6 +62,13 @@ public class Main {
      */
     public static void main(String[] args) {
         
+        String n = "6a";
+        try {
+            int i = Integer.parseInt(n);
+        } catch(NumberFormatException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+        
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
