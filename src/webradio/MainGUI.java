@@ -75,7 +75,7 @@ public class MainGUI extends javax.swing.JFrame {
                     return false;
                 });
     }
-    
+
     void o() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
@@ -88,7 +88,7 @@ public class MainGUI extends javax.swing.JFrame {
                     return false;
                 });
     }
-    
+
     void t() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
@@ -101,13 +101,15 @@ public class MainGUI extends javax.swing.JFrame {
                     return false;
                 });
     }
-    
+
     void h() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
                     if (this.isFocusOwner()) {
                         if (e.getKeyCode() == KeyEvent.VK_H) {
                             logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sloth.png")));
+                            // log
+                            EventLog.add("slothslothsloth");
                         } else {
                         }
                     }
@@ -160,7 +162,7 @@ public class MainGUI extends javax.swing.JFrame {
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Web Radio Assistant Program");
         setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         setResizable(false);
@@ -170,6 +172,9 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -303,6 +308,7 @@ public class MainGUI extends javax.swing.JFrame {
         f1.setFocusCycleRoot(true);
         f1.setFocusable(false);
 
+        loginLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         loginLabel.setText(" ");
 
         menubar.setFocusable(false);
@@ -471,8 +477,8 @@ public class MainGUI extends javax.swing.JFrame {
                     .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -523,7 +529,6 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
         Main.LaunchShowGUI();
-
     }//GEN-LAST:event_showButtonActionPerformed
 
     /**
@@ -753,7 +758,7 @@ public class MainGUI extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing and return
@@ -824,7 +829,7 @@ public class MainGUI extends javax.swing.JFrame {
         try {
             Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_facebookItemActionPerformed
 
@@ -832,7 +837,7 @@ public class MainGUI extends javax.swing.JFrame {
         try {
             Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_collegiatelinkItemActionPerformed
 
@@ -840,7 +845,7 @@ public class MainGUI extends javax.swing.JFrame {
         try {
             Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_paypalItemActionPerformed
 
@@ -848,9 +853,13 @@ public class MainGUI extends javax.swing.JFrame {
         try {
             Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
         } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString());
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        Main.exit();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * main()
@@ -872,15 +881,12 @@ public class MainGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
+        //</editor-fold>
+        //</editor-fold>
+
         //</editor-fold>
         //</editor-fold>
 

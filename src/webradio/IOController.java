@@ -23,11 +23,11 @@ public class IOController {
 
     // global files
     static File config = new File("config.txt");
-    static File accounts = new File("src/app_ext/uDistrib6.dll");
-    static File profiles = new File("src/app_ext/rDistrib5.dll");
-    static File shows = new File("src/app_ext/sDistrib4.dll");
-    static File finances = new File("src/app_ext/fDistrib7.dll");
-    static File totals = new File("src/app_ext/fDistrib8.dll");
+    static File accounts = new File("src/app_ext/uDistrib6.txt");
+    static File profiles = new File("src/app_ext/rDistrib5.txt");
+    static File shows = new File("src/app_ext/sDistrib4.txt");
+    static File finances = new File("src/app_ext/fDistrib7.txt");
+    static File totals = new File("src/app_ext/fDistrib8.txt");
 
     // date/time formatting
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
@@ -65,8 +65,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
 
         // check finances
@@ -83,8 +83,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
 
         return true;
@@ -130,13 +130,13 @@ public class IOController {
                             // return the new account
                             return a;
                         }
-                    } catch (NullPointerException e) {
-                        System.err.println(e);
+                    } catch (NullPointerException ex) {
+                        Util.error(ex.toString(), ex.getMessage());
                     }
                 }
                 in.close();
-            } catch (FileNotFoundException e) {
-                System.err.println(e);
+            } catch (FileNotFoundException ex) {
+                Util.error(ex.toString(), ex.getMessage());
             }
             // return the null profile
             return a;
@@ -164,8 +164,8 @@ public class IOController {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return false;
     }
@@ -199,7 +199,8 @@ public class IOController {
         boolean password_verified = false;
 
         if (null == stored_hash || !stored_hash.startsWith("$2a$")) {
-            throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+            //throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
+            Util.error(new java.lang.IllegalArgumentException("Invalid hash provided for comparison").toString(), "Invalid hash provided for comparison");
         }
 
         password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
@@ -245,8 +246,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return pro;
     }
@@ -266,8 +267,8 @@ public class IOController {
                 total++;
             }
             a_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return total;
     }
@@ -297,13 +298,13 @@ public class IOController {
                     if (str[0].equals(u)) {
                         return true;
                     }
-                } catch (NullPointerException e) {
-                    System.err.println(e);
+                } catch (NullPointerException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
                 }
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         // no match found, return false
         return false;
@@ -324,8 +325,8 @@ public class IOController {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(accounts, true)))) {
             out.println(p.getUsername() + s + hashPassword(p.getPassword()) + s + p.getAccess() + s + p.getName());
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return false;
         }
         return true;
@@ -357,8 +358,8 @@ public class IOController {
                 }
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return a;
     }
@@ -393,8 +394,8 @@ public class IOController {
                 count++;
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
 
         // refilling the text file with new array
@@ -407,8 +408,8 @@ public class IOController {
                 }
             }
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return true;
     }
@@ -445,8 +446,8 @@ public class IOController {
                     return true;
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return false;
     }
@@ -487,8 +488,8 @@ public class IOController {
                 count++;
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return pro;
     }
@@ -508,8 +509,8 @@ public class IOController {
                 total++;
             }
             a_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return total;
     }
@@ -537,13 +538,13 @@ public class IOController {
                         // return true if match found
                         return true;
                     }
-                } catch (NullPointerException e) {
-                    System.err.println(e);
+                } catch (NullPointerException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
                 }
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         // return false if no match found
         return false;
@@ -563,8 +564,8 @@ public class IOController {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(profiles, true)))) {
             out.println(p.toString());
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return false;
         }
 
@@ -598,8 +599,8 @@ public class IOController {
                 }
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         // if no match found, return the null profile
         return p;
@@ -635,8 +636,8 @@ public class IOController {
                 count++;
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
 
         // refilling the text file with new array
@@ -649,8 +650,8 @@ public class IOController {
                 }
             }
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return true;
     }
@@ -677,8 +678,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
     }
 
@@ -717,8 +718,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
     }
 
@@ -746,8 +747,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return false;
     }
@@ -799,8 +800,8 @@ public class IOController {
                 count++;
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return show;
     }
@@ -820,8 +821,8 @@ public class IOController {
                 total++;
             }
             a_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return total;
     }
@@ -851,13 +852,13 @@ public class IOController {
                         // return true if match found
                         return true;
                     }
-                } catch (NullPointerException e) {
-                    System.err.println(e);
+                } catch (NullPointerException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
                 }
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         // return false if no match found
         return false;
@@ -877,8 +878,8 @@ public class IOController {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(shows, true)))) {
             out.println(show.toString());
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return false;
         }
 
@@ -923,8 +924,8 @@ public class IOController {
                 }
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         // if no match found, return the null show
         return null;
@@ -973,8 +974,8 @@ public class IOController {
                 count++;
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
 
         // refilling the text file with new array
@@ -987,8 +988,8 @@ public class IOController {
                 }
             }
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return true;
     }
@@ -1255,8 +1256,8 @@ public class IOController {
                 }
             }
             b_in.close();
-        } catch (FileNotFoundException | ParseException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException | ParseException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return t;
     }
@@ -1276,8 +1277,8 @@ public class IOController {
                 total++;
             }
             a_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return total;
     }
@@ -1295,8 +1296,8 @@ public class IOController {
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(finances, true)))) {
             out.println(t.toString());
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return false;
         }
 
@@ -1335,8 +1336,8 @@ public class IOController {
                 }
             }
             in.close();
-        } catch (FileNotFoundException | ParseException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException | ParseException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         // if no match found, return the null profile
         return t;
@@ -1377,8 +1378,8 @@ public class IOController {
                 count++;
             }
             b_in.close();
-        } catch (FileNotFoundException | ParseException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException | ParseException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
 
         // refilling the text file with new array
@@ -1391,8 +1392,8 @@ public class IOController {
                 }
             }
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return true;
     }
@@ -1413,8 +1414,8 @@ public class IOController {
                 n++;
             }
             b_in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println(e);
+        } catch (FileNotFoundException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
         return d;
     }
@@ -1425,8 +1426,8 @@ public class IOController {
             out.println(d[1]);
             out.println(d[2]);
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return false;
         }
         return true;
@@ -1487,8 +1488,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1528,8 +1529,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1573,8 +1574,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1608,8 +1609,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1643,8 +1644,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1681,8 +1682,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1719,8 +1720,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1757,8 +1758,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1795,8 +1796,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1836,8 +1837,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1871,8 +1872,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1921,8 +1922,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -1983,8 +1984,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -2056,8 +2057,8 @@ public class IOController {
             }
             out.close();
             return report;
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
             return null;
         }
     }
@@ -2171,11 +2172,8 @@ public class IOController {
                 }
             }
             out.close();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,
-                    e,
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
     }
 
@@ -2215,8 +2213,8 @@ public class IOController {
                 }
             }
             out.close();
-        } catch (IOException e) {
-            System.err.println(e);
+        } catch (IOException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
     }
 

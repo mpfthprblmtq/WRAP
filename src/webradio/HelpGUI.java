@@ -10,6 +10,8 @@ package webradio;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
@@ -41,6 +43,15 @@ public class HelpGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
@@ -48,6 +59,11 @@ public class HelpGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Help");
         setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -62,6 +78,8 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Deleting a Profile");
         treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Types of Profiles");
+        treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
@@ -71,6 +89,8 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Editing an Account");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Deleting an Account");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Types of Accounts");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields");
         treeNode2.add(treeNode3);
@@ -92,6 +112,14 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Finances");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Adding a Transaction");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Editing a Transaction");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Deleting a Transaction");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Editing Account amounts");
+        treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Using the money counter");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
@@ -153,6 +181,62 @@ public class HelpGUI extends javax.swing.JFrame {
         file.add(exitItem);
 
         menubar.add(file);
+
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
 
         help.setText("Help");
 
@@ -238,7 +322,7 @@ public class HelpGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing
@@ -350,9 +434,46 @@ public class HelpGUI extends javax.swing.JFrame {
         try {
             Desktop.getDesktop().open(new File("src\\dugs.mp4"));
         } catch (IOException ex) {
-            System.err.println(ex);
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_videoButtonActionPerformed
+
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // log
+            EventLog.add("opened help");
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * main()
@@ -374,15 +495,11 @@ public class HelpGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HelpGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HelpGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HelpGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HelpGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -392,18 +509,27 @@ public class HelpGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JMenu help;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu links;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JMenuItem paypalItem;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTextArea textArea;
     private javax.swing.JScrollPane textSP;
     private javax.swing.JTree tree;
     private javax.swing.JScrollPane treeSP;
     private javax.swing.JButton videoButton;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
 }

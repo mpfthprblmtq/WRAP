@@ -166,6 +166,8 @@ public class Show {
 
         if (arr.length == 1 && arr[0] == null) {
             return "0";
+        } else if (arr.length == 0) {
+            System.out.println("From convertProfileArrToString() : It died.");
         } else {
             for (int i = 0; i < arr.length; i++) {
                 if (arr[i] != null) {

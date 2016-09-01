@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
@@ -65,6 +67,15 @@ public class ReportsGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -232,6 +243,62 @@ public class ReportsGUI extends javax.swing.JFrame {
 
         menubar.add(file);
 
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
+
         help.setText("Help");
 
         helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
@@ -359,7 +426,7 @@ public class ReportsGUI extends javax.swing.JFrame {
                     .addComponent(financesRadio)
                     .addComponent(financesTypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(financesSortByBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -402,7 +469,7 @@ public class ReportsGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing
@@ -493,9 +560,41 @@ public class ReportsGUI extends javax.swing.JFrame {
         try {
             Desktop.getDesktop().edit(f);
         } catch (IOException ex) {
-            System.err.println(ex);
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_openButtonActionPerformed
+
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
 
     /**
      * generate()
@@ -515,6 +614,9 @@ public class ReportsGUI extends javax.swing.JFrame {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Profiles report generated successfully");
                 openButton.setEnabled(true);
+                
+                // log
+                EventLog.add("generated profiles report");
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Profiles report generation failed");
@@ -527,6 +629,9 @@ public class ReportsGUI extends javax.swing.JFrame {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Accounts report generated successfully");
                 openButton.setEnabled(true);
+                
+                // log
+                EventLog.add("generated accounts report");
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Accounts report generation failed");
@@ -539,6 +644,9 @@ public class ReportsGUI extends javax.swing.JFrame {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Tasks report generated successfully");
                 openButton.setEnabled(true);
+                
+                // log
+                EventLog.add("generated tasks report");
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Tasks report generation failed");
@@ -551,6 +659,9 @@ public class ReportsGUI extends javax.swing.JFrame {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Shows report generated successfully");
                 openButton.setEnabled(true);
+                
+                // log
+                EventLog.add("generated shows report");
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Shows report generation failed");
@@ -562,6 +673,9 @@ public class ReportsGUI extends javax.swing.JFrame {
                 errLabel.setForeground(Color.blue);
                 errLabel.setText("Finances report generated successfully");
                 openButton.setEnabled(true);
+                
+                // log
+                EventLog.add("generated finances report");
             } else {
                 errLabel.setForeground(Color.red);
                 errLabel.setText("Finances report generation failed");
@@ -654,15 +768,11 @@ public class ReportsGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -672,15 +782,19 @@ public class ReportsGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JRadioButton accountsRadio;
     private javax.swing.JComboBox<String> accountsSortByBox;
     private javax.swing.JComboBox<String> accountsTypeBox;
     private javax.swing.JLabel adminLabel;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JRadioButton financesRadio;
     private javax.swing.JComboBox<String> financesSortByBox;
     private javax.swing.JComboBox<String> financesTypeBox;
@@ -692,12 +806,16 @@ public class ReportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JMenu links;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JButton openButton;
+    private javax.swing.JMenuItem paypalItem;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JRadioButton profilesRadio;
     private javax.swing.JComboBox<String> profilesSortByBox;
     private javax.swing.JComboBox<String> profilesTypeBox;
@@ -708,5 +826,6 @@ public class ReportsGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton tasksRadio;
     private javax.swing.JComboBox<String> tasksSortByBox;
     private javax.swing.JComboBox<String> tasksTypeBox;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
 }

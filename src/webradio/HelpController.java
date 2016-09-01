@@ -79,6 +79,22 @@ public class HelpController {
                 + "profile with a blank object.  Select your option.\n\n"
                 + "The result of the deletion will be at the bottom of the window.";
     }
+    
+    /**
+     * Returns the string for types of profiles
+     *
+     * @return the specified help message
+     */
+    public static String getProfileTypes() {
+        return "Profile Types\n\n"
+                + "DJ:  A member of the club that is currently hosting a show\n\n"
+                + "Member:  Someone in the club that is currently not hosting "
+                + "a show, but is still active in the club\n\n"
+                + "Prospect:  Someone not in the club yet, needs to go through "
+                + "the steps to become a DJ yet\n\n"
+                + "Advisor:  A faculty member or professor that generally oversees "
+                + "the club and its operations";
+    }
 
     /**
      * Returns the string for generic accounts
