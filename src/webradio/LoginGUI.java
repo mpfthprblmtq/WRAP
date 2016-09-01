@@ -44,6 +44,11 @@ public class LoginGUI extends javax.swing.JFrame {
         setTitle("Login");
         setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         uLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         uLabel.setText("Username:");
@@ -181,6 +186,11 @@ public class LoginGUI extends javax.swing.JFrame {
         passwordField.selectAll();
     }//GEN-LAST:event_passwordFieldFocusGained
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // log
+        EventLog.add("program started");
+    }//GEN-LAST:event_formComponentShown
+
     /**
      * submit()
      * 
@@ -223,9 +233,13 @@ public class LoginGUI extends javax.swing.JFrame {
 
         } else {
             // match found
+            
             this.setVisible(false);
             Main.SetUser(res);
             Main.LaunchMainGUI();
+            
+            // log
+            EventLog.add("logged in");
         }
     }
 
@@ -250,7 +264,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Util.error(ex.toString(), ex.getMessage());
         }
         //</editor-fold>
 

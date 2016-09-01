@@ -83,31 +83,47 @@ public interface Util {
     /**
      * error()
      *
-     * Takes a string and shows an error dialog
+     * Takes a string from an exception and shows an error dialog
      *
      * @param ex
      * @param exm
      */
     static void error(String ex, String exm) {
-        
+
         // get the exception
         String[] ar = ex.split(":");
         String s = ar[0];
-        System.out.println(s);
         String[] arr = s.split("\\.");
-        String exception = arr[arr.length-1];
-        System.out.println(exception);
-        
+        String exception = arr[arr.length - 1];
+
         // get the message
         String message = exm;
-        
+
         String str = "<html><font color=#a10c10>" + exception + "\n"
                 + "<html><font color=#a10c10>" + message + "\n\n"
                 + "Please report a bug if you are seeing this!";
-        JOptionPane.showMessageDialog(null,
+
+        Object[] options = new Object[]{"Report Bug", "Dismiss"};
+        int n = JOptionPane.showOptionDialog(null,
                 str,
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
+                "ERROR",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.ERROR_MESSAGE,
+                null,
+                options,
+                options[1]);
+        
+        switch(n) {
+            case 0:
+                Main.LaunchBugReportGUI();
+                break;
+            case 1:
+                break;
+        }
+        
+        // log
+                EventLog.add("ran into an error: " 
+                        + exception + ": " + message);
     }
 
 }

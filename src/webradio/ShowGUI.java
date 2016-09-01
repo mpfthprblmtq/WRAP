@@ -4,10 +4,13 @@
  *
  * Author: Pat Ripley
  */
-
 package webradio;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -85,13 +88,17 @@ public class ShowGUI extends javax.swing.JFrame {
         }
 
         @Override
-        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+        public void insertString(int offset, String str, AttributeSet attr) {
             if (str == null) {
                 return;
             }
 
             if ((getLength() + str.length()) <= limit) {
-                super.insertString(offset, str, attr);
+                try {
+                    super.insertString(offset, str, attr);
+                } catch (BadLocationException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
+                }
             }
         }
     }
@@ -103,7 +110,7 @@ public class ShowGUI extends javax.swing.JFrame {
     DefaultComboBoxModel<ComboBoxElement> profiles = new DefaultComboBoxModel();
     ListElement[] elements;
     ComboBoxElement[] cbElements;
-    
+
     int numProfiles = IOController.getTotalProfiles();
 
     private static final int ADD = 0;
@@ -222,6 +229,15 @@ public class ShowGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -265,6 +281,7 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setEnabled(false);
         sSP.setViewportView(sDescField);
 
+        sSMField.setEditable(false);
         sSMField.setEnabled(false);
 
         sDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -970,6 +987,62 @@ public class ShowGUI extends javax.swing.JFrame {
 
         menubar.add(file);
 
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
+
         help.setText("Help");
 
         helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
@@ -1076,7 +1149,7 @@ public class ShowGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing
@@ -1120,7 +1193,8 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * Handles if the gear is clicked on
-     * @param evt 
+     *
+     * @param evt
      */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
         // probably some admin stuff
@@ -1132,7 +1206,8 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * Handles if the cursor hovers over the gear
-     * @param evt 
+     *
+     * @param evt
      */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
         loginLabel.setText("Advanced options");
@@ -1140,7 +1215,8 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * Handles if the cursor moves out of the gear, setting it back to normal
-     * @param evt 
+     *
+     * @param evt
      */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
         loginLabel.setText("Logged in as " + Main.p.getUsername());
@@ -1239,7 +1315,8 @@ public class ShowGUI extends javax.swing.JFrame {
     /**
      * Handles if the add button is clicked
      * If all the fields are kosher, based on aCheck(), add()
-     * @param evt 
+     *
+     * @param evt
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (aCheck()) {
@@ -1249,7 +1326,8 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * Handles if the delete button is pressed
-     * @param evt 
+     *
+     * @param evt
      */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // confirmation on delete
@@ -1273,7 +1351,8 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * Handles if the edit button is pressed
-     * @param evt 
+     *
+     * @param evt
      */
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         edit();
@@ -1282,7 +1361,8 @@ public class ShowGUI extends javax.swing.JFrame {
     /**
      * Handles if the submit button is clicked
      * If all the fields are kosher, based on sCheck(), submit()
-     * @param evt 
+     *
+     * @param evt
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (sCheck()) {
@@ -1317,7 +1397,8 @@ public class ShowGUI extends javax.swing.JFrame {
     /**
      * Handles when the window is closed
      * Calls Main.CloseShowGUI()
-     * @param evt 
+     *
+     * @param evt
      */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseShowGUI();
@@ -1330,6 +1411,38 @@ public class ShowGUI extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_formComponentShown
+
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
 
     /**
      * fillList()
@@ -1370,14 +1483,17 @@ public class ShowGUI extends javax.swing.JFrame {
         Profile[] pro = IOController.getAllProfiles();
         cbElements = new ComboBoxElement[total + 1];
 
-        // empty slot (--)
-        //cbElements[0] = new ComboBoxElement();
+        System.out.println("profiles.getSize() : " + profiles.getSize());
+        System.out.println("total (in fillList): " + total);
+
         if (pro != null && cbElements.length > 0) {
             cbElements[total] = new ComboBoxElement();
             for (int i = 0; i < total; i++) {
                 cbElements[i] = new ComboBoxElement(pro[i].getfName(),
                         pro[i].getlName(), pro[i].getId());
-                profiles.addElement(cbElements[i]);
+                if (profiles.getSize() < total) {
+                    profiles.addElement(cbElements[i]);
+                }
             }
         }
         return cbElements;
@@ -1388,7 +1504,7 @@ public class ShowGUI extends javax.swing.JFrame {
      *
      * Works with the global list of Profiles, which updates the JList graphics
      *
-     * @param action,  the type of action (either add or remove)
+     * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -1404,11 +1520,11 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * search()
-     * 
+     *
      * Searches for the show based on the name, then populates the search
      * panel with the show information
-     * 
-     * @param name 
+     *
+     * @param name
      */
     public void search(String name) {
         Show s = ShowController.searchShow(name);
@@ -1422,6 +1538,7 @@ public class ShowGUI extends javax.swing.JFrame {
         // name and description
         sNameField.setText(s.getShowName());
         sDescField.setText(s.getShowDesc());
+        sSMField.setText(s.getSMURL());
 
         // show and host spinners
         sShowNumSpinner.setValue(s.getDays().length);
@@ -1589,9 +1706,9 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * getProfileIndex()
-     * 
+     *
      * Returns the index to choose on the Host comboboxes
-     * 
+     *
      * @param id
      * @return the index to choose
      */
@@ -1606,15 +1723,25 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * add()
-     * 
+     *
      * Creates the show object out of the fields on add panel, then sends
      * it over to IOController to be put into the file
-     * 
+     *
      */
     public void add() {
+        
+        System.out.println("in add()");
+        
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
-        String smURL = aSMField.getText();
+
+        // for some reason, this cannot be blank
+        String smURL;
+        if (!aSMField.getText().equals("")) {
+            smURL = aSMField.getText();
+        } else {
+            smURL = "N/A";
+        }
 
         int hostNum = (Integer) aHostNumSpinner.getValue();
         int showNum = (Integer) aShowNumSpinner.getValue();
@@ -1687,6 +1814,11 @@ public class ShowGUI extends javax.swing.JFrame {
 
             setAddValuesToNull();
             aNameField.requestFocus();
+            
+            System.out.println("in add() success");
+            
+            // log
+                EventLog.add("added show " + s.getShowName());
         }
     }
 
@@ -1806,7 +1938,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * delete()
-     * 
+     *
      * Grabs the name of the show to delete and sends it to IOController
      */
     public void delete() {
@@ -1829,6 +1961,9 @@ public class ShowGUI extends javax.swing.JFrame {
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             submitButton.setEnabled(false);
+            
+            // log
+                EventLog.add("deleted show " + name);
         }
     }
 
@@ -1851,7 +1986,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * submit()
-     * 
+     *
      * Deletes the temporary show stored from edit(), then adds a new show based
      * on new information in search panel
      */
@@ -1886,6 +2021,9 @@ public class ShowGUI extends javax.swing.JFrame {
         // reset the form, selecting the new show just edited
         list.setSelectedIndex(list.getLastVisibleIndex());
         search(shows.getElementAt(shows.getSize() - 1).name);
+        
+        // log
+                EventLog.add("edited show " + s.getShowName());
 
     }
 
@@ -1931,6 +2069,13 @@ public class ShowGUI extends javax.swing.JFrame {
         } else if (!Util.sepCheck(sDescField.getText())) {
             flag = false;
             sDescField.setForeground(Color.red);
+        }
+
+        // PrimarySM
+        // if it contains separator character, throw error
+        if (!Util.sepCheck(sSMField.getText())) {
+            flag = false;
+            sSMField.setForeground(Color.red);
         }
 
         // ShowNum
@@ -2009,7 +2154,8 @@ public class ShowGUI extends javax.swing.JFrame {
         // HostNum
         // calls external helper function
         if (sHost1.isEnabled()) {
-            if (sHost1.getSelectedIndex() == 0) {
+            if (sHost1.getSelectedIndex() == profiles.getSize()
+                    && sHost1.isEnabled()) {
                 sHost1.setForeground(Color.red);
                 flag = false;
             }
@@ -2030,7 +2176,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (sHost2.isEnabled()) {
-            if (sHost2.getSelectedIndex() == 0) {
+            if (sHost2.getSelectedIndex() == profiles.getSize()
+                    && sHost2.isEnabled()) {
                 sHost2.setForeground(Color.red);
                 flag = false;
             }
@@ -2046,7 +2193,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (sHost3.isEnabled()) {
-            if (sHost3.getSelectedIndex() == 0) {
+            if (sHost3.getSelectedIndex() == profiles.getSize()
+                    && sHost3.isEnabled()) {
                 sHost3.setForeground(Color.red);
                 flag = false;
             }
@@ -2057,10 +2205,18 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
         if (sHost4.isEnabled()) {
-            if (sHost4.getSelectedIndex() == 0) {
+            if (sHost4.getSelectedIndex() == profiles.getSize()
+                    && sHost4.isEnabled()) {
                 sHost4.setForeground(Color.red);
                 flag = false;
             }
+        }
+        if (!sHost1.isEnabled()
+                && !sHost2.isEnabled()
+                && !sHost3.isEnabled()
+                && !sHost4.isEnabled()) {
+            sHost1.setForeground(Color.red);
+            flag = false;
         }
 
         setSearchErrLabel();
@@ -2111,136 +2267,162 @@ public class ShowGUI extends javax.swing.JFrame {
             aDescField.setForeground(Color.red);
         }
 
+        // PrimarySM
+        // if it contains separator character, throw error
+        if (!Util.sepCheck(aSMField.getText())) {
+            flag = false;
+            aSMField.setForeground(Color.red);
+        }
+
         // ShowNum
-        // calls external helper function
-        if (aDayBox1.isEnabled()) {
-            if (aDayBox1.getSelectedIndex() == 0
-                    || aStartBox1.getSelectedIndex() == 0
-                    || aEndBox1.getSelectedIndex() == 0) {
-                aDayBox1.setForeground(Color.red);
-                aStartBox1.setForeground(Color.red);
-                aEndBox1.setForeground(Color.red);
-                flag = false;
+        if (!aDayBox1.isEnabled()
+                && !aDayBox2.isEnabled()
+                && !aDayBox3.isEnabled()
+                && !aDayBox4.isEnabled()
+                && !aDayBox5.isEnabled()
+                && !aDayBox6.isEnabled()
+                && !aDayBox7.isEnabled()) {
+            aDayBox1.setForeground(Color.red);
+            flag = false;
+        } else {
+            if (aDayBox1.isEnabled()) {
+                if (aDayBox1.getSelectedIndex() == 0
+                        || aStartBox1.getSelectedIndex() == 0
+                        || aEndBox1.getSelectedIndex() == 0) {
+                    aDayBox1.setForeground(Color.red);
+                    aStartBox1.setForeground(Color.red);
+                    aEndBox1.setForeground(Color.red);
+                    flag = false;
+                }
             }
-        }
-        if (aDayBox2.isEnabled()) {
-            if (aDayBox2.getSelectedIndex() == 0
-                    || aStartBox2.getSelectedIndex() == 0
-                    || aEndBox2.getSelectedIndex() == 0) {
-                aDayBox2.setForeground(Color.red);
-                aStartBox2.setForeground(Color.red);
-                aEndBox2.setForeground(Color.red);
-                flag = false;
+            if (aDayBox2.isEnabled()) {
+                if (aDayBox2.getSelectedIndex() == 0
+                        || aStartBox2.getSelectedIndex() == 0
+                        || aEndBox2.getSelectedIndex() == 0) {
+                    aDayBox2.setForeground(Color.red);
+                    aStartBox2.setForeground(Color.red);
+                    aEndBox2.setForeground(Color.red);
+                    flag = false;
+                }
             }
-        }
-        if (aDayBox3.isEnabled()) {
-            if (aDayBox3.getSelectedIndex() == 0
-                    || aStartBox3.getSelectedIndex() == 0
-                    || aEndBox3.getSelectedIndex() == 0) {
-                aDayBox3.setForeground(Color.red);
-                aStartBox3.setForeground(Color.red);
-                aEndBox3.setForeground(Color.red);
-                flag = false;
+            if (aDayBox3.isEnabled()) {
+                if (aDayBox3.getSelectedIndex() == 0
+                        || aStartBox3.getSelectedIndex() == 0
+                        || aEndBox3.getSelectedIndex() == 0) {
+                    aDayBox3.setForeground(Color.red);
+                    aStartBox3.setForeground(Color.red);
+                    aEndBox3.setForeground(Color.red);
+                    flag = false;
+                }
             }
-        }
-        if (aDayBox4.isEnabled()) {
-            if (aDayBox4.getSelectedIndex() == 0
-                    || aStartBox4.getSelectedIndex() == 0
-                    || aEndBox4.getSelectedIndex() == 0) {
-                aDayBox4.setForeground(Color.red);
-                aStartBox4.setForeground(Color.red);
-                aEndBox4.setForeground(Color.red);
-                flag = false;
+            if (aDayBox4.isEnabled()) {
+                if (aDayBox4.getSelectedIndex() == 0
+                        || aStartBox4.getSelectedIndex() == 0
+                        || aEndBox4.getSelectedIndex() == 0) {
+                    aDayBox4.setForeground(Color.red);
+                    aStartBox4.setForeground(Color.red);
+                    aEndBox4.setForeground(Color.red);
+                    flag = false;
+                }
             }
-        }
-        if (aDayBox5.isEnabled()) {
-            if (aDayBox5.getSelectedIndex() == 0
-                    || aStartBox5.getSelectedIndex() == 0
-                    || aEndBox5.getSelectedIndex() == 0) {
-                aDayBox5.setForeground(Color.red);
-                aStartBox5.setForeground(Color.red);
-                aEndBox5.setForeground(Color.red);
-                flag = false;
+            if (aDayBox5.isEnabled()) {
+                if (aDayBox5.getSelectedIndex() == 0
+                        || aStartBox5.getSelectedIndex() == 0
+                        || aEndBox5.getSelectedIndex() == 0) {
+                    aDayBox5.setForeground(Color.red);
+                    aStartBox5.setForeground(Color.red);
+                    aEndBox5.setForeground(Color.red);
+                    flag = false;
+                }
             }
-        }
-        if (aDayBox6.isEnabled()) {
-            if (aDayBox6.getSelectedIndex() == 0
-                    || aStartBox6.getSelectedIndex() == 0
-                    || aEndBox6.getSelectedIndex() == 0) {
-                aDayBox6.setForeground(Color.red);
-                aStartBox6.setForeground(Color.red);
-                aEndBox6.setForeground(Color.red);
-                flag = false;
+            if (aDayBox6.isEnabled()) {
+                if (aDayBox6.getSelectedIndex() == 0
+                        || aStartBox6.getSelectedIndex() == 0
+                        || aEndBox6.getSelectedIndex() == 0) {
+                    aDayBox6.setForeground(Color.red);
+                    aStartBox6.setForeground(Color.red);
+                    aEndBox6.setForeground(Color.red);
+                    flag = false;
+                }
             }
-        }
-        if (aDayBox7.isEnabled()) {
-            if (aDayBox7.getSelectedIndex() == 0
-                    || aStartBox7.getSelectedIndex() == 0
-                    || aEndBox7.getSelectedIndex() == 0) {
-                aDayBox7.setForeground(Color.red);
-                aStartBox7.setForeground(Color.red);
-                aEndBox7.setForeground(Color.red);
-                flag = false;
+            if (aDayBox7.isEnabled()) {
+                if (aDayBox7.getSelectedIndex() == 0
+                        || aStartBox7.getSelectedIndex() == 0
+                        || aEndBox7.getSelectedIndex() == 0) {
+                    aDayBox7.setForeground(Color.red);
+                    aStartBox7.setForeground(Color.red);
+                    aEndBox7.setForeground(Color.red);
+                    flag = false;
+                }
             }
         }
 
         // HostNum
-        // calls external helper function
-        if (aHost1.isEnabled()) {
-            if (aHost1.getSelectedIndex() == 0) {
-                aHost1.setForeground(Color.red);
-                flag = false;
+        if (!aHost1.isEnabled()
+                && !aHost2.isEnabled()
+                && !aHost3.isEnabled()
+                && !aHost4.isEnabled()) {
+            aHost1.setForeground(Color.red);
+            flag = false;
+        } else {
+            if (aHost1.isEnabled()) {
+                if (aHost1.getSelectedIndex() == profiles.getSize()) {
+                    aHost1.setForeground(Color.red);
+                    flag = false;
+                }
+                if (aHost1.getSelectedIndex() == aHost2.getSelectedIndex()) {
+                    aHost1.setForeground(Color.red);
+                    aHost2.setForeground(Color.red);
+                    flag = false;
+                }
+                if (aHost1.getSelectedIndex() == aHost3.getSelectedIndex()) {
+                    aHost1.setForeground(Color.red);
+                    aHost3.setForeground(Color.red);
+                    flag = false;
+                }
+                if (aHost1.getSelectedIndex() == aHost4.getSelectedIndex()) {
+                    aHost1.setForeground(Color.red);
+                    aHost4.setForeground(Color.red);
+                    flag = false;
+                }
             }
-            if (aHost1.getSelectedIndex() == aHost2.getSelectedIndex()) {
-                aHost1.setForeground(Color.red);
-                aHost2.setForeground(Color.red);
-                flag = false;
+            if (aHost2.isEnabled()) {
+                if (aHost2.getSelectedIndex() == profiles.getSize()) {
+                    aHost2.setForeground(Color.red);
+                    flag = false;
+                }
+                if (aHost2.getSelectedIndex() == aHost3.getSelectedIndex()) {
+                    aHost2.setForeground(Color.red);
+                    aHost3.setForeground(Color.red);
+                    flag = false;
+                }
+                if (aHost2.getSelectedIndex() == aHost4.getSelectedIndex()) {
+                    aHost2.setForeground(Color.red);
+                    aHost4.setForeground(Color.red);
+                    flag = false;
+                }
             }
-            if (aHost1.getSelectedIndex() == aHost3.getSelectedIndex()) {
-                aHost1.setForeground(Color.red);
-                aHost3.setForeground(Color.red);
-                flag = false;
+            if (aHost3.isEnabled()) {
+                if (aHost3.getSelectedIndex() == profiles.getSize()) {
+                    aHost3.setForeground(Color.red);
+                    flag = false;
+                }
+                if (aHost3.getSelectedIndex() == aHost4.getSelectedIndex()) {
+                    aHost3.setForeground(Color.red);
+                    aHost4.setForeground(Color.red);
+                    flag = false;
+                }
             }
-            if (aHost1.getSelectedIndex() == aHost4.getSelectedIndex()) {
-                aHost1.setForeground(Color.red);
-                aHost4.setForeground(Color.red);
-                flag = false;
-            }
-        }
-        if (aHost2.isEnabled()) {
-            if (aHost2.getSelectedIndex() == 0) {
-                aHost2.setForeground(Color.red);
-                flag = false;
-            }
-            if (aHost2.getSelectedIndex() == aHost3.getSelectedIndex()) {
-                aHost2.setForeground(Color.red);
-                aHost3.setForeground(Color.red);
-                flag = false;
-            }
-            if (aHost2.getSelectedIndex() == aHost4.getSelectedIndex()) {
-                aHost2.setForeground(Color.red);
-                aHost4.setForeground(Color.red);
-                flag = false;
-            }
-        }
-        if (aHost3.isEnabled()) {
-            if (aHost3.getSelectedIndex() == 0) {
-                aHost3.setForeground(Color.red);
-                flag = false;
-            }
-            if (aHost3.getSelectedIndex() == aHost4.getSelectedIndex()) {
-                aHost3.setForeground(Color.red);
-                aHost4.setForeground(Color.red);
-                flag = false;
-            }
-        }
-        if (aHost4.isEnabled()) {
-            if (aHost4.getSelectedIndex() == 0) {
-                aHost4.setForeground(Color.red);
-                flag = false;
+            if (aHost4.isEnabled()) {
+                if (aHost4.getSelectedIndex() == profiles.getSize()) {
+                    aHost4.setForeground(Color.red);
+                    flag = false;
+                }
             }
         }
 
+        System.out.println(flag);
+        
         setAddErrLabel();
         return flag;
     }
@@ -2280,6 +2462,13 @@ public class ShowGUI extends javax.swing.JFrame {
                 errCount++;
                 err = "Error with host 1";
             }
+        }
+        if (!aHost1.isEnabled()
+                && !aHost2.isEnabled()
+                && !aHost3.isEnabled()
+                && !aHost4.isEnabled()) {
+            errCount++;
+            err = "Error with host fields";
         }
 
         // times
@@ -2339,6 +2528,22 @@ public class ShowGUI extends javax.swing.JFrame {
                 err = "Error with day slot 1";
             }
         }
+        if (!aDayBox1.isEnabled()
+                && !aDayBox2.isEnabled()
+                && !aDayBox3.isEnabled()
+                && !aDayBox4.isEnabled()
+                && !aDayBox5.isEnabled()
+                && !aDayBox6.isEnabled()
+                && !aDayBox7.isEnabled()) {
+            errCount++;
+            err = "Error with time fields";
+        }
+        
+        // primary sm
+        if (aSMField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with primary social media field";
+        }
 
         // showDesc
         if (aDescField.getForeground() == Color.red) {
@@ -2364,7 +2569,7 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     /**
-     * setAddErrLabel()
+     * setSearchErrLabel()
      *
      * Checks each field to see if the text color is red
      * If it is, add to count
@@ -2398,6 +2603,13 @@ public class ShowGUI extends javax.swing.JFrame {
                 errCount++;
                 err = "Error with host 1";
             }
+        }
+        if (!sHost1.isEnabled()
+                && !sHost2.isEnabled()
+                && !sHost3.isEnabled()
+                && !sHost4.isEnabled()) {
+            errCount++;
+            err = "Error with host fields";
         }
 
         // times
@@ -2458,6 +2670,12 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         }
 
+        // primary sm
+        if (sSMField.getForeground() == Color.red) {
+            errCount++;
+            err = "Error with primary social media field";
+        }
+
         // showDesc
         if (sDescField.getForeground() == Color.red) {
             errCount++;
@@ -2492,6 +2710,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void asetAllForeground(Color c) {
         aNameField.setForeground(c);
         aDescField.setForeground(c);
+        aSMField.setForeground(c);
 
         aDayBox1.setForeground(c);
         aStartBox1.setForeground(c);
@@ -2538,6 +2757,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void ssetAllForeground(Color c) {
         sNameField.setForeground(c);
         sDescField.setForeground(c);
+        sSMField.setForeground(c);
 
         sDayBox1.setForeground(c);
         sStartBox1.setForeground(c);
@@ -3386,34 +3606,34 @@ public class ShowGUI extends javax.swing.JFrame {
                 aHost2.setEnabled(false);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                aHost1.setSelectedIndex(aHost1.getItemCount()-1);
-                aHost2.setSelectedIndex(aHost2.getItemCount()-1);
-                aHost3.setSelectedIndex(aHost3.getItemCount()-1);
-                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
+                aHost1.setSelectedIndex(aHost1.getItemCount() - 1);
+                aHost2.setSelectedIndex(aHost2.getItemCount() - 1);
+                aHost3.setSelectedIndex(aHost3.getItemCount() - 1);
+                aHost4.setSelectedIndex(aHost4.getItemCount() - 1);
                 break;
             case 1:
                 aHost1.setEnabled(true);
                 aHost2.setEnabled(false);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                aHost2.setSelectedIndex(aHost2.getItemCount()-1);
-                aHost3.setSelectedIndex(aHost3.getItemCount()-1);
-                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
+                aHost2.setSelectedIndex(aHost2.getItemCount() - 1);
+                aHost3.setSelectedIndex(aHost3.getItemCount() - 1);
+                aHost4.setSelectedIndex(aHost4.getItemCount() - 1);
                 break;
             case 2:
                 aHost1.setEnabled(true);
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(false);
                 aHost4.setEnabled(false);
-                aHost3.setSelectedIndex(aHost3.getItemCount()-1);
-                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
+                aHost3.setSelectedIndex(aHost3.getItemCount() - 1);
+                aHost4.setSelectedIndex(aHost4.getItemCount() - 1);
                 break;
             case 3:
                 aHost1.setEnabled(true);
                 aHost2.setEnabled(true);
                 aHost3.setEnabled(true);
                 aHost4.setEnabled(false);
-                aHost4.setSelectedIndex(aHost4.getItemCount()-1);
+                aHost4.setSelectedIndex(aHost4.getItemCount() - 1);
                 break;
             case 4:
                 aHost1.setEnabled(true);
@@ -3439,34 +3659,34 @@ public class ShowGUI extends javax.swing.JFrame {
                 sHost2.setEnabled(false);
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
-                sHost1.setSelectedIndex(sHost1.getItemCount()-1);
-                sHost2.setSelectedIndex(sHost2.getItemCount()-1);
-                sHost3.setSelectedIndex(sHost3.getItemCount()-1);
-                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
+                sHost1.setSelectedIndex(sHost1.getItemCount() - 1);
+                sHost2.setSelectedIndex(sHost2.getItemCount() - 1);
+                sHost3.setSelectedIndex(sHost3.getItemCount() - 1);
+                sHost4.setSelectedIndex(sHost4.getItemCount() - 1);
                 break;
             case 1:
                 sHost1.setEnabled(true);
                 sHost2.setEnabled(false);
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
-                sHost2.setSelectedIndex(sHost2.getItemCount()-1);
-                sHost3.setSelectedIndex(sHost3.getItemCount()-1);
-                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
+                sHost2.setSelectedIndex(sHost2.getItemCount() - 1);
+                sHost3.setSelectedIndex(sHost3.getItemCount() - 1);
+                sHost4.setSelectedIndex(sHost4.getItemCount() - 1);
                 break;
             case 2:
                 sHost1.setEnabled(true);
                 sHost2.setEnabled(true);
                 sHost3.setEnabled(false);
                 sHost4.setEnabled(false);
-                sHost3.setSelectedIndex(sHost3.getItemCount()-1);
-                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
+                sHost3.setSelectedIndex(sHost3.getItemCount() - 1);
+                sHost4.setSelectedIndex(sHost4.getItemCount() - 1);
                 break;
             case 3:
                 sHost1.setEnabled(true);
                 sHost2.setEnabled(true);
                 sHost3.setEnabled(true);
                 sHost4.setEnabled(false);
-                sHost4.setSelectedIndex(sHost4.getItemCount()-1);
+                sHost4.setSelectedIndex(sHost4.getItemCount() - 1);
                 break;
             case 4:
                 sHost1.setEnabled(true);
@@ -3603,14 +3823,15 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * setSearchFieldsEnabled()
-     * 
+     *
      * Graphics updating
-     * 
-     * @param b 
+     *
+     * @param b
      */
     public void setSearchFieldsEnabled(boolean b) {
         sNameField.setEnabled(b);
         sDescField.setEnabled(b);
+        sSMField.setEnabled(b);
         sShowNumSpinner.setEnabled(b);
         sHostNumSpinner.setEnabled(b);
         sUpdateShowNumber(0);
@@ -3619,38 +3840,42 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * setAddValuesToNull()
-     * 
+     *
      * Graphics updating
      */
     public void setAddValuesToNull() {
         aNameField.setText("");
         aDescField.setText("");
+        aSMField.setText("");
         aShowNumSpinner.setValue(0);
         aHostNumSpinner.setValue(0);
     }
 
     /**
      * setSearchFieldsToValid()
-     * 
+     *
      * Graphics updating
      */
     public void setSearchFieldsToValid() {
         sNameField.setEnabled(true);
         sDescField.setEnabled(true);
+        sSMField.setEnabled(true);
         sNameField.setBackground(Color.white);
         sDescField.setBackground(Color.white);
+        sSMField.setBackground(Color.white);
     }
 
     /**
      * setSearchFieldsEditable()
-     * 
+     *
      * Graphics updating
-     * 
-     * @param b 
+     *
+     * @param b
      */
     public void setSearchFieldsEditable(boolean b) {
         sNameField.setEditable(b);
         sDescField.setEditable(b);
+        sSMField.setEditable(b);
 
         sShowNumSpinner.setEnabled(b);
         sHostNumSpinner.setEnabled(b);
@@ -3666,12 +3891,13 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * setSearchFieldsToValid()
-     * 
+     *
      * Graphics updating
      */
     public void setSearchValuesToNull() {
         sNameField.setText("");
         sDescField.setText("");
+        sSMField.setText("");
         sUpdateShowNumber(0);
         sUpdateHostNumber(0);
     }
@@ -3828,9 +4054,9 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /**
      * main()
-     * 
+     *
      * You already know what main does if you're reading this
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -3846,15 +4072,11 @@ public class ShowGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -3864,6 +4086,7 @@ public class ShowGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JComboBox<String> aDayBox1;
     private javax.swing.JComboBox<String> aDayBox2;
     private javax.swing.JComboBox<String> aDayBox3;
@@ -3909,19 +4132,26 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JLabel al7;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
+    private javax.swing.JMenuItem paypalItem;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JComboBox<String> sDayBox1;
     private javax.swing.JComboBox<String> sDayBox2;
     private javax.swing.JComboBox<String> sDayBox3;
@@ -3967,5 +4197,6 @@ public class ShowGUI extends javax.swing.JFrame {
     private javax.swing.JButton submitButton;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
 }

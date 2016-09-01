@@ -8,8 +8,11 @@ package webradio;
 
 // imports
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.Date;
 import javax.swing.DefaultListModel;
@@ -62,13 +65,17 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
 
         @Override
-        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+        public void insertString(int offset, String str, AttributeSet attr) {
             if (str == null) {
                 return;
             }
 
             if ((getLength() + str.length()) <= limit) {
-                super.insertString(offset, str, attr);
+                try {
+                    super.insertString(offset, str, attr);
+                } catch (BadLocationException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
+                }
             }
         }
     }
@@ -226,6 +233,15 @@ public class FinanceGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -925,7 +941,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Accounts", accountsPanel);
@@ -1213,7 +1229,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hundredL))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Funds Calculator", moneycounterPanel);
@@ -1270,6 +1286,62 @@ public class FinanceGUI extends javax.swing.JFrame {
         file.add(exitItem);
 
         menubar.add(file);
+
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
 
         help.setText("Help");
 
@@ -1391,7 +1463,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing
@@ -1584,7 +1656,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         try {
             Runtime.getRuntime().exec("calc");
         } catch (IOException ex) {
-            System.err.println(ex);
+            Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_calcButtonActionPerformed
 
@@ -1945,6 +2017,38 @@ public class FinanceGUI extends javax.swing.JFrame {
         //aNotesField.selectAll();
     }//GEN-LAST:event_aNotesFieldFocusGained
 
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
+
     // </editor-fold>
     
     /**
@@ -1997,6 +2101,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         // total
         double total = d[0] + d[1] + d[2];
         totalField.setText("$" + money.format(total));
+        
+        // log
+            EventLog.add("edited account totals");
     }
 
     /**
@@ -2075,6 +2182,10 @@ public class FinanceGUI extends javax.swing.JFrame {
 
             setAddValuesToNull();
             aStoreField.requestFocus();
+            
+            // log
+            EventLog.add("added transaction " + t.getID()
+                    + " (" + t.getAmount() + " - " + t.getStore() + ")");
 
             // else if addition fails
         } else {
@@ -2171,6 +2282,10 @@ public class FinanceGUI extends javax.swing.JFrame {
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             submitButton.setEnabled(false);
+            
+            // log
+            EventLog.add("deleted transaction " + id
+                    + " (" + amount + " - " + store + ")");
         }
     }
 
@@ -2229,6 +2344,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         // reset the form, selecting the new Profile just edited
         list.setSelectedIndex(transactions.getSize() - 1);
         search(transactions.getElementAt(transactions.getSize() - 1).id);
+        
+        // log
+            EventLog.add("edited transaction " + t.getID()
+                    + " (" + t.getAmount() + " - " + t.getStore() + ")");
 
     }
 
@@ -2649,15 +2768,11 @@ public class FinanceGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FinanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FinanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FinanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FinanceGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            Util.error(ex.toString(), ex.getMessage());
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -2680,6 +2795,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel L7;
     private javax.swing.JLabel L8;
     private javax.swing.JLabel L9;
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JFormattedTextField aAmountField;
     private javax.swing.JComboBox<String> aDateBox;
     private javax.swing.JComboBox<String> aMonthBox;
@@ -2708,6 +2824,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel cashPanel;
     private javax.swing.JButton cashSubmitButton;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel dimeL;
     private javax.swing.JSpinner dimeSpinner;
@@ -2718,9 +2835,11 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JLabel fiftyL;
     private javax.swing.JSpinner fiftySpinner;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JLabel fiveL;
     private javax.swing.JSpinner fiveSpinner;
     private javax.swing.JLabel halfdollarL;
@@ -2750,12 +2869,14 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
@@ -2763,8 +2884,10 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel moneycounterPanel;
     private javax.swing.JLabel nickelL;
     private javax.swing.JSpinner nickelSpinner;
+    private javax.swing.JMenuItem paypalItem;
     private javax.swing.JLabel pennyL;
     private javax.swing.JSpinner pennySpinner;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JLabel quarterL;
     private javax.swing.JSpinner quarterSpinner;
     private javax.swing.JFormattedTextField sAmountField;
@@ -2786,6 +2909,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane transactionsTP;
     private javax.swing.JLabel twentyL;
     private javax.swing.JSpinner twentySpinner;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
     // </editor-fold>
 }

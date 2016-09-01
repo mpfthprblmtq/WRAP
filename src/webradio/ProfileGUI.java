@@ -60,13 +60,17 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         }
 
         @Override
-        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+        public void insertString(int offset, String str, AttributeSet attr) {
             if (str == null) {
                 return;
             }
 
             if ((getLength() + str.length()) <= limit) {
-                super.insertString(offset, str, attr);
+                try {
+                    super.insertString(offset, str, attr);
+                } catch (BadLocationException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
+                }
             }
         }
     }
@@ -1312,7 +1316,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // do a thing based on response
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing
@@ -1997,6 +2001,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             submitButton.setEnabled(false);
+            
+            // log
+            EventLog.add("deleted profile " + id
+                    + " (" + lName + ", " + fName + ")");
         }
     }
 
@@ -2064,6 +2072,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // reset the form, selecting the new Profile just edited
         list.setSelectedIndex(people.getSize() - 1);
         search(people.getElementAt(people.getSize() - 1).id);
+        
+        // log
+            EventLog.add("edited profile " + p.getId()
+                    + " (" + p.getlName() + ", " + p.getfName() + ")");
     }
 
     /**
@@ -2817,7 +2829,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProfileGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Util.error(ex.toString(), ex.getMessage());
         }
         //</editor-fold>
 

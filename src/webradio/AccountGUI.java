@@ -4,12 +4,15 @@
  *
  * Author: Pat Ripley
  */
-
 package webradio;
 
 // imports
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -59,13 +62,17 @@ public class AccountGUI extends javax.swing.JFrame {
         }
 
         @Override
-        public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+        public void insertString(int offset, String str, AttributeSet attr) {
             if (str == null) {
                 return;
             }
 
             if ((getLength() + str.length()) <= limit) {
-                super.insertString(offset, str, attr);
+                try {
+                    super.insertString(offset, str, attr);
+                } catch (BadLocationException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
+                }
             }
         }
     }
@@ -146,6 +153,15 @@ public class AccountGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -542,6 +558,62 @@ public class AccountGUI extends javax.swing.JFrame {
 
         menubar.add(file);
 
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
+
         help.setText("Help");
 
         helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
@@ -608,7 +680,7 @@ public class AccountGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(errLabel)
                 .addContainerGap())
         );
@@ -671,8 +743,8 @@ public class AccountGUI extends javax.swing.JFrame {
                     "403 : Forbidden\nAccount " + sUField.getText() + " is logged in.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            
-        // make sure they're admin
+
+            // make sure they're admin
         } else if (Main.p.getAccess() == 0) {
             int res = JOptionPane.showConfirmDialog(
                     null,
@@ -689,8 +761,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 default:
                 // do nothing
                 }
-        
-        // if they are not admin
+
+            // if they are not admin
         } else {
             JOptionPane.showMessageDialog(this,
                     "403 : Forbidden\nAdministrator access only",
@@ -819,7 +891,7 @@ public class AccountGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                System.exit(0);
+                Main.exit();
                 break;
             default:
             // do nothing
@@ -1024,8 +1096,39 @@ public class AccountGUI extends javax.swing.JFrame {
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
+
     // </editor-fold>
-    
     /**
      * fillList()
      *
@@ -1221,6 +1324,9 @@ public class AccountGUI extends javax.swing.JFrame {
             setAddValuesToNull();
             aUField.requestFocus();
 
+            // log
+            EventLog.add("added account " + p.getUsername());
+
         } else {
             // errLabel
             errLabel.setForeground(Color.red);
@@ -1288,6 +1394,10 @@ public class AccountGUI extends javax.swing.JFrame {
             deleteButton.setEnabled(false);
             editButton.setEnabled(false);
             submitButton.setEnabled(false);
+
+            // log
+            EventLog.add("deleted account " + p.getUsername());
+
         } else {
             errLabel.setForeground(Color.red);
             errLabel.setText("User not deleted successfully");
@@ -1341,10 +1451,10 @@ public class AccountGUI extends javax.swing.JFrame {
      * That's pretty much it
      */
     public void rootSubmit() {
-        
+
         // get the username from the field
         String username = sUField.getText();
-        
+
         // manual error checking
         if (sAComboBox.getSelectedIndex() == 3) {
             JOptionPane.showMessageDialog(this,
@@ -1373,6 +1483,9 @@ public class AccountGUI extends javax.swing.JFrame {
                 // selets it
                 list.setSelectedIndex(list.getLastVisibleIndex());
                 search(users.getElementAt(users.getSize() - 1).username);
+
+                // log
+                EventLog.add("edited account " + username);
             }
         }
     }
@@ -1427,7 +1540,7 @@ public class AccountGUI extends javax.swing.JFrame {
                     // update the list
                     updateList(REMOVE, t);
                     updateList(ADD, q);
-                    
+
                 } else {
                     errLabel.setForeground(Color.red);
                     errLabel.setText("Error submitting account");
@@ -1450,9 +1563,12 @@ public class AccountGUI extends javax.swing.JFrame {
 
                 passwordChangeTo = "";
                 changePasswordLabel2.setText(" ");
-                
+
                 list.setSelectedIndex(list.getLastVisibleIndex());
                 search(users.getElementAt(users.getSize() - 1).username);
+
+                // log
+                EventLog.add("edited account " + username);
             } else {
                 // error with confirmPassword
             }
@@ -1808,22 +1924,12 @@ public class AccountGUI extends javax.swing.JFrame {
 
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            Util.error(ex.toString(), ex.getMessage());
 
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AccountGUI.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -1843,6 +1949,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JLabel L7;
     private javax.swing.JLabel L8;
     private javax.swing.JLabel L9;
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JComboBox<String> aAComboBox;
     private javax.swing.JTextField aAField;
     private javax.swing.JTextField aNField;
@@ -1856,18 +1963,25 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JLabel changePasswordLabel;
     private javax.swing.JLabel changePasswordLabel2;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
     private javax.swing.JMenuBar menubar;
     private javax.swing.JLabel passwordMatch;
+    private javax.swing.JMenuItem paypalItem;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JComboBox<String> sAComboBox;
     private javax.swing.JTextField sAField;
     private javax.swing.JTextField sNField;
@@ -1878,6 +1992,7 @@ public class AccountGUI extends javax.swing.JFrame {
     private javax.swing.JButton submitButton;
     private javax.swing.JMenuItem suggestionItem;
     private javax.swing.JTabbedPane tabs;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
     // </editor-fold>
 } // End AccountGUI

@@ -6,7 +6,6 @@
  *
  * Author: Pat Ripley
  */
-
 package webradio;
 
 public class Main {
@@ -24,7 +23,7 @@ public class Main {
     // profileGUI
     static ProfileGUI profileGUI;
     static boolean profileGUIVisible = false;
-    
+
     // taskGUI
     static TaskGUI taskGUI;
     static boolean taskGUIVisible = false;
@@ -40,53 +39,54 @@ public class Main {
     // reportsGUI
     static ReportsGUI reportsGUI;
     static boolean reportsGUIVisible = false;
-    
+
     // bugReportGUI
     static BugReportGUI bugreportGUI;
     static boolean bugreportGUIVisible = false;
-    
+
     // suggestionReportGUI
     static SuggestionReportGUI suggestionreportGUI;
     static boolean suggestionreportGUIVisible = false;
-    
+
     // helpGUI
     static HelpGUI helpGUI;
     static boolean helpGUIVisible = false;
 
     /**
      * main()
-     * 
+     *
      * Sets a LoginGUI visible
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
-        
-        String n = "6a";
-        try {
-            int i = Integer.parseInt(n);
-        } catch(NumberFormatException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-        
+
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
     }
 
+    public static void exit() {
+        // log
+        EventLog.add("logged out");
+        System.exit(0);
+    }
+
     /**
      * SetUser()
      * Set the global user
-     * @param p 
+     *
+     * @param p
      */
     public static void SetUser(Account p) {
         Main.p = p;
     }
-    
+
     /**
      * getUser()
      * Return the global user
-     * @return 
+     *
+     * @return
      */
     public static Account getUser() {
         return p;
@@ -94,10 +94,14 @@ public class Main {
 
     /**
      * Logout()
-     * 
+     *
      * Clears the global account, then creates a new LoginGUI
      */
     public static void Logout() {
+
+        // log
+        EventLog.add("logged out");
+
         Main.p = null;
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
@@ -153,7 +157,7 @@ public class Main {
         profileGUI.dispose();
         profileGUIVisible = false;
     }
-    
+
     /**
      * TaskGUI
      * Controls the TaskGUI opening and closing
@@ -225,7 +229,7 @@ public class Main {
         reportsGUI.dispose();
         reportsGUIVisible = false;
     }
-    
+
     /**
      * BugReportGUI
      * Controls the BugReportGUI opening and closing
@@ -242,7 +246,7 @@ public class Main {
     public static void CloseBugReportGUI() {
         bugreportGUIVisible = false;
     }
-    
+
     /**
      * SuggestionReportGUI
      * Controls the SuggestionReportGUI opening and closing
@@ -259,7 +263,7 @@ public class Main {
     public static void CloseSuggestionReportGUI() {
         suggestionreportGUIVisible = false;
     }
-    
+
     /**
      * HelpGUI
      * Controls the HelpGUI opening and closing
