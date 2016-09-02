@@ -99,13 +99,15 @@ public class Main {
      */
     public static void Logout() {
 
-        // log
-        EventLog.add("logged out");
+        
 
         Main.p = null;
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
+        
+        // log
+        EventLog.add("logged out");
     }
 
     /**

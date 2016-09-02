@@ -164,7 +164,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Web Radio Assistant Program");
-        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
+        setIconImage(new ImageIcon("src/images/goose.png").getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {

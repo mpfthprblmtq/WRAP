@@ -20,7 +20,7 @@ public class EventLog {
 
     // global date formatting and file objects
     static DateFormat df = new SimpleDateFormat("MM/dd/yy HH:mm");
-    static File log = new File("src\\logs\\eventLog.txt");
+    static File log = new File("src/logs/eventLog.txt");
 
     /**
      * add()

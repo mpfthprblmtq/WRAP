@@ -15,7 +15,6 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.swing.JOptionPane;
 import webradio.Show.Day;
 import webradio.Show.Time;
 
@@ -1470,7 +1469,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Profiles (Simple) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1508,7 +1507,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Profiles (Contact) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1548,7 +1547,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Profiles (Full) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1593,7 +1592,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Accounts (Simple) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1628,7 +1627,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Accounts (Full) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1663,7 +1662,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Tasks (Dues) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1701,7 +1700,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Tasks (Trained) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1739,7 +1738,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Tasks (Paperwork) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1777,7 +1776,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Tasks (Show Desc_Time) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1815,7 +1814,7 @@ public class IOController {
 // creating the file name
         Date date = new Date();
         String filename = "Tasks (Full) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1856,7 +1855,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Shows (Simple) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1891,7 +1890,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Shows (Full) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -1941,7 +1940,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Finances (Transactions) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -2003,7 +2002,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = "Finances (Full) " + filedf.format(date);
-        File report = new File("Reports\\" + filename + ".txt");
+        File report = new File("Reports/" + filename + ".txt");
 
         // refilling the text file with new array
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(report, false)))) {
@@ -2150,7 +2149,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = filedf.format(date);
-        File bug = new File("src\\bugreports\\bugs\\" + filename + ".txt");
+        File bug = new File("src/bugreports/bugs/" + filename + ".txt");
 
         // creating the file
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(bug, false)))) {
@@ -2191,7 +2190,7 @@ public class IOController {
         // creating the file name
         Date date = new Date();
         String filename = filedf.format(date);
-        File bug = new File("src\\bugreports\\suggestions\\" + filename + ".txt");
+        File bug = new File("src/bugreports/suggestions/" + filename + ".txt");
 
         // creating the file
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(bug, false)))) {

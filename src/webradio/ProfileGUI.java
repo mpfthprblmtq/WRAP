@@ -192,7 +192,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W.R.A.P. - Profiles");
-        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
+        setIconImage(new ImageIcon("src/images/goose.png").getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {

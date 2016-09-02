@@ -42,7 +42,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
-        setIconImage(new ImageIcon("src\\images\\goose.png").getImage());
+        setIconImage(new ImageIcon("src/images/goose.png").getImage());
         setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -188,7 +188,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // log
-        EventLog.add("program started");
+        //EventLog.add("program started");
     }//GEN-LAST:event_formComponentShown
 
     /**

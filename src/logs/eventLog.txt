@@ -12,3 +12,19 @@
 [09/01/16 01:14] user pripley logged out
 [09/01/16 01:14] WRAP started
 [09/01/16 14:00] WRAP started
+[09/01/16 14:07] WRAP started
+[09/01/16 14:08] user root logged in
+[09/01/16 14:08] user root logged out
+[09/01/16 16:28] WRAP started
+[09/01/16 16:28] user pripley logged in
+[09/01/16 17:21] user pripley logged out
+[09/01/16 18:14] WRAP started
+[09/01/16 18:14] user root logged in
+[09/01/16 18:14] WRAP started
+[09/01/16 18:14] WRAP started
+[09/01/16 18:14] WRAP started
+[09/01/16 18:15] user root logged in
+[09/01/16 18:16] WRAP started
+[09/01/16 18:16] WRAP started
+[09/01/16 18:16] user root logged in
+[09/01/16 18:48] user root logged out
