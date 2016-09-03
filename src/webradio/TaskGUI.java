@@ -95,7 +95,7 @@ public class TaskGUI extends javax.swing.JFrame {
         SIUeMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         profilesMenu = new javax.swing.JMenu();
-        collegiatelinkItem = new javax.swing.JMenuItem();
+        collegiatelinkItem2 = new javax.swing.JMenuItem();
         facebookItem = new javax.swing.JMenuItem();
         financesMenu = new javax.swing.JMenu();
         paypalItem = new javax.swing.JMenuItem();
@@ -118,6 +118,8 @@ public class TaskGUI extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+
+        sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         list.setModel(fillList());
         list.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,6 +163,7 @@ public class TaskGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Status:");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -187,14 +190,14 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fNameField)
-                            .addComponent(lNameField)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lNameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                            .addComponent(fNameField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(statusField)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -313,14 +316,14 @@ public class TaskGUI extends javax.swing.JFrame {
 
         profilesMenu.setText("Profiles");
 
-        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
-        collegiatelinkItem.setText("CollegiateLink");
-        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+        collegiatelinkItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem2.setText("CollegiateLink");
+        collegiatelinkItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                collegiatelinkItemActionPerformed(evt);
+                collegiatelinkItem2ActionPerformed(evt);
             }
         });
-        profilesMenu.add(collegiatelinkItem);
+        profilesMenu.add(collegiatelinkItem2);
 
         facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
         facebookItem.setText("Facebook (Show Hosts)");
@@ -388,21 +391,22 @@ public class TaskGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1)
-                        .addComponent(adminLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(417, 417, 417)
-                                .addComponent(gear))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(errLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(adminLabel))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(417, 417, 417)
+                                    .addComponent(gear)))
+                            .addGap(0, 0, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -411,14 +415,13 @@ public class TaskGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(gear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(adminLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sp))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(adminLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errLabel)
                 .addContainerGap())
@@ -521,7 +524,7 @@ public class TaskGUI extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
         switch (res) {
             case 0:
-                Main.exit();
+                System.exit(0);
                 break;
             default:
             // do nothing
@@ -551,11 +554,7 @@ public class TaskGUI extends javax.swing.JFrame {
      * admin stuff will probably go here
      */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
-        // probably some admin stuff
-        JOptionPane.showMessageDialog(this,
-                "Administration features\nNot implemented yet",
-                "Advanced",
-                JOptionPane.INFORMATION_MESSAGE);
+        // admin();
     }//GEN-LAST:event_adminLabelMouseClicked
 
     /**
@@ -563,7 +562,7 @@ public class TaskGUI extends javax.swing.JFrame {
      * Sets the text of loginLabel
      */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
-        loginLabel.setText("Advanced options");
+        //loginLabel.setText("Advanced options");
     }//GEN-LAST:event_adminLabelMouseEntered
 
     /**
@@ -571,7 +570,7 @@ public class TaskGUI extends javax.swing.JFrame {
      * Sets the text of loginLabel
      */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
-        loginLabel.setText("Logged in as " + Main.p.getUsername());
+        //loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
 
     private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
@@ -590,17 +589,17 @@ public class TaskGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_webradioItemActionPerformed
 
-    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+    private void collegiatelinkItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItem2ActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
-    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+    }//GEN-LAST:event_collegiatelinkItem2ActionPerformed
 
     private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -765,10 +764,11 @@ public class TaskGUI extends javax.swing.JFrame {
 
     /**
      * admin()
-     * Not implemented yet
+     *
+     * Does admin things, like clear out things for a semester and such
      */
     public void admin() {
-
+        // not implemented yet
     }
 
     /**
@@ -812,6 +812,8 @@ public class TaskGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem closeItem;
     private javax.swing.JMenuItem collegiatelinkItem;
+    private javax.swing.JMenuItem collegiatelinkItem1;
+    private javax.swing.JMenuItem collegiatelinkItem2;
     private javax.swing.JCheckBox dpBox;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;

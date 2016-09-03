@@ -144,10 +144,6 @@ public class MainGUI extends javax.swing.JFrame {
         file = new javax.swing.JMenu();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        verstionItem = new javax.swing.JMenuItem();
-        devItem = new javax.swing.JMenuItem();
-        thanksItem = new javax.swing.JMenuItem();
         links = new javax.swing.JMenu();
         webradioItem = new javax.swing.JMenuItem();
         SIUeMenu = new javax.swing.JMenu();
@@ -157,12 +153,16 @@ public class MainGUI extends javax.swing.JFrame {
         facebookItem = new javax.swing.JMenuItem();
         financesMenu = new javax.swing.JMenu();
         paypalItem = new javax.swing.JMenuItem();
+        aboutMenu = new javax.swing.JMenu();
+        verstionItem = new javax.swing.JMenuItem();
+        devItem = new javax.swing.JMenuItem();
+        thanksItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
         suggestionItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W.R.A.P. - Web Radio Assistant Program");
         setIconImage(new ImageIcon("src/images/goose.png").getImage());
         setResizable(false);
@@ -172,9 +172,6 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -333,34 +330,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         menubar.add(file);
 
-        jMenu1.setText("About");
-
-        verstionItem.setText("Version");
-        verstionItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verstionItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(verstionItem);
-
-        devItem.setText("Developer");
-        devItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                devItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(devItem);
-
-        thanksItem.setText("Special Thanks");
-        thanksItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                thanksItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(thanksItem);
-
-        menubar.add(jMenu1);
-
         links.setText("Links");
 
         webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
@@ -416,6 +385,34 @@ public class MainGUI extends javax.swing.JFrame {
         links.add(financesMenu);
 
         menubar.add(links);
+
+        aboutMenu.setText("About");
+
+        verstionItem.setText("Version");
+        verstionItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verstionItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(verstionItem);
+
+        devItem.setText("Developer");
+        devItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                devItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(devItem);
+
+        thanksItem.setText("Special Thanks");
+        thanksItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thanksItemActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(thanksItem);
+
+        menubar.add(aboutMenu);
 
         help.setText("Help");
 
@@ -758,7 +755,7 @@ public class MainGUI extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
         switch (res) {
             case 0:
-                Main.exit();
+                System.exit(0);
                 break;
             default:
             // do nothing and return
@@ -825,30 +822,6 @@ public class MainGUI extends javax.swing.JFrame {
         Main.LaunchHelpGUI();
     }//GEN-LAST:event_helpItemActionPerformed
 
-    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_facebookItemActionPerformed
-
-    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_collegiatelinkItemActionPerformed
-
-    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_paypalItemActionPerformed
-
     private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
         try {
             Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
@@ -857,9 +830,29 @@ public class MainGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_webradioItemActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Main.exit();
-    }//GEN-LAST:event_formWindowClosed
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
 
     /**
      * main()
@@ -898,6 +891,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu SIUeMenu;
+    private javax.swing.JMenu aboutMenu;
     private javax.swing.JButton accountButton;
     private javax.swing.JMenuItem bugItem;
     private javax.swing.JMenuItem collegiatelinkItem;
@@ -910,7 +904,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenu financesMenu;
     private javax.swing.JMenu help;
     private javax.swing.JMenuItem helpItem;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu links;
     private javax.swing.JLabel loginLabel;

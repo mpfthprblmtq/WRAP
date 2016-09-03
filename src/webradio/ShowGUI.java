@@ -264,11 +264,15 @@ public class ShowGUI extends javax.swing.JFrame {
         sl2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl2.setText("Description:");
 
-        jLabel1.setText("Primary SM:");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel1.setText("Social Media:");
 
         sNameField.setEditable(false);
         sNameField.setEnabled(false);
+        sNameField.setPreferredSize(new java.awt.Dimension(364, 20));
 
+        sSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        sSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         sSP.setEnabled(false);
 
         sDescField.setEditable(false);
@@ -279,10 +283,13 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setRows(5);
         sDescField.setWrapStyleWord(true);
         sDescField.setEnabled(false);
+        sDescField.setPreferredSize(new java.awt.Dimension(364, 76));
         sSP.setViewportView(sDescField);
 
         sSMField.setEditable(false);
         sSMField.setEnabled(false);
+        sSMField.setPreferredSize(new java.awt.Dimension(364, 20));
+        sSMField.setRequestFocusEnabled(false);
 
         sDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         sDayTimePanel.setEnabled(false);
@@ -308,63 +315,77 @@ public class ShowGUI extends javax.swing.JFrame {
 
         sStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox1.setEnabled(false);
+        sStartBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox1.setEnabled(false);
+        sEndBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox2.setEnabled(false);
 
         sStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox2.setEnabled(false);
+        sStartBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox2.setEnabled(false);
+        sEndBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox3.setEnabled(false);
 
         sStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox3.setEnabled(false);
+        sStartBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox3.setEnabled(false);
+        sEndBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox4.setEnabled(false);
 
         sStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox4.setEnabled(false);
+        sStartBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox4.setEnabled(false);
+        sEndBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox5.setEnabled(false);
 
         sStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox5.setEnabled(false);
+        sStartBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox5.setEnabled(false);
+        sEndBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox6.setEnabled(false);
 
         sStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox6.setEnabled(false);
+        sStartBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox6.setEnabled(false);
+        sEndBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox7.setEnabled(false);
 
         sStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox7.setEnabled(false);
+        sStartBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox7.setEnabled(false);
+        sEndBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
         javax.swing.GroupLayout sDayTimePanelLayout = new javax.swing.GroupLayout(sDayTimePanel);
         sDayTimePanel.setLayout(sDayTimePanelLayout);
@@ -378,26 +399,25 @@ public class ShowGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sShowNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(sDayTimePanelLayout.createSequentialGroup()
-                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sDayBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sDayBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sDayBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sDayBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sDayBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(sDayBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sDayBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(sl4))
+                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sDayBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sDayBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sDayBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sDayBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sDayBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sDayBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sl4)
+                            .addComponent(sDayBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sStartBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sStartBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sStartBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sStartBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sStartBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sStartBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sStartBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sl5))
+                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sStartBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStartBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStartBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStartBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStartBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStartBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sl5)
+                            .addComponent(sStartBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sl6)
@@ -474,18 +494,22 @@ public class ShowGUI extends javax.swing.JFrame {
         sl7.setText("Number of hosts:");
 
         sHost1.setEnabled(false);
+        sHost1.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel sHost1model = new DefaultComboBoxModel(getProfiles());
         sHost1.setModel(sHost1model);
 
         sHost2.setEnabled(false);
+        sHost2.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel sHost2model = new DefaultComboBoxModel(getProfiles());
         sHost2.setModel(sHost2model);
 
         sHost3.setEnabled(false);
+        sHost3.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel sHost3model = new DefaultComboBoxModel(getProfiles());
         sHost3.setModel(sHost3model);
 
         sHost4.setEnabled(false);
+        sHost4.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel sHost4model = new DefaultComboBoxModel(getProfiles());
         sHost4.setModel(sHost4model);
 
@@ -496,14 +520,14 @@ public class ShowGUI extends javax.swing.JFrame {
             .addGroup(sHostPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sHost1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sHost4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sHost3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sHost2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sHostPanelLayout.createSequentialGroup()
-                        .addComponent(sl7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sl7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sHostNumSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                    .addComponent(sHost2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(sHostNumSpinner))
+                    .addComponent(sHost1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sHostPanelLayout.setVerticalGroup(
@@ -511,8 +535,8 @@ public class ShowGUI extends javax.swing.JFrame {
             .addGroup(sHostPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sHostPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sHostNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sl7))
+                    .addComponent(sl7)
+                    .addComponent(sHostNumSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sHost1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -572,15 +596,15 @@ public class ShowGUI extends javax.swing.JFrame {
                                     .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(sHostPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sl1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sl2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(sl2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                            .addComponent(sl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sNameField)
-                            .addComponent(sSP)
-                            .addComponent(sSMField))))
+                            .addComponent(sSMField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sSP))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
@@ -592,8 +616,8 @@ public class ShowGUI extends javax.swing.JFrame {
                     .addComponent(sl1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sl2))
+                    .addComponent(sl2)
+                    .addComponent(sSP, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sSMField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -620,12 +644,17 @@ public class ShowGUI extends javax.swing.JFrame {
         al2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         al2.setText("Description:");
 
+        aNameField.setPreferredSize(new java.awt.Dimension(364, 20));
+
         aSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         aSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         aDescField.setColumns(20);
         aDescField.setRows(5);
+        aDescField.setPreferredSize(new java.awt.Dimension(364, 76));
         aSP.setViewportView(aDescField);
+
+        aSMField.setPreferredSize(new java.awt.Dimension(364, 20));
 
         aDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -649,63 +678,77 @@ public class ShowGUI extends javax.swing.JFrame {
 
         aStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox1.setEnabled(false);
+        aStartBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox1.setEnabled(false);
+        aEndBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox2.setEnabled(false);
 
         aStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox2.setEnabled(false);
+        aStartBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox2.setEnabled(false);
+        aEndBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox3.setEnabled(false);
 
         aStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox3.setEnabled(false);
+        aStartBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox3.setEnabled(false);
+        aEndBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox4.setEnabled(false);
 
         aStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox4.setEnabled(false);
+        aStartBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox4.setEnabled(false);
+        aEndBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox5.setEnabled(false);
 
         aStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox5.setEnabled(false);
+        aStartBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox5.setEnabled(false);
+        aEndBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox6.setEnabled(false);
 
         aStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox6.setEnabled(false);
+        aStartBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox6.setEnabled(false);
+        aEndBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox7.setEnabled(false);
 
         aStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox7.setEnabled(false);
+        aStartBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
         aEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox7.setEnabled(false);
+        aEndBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
         javax.swing.GroupLayout aDayTimePanelLayout = new javax.swing.GroupLayout(aDayTimePanel);
         aDayTimePanel.setLayout(aDayTimePanelLayout);
@@ -813,18 +856,22 @@ public class ShowGUI extends javax.swing.JFrame {
         al7.setText("Number of hosts:");
 
         aHost1.setEnabled(false);
+        aHost1.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel aHost1model = new DefaultComboBoxModel(getProfiles());
         aHost1.setModel(aHost1model);
 
         aHost2.setEnabled(false);
+        aHost2.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel aHost2model = new DefaultComboBoxModel(getProfiles());
         aHost2.setModel(aHost2model);
 
         aHost3.setEnabled(false);
+        aHost3.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel aHost3model = new DefaultComboBoxModel(getProfiles());
         aHost3.setModel(aHost3model);
 
         aHost4.setEnabled(false);
+        aHost4.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel aHost4model = new DefaultComboBoxModel(getProfiles());
         aHost4.setModel(aHost4model);
 
@@ -876,7 +923,7 @@ public class ShowGUI extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Primary SM:");
+        jLabel2.setText("Social Media:");
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -894,15 +941,15 @@ public class ShowGUI extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(addButton))))
                     .addGroup(addPanelLayout.createSequentialGroup()
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(al2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(al2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                            .addComponent(al1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(aSMField)
-                            .addComponent(aNameField)
-                            .addComponent(aSP))))
+                            .addComponent(aSP)
+                            .addComponent(aNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aSMField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         addPanelLayout.setVerticalGroup(
@@ -1149,7 +1196,7 @@ public class ShowGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                Main.exit();
+                System.exit(0);
                 break;
             default:
             // do nothing
@@ -1197,11 +1244,7 @@ public class ShowGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
-        // probably some admin stuff
-        JOptionPane.showMessageDialog(this,
-                "Administration features\nNot implemented yet",
-                "Advanced",
-                JOptionPane.INFORMATION_MESSAGE);
+        // admin();
     }//GEN-LAST:event_adminLabelMouseClicked
 
     /**
@@ -1210,7 +1253,7 @@ public class ShowGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
-        loginLabel.setText("Advanced options");
+        //loginLabel.setText("Advanced options");
     }//GEN-LAST:event_adminLabelMouseEntered
 
     /**
@@ -1219,7 +1262,7 @@ public class ShowGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
-        loginLabel.setText("Logged in as " + Main.p.getUsername());
+        //loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
 
     /**
@@ -1422,7 +1465,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
     private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -1430,7 +1473,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
     private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -2027,6 +2070,15 @@ public class ShowGUI extends javax.swing.JFrame {
 
     }
 
+    /**
+     * admin()
+     *
+     * Does admin things, like clear out things for a semester and such
+     */
+    public void admin() {
+        // not implemented yet
+    }
+    
     /**
      * sCheck()
      *

@@ -7,24 +7,43 @@
                                            ####################################################################
 
 
-[09/01/16 01:14] WRAP started
-[09/01/16 01:14] user pripley logged in
-[09/01/16 01:14] user pripley logged out
-[09/01/16 01:14] WRAP started
-[09/01/16 14:00] WRAP started
-[09/01/16 14:07] WRAP started
-[09/01/16 14:08] user root logged in
-[09/01/16 14:08] user root logged out
-[09/01/16 16:28] WRAP started
-[09/01/16 16:28] user pripley logged in
-[09/01/16 17:21] user pripley logged out
-[09/01/16 18:14] WRAP started
-[09/01/16 18:14] user root logged in
-[09/01/16 18:14] WRAP started
-[09/01/16 18:14] WRAP started
-[09/01/16 18:14] WRAP started
-[09/01/16 18:15] user root logged in
-[09/01/16 18:16] WRAP started
-[09/01/16 18:16] WRAP started
-[09/01/16 18:16] user root logged in
-[09/01/16 18:48] user root logged out
+[09/02/16 14:21] user root logged in
+[09/02/16 14:21] user root generated profiles report
+[09/02/16 14:21] user root logged out
+[09/02/16 14:21] user root terminated program
+[09/02/16 15:24] user root logged in
+[09/02/16 15:24] user root logged out
+[09/02/16 15:24] user root terminated program
+[09/02/16 15:25] user root logged in
+[09/02/16 15:25] user root logged out
+[09/02/16 15:25] user root terminated program
+[09/02/16 15:25] user root logged in
+[09/02/16 15:29] user root logged out
+[09/02/16 15:29] user root terminated program
+[09/02/16 15:33] user root logged in
+[09/02/16 15:34] user root logged out
+[09/02/16 15:34] user root terminated program
+[09/02/16 15:35] user root logged in
+[09/02/16 15:35] user root logged out
+[09/02/16 15:35] user root terminated program
+[09/02/16 15:37] user root logged in
+[09/02/16 15:38] user root logged out
+[09/02/16 15:38] user root terminated program
+[09/02/16 15:39] user root logged in
+[09/02/16 15:39] user root logged out
+[09/02/16 15:39] user root terminated program
+[09/02/16 15:40] user root logged in
+[09/02/16 15:40] user root generated profiles report
+[09/02/16 15:44] user root logged out
+[09/02/16 15:44] user root terminated program
+[09/02/16 15:44] user root logged in
+[09/02/16 15:46] user root logged in
+[09/02/16 15:46] user root logged out
+[09/02/16 15:46] user root terminated program
+[09/02/16 15:46] user root generated profiles report
+[09/02/16 15:46] user root logged out
+[09/02/16 15:46] user root terminated program
+[09/02/16 15:47] user root logged in
+[09/02/16 15:47] user root generated profiles report
+[09/02/16 16:11] user root logged out
+[09/02/16 16:11] user root terminated program

@@ -322,7 +322,7 @@ public class HelpGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                Main.exit();
+                System.exit(0);
                 break;
             default:
             // do nothing
@@ -438,6 +438,11 @@ public class HelpGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_videoButtonActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // log
+            EventLog.add("opened help");
+    }//GEN-LAST:event_formComponentShown
+
     private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
         try {
             Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
@@ -448,7 +453,7 @@ public class HelpGUI extends javax.swing.JFrame {
 
     private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -456,7 +461,7 @@ public class HelpGUI extends javax.swing.JFrame {
 
     private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -469,11 +474,6 @@ public class HelpGUI extends javax.swing.JFrame {
             Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_paypalItemActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // log
-            EventLog.add("opened help");
-    }//GEN-LAST:event_formComponentShown
 
     /**
      * main()

@@ -9,9 +9,47 @@
 package webradio;
 
 import javax.swing.ImageIcon;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 public class BugReportGUI extends javax.swing.JFrame {
 
+    /**
+     * Minor inner class used to limit the amount of text in a text field
+     */
+    // <editor-fold defaultstate="collapsed" desc="JTextFieldLimit">
+    class JTextFieldLimit extends PlainDocument {
+
+        private final int limit;
+
+        JTextFieldLimit(int limit) {
+            super();
+            this.limit = limit;
+        }
+
+        JTextFieldLimit(int limit, boolean upper) {
+            super();
+            this.limit = limit;
+        }
+
+        @Override
+        public void insertString(int offset, String str, AttributeSet attr) {
+            if (str == null) {
+                return;
+            }
+
+            if ((getLength() + str.length()) <= limit) {
+                try {
+                    super.insertString(offset, str, attr);
+                } catch (BadLocationException ex) {
+                    Util.error(ex.toString(), ex.getMessage());
+                }
+            }
+        }
+    }
+    // </editor-fold>
+    
     /**
      * Creates new form BugReport
      */
@@ -61,10 +99,20 @@ public class BugReportGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Name:");
 
+        nameField.setPreferredSize(new java.awt.Dimension(128, 20));
+        nameField.setRequestFocusEnabled(false);
+        nameField.setDocument(new JTextFieldLimit(30));
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
         desc.setColumns(20);
+        desc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         desc.setLineWrap(true);
         desc.setRows(5);
         desc.setWrapStyleWord(true);
+        desc.setPreferredSize(new java.awt.Dimension(213, 119));
+        desc.setDocument(new JTextFieldLimit(200));
         jScrollPane1.setViewportView(desc);
 
         jLabel3.setText("Please provide a brief description:");
@@ -105,15 +153,16 @@ public class BugReportGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1))
+                                .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)))
                 .addContainerGap())

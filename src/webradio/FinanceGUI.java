@@ -233,15 +233,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
-        links = new javax.swing.JMenu();
-        webradioItem = new javax.swing.JMenuItem();
-        SIUeMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        profilesMenu = new javax.swing.JMenu();
-        collegiatelinkItem = new javax.swing.JMenuItem();
-        facebookItem = new javax.swing.JMenuItem();
-        financesMenu = new javax.swing.JMenu();
-        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -295,9 +286,11 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         sMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         sMonthBox.setEnabled(false);
+        sMonthBox.setPreferredSize(new java.awt.Dimension(57, 20));
 
         sDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         sDateBox.setEnabled(false);
+        sDateBox.setPreferredSize(new java.awt.Dimension(45, 20));
 
         sYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
         sYearBox.setEnabled(false);
@@ -318,7 +311,7 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         sAmountField.setEditable(false);
         sAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
-        sAmountField.setPreferredSize(new java.awt.Dimension(156, 20));
+        sAmountField.setPreferredSize(new java.awt.Dimension(166, 20));
         sAmountField.setDocument(new JTextFieldLimit(10));
         sAmountField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -341,6 +334,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         sReasonField.setLineWrap(true);
         sReasonField.setRows(5);
         sReasonField.setWrapStyleWord(true);
+        sReasonField.setPreferredSize(new java.awt.Dimension(166, 76));
         sReasonField.setDocument(new JTextFieldLimit(60));
         sReasonField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -365,6 +359,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         sNotesField.setLineWrap(true);
         sNotesField.setRows(5);
         sNotesField.setWrapStyleWord(true);
+        sNotesField.setPreferredSize(new java.awt.Dimension(166, 76));
         sNotesField.setDocument(new JTextFieldLimit(60));
         sNotesField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -408,7 +403,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -426,18 +421,19 @@ public class FinanceGUI extends javax.swing.JFrame {
                             .addComponent(L5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(searchPanelLayout.createSequentialGroup()
                                 .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane8)
+                                .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(sPurchaserField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sStoreField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane9)
-                            .addComponent(sAmountField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(sAmountField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sStoreField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane8))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
@@ -464,7 +460,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,7 +471,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(submitButton)
                     .addComponent(editButton)
                     .addComponent(deleteButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         transactionsTP.addTab("Search", searchPanel);
@@ -500,6 +496,7 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         aStoreField.setMinimumSize(new java.awt.Dimension(166, 20));
         aStoreField.setNextFocusableComponent(aMonthBox);
+        aStoreField.setPreferredSize(new java.awt.Dimension(166, 20));
         aStoreField.setDocument(new JTextFieldLimit(30));
         aStoreField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -515,9 +512,11 @@ public class FinanceGUI extends javax.swing.JFrame {
         aMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         aMonthBox.setName(""); // NOI18N
         aMonthBox.setNextFocusableComponent(aDateBox);
+        aMonthBox.setPreferredSize(new java.awt.Dimension(57, 20));
 
         aDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         aDateBox.setNextFocusableComponent(aYearBox);
+        aDateBox.setPreferredSize(new java.awt.Dimension(45, 20));
 
         aYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
         aYearBox.setNextFocusableComponent(aPurchaserField);
@@ -560,6 +559,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         aReasonField.setRows(5);
         aReasonField.setWrapStyleWord(true);
         aReasonField.setNextFocusableComponent(aNotesField);
+        aReasonField.setPreferredSize(new java.awt.Dimension(166, 76));
         aReasonField.setDocument(new JTextFieldLimit(60));
         aReasonField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -583,6 +583,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         aNotesField.setRows(5);
         aNotesField.setWrapStyleWord(true);
         aNotesField.setNextFocusableComponent(aStoreField);
+        aNotesField.setPreferredSize(new java.awt.Dimension(166, 76));
         aNotesField.setDocument(new JTextFieldLimit(60));
         aNotesField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -1287,62 +1288,6 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         menubar.add(file);
 
-        links.setText("Links");
-
-        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
-        webradioItem.setText("Web Radio");
-        webradioItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                webradioItemActionPerformed(evt);
-            }
-        });
-        links.add(webradioItem);
-
-        SIUeMenu.setText("SIUe");
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
-        jMenuItem1.setText("Homepage");
-        SIUeMenu.add(jMenuItem1);
-
-        links.add(SIUeMenu);
-
-        profilesMenu.setText("Profiles");
-
-        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
-        collegiatelinkItem.setText("CollegiateLink");
-        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                collegiatelinkItemActionPerformed(evt);
-            }
-        });
-        profilesMenu.add(collegiatelinkItem);
-
-        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
-        facebookItem.setText("Facebook (Show Hosts)");
-        facebookItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                facebookItemActionPerformed(evt);
-            }
-        });
-        profilesMenu.add(facebookItem);
-
-        links.add(profilesMenu);
-
-        financesMenu.setText("Finances");
-
-        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
-        paypalItem.setText("PayPal");
-        paypalItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paypalItemActionPerformed(evt);
-            }
-        });
-        financesMenu.add(paypalItem);
-
-        links.add(financesMenu);
-
-        menubar.add(links);
-
         help.setText("Help");
 
         helpItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/question.png"))); // NOI18N
@@ -1438,7 +1383,7 @@ public class FinanceGUI extends javax.swing.JFrame {
      * Handles when user chooses close option in menu bar
      */
     private void closeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeItemActionPerformed
-        Main.CloseProfileGUI();
+        Main.CloseFinanceGUI();
     }//GEN-LAST:event_closeItemActionPerformed
 
     /**
@@ -1463,7 +1408,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         // do a thing based on response
         switch (res) {
             case 0:
-                Main.exit();
+                System.exit(0);
                 break;
             default:
             // do nothing
@@ -1627,25 +1572,21 @@ public class FinanceGUI extends javax.swing.JFrame {
      * Handles when the gear icon is clicked on
      */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
-        // probably some admin stuff
-        JOptionPane.showMessageDialog(this,
-                "Administration features\nNot implemented yet",
-                "Advanced",
-                JOptionPane.INFORMATION_MESSAGE);
+        // admin();
     }//GEN-LAST:event_adminLabelMouseClicked
 
     /**
      * Handles when the mouse enters the gear icon
      */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
-        loginLabel.setText("Advanced options");
+        //loginLabel.setText("Advanced options");
     }//GEN-LAST:event_adminLabelMouseEntered
 
     /**
      * Handles when the mouse leaves the gear icon
      */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
-        loginLabel.setText("Logged in as " + Main.p.getUsername());
+        //loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
 
     /**
@@ -2017,38 +1958,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         //aNotesField.selectAll();
     }//GEN-LAST:event_aNotesFieldFocusGained
 
-    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_webradioItemActionPerformed
-
-    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_collegiatelinkItemActionPerformed
-
-    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_facebookItemActionPerformed
-
-    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
-        try {
-            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
-        } catch (IOException | URISyntaxException ex) {
-            Util.error(ex.toString(), ex.getMessage());
-        }
-    }//GEN-LAST:event_paypalItemActionPerformed
-
     // </editor-fold>
     
     /**
@@ -2351,6 +2260,15 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     }
 
+    /**
+     * admin()
+     *
+     * Does admin things, like clear out things for a semester and such
+     */
+    public void admin() {
+        // not implemented yet
+    }
+    
     /**
      * aCheck()
      *
@@ -2795,7 +2713,6 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel L7;
     private javax.swing.JLabel L8;
     private javax.swing.JLabel L9;
-    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JFormattedTextField aAmountField;
     private javax.swing.JComboBox<String> aDateBox;
     private javax.swing.JComboBox<String> aMonthBox;
@@ -2824,7 +2741,6 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel cashPanel;
     private javax.swing.JButton cashSubmitButton;
     private javax.swing.JMenuItem closeItem;
-    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel dimeL;
     private javax.swing.JSpinner dimeSpinner;
@@ -2835,11 +2751,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
-    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JLabel fiftyL;
     private javax.swing.JSpinner fiftySpinner;
     private javax.swing.JMenu file;
-    private javax.swing.JMenu financesMenu;
     private javax.swing.JLabel fiveL;
     private javax.swing.JSpinner fiveSpinner;
     private javax.swing.JLabel halfdollarL;
@@ -2869,14 +2783,12 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
@@ -2884,10 +2796,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel moneycounterPanel;
     private javax.swing.JLabel nickelL;
     private javax.swing.JSpinner nickelSpinner;
-    private javax.swing.JMenuItem paypalItem;
     private javax.swing.JLabel pennyL;
     private javax.swing.JSpinner pennySpinner;
-    private javax.swing.JMenu profilesMenu;
     private javax.swing.JLabel quarterL;
     private javax.swing.JSpinner quarterSpinner;
     private javax.swing.JFormattedTextField sAmountField;
@@ -2909,7 +2819,6 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane transactionsTP;
     private javax.swing.JLabel twentyL;
     private javax.swing.JSpinner twentySpinner;
-    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
     // </editor-fold>
 }

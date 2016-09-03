@@ -64,12 +64,21 @@ public class Main {
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
-    }
 
-    public static void exit() {
-        // log
-        EventLog.add("logged out");
-        System.exit(0);
+        // detects when program exits
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                EventLog.add("logged out");
+                EventLog.add("terminated program");
+                
+                // this could be unsafe, but let's see what happens
+                this.stop();
+                
+                
+                System.exit(0);
+            }
+        });
     }
 
     /**
@@ -99,13 +108,11 @@ public class Main {
      */
     public static void Logout() {
 
-        
-
         Main.p = null;
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
         loginGUI.setVisible(true);
-        
+
         // log
         EventLog.add("logged out");
     }

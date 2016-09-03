@@ -240,6 +240,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.setEditable(false);
         sfNameField.setFocusCycleRoot(true);
         sfNameField.setNextFocusableComponent(slNameField);
+        sfNameField.setPreferredSize(new java.awt.Dimension(158, 20));
+        sfNameField.setRequestFocusEnabled(false);
         sfNameField.setDocument(new JTextFieldLimit(30));
         sfNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -254,6 +256,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         slNameField.setEditable(false);
         slNameField.setNextFocusableComponent(snum800Field);
+        slNameField.setPreferredSize(new java.awt.Dimension(158, 20));
         slNameField.setDocument(new JTextFieldLimit(30));
         slNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -267,6 +270,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         snum800Field.setEditable(false);
+        snum800Field.setPreferredSize(new java.awt.Dimension(158, 20));
         snum800Field.setDocument(new JTextFieldLimit(9));
         snum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -281,6 +285,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         ssiueEmailField.setEditable(false);
         ssiueEmailField.setNextFocusableComponent(sprefEmailField);
+        ssiueEmailField.setPreferredSize(new java.awt.Dimension(158, 20));
         ssiueEmailField.setDocument(new JTextFieldLimit(50));
         ssiueEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -295,6 +300,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         sprefEmailField.setEditable(false);
         sprefEmailField.setNextFocusableComponent(stypeBox);
+        sprefEmailField.setPreferredSize(new java.awt.Dimension(158, 20));
         sprefEmailField.setDocument(new JTextFieldLimit(50));
         sprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -311,6 +317,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         stypeBox.setSelectedIndex(4);
         stypeBox.setEnabled(false);
         stypeBox.setNextFocusableComponent(spositionBox);
+        stypeBox.setPreferredSize(new java.awt.Dimension(158, 20));
         stypeBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stypeBoxActionPerformed(evt);
@@ -326,6 +333,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         spositionBox.setSelectedIndex(7);
         spositionBox.setEnabled(false);
         spositionBox.setNextFocusableComponent(snotesField);
+        spositionBox.setPreferredSize(new java.awt.Dimension(158, 20));
         spositionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spositionBoxActionPerformed(evt);
@@ -339,9 +347,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         stypeField.setEditable(false);
         stypeField.setFocusable(false);
+        stypeField.setPreferredSize(new java.awt.Dimension(158, 20));
 
         spositionField.setEditable(false);
         spositionField.setFocusable(false);
+        spositionField.setPreferredSize(new java.awt.Dimension(158, 20));
 
         sscrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         sscrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -393,6 +403,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         sphoneField1.setEditable(false);
+        sphoneField1.setMinimumSize(new java.awt.Dimension(43, 20));
         sphoneField1.setNextFocusableComponent(asiueEmailField);
         sphoneField1.setDocument(new JTextFieldLimit(3));
         sphoneField1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -410,6 +421,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         sphoneField2.setEditable(false);
+        sphoneField2.setMinimumSize(new java.awt.Dimension(43, 20));
         sphoneField2.setNextFocusableComponent(asiueEmailField);
         sphoneField2.setDocument(new JTextFieldLimit(3));
         sphoneField2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -427,6 +439,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         sphoneField3.setEditable(false);
+        sphoneField3.setMinimumSize(new java.awt.Dimension(60, 20));
         sphoneField3.setNextFocusableComponent(asiueEmailField);
         sphoneField3.setDocument(new JTextFieldLimit(4));
         sphoneField3.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -466,24 +479,23 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                             .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(sscrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(spositionBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, 158, Short.MAX_VALUE)
-                                .addComponent(spositionField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(stypeBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(stypeField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(sprefEmailField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ssiueEmailField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(snum800Field, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(slNameField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(sfNameField))
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sscrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(spositionBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spositionField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(stypeBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(stypeField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ssiueEmailField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(snum800Field, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(slNameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sprefEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sfNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                                 .addComponent(sphoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sphoneField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sphoneField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(sphoneField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
@@ -502,11 +514,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addComponent(jLabel12)
                     .addComponent(snum800Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(sphoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sphoneField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sphoneField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sphoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sphoneField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sphoneField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -514,8 +525,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(sprefEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sprefEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -532,13 +543,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(sscrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton)
                             .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deleteButton)))
                     .addComponent(jLabel18))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -571,6 +582,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         jLabel9.setText("Notes:");
 
         afNameField.setNextFocusableComponent(alNameField);
+        afNameField.setPreferredSize(new java.awt.Dimension(158, 20));
         afNameField.setDocument(new JTextFieldLimit(30));
         afNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -584,6 +596,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         alNameField.setNextFocusableComponent(anum800Field);
+        alNameField.setPreferredSize(new java.awt.Dimension(158, 20));
         alNameField.setDocument(new JTextFieldLimit(30));
         alNameField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -597,6 +610,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         anum800Field.setNextFocusableComponent(aphoneField1);
+        anum800Field.setPreferredSize(new java.awt.Dimension(158, 20));
         anum800Field.setDocument(new JTextFieldLimit(9));
         anum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -609,6 +623,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
+        aphoneField1.setMinimumSize(new java.awt.Dimension(43, 20));
         aphoneField1.setNextFocusableComponent(asiueEmailField);
         aphoneField1.setDocument(new JTextFieldLimit(3));
         aphoneField1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -626,6 +641,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         aphoneField2.setNextFocusableComponent(asiueEmailField);
+        aphoneField2.setPreferredSize(new java.awt.Dimension(43, 20));
         aphoneField2.setDocument(new JTextFieldLimit(3));
         aphoneField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -642,6 +658,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         aphoneField3.setNextFocusableComponent(asiueEmailField);
+        aphoneField3.setPreferredSize(new java.awt.Dimension(60, 20));
         aphoneField3.setDocument(new JTextFieldLimit(4));
         aphoneField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -655,6 +672,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         asiueEmailField.setNextFocusableComponent(aprefEmailField);
+        asiueEmailField.setPreferredSize(new java.awt.Dimension(158, 20));
         asiueEmailField.setDocument(new JTextFieldLimit(50));
         asiueEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -668,6 +686,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         });
 
         aprefEmailField.setNextFocusableComponent(atypeBox);
+        aprefEmailField.setPreferredSize(new java.awt.Dimension(158, 20));
         aprefEmailField.setDocument(new JTextFieldLimit(50));
         aprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -682,10 +701,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         atypeField.setEditable(false);
         atypeField.setBackground(new java.awt.Color(255, 255, 255));
+        atypeField.setPreferredSize(new java.awt.Dimension(158, 20));
 
         atypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DJ", "Member", "Prospect", "Advisor", "--" }));
         atypeBox.setSelectedIndex(4);
         atypeBox.setNextFocusableComponent(apositionBox);
+        atypeBox.setPreferredSize(new java.awt.Dimension(158, 20));
         atypeBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atypeBoxActionPerformed(evt);
@@ -699,10 +720,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
+        apositionField.setPreferredSize(new java.awt.Dimension(158, 20));
 
         apositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "None", "--" }));
         apositionBox.setSelectedIndex(7);
         apositionBox.setNextFocusableComponent(anotesField);
+        apositionBox.setPreferredSize(new java.awt.Dimension(158, 20));
         apositionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apositionBoxActionPerformed(evt);
@@ -760,12 +783,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(anum800Field)
-                            .addComponent(asiueEmailField)
-                            .addComponent(aprefEmailField)
-                            .addComponent(atypeField)
-                            .addComponent(alNameField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(afNameField)
+                            .addComponent(anum800Field, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(asiueEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(aprefEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(atypeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(alNameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(afNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(addPanelLayout.createSequentialGroup()
                                 .addComponent(aphoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -782,8 +805,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(apositionBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(apositionField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ascrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                    .addComponent(apositionField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ascrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                     .addComponent(atypeBox, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -843,6 +866,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         tabs.addTab("Add", addPanel);
 
         errLabel.setText(" ");
+
+        sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         list.setModel(fillList());
         list.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -997,9 +1022,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(loginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(1, 1, 1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(adminLabel))
                             .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)))
@@ -1316,7 +1341,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // do a thing based on response
         switch (res) {
             case 0:
-                Main.exit();
+                System.exit(0);
                 break;
             default:
             // do nothing
@@ -1772,11 +1797,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Admin stuff will probably go here
      */
     private void adminLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseClicked
-        // probably some admin stuff
-        JOptionPane.showMessageDialog(this,
-                "Administration features\nNot implemented yet",
-                "Advanced",
-                JOptionPane.INFORMATION_MESSAGE);
+        // admin();
     }//GEN-LAST:event_adminLabelMouseClicked
 
     /**
@@ -1784,7 +1805,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Sets the text of loginLabel
      */
     private void adminLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseEntered
-        loginLabel.setText("Advanced options");
+        //loginLabel.setText("Advanced options");
     }//GEN-LAST:event_adminLabelMouseEntered
 
     /**
@@ -1792,7 +1813,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Sets the text of loginLabel
      */
     private void adminLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminLabelMouseExited
-        loginLabel.setText("Logged in as " + Main.p.getUsername());
+        //loginLabel.setText("Logged in as " + Main.p.getUsername());
     }//GEN-LAST:event_adminLabelMouseExited
 
     private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed
@@ -1809,7 +1830,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -1817,7 +1838,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
         try {
-            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
         } catch (IOException | URISyntaxException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
@@ -1832,7 +1853,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     }//GEN-LAST:event_paypalItemActionPerformed
 
     // </editor-fold>
-    
     /**
      * fillList()
      *
@@ -1873,14 +1893,34 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     public void updateList(int action, ListElement element) {
         switch (action) {
             case ADD:         // add
-                people.add(people.getSize(), element);
+                //people.add(people.getSize(), element);
+                people.removeAllElements();
+                list.setModel(fillList());
+                
                 break;
             case REMOVE:      // remove
                 people.remove(list.getSelectedIndex());
                 break;
         }
     }
-
+    
+    /**
+     * getProfileIndex()
+     *
+     * Returns the index to choose on the Host comboboxes
+     *
+     * @param id
+     * @return the index to choose
+     */
+    public int getProfileIndex(String id) {
+        for (int i = 0; i < people.getSize(); i++) {
+            if (id.equals(people.getElementAt(i).id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
     /**
      * add()
      *
@@ -1908,9 +1948,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
             updateList(ADD, element);
             
-            people.removeAllElements();
-            list.setModel(fillList());
-
             setAddValuesToNull();
             afNameField.requestFocus();
 
@@ -2001,7 +2038,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             submitButton.setEnabled(false);
-            
+
             // log
             EventLog.add("deleted profile " + id
                     + " (" + lName + ", " + fName + ")");
@@ -2068,14 +2105,22 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         submitButton.setEnabled(false);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-
-        // reset the form, selecting the new Profile just edited
-        list.setSelectedIndex(people.getSize() - 1);
-        search(people.getElementAt(people.getSize() - 1).id);
         
+        list.setSelectedIndex(getProfileIndex(p.getId()));
+                search(people.get(list.getSelectedIndex()).id);
+
         // log
-            EventLog.add("edited profile " + p.getId()
-                    + " (" + p.getlName() + ", " + p.getfName() + ")");
+        EventLog.add("edited profile " + p.getId()
+                + " (" + p.getlName() + ", " + p.getfName() + ")");
+    }
+    
+    /**
+     * admin()
+     *
+     * Does admin things, like clear out things for a semester and such
+     */
+    public void admin() {
+        // not implemented yet
     }
 
     /**
@@ -2239,15 +2284,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[5] = aprefEmailField.getText();
         str[6] = String.valueOf(atypeBox.getSelectedIndex());
         str[7] = String.valueOf(apositionBox.getSelectedIndex());
-        if (str[8] != null) {
-            if (str[8].contains("\\n")) {
-                str[8] = "";
-            } else {
-                str[8] = anotesField.getText();
-            }
-        } else {
-            str[8] = "";
-        }
+        str[8] = anotesField.getText();
+
         str[9] = "false";
         str[10] = "false";
         str[11] = "false";
@@ -2477,7 +2515,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // position
         // if the box is on the default index, throw error
-        if (apositionBox.getSelectedIndex() == 9) {
+        if (apositionBox.getSelectedIndex() == 7) {
             flag = false;
             apositionBox.setForeground(Color.red);
         }
@@ -2653,7 +2691,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // position
         // if the box is on the default index, throw error
-        if (spositionBox.getSelectedIndex() == 9) {
+        if (spositionBox.getSelectedIndex() == 7) {
             flag = false;
             spositionBox.setForeground(Color.red);
         }
