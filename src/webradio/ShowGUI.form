@@ -195,17 +195,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="errLabel" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="tabs" min="-2" max="-2" attributes="0"/>
+                      <Component id="tabs" min="-2" pref="489" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="loginLabel" min="-2" pref="192" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="adminLabel" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="scrollpane" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="scrollpane" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -1450,10 +1450,10 @@
                               <Component id="sHost4" alignment="0" max="32767" attributes="0"/>
                               <Component id="sHost3" alignment="0" max="32767" attributes="0"/>
                               <Component id="sHost2" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="sl7" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="sl7" min="-2" pref="106" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="sHostNumSpinner" max="32767" attributes="0"/>
+                                  <Component id="sHostNumSpinner" min="-2" pref="42" max="-2" attributes="0"/>
                               </Group>
                               <Component id="sHost1" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -2771,13 +2771,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="aHost1" max="32767" attributes="0"/>
+                              <Component id="aHost1" pref="152" max="32767" attributes="0"/>
                               <Component id="aHost4" alignment="0" max="32767" attributes="0"/>
                               <Component id="aHost3" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="al7" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="al7" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="aHostNumSpinner" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="aHostNumSpinner" min="-2" pref="42" max="-2" attributes="0"/>
                               </Group>
                               <Component id="aHost2" alignment="0" max="32767" attributes="0"/>
                           </Group>

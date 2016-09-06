@@ -168,9 +168,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="transactionsTP" min="-2" max="-2" attributes="0"/>
+                      <Component id="transactionsTP" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane7" pref="164" max="32767" attributes="0"/>
+                      <Component id="jScrollPane7" min="-2" pref="180" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -225,29 +225,29 @@
                                       <Component id="submitButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="L4" alignment="0" pref="53" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="L5" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="L4" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="L3" alignment="0" pref="70" max="32767" attributes="0"/>
                                           <Component id="L2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L1" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="L3" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="L5" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="L6" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="L1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="L6" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="sMonthBox" min="-2" pref="57" max="-2" attributes="0"/>
+                                              <Component id="sMonthBox" min="-2" pref="69" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="sDateBox" min="-2" pref="45" max="-2" attributes="0"/>
+                                              <Component id="sDateBox" min="-2" pref="54" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="sYearBox" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="sPurchaserField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane9" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="sAmountField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="sPurchaserField" alignment="1" max="32767" attributes="0"/>
                                           <Component id="sStoreField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane8" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane9" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane8" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="sAmountField" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -610,28 +610,27 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="L12" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="L10" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="L7" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="L8" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="L12" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="L10" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="L8" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="L9" alignment="0" pref="70" max="32767" attributes="0"/>
                                           <Component id="L11" max="32767" attributes="0"/>
-                                          <Component id="L9" alignment="1" pref="54" max="32767" attributes="0"/>
+                                          <Component id="L7" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="aStoreField" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jScrollPane5" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane6" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="aPurchaserField" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="aMonthBox" min="-2" pref="57" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="aMonthBox" min="-2" pref="72" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="aDateBox" min="-2" pref="45" max="-2" attributes="0"/>
+                                              <Component id="aDateBox" pref="53" max="32767" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="aYearBox" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="aStoreField" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="aPurchaserField" alignment="1" max="32767" attributes="0"/>
                                           <Component id="aAmountField" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1072,7 +1071,7 @@
                                       <Component id="bankField" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="218" max="32767" attributes="0"/>
+                              <EmptySpace pref="270" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -1166,7 +1165,7 @@
                                   </Group>
                                   <Component id="jLabel20" min="-2" pref="186" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="218" max="32767" attributes="0"/>
+                              <EmptySpace pref="270" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -1260,7 +1259,7 @@
                                       <Component id="ateField" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="218" max="32767" attributes="0"/>
+                              <EmptySpace pref="270" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -1396,7 +1395,7 @@
                           <Component id="twentySpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="fiftySpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="hundredSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel1" pref="93" max="32767" attributes="0"/>
+                          <Component id="jLabel1" pref="119" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1421,7 +1420,7 @@
                                       <Component id="totalL" min="-2" pref="106" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

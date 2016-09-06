@@ -194,40 +194,33 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="errLabel" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="errLabel" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="loginLabel" min="-2" pref="319" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="adminLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" pref="103" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="103" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="showsRadio" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="tasksRadio" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="accountsRadio" alignment="0" pref="103" max="32767" attributes="0"/>
-                                      <Component id="profilesRadio" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="financesRadio" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="showsRadio" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabel1" max="32767" attributes="0"/>
+                                  <Component id="tasksRadio" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="accountsRadio" alignment="0" pref="111" max="32767" attributes="0"/>
+                                  <Component id="profilesRadio" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="financesRadio" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="accountsTypeBox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tasksTypeBox" max="32767" attributes="0"/>
-                                  <Component id="showsTypeBox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="financesTypeBox" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="profilesTypeBox" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="accountsTypeBox" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tasksTypeBox" max="32767" attributes="0"/>
+                                      <Component id="showsTypeBox" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="financesTypeBox" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="profilesTypeBox" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel2" alignment="1" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -240,7 +233,7 @@
                           <Component id="showsSortByBox" min="-2" pref="103" max="-2" attributes="0"/>
                           <Component id="financesSortByBox" min="-2" pref="103" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -254,9 +247,9 @@
                           <Component id="generateButton" max="32767" attributes="0"/>
                           <Component id="openButton" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
