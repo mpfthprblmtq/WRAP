@@ -9,6 +9,7 @@ package webradio;
 // imports
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.*;
 import java.io.IOException;
 import java.net.URI;
@@ -104,6 +105,29 @@ public class AccountGUI extends javax.swing.JFrame {
      * Creates new form AccountGUI
      */
     public AccountGUI() {
+        
+        // picks up enter being pressed
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (e.getID() == KeyEvent.KEY_PRESSED) {
+                        if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
+                            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                addButton.doClick();
+                            }
+                        } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
+                            if (submitButton.isEnabled()) {
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                    submitButton.doClick();
+                                }
+                            }
+                        }
+                    } else {
+                        // don't pick up keytyped or keyreleased
+                    }
+                    return false;
+                });
+
+        // inits the components
         initComponents();
     }
 
@@ -224,7 +248,6 @@ public class AccountGUI extends javax.swing.JFrame {
         L5.setText("Name:");
 
         sUField.setEditable(false);
-        sUField.setFocusCycleRoot(true);
         sUField.setNextFocusableComponent(sAComboBox);
         sUField.setPreferredSize(new java.awt.Dimension(180, 20));
         sUField.setDocument(new JTextFieldLimit(30));
@@ -233,14 +256,10 @@ public class AccountGUI extends javax.swing.JFrame {
                 sUFieldFocusGained(evt);
             }
         });
-        sUField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sUFieldKeyPressed(evt);
-            }
-        });
 
         spasswordMatch.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         spasswordMatch.setText(" ");
+        spasswordMatch.setFocusable(false);
 
         sAField.setEditable(false);
         sAField.setEnabled(false);
@@ -258,11 +277,6 @@ public class AccountGUI extends javax.swing.JFrame {
                 sAComboBoxActionPerformed(evt);
             }
         });
-        sAComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sAComboBoxKeyPressed(evt);
-            }
-        });
 
         sNField.setEditable(false);
         sNField.setNextFocusableComponent(sUField);
@@ -273,15 +287,11 @@ public class AccountGUI extends javax.swing.JFrame {
                 sNFieldFocusGained(evt);
             }
         });
-        sNField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                sNFieldKeyReleased(evt);
-            }
-        });
 
         changePasswordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         changePasswordLabel.setText("Click to change password");
         changePasswordLabel.setEnabled(false);
+        changePasswordLabel.setFocusable(false);
         changePasswordLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 changePasswordLabelMouseClicked(evt);
@@ -290,6 +300,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         changePasswordLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         changePasswordLabel2.setText(" ");
+        changePasswordLabel2.setFocusable(false);
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
@@ -308,7 +319,7 @@ public class AccountGUI extends javax.swing.JFrame {
                             .addComponent(spasswordMatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(changePasswordLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(changePasswordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sUField, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(sUField, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchPanelLayout.createSequentialGroup()
                                 .addComponent(sAField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -319,8 +330,8 @@ public class AccountGUI extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(editButton)
                         .addGap(5, 5, 5)
-                        .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,11 +392,6 @@ public class AccountGUI extends javax.swing.JFrame {
                 aUFieldFocusGained(evt);
             }
         });
-        aUField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aUFieldKeyPressed(evt);
-            }
-        });
 
         apassField.setNextFocusableComponent(aconfirmpassField);
         apassField.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -437,11 +443,6 @@ public class AccountGUI extends javax.swing.JFrame {
                 aAComboBoxActionPerformed(evt);
             }
         });
-        aAComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aAComboBoxKeyPressed(evt);
-            }
-        });
 
         aNField.setNextFocusableComponent(aUField);
         aNField.setPreferredSize(new java.awt.Dimension(180, 20));
@@ -449,11 +450,6 @@ public class AccountGUI extends javax.swing.JFrame {
         aNField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aNFieldFocusGained(evt);
-            }
-        });
-        aNField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aNFieldKeyPressed(evt);
             }
         });
 
@@ -853,39 +849,6 @@ public class AccountGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_listMouseClicked
 
     /**
-     * Handles when Enter was pressed while Username field (add) was in focus
-     * If enter was pressed while Username field (add) was in focus, click the
-     * add button
-     */
-    private void aUFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aUFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aUFieldKeyPressed
-
-    /**
-     * Handles when Enter was pressed while Access comboBox (add) was in focus
-     * If enter was pressed while Access comboBox (add) was in focus, click the
-     * add button
-     */
-    private void aAComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aAComboBoxKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aAComboBoxKeyPressed
-
-    /**
-     * Handles when Enter was pressed while Name field (add) was in focus
-     * If enter was pressed while Name field (add) was in focus, click the add
-     * button
-     */
-    private void aNFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aNFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aNFieldKeyPressed
-
-    /**
      * Handles if user selects close current window option in the menu bar
      * Calls Main.CloseAccountGUI()
      */
@@ -1150,32 +1113,6 @@ public class AccountGUI extends javax.swing.JFrame {
             Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_paypalItemActionPerformed
-
-    private void sUFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sUFieldKeyPressed
-        //if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-                sAComboBox.requestFocus();
-            }
-        //}
-    }//GEN-LAST:event_sUFieldKeyPressed
-
-    private void sAComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sAComboBoxKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            } 
-        }
-    }//GEN-LAST:event_sAComboBoxKeyPressed
-
-    private void sNFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sNFieldKeyReleased
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            } 
-        }
-    }//GEN-LAST:event_sNFieldKeyReleased
 
     // </editor-fold>
     /**
@@ -1474,7 +1411,7 @@ public class AccountGUI extends javax.swing.JFrame {
         submitButton.setEnabled(true);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-
+        sUField.requestFocus();
     }
 
     /**

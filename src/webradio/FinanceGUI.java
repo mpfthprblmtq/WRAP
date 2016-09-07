@@ -9,6 +9,7 @@ package webradio;
 // imports
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
@@ -107,6 +108,46 @@ public class FinanceGUI extends javax.swing.JFrame {
      * Creates new form FinanceGUI
      */
     public FinanceGUI() {
+
+        // picks up enter being pressed
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (e.getID() == KeyEvent.KEY_PRESSED) {
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Transactions")) {
+                                if (transTabs.getTitleAt(transTabs.getSelectedIndex()).equals("Search")) {
+                                    if (submitButton.isEnabled()) {
+                                        submitButton.doClick();
+                                    }
+                                } else if (transTabs.getTitleAt(transTabs.getSelectedIndex()).equals("Add")) {
+                                    addButton.doClick();
+                                }
+                            } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Accounts")) {
+                                if (accountsTabs.getTitleAt(accountsTabs.getSelectedIndex()).equals("Bank Account")) {
+                                    if (bankSubmitButton.isEnabled()) {
+                                        bankSubmitButton.doClick();
+                                        bankEditButton.requestFocus();
+                                    }
+                                } else if (accountsTabs.getTitleAt(accountsTabs.getSelectedIndex()).equals("Cash")) {
+                                    if (cashSubmitButton.isEnabled()) {
+                                        cashSubmitButton.doClick();
+                                        cashEditButton.requestFocus();
+                                    }
+                                } else if (accountsTabs.getTitleAt(accountsTabs.getSelectedIndex()).equals("8-Account")) {
+                                    if (ateSubmitButton.isEnabled()) {
+                                        ateSubmitButton.doClick();
+                                        ateEditButton.requestFocus();
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        // don't pick up keytyped or keyreleased
+                    }
+                    return false;
+                });
+
+        // inits the components
         initComponents();
     }
 
@@ -119,9 +160,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tabs = new javax.swing.JTabbedPane();
         transactionPanel = new javax.swing.JPanel();
-        transactionsTP = new javax.swing.JTabbedPane();
+        transTabs = new javax.swing.JTabbedPane();
         searchPanel = new javax.swing.JPanel();
         L1 = new javax.swing.JLabel();
         L2 = new javax.swing.JLabel();
@@ -163,7 +204,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
         accountsPanel = new javax.swing.JPanel();
-        accountsTP = new javax.swing.JTabbedPane();
+        accountsTabs = new javax.swing.JTabbedPane();
         bankPanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -484,7 +525,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        transactionsTP.addTab("Search", searchPanel);
+        transTabs.addTab("Search", searchPanel);
 
         L7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         L7.setText("Store:");
@@ -685,7 +726,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        transactionsTP.addTab("Add", addPanel);
+        transTabs.addTab("Add", addPanel);
 
         list.setModel(fillList());
         list.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -701,7 +742,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(transactionsTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transTabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addContainerGap())
@@ -712,20 +753,20 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGroup(transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(transactionPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(transactionsTP))
+                        .addComponent(transTabs))
                     .addGroup(transactionPanelLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane7)))
                 .addContainerGap())
         );
 
-        transactionsTP.getAccessibleContext().setAccessibleName("Add");
+        transTabs.getAccessibleContext().setAccessibleName("Add");
 
-        jTabbedPane1.addTab("Transactions", transactionPanel);
+        tabs.addTab("Transactions", transactionPanel);
 
-        accountsTP.addChangeListener(new javax.swing.event.ChangeListener() {
+        accountsTabs.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                accountsTPStateChanged(evt);
+                accountsTabsStateChanged(evt);
             }
         });
 
@@ -734,6 +775,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         jLabel16.setText("Balance:");
 
         bankField.setEditable(false);
+        bankField.setBackground(new java.awt.Color(255, 255, 255));
         bankField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 bankFieldKeyPressed(evt);
@@ -791,11 +833,12 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        accountsTP.addTab("Bank Account", bankPanel);
+        accountsTabs.addTab("Bank Account", bankPanel);
 
         jLabel18.setText("Balance:");
 
         cashField.setEditable(false);
+        cashField.setBackground(new java.awt.Color(255, 255, 255));
         cashField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cashFieldKeyPressed(evt);
@@ -855,13 +898,14 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        accountsTP.addTab("Cash", cashPanel);
+        accountsTabs.addTab("Cash", cashPanel);
 
         jLabel17.setText("8-Account with SIUE:");
 
         jLabel19.setText("Balance:");
 
         ateField.setEditable(false);
+        ateField.setBackground(new java.awt.Color(255, 255, 255));
         ateField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ateFieldKeyPressed(evt);
@@ -919,11 +963,12 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        accountsTP.addTab("8-Account", atePanel);
+        accountsTabs.addTab("8-Account", atePanel);
 
         jLabel21.setText("Total funds:");
 
         totalField.setEditable(false);
+        totalField.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout accountsPanelLayout = new javax.swing.GroupLayout(accountsPanel);
         accountsPanel.setLayout(accountsPanelLayout);
@@ -932,7 +977,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             .addGroup(accountsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(accountsTP)
+                    .addComponent(accountsTabs)
                     .addGroup(accountsPanelLayout.createSequentialGroup()
                         .addGroup(accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
@@ -944,7 +989,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             accountsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accountsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(accountsTP, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(accountsTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -952,7 +997,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Accounts", accountsPanel);
+        tabs.addTab("Accounts", accountsPanel);
 
         moneycounterPanel.setName("Funds Calc"); // NOI18N
 
@@ -1246,7 +1291,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGap(0, 106, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Funds Calculator", moneycounterPanel);
+        tabs.addTab("Funds Calculator", moneycounterPanel);
 
         errLabel.setText(" ");
 
@@ -1397,7 +1442,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
+                    .addComponent(tabs)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -1419,7 +1464,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                         .addComponent(loginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(calcButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(tabs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1440,7 +1485,6 @@ public class FinanceGUI extends javax.swing.JFrame {
      * EnterKeyPressed : clicks a button when enter is pressed
      */
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods"> 
-    
     /**
      * Handles when user closes the window
      */
@@ -1667,7 +1711,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             Runtime.getRuntime().exec("calc");
         } catch (IOException ex) {
             Util.error(ex.toString(), ex.getMessage());
-            
+
         }
     }//GEN-LAST:event_calcButtonActionPerformed
 
@@ -1696,7 +1740,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             search(transactions.elementAt(list.getSelectedIndex()).id);
 
             // if search tab is not in focus, put it in focus
-            transactionsTP.setSelectedIndex(0);
+            transTabs.setSelectedIndex(0);
         } else {
             // do nothing
             // it'll crash otherwise
@@ -1727,7 +1771,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         int res = JOptionPane.showConfirmDialog(
                 null,
                 "Are you sure you want to delete the transaction from\n"
-                + sStoreField.getText() + " for " 
+                + sStoreField.getText() + " for "
                 + sAmountField.getText() + "?",
                 "Confirm Deletion",
                 JOptionPane.YES_NO_OPTION);
@@ -1750,7 +1794,7 @@ public class FinanceGUI extends javax.swing.JFrame {
      */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
-        
+
         double[] d = FinanceController.getAccountTotals();
         bankField.setText("$" + money.format(d[0]));
         cashField.setText("$" + money.format(d[1]));
@@ -1768,6 +1812,8 @@ public class FinanceGUI extends javax.swing.JFrame {
         bankField.setEditable(true);
         bankSubmitButton.setEnabled(true);
         bankEditButton.setEnabled(false);
+        bankField.requestFocus();
+        bankField.selectAll();
     }//GEN-LAST:event_bankEditButtonActionPerformed
 
     /**
@@ -1777,6 +1823,8 @@ public class FinanceGUI extends javax.swing.JFrame {
         cashField.setEditable(true);
         cashSubmitButton.setEnabled(true);
         cashEditButton.setEnabled(false);
+        cashField.requestFocus();
+        cashField.selectAll();
     }//GEN-LAST:event_cashEditButtonActionPerformed
 
     /**
@@ -1786,42 +1834,59 @@ public class FinanceGUI extends javax.swing.JFrame {
         ateField.setEditable(true);
         ateSubmitButton.setEnabled(true);
         ateEditButton.setEnabled(false);
+        ateField.requestFocus();
+        ateField.selectAll();
     }//GEN-LAST:event_ateEditButtonActionPerformed
 
     /**
      * Handles when submit is pressed on bank tab in Accounts tab
      */
     private void bankSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankSubmitButtonActionPerformed
-        updateAccountTotals();
-        bankField.setEditable(false);
-        bankSubmitButton.setEnabled(false);
-        bankEditButton.setEnabled(true);
+        if (bankField.getText().equals("")) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText("Amount field required");
+        } else {
+            updateAccountTotals();
+            bankField.setEditable(false);
+            bankSubmitButton.setEnabled(false);
+            bankEditButton.setEnabled(true);
+        }
     }//GEN-LAST:event_bankSubmitButtonActionPerformed
 
     /**
      * Handles when submit is pressed on cash tab in Accounts tab
      */
     private void cashSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashSubmitButtonActionPerformed
-        updateAccountTotals();
-        cashField.setEditable(false);
-        cashSubmitButton.setEnabled(false);
-        cashEditButton.setEnabled(true);
+        if (cashField.getText().equals("")) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText("Amount field required");
+        } else {
+            updateAccountTotals();
+            cashField.setEditable(false);
+            cashSubmitButton.setEnabled(false);
+            cashEditButton.setEnabled(true);
+        }
     }//GEN-LAST:event_cashSubmitButtonActionPerformed
 
     /**
      * Handles when submit is pressed on 8-Account tab in Accounts tab
      */
     private void ateSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ateSubmitButtonActionPerformed
-        updateAccountTotals();
-        ateField.setEditable(false);
-        ateSubmitButton.setEnabled(false);
-        ateEditButton.setEnabled(true);
+        if (ateField.getText().equals("")) {
+            errLabel.setForeground(Color.red);
+            errLabel.setText("Amount field required");
+        } else {
+            updateAccountTotals();
+            ateField.setEditable(false);
+            ateSubmitButton.setEnabled(false);
+            ateEditButton.setEnabled(true);
+        }
     }//GEN-LAST:event_ateSubmitButtonActionPerformed
 
     /**
      * Handles when the tab changes on the Accounts tab
      */
-    private void accountsTPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_accountsTPStateChanged
+    private void accountsTabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_accountsTabsStateChanged
         bankField.setEditable(false);
         bankSubmitButton.setEnabled(false);
         bankEditButton.setEnabled(true);
@@ -1831,7 +1896,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         ateField.setEditable(false);
         ateSubmitButton.setEnabled(false);
         ateEditButton.setEnabled(true);
-    }//GEN-LAST:event_accountsTPStateChanged
+    }//GEN-LAST:event_accountsTabsStateChanged
 
     /**
      * Handles if enter is pressed while field is in focus, presses submit
@@ -2061,10 +2126,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_paypalItemActionPerformed
 
     // </editor-fold>
-    
     /**
      * updateTotal()
-     * 
+     *
      * Updates the total on the money counter when user changes something
      */
     public void updateTotal() {
@@ -2088,33 +2152,33 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     /**
      * updateAccountTotals()
-     * 
+     *
      * Takes the values of the three accounts and sends them to IOController\
      * to update that file
      */
     public void updateAccountTotals() {
 
         // create a new double array
-        double[] d = new double[] {
+        double[] d = new double[]{
             Double.valueOf(bankField.getText().replace("$", "")),
             Double.valueOf(cashField.getText().replace("$", "")),
             Double.valueOf(ateField.getText().replace("$", ""))
         };
-        
+
         // update them in the file
         FinanceController.updateAccountTotals(d);
-        
+
         // update them in the gui
         bankField.setText("$" + money.format(d[0]));
         cashField.setText("$" + money.format(d[1]));
         ateField.setText("$" + money.format(d[2]));
-        
+
         // total
         double total = d[0] + d[1] + d[2];
         totalField.setText("$" + money.format(total));
-        
+
         // log
-            EventLog.add("edited account totals");
+        EventLog.add("edited account totals");
     }
 
     /**
@@ -2145,7 +2209,7 @@ public class FinanceGUI extends javax.swing.JFrame {
      *
      * Works with the global list of Transactions, which updates the JList graphics
      *
-     * @param action, the type of action (either add or remove)
+     * @param action,  the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -2172,9 +2236,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         String purchaser = aPurchaserField.getText();
         double amount = Double.valueOf(aAmountField.getText().replace(",", ""));
         String reason = aReasonField.getText();
-        
+
         String notes;
-        if(aNotesField.getText().equals("")) {
+        if (aNotesField.getText().equals("")) {
             notes = "N/A";
         } else {
             notes = aNotesField.getText();
@@ -2199,7 +2263,7 @@ public class FinanceGUI extends javax.swing.JFrame {
 
             setAddValuesToNull();
             aStoreField.requestFocus();
-            
+
             // log
             EventLog.add("added transaction " + t.getID()
                     + " (" + t.getAmount() + " - " + t.getStore() + ")");
@@ -2214,7 +2278,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * search()
      *
-     * Calls the searchTransaction() method from FinanceController, which 
+     * Calls the searchTransaction() method from FinanceController, which
      * returns a valid Transaction
      * Update the graphics with the Transaction info
      *
@@ -2299,7 +2363,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             submitButton.setEnabled(false);
-            
+
             // log
             EventLog.add("deleted transaction " + id
                     + " (" + amount + " - " + store + ")");
@@ -2324,9 +2388,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         String purchaser = sPurchaserField.getText();
         double amount = Double.valueOf(sAmountField.getText());
         String reason = sReasonField.getText();
-        
+
         String notes;
-        if(sNotesField.getText().equals("")) {
+        if (sNotesField.getText().equals("")) {
             notes = "N/A";
         } else {
             notes = sNotesField.getText();
@@ -2367,10 +2431,10 @@ public class FinanceGUI extends javax.swing.JFrame {
         // reset the form, selecting the new Profile just edited
         list.setSelectedIndex(transactions.getSize() - 1);
         search(transactions.getElementAt(transactions.getSize() - 1).id);
-        
+
         // log
-            EventLog.add("edited transaction " + t.getID()
-                    + " (" + t.getAmount() + " - " + t.getStore() + ")");
+        EventLog.add("edited transaction " + t.getID()
+                + " (" + t.getAmount() + " - " + t.getStore() + ")");
 
     }
 
@@ -2382,7 +2446,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     public void admin() {
         // not implemented yet
     }
-    
+
     /**
      * aCheck()
      *
@@ -2713,7 +2777,7 @@ public class FinanceGUI extends javax.swing.JFrame {
      * setSearchValuesToNull()
      *
      * Graphics update
-     * 
+     *
      * Resets the serach panel with null values
      */
     public void setSearchValuesToNull() {
@@ -2791,7 +2855,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -2804,7 +2868,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             Util.error(ex.toString(), ex.getMessage());
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -2837,7 +2901,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JTextField aStoreField;
     private javax.swing.JComboBox<String> aYearBox;
     private javax.swing.JPanel accountsPanel;
-    private javax.swing.JTabbedPane accountsTP;
+    private javax.swing.JTabbedPane accountsTabs;
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
     private javax.swing.JLabel adminLabel;
@@ -2907,7 +2971,6 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
@@ -2933,12 +2996,13 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel searchPanel;
     private javax.swing.JButton submitButton;
     private javax.swing.JMenuItem suggestionItem;
+    private javax.swing.JTabbedPane tabs;
     private javax.swing.JLabel tenL;
     private javax.swing.JSpinner tenSpinner;
     private javax.swing.JTextField totalField;
     private javax.swing.JLabel totalL;
+    private javax.swing.JTabbedPane transTabs;
     private javax.swing.JPanel transactionPanel;
-    private javax.swing.JTabbedPane transactionsTP;
     private javax.swing.JLabel twentyL;
     private javax.swing.JSpinner twentySpinner;
     private javax.swing.JMenuItem webradioItem;

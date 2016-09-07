@@ -8,6 +8,9 @@ package webradio;
 
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -118,6 +121,29 @@ public class ShowGUI extends javax.swing.JFrame {
 
     /** Creates new form ShowGUI */
     public ShowGUI() {
+
+        // picks up enter being pressed
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (e.getID() == KeyEvent.KEY_PRESSED) {
+                        if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
+                            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                addButton.doClick();
+                            }
+                        } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
+                            if (submitButton.isEnabled()) {
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                    submitButton.doClick();
+                                }
+                            }
+                        }
+                    } else {
+                        // don't pick up keytyped or keyreleased
+                    }
+                    return false;
+                });
+
+        // inits the components
         initComponents();
     }
 
@@ -145,34 +171,34 @@ public class ShowGUI extends javax.swing.JFrame {
         sl5 = new javax.swing.JLabel();
         sl6 = new javax.swing.JLabel();
         sShowNumSpinner = new javax.swing.JSpinner();
-        sDayBox1 = new javax.swing.JComboBox<String>();
-        sStartBox1 = new javax.swing.JComboBox<String>();
-        sEndBox1 = new javax.swing.JComboBox<String>();
-        sDayBox2 = new javax.swing.JComboBox<String>();
-        sStartBox2 = new javax.swing.JComboBox<String>();
-        sEndBox2 = new javax.swing.JComboBox<String>();
-        sDayBox3 = new javax.swing.JComboBox<String>();
-        sStartBox3 = new javax.swing.JComboBox<String>();
-        sEndBox3 = new javax.swing.JComboBox<String>();
-        sDayBox4 = new javax.swing.JComboBox<String>();
-        sStartBox4 = new javax.swing.JComboBox<String>();
-        sEndBox4 = new javax.swing.JComboBox<String>();
-        sDayBox5 = new javax.swing.JComboBox<String>();
-        sStartBox5 = new javax.swing.JComboBox<String>();
-        sEndBox5 = new javax.swing.JComboBox<String>();
-        sDayBox6 = new javax.swing.JComboBox<String>();
-        sStartBox6 = new javax.swing.JComboBox<String>();
-        sEndBox6 = new javax.swing.JComboBox<String>();
-        sDayBox7 = new javax.swing.JComboBox<String>();
-        sStartBox7 = new javax.swing.JComboBox<String>();
-        sEndBox7 = new javax.swing.JComboBox<String>();
+        sDayBox1 = new javax.swing.JComboBox<>();
+        sStartBox1 = new javax.swing.JComboBox<>();
+        sEndBox1 = new javax.swing.JComboBox<>();
+        sDayBox2 = new javax.swing.JComboBox<>();
+        sStartBox2 = new javax.swing.JComboBox<>();
+        sEndBox2 = new javax.swing.JComboBox<>();
+        sDayBox3 = new javax.swing.JComboBox<>();
+        sStartBox3 = new javax.swing.JComboBox<>();
+        sEndBox3 = new javax.swing.JComboBox<>();
+        sDayBox4 = new javax.swing.JComboBox<>();
+        sStartBox4 = new javax.swing.JComboBox<>();
+        sEndBox4 = new javax.swing.JComboBox<>();
+        sDayBox5 = new javax.swing.JComboBox<>();
+        sStartBox5 = new javax.swing.JComboBox<>();
+        sEndBox5 = new javax.swing.JComboBox<>();
+        sDayBox6 = new javax.swing.JComboBox<>();
+        sStartBox6 = new javax.swing.JComboBox<>();
+        sEndBox6 = new javax.swing.JComboBox<>();
+        sDayBox7 = new javax.swing.JComboBox<>();
+        sStartBox7 = new javax.swing.JComboBox<>();
+        sEndBox7 = new javax.swing.JComboBox<>();
         sHostPanel = new javax.swing.JPanel();
         sHostNumSpinner = new javax.swing.JSpinner();
         sl7 = new javax.swing.JLabel();
-        sHost1 = new javax.swing.JComboBox<String>();
-        sHost2 = new javax.swing.JComboBox<String>();
-        sHost3 = new javax.swing.JComboBox<String>();
-        sHost4 = new javax.swing.JComboBox<String>();
+        sHost1 = new javax.swing.JComboBox<>();
+        sHost2 = new javax.swing.JComboBox<>();
+        sHost3 = new javax.swing.JComboBox<>();
+        sHost4 = new javax.swing.JComboBox<>();
         editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         submitButton = new javax.swing.JButton();
@@ -189,38 +215,38 @@ public class ShowGUI extends javax.swing.JFrame {
         al5 = new javax.swing.JLabel();
         al6 = new javax.swing.JLabel();
         aShowNumSpinner = new javax.swing.JSpinner();
-        aDayBox1 = new javax.swing.JComboBox<String>();
-        aStartBox1 = new javax.swing.JComboBox<String>();
-        aEndBox1 = new javax.swing.JComboBox<String>();
-        aDayBox2 = new javax.swing.JComboBox<String>();
-        aStartBox2 = new javax.swing.JComboBox<String>();
-        aEndBox2 = new javax.swing.JComboBox<String>();
-        aDayBox3 = new javax.swing.JComboBox<String>();
-        aStartBox3 = new javax.swing.JComboBox<String>();
-        aEndBox3 = new javax.swing.JComboBox<String>();
-        aDayBox4 = new javax.swing.JComboBox<String>();
-        aStartBox4 = new javax.swing.JComboBox<String>();
-        aEndBox4 = new javax.swing.JComboBox<String>();
-        aDayBox5 = new javax.swing.JComboBox<String>();
-        aStartBox5 = new javax.swing.JComboBox<String>();
-        aEndBox5 = new javax.swing.JComboBox<String>();
-        aDayBox6 = new javax.swing.JComboBox<String>();
-        aStartBox6 = new javax.swing.JComboBox<String>();
-        aEndBox6 = new javax.swing.JComboBox<String>();
-        aDayBox7 = new javax.swing.JComboBox<String>();
-        aStartBox7 = new javax.swing.JComboBox<String>();
-        aEndBox7 = new javax.swing.JComboBox<String>();
+        aDayBox1 = new javax.swing.JComboBox<>();
+        aStartBox1 = new javax.swing.JComboBox<>();
+        aEndBox1 = new javax.swing.JComboBox<>();
+        aDayBox2 = new javax.swing.JComboBox<>();
+        aStartBox2 = new javax.swing.JComboBox<>();
+        aEndBox2 = new javax.swing.JComboBox<>();
+        aDayBox3 = new javax.swing.JComboBox<>();
+        aStartBox3 = new javax.swing.JComboBox<>();
+        aEndBox3 = new javax.swing.JComboBox<>();
+        aDayBox4 = new javax.swing.JComboBox<>();
+        aStartBox4 = new javax.swing.JComboBox<>();
+        aEndBox4 = new javax.swing.JComboBox<>();
+        aDayBox5 = new javax.swing.JComboBox<>();
+        aStartBox5 = new javax.swing.JComboBox<>();
+        aEndBox5 = new javax.swing.JComboBox<>();
+        aDayBox6 = new javax.swing.JComboBox<>();
+        aStartBox6 = new javax.swing.JComboBox<>();
+        aEndBox6 = new javax.swing.JComboBox<>();
+        aDayBox7 = new javax.swing.JComboBox<>();
+        aStartBox7 = new javax.swing.JComboBox<>();
+        aEndBox7 = new javax.swing.JComboBox<>();
         aHostPanel = new javax.swing.JPanel();
         aHostNumSpinner = new javax.swing.JSpinner();
         al7 = new javax.swing.JLabel();
-        aHost1 = new javax.swing.JComboBox<String>();
-        aHost2 = new javax.swing.JComboBox<String>();
-        aHost3 = new javax.swing.JComboBox<String>();
-        aHost4 = new javax.swing.JComboBox<String>();
+        aHost1 = new javax.swing.JComboBox<>();
+        aHost2 = new javax.swing.JComboBox<>();
+        aHost3 = new javax.swing.JComboBox<>();
+        aHost4 = new javax.swing.JComboBox<>();
         addButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         scrollpane = new javax.swing.JScrollPane();
-        list = new javax.swing.JList<String>();
+        list = new javax.swing.JList<>();
         loginLabel = new javax.swing.JLabel();
         adminLabel = new javax.swing.JLabel();
         errLabel = new javax.swing.JLabel();
@@ -265,7 +291,7 @@ public class ShowGUI extends javax.swing.JFrame {
         sl2.setText("Description:");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setText("Social Media:");
+        jLabel1.setText("Social:");
 
         sNameField.setEditable(false);
         sNameField.setEnabled(false);
@@ -284,6 +310,11 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setWrapStyleWord(true);
         sDescField.setEnabled(false);
         sDescField.setPreferredSize(new java.awt.Dimension(385, 76));
+        sDescField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sDescFieldKeyPressed(evt);
+            }
+        });
         sSP.setViewportView(sDescField);
 
         sSMField.setEditable(false);
@@ -310,80 +341,80 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         });
 
-        sDayBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox1.setEnabled(false);
 
-        sStartBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox1.setEnabled(false);
         sStartBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox1.setEnabled(false);
         sEndBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sDayBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox2.setEnabled(false);
 
-        sStartBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox2.setEnabled(false);
         sStartBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox2.setEnabled(false);
         sEndBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sDayBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox3.setEnabled(false);
 
-        sStartBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox3.setEnabled(false);
         sStartBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox3.setEnabled(false);
         sEndBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sDayBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox4.setEnabled(false);
 
-        sStartBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox4.setEnabled(false);
         sStartBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox4.setEnabled(false);
         sEndBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sDayBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox5.setEnabled(false);
 
-        sStartBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox5.setEnabled(false);
         sStartBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox5.setEnabled(false);
         sEndBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sDayBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox6.setEnabled(false);
 
-        sStartBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox6.setEnabled(false);
         sStartBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox6.setEnabled(false);
         sEndBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sDayBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        sDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox7.setEnabled(false);
 
-        sStartBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox7.setEnabled(false);
         sStartBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        sEndBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        sEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox7.setEnabled(false);
         sEndBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
@@ -645,6 +676,8 @@ public class ShowGUI extends javax.swing.JFrame {
         al2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         al2.setText("Description:");
 
+        aNameField.setFocusCycleRoot(true);
+        aNameField.setNextFocusableComponent(aDescField);
         aNameField.setPreferredSize(new java.awt.Dimension(385, 20));
 
         aSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -652,9 +685,16 @@ public class ShowGUI extends javax.swing.JFrame {
 
         aDescField.setColumns(20);
         aDescField.setRows(5);
+        aDescField.setNextFocusableComponent(aSMField);
         aDescField.setPreferredSize(new java.awt.Dimension(385, 76));
+        aDescField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                aDescFieldKeyPressed(evt);
+            }
+        });
         aSP.setViewportView(aDescField);
 
+        aSMField.setNextFocusableComponent(aShowNumSpinner);
         aSMField.setPreferredSize(new java.awt.Dimension(385, 20));
 
         aDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -668,86 +708,87 @@ public class ShowGUI extends javax.swing.JFrame {
         al6.setText("End time:");
 
         aShowNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
+        aShowNumSpinner.setNextFocusableComponent(aHostNumSpinner);
         aShowNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 aShowNumSpinnerStateChanged(evt);
             }
         });
 
-        aDayBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox1.setEnabled(false);
 
-        aStartBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox1.setEnabled(false);
         aStartBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox1.setEnabled(false);
         aEndBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aDayBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox2.setEnabled(false);
 
-        aStartBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox2.setEnabled(false);
         aStartBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox2.setEnabled(false);
         aEndBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aDayBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox3.setEnabled(false);
 
-        aStartBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox3.setEnabled(false);
         aStartBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox3.setEnabled(false);
         aEndBox3.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aDayBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox4.setEnabled(false);
 
-        aStartBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox4.setEnabled(false);
         aStartBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox4.setEnabled(false);
         aEndBox4.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aDayBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox5.setEnabled(false);
 
-        aStartBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox5.setEnabled(false);
         aStartBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox5.setEnabled(false);
         aEndBox5.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aDayBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox6.setEnabled(false);
 
-        aStartBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox6.setEnabled(false);
         aStartBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox6.setEnabled(false);
         aEndBox6.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aDayBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
+        aDayBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         aDayBox7.setEnabled(false);
 
-        aStartBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aStartBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aStartBox7.setEnabled(false);
         aStartBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
-        aEndBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
+        aEndBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         aEndBox7.setEnabled(false);
         aEndBox7.setPreferredSize(new java.awt.Dimension(75, 20));
 
@@ -848,6 +889,7 @@ public class ShowGUI extends javax.swing.JFrame {
         aHostPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         aHostNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+        aHostNumSpinner.setNextFocusableComponent(aNameField);
         aHostNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 aHostNumSpinnerStateChanged(evt);
@@ -925,7 +967,7 @@ public class ShowGUI extends javax.swing.JFrame {
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Social Media:");
+        jLabel2.setText("Social:");
 
         javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
         addPanel.setLayout(addPanelLayout);
@@ -1489,6 +1531,22 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_paypalItemActionPerformed
 
+    private void aDescFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aDescFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = aDescField.getText();
+            aSMField.requestFocus();
+            aDescField.setText(s);
+        }
+    }//GEN-LAST:event_aDescFieldKeyPressed
+
+    private void sDescFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sDescFieldKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = sDescField.getText();
+            sSMField.requestFocus();
+            sDescField.setText(s);
+        }
+    }//GEN-LAST:event_sDescFieldKeyPressed
+
     /**
      * fillList()
      *
@@ -1546,7 +1604,7 @@ public class ShowGUI extends javax.swing.JFrame {
      *
      * Works with the global list of Profiles, which updates the JList graphics
      *
-     * @param action, the type of action (either add or remove)
+     * @param action,  the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -1771,7 +1829,7 @@ public class ShowGUI extends javax.swing.JFrame {
      *
      */
     public void add() {
-        
+
         String showName = aNameField.getText();
         String showDesc = aDescField.getText();
 
@@ -1854,9 +1912,9 @@ public class ShowGUI extends javax.swing.JFrame {
 
             setAddValuesToNull();
             aNameField.requestFocus();
-            
+
             // log
-                EventLog.add("added show " + s.getShowName());
+            EventLog.add("added show " + s.getShowName());
         }
     }
 
@@ -1999,9 +2057,9 @@ public class ShowGUI extends javax.swing.JFrame {
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             submitButton.setEnabled(false);
-            
+
             // log
-                EventLog.add("deleted show " + name);
+            EventLog.add("deleted show " + name);
         }
     }
 
@@ -2059,9 +2117,9 @@ public class ShowGUI extends javax.swing.JFrame {
         // reset the form, selecting the new show just edited
         list.setSelectedIndex(list.getLastVisibleIndex());
         search(shows.getElementAt(shows.getSize() - 1).name);
-        
+
         // log
-                EventLog.add("edited show " + s.getShowName());
+        EventLog.add("edited show " + s.getShowName());
 
     }
 
@@ -2073,7 +2131,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public void admin() {
         // not implemented yet
     }
-    
+
     /**
      * sCheck()
      *
@@ -2583,7 +2641,7 @@ public class ShowGUI extends javax.swing.JFrame {
             errCount++;
             err = "Error with time fields";
         }
-        
+
         // primary sm
         if (aSMField.getForeground() == Color.red) {
             errCount++;
@@ -4121,7 +4179,7 @@ public class ShowGUI extends javax.swing.JFrame {
             Util.error(ex.toString(), ex.getMessage());
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */

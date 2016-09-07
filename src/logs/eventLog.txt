@@ -76,3 +76,242 @@
 [09/07/16 00:58] user pripley logged in
 [09/07/16 00:58] user pripley logged out
 [09/07/16 00:58] user pripley terminated program
+[09/07/16 09:56] user pripley logged in
+[09/07/16 09:58] user pripley logged out
+[09/07/16 09:58] user pripley terminated program
+[09/07/16 09:58] user pripley logged in
+[09/07/16 09:58] user pripley edited account pripley
+[09/07/16 09:59] user pripley logged out
+[09/07/16 09:59] user pripley terminated program
+[09/07/16 10:00] user pripley logged in
+[09/07/16 10:00] user pripley logged out
+[09/07/16 10:00] user pripley terminated program
+[09/07/16 10:02] user pripley logged in
+[09/07/16 10:04] user pripley logged out
+[09/07/16 10:04] user pripley terminated program
+[09/07/16 10:05] user pripley logged in
+[09/07/16 10:12] user pripley logged out
+[09/07/16 10:12] user pripley terminated program
+[09/07/16 10:19] user pripley logged in
+[09/07/16 10:19] user pripley logged out
+[09/07/16 10:19] user pripley terminated program
+[09/07/16 10:21] user pripley logged in
+[09/07/16 10:21] user pripley logged out
+[09/07/16 10:21] user pripley terminated program
+[09/07/16 10:21] user pripley logged in
+[09/07/16 10:21] user pripley logged out
+[09/07/16 10:21] user pripley terminated program
+[09/07/16 10:23] user pripley logged in
+[09/07/16 10:24] user pripley logged out
+[09/07/16 10:24] user pripley terminated program
+[09/07/16 10:24] user pripley logged in
+[09/07/16 10:25] user pripley logged out
+[09/07/16 10:25] user pripley terminated program
+[09/07/16 10:26] user pripley logged in
+[09/07/16 10:26] user pripley logged out
+[09/07/16 10:26] user pripley terminated program
+[09/07/16 10:49] user pripley logged in
+[09/07/16 10:49] user pripley logged out
+[09/07/16 10:49] user pripley terminated program
+[09/07/16 10:50] user pripley logged in
+[09/07/16 10:50] user pripley logged out
+[09/07/16 10:50] user pripley terminated program
+[09/07/16 10:52] user pripley logged in
+[09/07/16 10:52] user pripley logged out
+[09/07/16 10:52] user pripley terminated program
+[09/07/16 10:53] user pripley logged in
+[09/07/16 10:53] user pripley logged out
+[09/07/16 10:53] user pripley terminated program
+[09/07/16 11:06] user pripley logged in
+[09/07/16 11:07] user pripley logged out
+[09/07/16 11:07] user pripley terminated program
+[09/07/16 11:07] user pripley logged in
+[09/07/16 11:08] user pripley logged out
+[09/07/16 11:08] user pripley terminated program
+[09/07/16 11:09] user pripley logged in
+[09/07/16 11:10] user pripley logged out
+[09/07/16 11:10] user pripley terminated program
+[09/07/16 11:13] user pripley logged in
+[09/07/16 11:13] user pripley logged out
+[09/07/16 11:13] user pripley terminated program
+[09/07/16 11:13] user pripley logged in
+[09/07/16 11:14] user pripley logged out
+[09/07/16 11:14] user pripley terminated program
+[09/07/16 12:16] user pripley logged in
+[09/07/16 12:21] user pripley logged out
+[09/07/16 12:21] user pripley terminated program
+[09/07/16 12:21] user pripley logged in
+[09/07/16 12:27] user pripley logged out
+[09/07/16 12:27] user pripley terminated program
+[09/07/16 12:27] user pripley logged in
+[09/07/16 12:37] user pripley logged out
+[09/07/16 12:37] user pripley terminated program
+[09/07/16 12:37] user pripley logged in
+[09/07/16 12:38] user pripley logged out
+[09/07/16 12:38] user pripley terminated program
+[09/07/16 12:51] user pripley logged in
+[09/07/16 12:52] user pripley logged out
+[09/07/16 12:52] user pripley terminated program
+[09/07/16 12:53] user pripley logged in
+[09/07/16 12:54] user pripley logged out
+[09/07/16 12:54] user pripley terminated program
+[09/07/16 12:54] user pripley logged in
+[09/07/16 12:55] user pripley logged out
+[09/07/16 12:55] user pripley terminated program
+[09/07/16 13:19] user pripley logged in
+[09/07/16 13:19] user pripley edited transaction 594346002 (3.0 - asdf)
+[09/07/16 13:19] user pripley logged out
+[09/07/16 13:19] user pripley terminated program
+[09/07/16 13:22] user pripley logged in
+[09/07/16 13:22] user pripley logged out
+[09/07/16 13:22] user pripley terminated program
+[09/07/16 13:24] user pripley logged in
+[09/07/16 13:24] user pripley edited account totals
+[09/07/16 13:24] user pripley edited account totals
+[09/07/16 13:27] user pripley logged out
+[09/07/16 13:27] user pripley terminated program
+[09/07/16 13:27] user pripley logged in
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:28] user pripley edited account totals
+[09/07/16 13:29] user pripley logged out
+[09/07/16 13:29] user pripley terminated program
+[09/07/16 13:35] user pripley logged in
+[09/07/16 13:35] user pripley edited account totals
+[09/07/16 13:35] user pripley edited account totals
+[09/07/16 13:35] user pripley logged out
+[09/07/16 13:35] user pripley terminated program
+[09/07/16 13:36] user pripley logged in
+[09/07/16 13:36] user pripley edited account totals
+[09/07/16 13:38] user pripley logged out
+[09/07/16 13:38] user pripley terminated program
+[09/07/16 13:38] user pripley logged in
+[09/07/16 13:38] user pripley edited account totals
+[09/07/16 13:38] user pripley edited account totals
+[09/07/16 13:38] user pripley edited account totals
+[09/07/16 13:38] user pripley edited account totals
+[09/07/16 13:40] user pripley logged out
+[09/07/16 13:40] user pripley terminated program
+[09/07/16 13:40] user pripley logged in
+[09/07/16 13:40] user pripley edited account totals
+[09/07/16 13:40] user pripley edited account totals
+[09/07/16 13:41] user pripley logged out
+[09/07/16 13:41] user pripley terminated program
+[09/07/16 13:43] user pripley logged in
+[09/07/16 13:43] user pripley edited account totals
+[09/07/16 13:43] user pripley edited account totals
+[09/07/16 13:43] user pripley edited account totals
+[09/07/16 13:43] user pripley edited account totals
+[09/07/16 13:44] user pripley edited account totals
+[09/07/16 13:47] user pripley edited account totals
+[09/07/16 13:47] user pripley edited account totals
+[09/07/16 13:47] user pripley edited account totals
+[09/07/16 13:47] user pripley edited account totals
+[09/07/16 13:47] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:48] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:49] user pripley edited account totals
+[09/07/16 13:52] user pripley logged out
+[09/07/16 13:52] user pripley terminated program
+[09/07/16 13:53] user pripley logged in
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:53] user pripley edited account totals
+[09/07/16 13:54] user pripley logged out
+[09/07/16 13:54] user pripley terminated program
+[09/07/16 13:54] user pripley logged in
+[09/07/16 13:54] user pripley edited account totals
+[09/07/16 13:54] user pripley edited account totals
+[09/07/16 13:54] user pripley edited account totals
+[09/07/16 13:54] user pripley edited account totals
+[09/07/16 13:55] user pripley logged out
+[09/07/16 13:55] user pripley terminated program
+[09/07/16 14:08] user pripley logged in
+[09/07/16 14:09] user pripley edited account totals
+[09/07/16 14:09] user pripley logged out
+[09/07/16 14:09] user pripley terminated program
+[09/07/16 14:11] user pripley logged in
+[09/07/16 14:11] user pripley edited account totals
+[09/07/16 14:11] user pripley edited account totals
+[09/07/16 14:12] user pripley edited account totals
+[09/07/16 14:13] user pripley logged out
+[09/07/16 14:13] user pripley terminated program
+[09/07/16 14:16] user pripley logged in
+[09/07/16 14:17] user pripley logged out
+[09/07/16 14:17] user pripley terminated program

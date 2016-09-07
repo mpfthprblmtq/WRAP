@@ -66,16 +66,19 @@ public class Main {
         loginGUI.setVisible(true);
 
         // detects when program exits
-         Runtime.getRuntime().addShutdownHook(new Thread() {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                EventLog.add("logged out");
-                EventLog.add("terminated program");
+                if (Main.p != null) {
+                    EventLog.add("logged out");
+                    EventLog.add("terminated program");
+                } else {
+                    // nothing
+                }
                 
                 // this could be unsafe, but let's see what happens
                 this.stop();
-                
-                
+
                 System.exit(0);
             }
         });
@@ -110,7 +113,7 @@ public class Main {
 
         // log
         EventLog.add("logged out");
-        
+
         Main.p = null;
         LoginGUI loginGUI = new LoginGUI();
         loginGUI.setLocationRelativeTo(null);
