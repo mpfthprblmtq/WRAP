@@ -1,41 +1,41 @@
 <blank>///<blank>///000000000///0000000000///<blank>///<blank>///-1///-1///<blank>///false///false///false///false///
 Nathan///Ash///111111111///6184014109///nash@siue.edu///nathan.ash@sbcglobal.net///1///6///Needs updated 800 number///false///false///false///false///
 Shawn///Bettig///222222222///6304053828///sbettig@siue.edu///s1bettig@gmail.com///1///6///Needs updated 800 number///false///false///false///false///
-Andrew///Braun///800499395///6187980616///abraun@siue.edu///abraun@siue.edu///1///6//////false///false///false///false///
-Jacob///Fillingim///800403895///6186107641///jfillin@siue.edu///jfilling23@gmail.com///1///6//////false///false///false///false///
+Andrew///Braun///800499395///6187980616///abraun@siue.edu///abraun@siue.edu///1///6///N/A///false///false///false///false///
+Jacob///Fillingim///800403895///6186107641///jfillin@siue.edu///jfilling23@gmail.com///1///6///N/A///false///false///false///false///
 Courtney///Johnson///444444444///6186962558///courtjo@siue.edu///j-drew91@outlook.com///2///6///Needs updated 800 number///false///false///false///false///
-Mike///Jordan///800581321///2242279270///mijorda@siue.edu///mijorda@siue.edu///1///6//////false///false///false///false///
-Kendra///Martin///800535992///6302156678///kendmar@siue.edu///kendmar@siue.edu///1///6//////false///false///false///false///
+Mike///Jordan///800581321///2242279270///mijorda@siue.edu///mijorda@siue.edu///1///6///N/A///false///false///false///false///
+Kendra///Martin///800535992///6302156678///kendmar@siue.edu///kendmar@siue.edu///1///6///N/A///false///false///false///false///
 Jesse///Lucio///555555555///6185606443///xxxxx@siue.edu///xxxxx@siue.edu///2///6///Needs updated 800 number///false///false///false///false///
-Tyler///Mauer///666666666///0000000000///xxxxx@siue.edu///xxxxx@gmail.com///2///6//////false///false///false///false///
-Markos///McAuliffe///800592681///3146518804///mmcauli@siue.edu///mcaulim@gmail.com///2///6//////false///false///false///false///
-Dillon///Painter///800478477///6189808164///dpainte@siue.edu///dpainte@siue.edu///2///6//////false///false///false///false///
-Fernando///Perez///800453173///6187310329///fjacint@siue.edu///f_jacinto92@hotmail.com///1///6//////false///false///false///false///
-Darius///Randell///800525653///7738750721///drandel@siue.edu///dariusrandell@gmail.com///2///6//////false///false///false///false///
-Derric///Roberts///800484913///7732093611///derober@siue.edu///derober@siue.edu///1///6//////false///false///false///false///
-Kevin///Romo///800527589///6185144295///kromo@siue.edu///romotheman12@gmail.com///1///6//////false///false///false///false///
-Alexis///Schad///800519602///6184010281///aschad@siue.edu///alexismschad@gmail.com///1///6//////false///false///false///false///
-DJ///Sterling///800478821///6187958030///dsterli@siue.edu///dstingj@gmail.com///1///6//////false///false///false///false///
-Vincent///Strode///800313794///3143377258///xxxxx@siue.edu///vincent_strode@yahoo.com///2///6//////false///false///false///false///
-David///Swartz///888888888///6187093682///xxxxx@siue.edu///davywavy94@gmail.com///1///6//////false///false///false///false///
-Andrea///Thompson///800324484///2174121135///athomag@siue.edu///arthompson89@yahoo.com///1///6//////false///false///false///false///
-Shawn///Williams///800511291///7739640571///shawwil@siue.edu///shawwil@siue.edu///1///6//////false///false///false///false///
-Danielle///Williams///999999999///0000000000///xxxxx@siue.edu///danie641@gmail.com///2///6//////false///false///false///false///
-Deshaunna///York///000000001///7734071276///xxxxx@siue.edu///xxxxx@gmail.com///1///6//////false///false///false///false///
-Kaberia///Mwongo///777777777///5407640510///kmwongo@siue.edu///kabsmwongo@yahoo.com///1///4//////false///false///false///false///
+Tyler///Mauer///666666666///0000000000///xxxxx@siue.edu///xxxxx@gmail.com///2///6///N/A///false///false///false///false///
+Markos///McAuliffe///800592681///3146518804///mmcauli@siue.edu///mcaulim@gmail.com///2///6///N/A///false///false///false///false///
+Dillon///Painter///800478477///6189808164///dpainte@siue.edu///dpainte@siue.edu///2///6///N/A///false///false///false///false///
+Fernando///Perez///800453173///6187310329///fjacint@siue.edu///f_jacinto92@hotmail.com///1///6///N/A///false///false///false///false///
+Darius///Randell///800525653///7738750721///drandel@siue.edu///dariusrandell@gmail.com///2///6///N/A///false///false///false///false///
+Derric///Roberts///800484913///7732093611///derober@siue.edu///derober@siue.edu///1///6///N/A///false///false///false///false///
+Kevin///Romo///800527589///6185144295///kromo@siue.edu///romotheman12@gmail.com///1///6///N/A///false///false///false///false///
+Alexis///Schad///800519602///6184010281///aschad@siue.edu///alexismschad@gmail.com///1///6///N/A///false///false///false///false///
+DJ///Sterling///800478821///6187958030///dsterli@siue.edu///dstingj@gmail.com///1///6///N/A///false///false///false///false///
+Vincent///Strode///800313794///3143377258///xxxxx@siue.edu///vincent_strode@yahoo.com///2///6///N/A///false///false///false///false///
+David///Swartz///888888888///6187093682///xxxxx@siue.edu///davywavy94@gmail.com///1///6///N/A///false///false///false///false///
+Andrea///Thompson///800324484///2174121135///athomag@siue.edu///arthompson89@yahoo.com///1///6///N/A///false///false///false///false///
+Shawn///Williams///800511291///7739640571///shawwil@siue.edu///shawwil@siue.edu///1///6///N/A///false///false///false///false///
+Danielle///Williams///999999999///0000000000///xxxxx@siue.edu///danie641@gmail.com///2///6///N/A///false///false///false///false///
+Deshaunna///York///000000001///7734071276///xxxxx@siue.edu///xxxxx@gmail.com///1///6///N/A///false///false///false///false///
+Kaberia///Mwongo///777777777///5407640510///kmwongo@siue.edu///kabsmwongo@yahoo.com///1///4///N/A///false///false///false///false///
 Pat///Ripley///800497377///6185705661///pripley@siue.edu///ripley307@gmail.com///1///5///Derp asdf asdf asdf asdf asdf///false///false///false///false///
-Austin///Beck///800415090///2176210066///abeck@siue.edu///austinbeck09@gmail.com///1///6//////true///false///false///false///
-LaShaunda///Jordan///800578999///8723334802///lajorda@siue.edu///lajorda@siue.edu///1///6//////true///false///false///false///
-Stephen///King///800511565///7084464841///stking@siue.edu///stking@siue.edu///1///2//////true///false///false///false///
-Tayla///Myles///800534919///7736035499///tamyles@siue.edu///taylamyles2014@gmail.com///2///6//////true///false///false///false///
-Blake///Fry///800490455///6185938512///bfry@siue.edu///bfry@siue.edu///1///6//////false///true///false///true///
-Kewa "KC"///Cambelloff///800580520///9102327109///kewcamp@siue.edu///ckewas@yahoo.com///1///6//////true///false///true///false///
-Miles///Gray-Howard///800512481///7739796542///mgrayho@siue.edu///miles_gray@hotmail.com///1///6//////false///true///false///true///
-Stella///Massey///800576054///3146889379///stmasse@siue.edu///stella.massey@yahoo.com///1///3//////true///true///true///true///
-Maddie///King///800516788///6187193565///madking@siue.edu///mading@siue.edu///1///0//////true///false///true///false///
+Austin///Beck///800415090///2176210066///abeck@siue.edu///austinbeck09@gmail.com///1///6///N/A///true///false///false///false///
+LaShaunda///Jordan///800578999///8723334802///lajorda@siue.edu///lajorda@siue.edu///1///6///N/A///true///false///false///false///
+Stephen///King///800511565///7084464841///stking@siue.edu///stking@siue.edu///1///2///N/A///true///false///false///false///
+Tayla///Myles///800534919///7736035499///tamyles@siue.edu///taylamyles2014@gmail.com///2///6///N/A///true///false///false///false///
+Blake///Fry///800490455///6185938512///bfry@siue.edu///bfry@siue.edu///1///6///N/A///false///true///false///true///
+Kewa "KC"///Cambelloff///800580520///9102327109///kewcamp@siue.edu///ckewas@yahoo.com///1///6///N/A///true///false///true///false///
+Miles///Gray-Howard///800512481///7739796542///mgrayho@siue.edu///miles_gray@hotmail.com///1///6///N/A///false///true///false///true///
+Stella///Massey///800576054///3146889379///stmasse@siue.edu///stella.massey@yahoo.com///1///3///N/A///true///true///true///true///
+Maddie///King///800516788///6187193565///madking@siue.edu///mading@siue.edu///1///0///N/A///true///false///true///false///
 Deion///Craig///333333333///7739847098///decraig@siue.edu///decraig@siue.edu///1///6///Needs updated 800 number///true///false///true///false///
-Thomas///Gegan///800508659///6189757910///tgagen@siue.edu///tgagen@siue.edu///1///6//////false///true///false///true///
-Sky///Johnson///800536417///3143269216///sjohnaf@siue.edu///sjohnaf@siue.edu///1///6//////true///false///false///true///
+Thomas///Gegan///800508659///6189757910///tgagen@siue.edu///tgagen@siue.edu///1///6///N/A///false///true///false///true///
+Sky///Johnson///800536417///3143269216///sjohnaf@siue.edu///sjohnaf@siue.edu///1///6///N/A///true///false///false///true///
 Azrael///Long///800581201///3145661575///azlong@siue.edu///azlong@siue.edu///1///6///asdfasdf///false///false///false///false///
-Reid///Anderson///800493092///2176192076///reiande@siue.edu///stretchanderson93@gmail.com///1///6//////false///false///false///false///
 asdf///sagasd///978347894///9236792783///asd@a.com///a@a.com///3///1///asdf///false///false///false///false///
+Reid///Anderson///800493092///2176192076///reiande@siue.edu///stretchanderson93@gmail.com///1///6///N/A///false///false///false///false///

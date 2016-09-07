@@ -124,7 +124,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        sfNameField = new javax.swing.JTextField();
         slNameField = new javax.swing.JTextField();
         snum800Field = new javax.swing.JTextField();
         ssiueEmailField = new javax.swing.JTextField();
@@ -141,6 +140,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sphoneField1 = new javax.swing.JTextField();
         sphoneField2 = new javax.swing.JTextField();
         sphoneField3 = new javax.swing.JTextField();
+        sfNameField = new javax.swing.JTextField();
         addPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -236,23 +236,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel18.setText("Notes:");
-
-        sfNameField.setEditable(false);
-        sfNameField.setFocusCycleRoot(true);
-        sfNameField.setNextFocusableComponent(slNameField);
-        sfNameField.setPreferredSize(new java.awt.Dimension(158, 20));
-        sfNameField.setRequestFocusEnabled(false);
-        sfNameField.setDocument(new JTextFieldLimit(30));
-        sfNameField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                sfNameFieldFocusGained(evt);
-            }
-        });
-        sfNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sfNameFieldKeyPressed(evt);
-            }
-        });
 
         slNameField.setEditable(false);
         slNameField.setNextFocusableComponent(snum800Field);
@@ -404,7 +387,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         sphoneField1.setEditable(false);
         sphoneField1.setMinimumSize(new java.awt.Dimension(43, 20));
-        sphoneField1.setNextFocusableComponent(asiueEmailField);
+        sphoneField1.setNextFocusableComponent(ssiueEmailField);
         sphoneField1.setDocument(new JTextFieldLimit(3));
         sphoneField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -453,6 +436,28 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
 
+        sfNameField.setEditable(false);
+        sfNameField.setFocusCycleRoot(true);
+        sfNameField.setNextFocusableComponent(slNameField);
+        sfNameField.setPreferredSize(new java.awt.Dimension(158, 20));
+        sfNameField.setRequestFocusEnabled(false);
+        sfNameField.setDocument(new JTextFieldLimit(30));
+        sfNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sfNameFieldFocusGained(evt);
+            }
+        });
+        sfNameField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sfNameFieldMouseClicked(evt);
+            }
+        });
+        sfNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sfNameFieldKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
@@ -489,19 +494,19 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                             .addComponent(snum800Field, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(slNameField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sprefEmailField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sfNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                                 .addComponent(sphoneField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sphoneField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sphoneField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(sphoneField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(sfNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(sfNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -543,13 +548,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(sscrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton)
                             .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deleteButton)))
                     .addComponent(jLabel18))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -1019,6 +1024,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(errLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(tabs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1044,7 +1050,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addComponent(tabs))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
-                .addContainerGap())
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -1621,6 +1627,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     private void anotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anotesFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             addButton.doClick();
+        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = anotesField.getText();
+            afNameField.requestFocus();
+            anotesField.setText(s);
         }
     }//GEN-LAST:event_anotesFieldKeyPressed
 
@@ -1772,6 +1782,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (submitButton.isEnabled()) {
             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                 submitButton.doClick();
+            } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+                String s = snotesField.getText();   // text disappears if you press tab
+                sfNameField.requestFocus();
+                snotesField.setText(s);
             }
         }
     }//GEN-LAST:event_snotesFieldKeyPressed
@@ -1851,6 +1865,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             Util.error(ex.toString(), ex.getMessage());
         }
     }//GEN-LAST:event_paypalItemActionPerformed
+
+    private void sfNameFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sfNameFieldMouseClicked
+        sfNameField.requestFocus();
+    }//GEN-LAST:event_sfNameFieldMouseClicked
 
     // </editor-fold>
     /**
@@ -2257,7 +2275,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[5] = sprefEmailField.getText();
         str[6] = String.valueOf(stypeBox.getSelectedIndex());
         str[7] = String.valueOf(spositionBox.getSelectedIndex());
-        str[8] = snotesField.getText();
+        
+        if (snotesField.getText().equals("")) {
+            str[8] = "N/A";
+        } else {
+            str[8] = snotesField.getText();
+        }
+        
         str[9] = "false";
         str[10] = "false";
         str[11] = "false";
@@ -2284,7 +2308,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[5] = aprefEmailField.getText();
         str[6] = String.valueOf(atypeBox.getSelectedIndex());
         str[7] = String.valueOf(apositionBox.getSelectedIndex());
-        str[8] = anotesField.getText();
+        
+        if (anotesField.getText().equals("")) {
+            str[8] = "N/A";
+        } else {
+            str[8] = anotesField.getText();
+        }
 
         str[9] = "false";
         str[10] = "false";

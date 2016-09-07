@@ -79,7 +79,7 @@ public class AccountGUI extends javax.swing.JFrame {
     // </editor-fold>
 
     private String test = "HSDFHSDKLJFHSLDKFJSDKJH";
-    
+
     // globals
     Account temp;
     DefaultListModel<ListElement> users = new DefaultListModel<>();
@@ -225,11 +225,17 @@ public class AccountGUI extends javax.swing.JFrame {
 
         sUField.setEditable(false);
         sUField.setFocusCycleRoot(true);
+        sUField.setNextFocusableComponent(sAComboBox);
         sUField.setPreferredSize(new java.awt.Dimension(180, 20));
         sUField.setDocument(new JTextFieldLimit(30));
         sUField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sUFieldFocusGained(evt);
+            }
+        });
+        sUField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sUFieldKeyPressed(evt);
             }
         });
 
@@ -252,6 +258,11 @@ public class AccountGUI extends javax.swing.JFrame {
                 sAComboBoxActionPerformed(evt);
             }
         });
+        sAComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sAComboBoxKeyPressed(evt);
+            }
+        });
 
         sNField.setEditable(false);
         sNField.setNextFocusableComponent(sUField);
@@ -260,6 +271,11 @@ public class AccountGUI extends javax.swing.JFrame {
         sNField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sNFieldFocusGained(evt);
+            }
+        });
+        sNField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                sNFieldKeyReleased(evt);
             }
         });
 
@@ -409,7 +425,6 @@ public class AccountGUI extends javax.swing.JFrame {
         passwordMatch.setText(" ");
 
         aAField.setEditable(false);
-        aAField.setBackground(new java.awt.Color(255, 255, 255));
         aAField.setPreferredSize(new java.awt.Dimension(47, 20));
 
         aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
@@ -462,7 +477,7 @@ public class AccountGUI extends javax.swing.JFrame {
                     .addGroup(addPanelLayout.createSequentialGroup()
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(L10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                             .addComponent(L6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1136,6 +1151,32 @@ public class AccountGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_paypalItemActionPerformed
 
+    private void sUFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sUFieldKeyPressed
+        //if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+                sAComboBox.requestFocus();
+            }
+        //}
+    }//GEN-LAST:event_sUFieldKeyPressed
+
+    private void sAComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sAComboBoxKeyPressed
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            } 
+        }
+    }//GEN-LAST:event_sAComboBoxKeyPressed
+
+    private void sNFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sNFieldKeyReleased
+        if (submitButton.isEnabled()) {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                submitButton.doClick();
+            } 
+        }
+    }//GEN-LAST:event_sNFieldKeyReleased
+
     // </editor-fold>
     /**
      * fillList()
@@ -1594,9 +1635,6 @@ public class AccountGUI extends javax.swing.JFrame {
     public void admin() {
         // not implemented yet
     }
-    
-    
-    
 
     /**
      * aCheck()

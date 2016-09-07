@@ -2172,7 +2172,13 @@ public class FinanceGUI extends javax.swing.JFrame {
         String purchaser = aPurchaserField.getText();
         double amount = Double.valueOf(aAmountField.getText().replace(",", ""));
         String reason = aReasonField.getText();
-        String notes = aNotesField.getText();
+        
+        String notes;
+        if(aNotesField.getText().equals("")) {
+            notes = "N/A";
+        } else {
+            notes = aNotesField.getText();
+        }
 
         int id = Util.generateID();
 
@@ -2318,7 +2324,13 @@ public class FinanceGUI extends javax.swing.JFrame {
         String purchaser = sPurchaserField.getText();
         double amount = Double.valueOf(sAmountField.getText());
         String reason = sReasonField.getText();
-        String notes = sNotesField.getText();
+        
+        String notes;
+        if(sNotesField.getText().equals("")) {
+            notes = "N/A";
+        } else {
+            notes = sNotesField.getText();
+        }
 
         Date date = new Date();
         date.setMonth(sMonthBox.getSelectedIndex() - 1);

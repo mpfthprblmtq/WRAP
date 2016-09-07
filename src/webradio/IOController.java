@@ -1244,7 +1244,7 @@ public class IOController {
                             str[1],
                             simpledf.parse(str[2]),
                             str[3],
-                            Double.valueOf(str[4]),
+                            Double.parseDouble(str[4]),
                             str[5],
                             str[6]);
                     count++;
