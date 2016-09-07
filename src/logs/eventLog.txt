@@ -47,3 +47,38 @@
 [09/02/16 15:47] user root generated profiles report
 [09/02/16 16:11] user root logged out
 [09/02/16 16:11] user root terminated program
+[09/06/16 13:19] user root logged in
+[09/06/16 13:19] user root logged out
+[09/06/16 13:19] user root terminated program
+[09/06/16 13:29] user root logged in
+[09/06/16 13:30] user root ran into an error: IOException: Cannot run program "open": CreateProcess error=2, The system cannot find the file specified
+[09/06/16 13:30] user root logged out
+[09/06/16 13:30] user root terminated program
+[09/06/16 18:07] user root logged in
+[09/06/16 18:07] user root logged out
+[09/06/16 18:07] user root terminated program
+[09/06/16 18:10] user root logged in
+[09/06/16 18:11] user root logged out
+[09/06/16 18:11] user root terminated program
+[09/06/16 18:14] user root logged in
+[09/06/16 18:14] user root ran into an error: IOException: Cannot run program "open": CreateProcess error=2, The system cannot find the file specified
+[09/06/16 18:14] user root logged out
+[09/06/16 18:14] user root terminated program
+[09/06/16 18:39] user root logged in
+[09/06/16 18:40] user root logged out
+[09/06/16 18:40] user root terminated program
+[09/06/16 18:40] user root logged in
+[09/06/16 18:41] user root logged out
+[09/06/16 18:41] user root terminated program
+[09/06/16 18:41] user root logged in
+[09/06/16 18:41] user root logged out
+[09/06/16 18:41] user root terminated program
+[09/06/16 19:37] user root logged in
+[09/06/16 19:38] user root logged out
+[09/06/16 19:38] user root terminated program
+[09/06/16 19:53] user root logged in
+[09/06/16 19:59] user root logged out
+[09/06/16 19:59] user root terminated program
+[09/06/16 23:04] user root logged in
+[09/06/16 23:04] user root logged out
+[09/06/16 23:04] user root terminated program

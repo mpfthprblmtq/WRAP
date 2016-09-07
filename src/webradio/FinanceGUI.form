@@ -35,6 +35,86 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="links">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Links"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="webradioItem">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/imageicon.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Web Radio"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="webradioItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="SIUeMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="SIUe"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/e.PNG"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Homepage"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="profilesMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Profiles"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="collegiatelinkItem">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/collegiatelink.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="CollegiateLink"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="collegiatelinkItemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="facebookItem">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/facebook.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Facebook (Show Hosts)"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="facebookItemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="financesMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Finances"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="paypalItem">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/paypal.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="PayPal"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paypalItemActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="help">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
@@ -168,9 +248,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="transactionsTP" max="32767" attributes="0"/>
+                      <Component id="transactionsTP" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane7" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="jScrollPane7" pref="192" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -217,7 +297,7 @@
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="46" max="32767" attributes="0"/>
                                       <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="editButton" min="-2" max="-2" attributes="0"/>
@@ -227,21 +307,20 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="L5" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L4" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L3" alignment="0" pref="70" max="32767" attributes="0"/>
+                                          <Component id="L4" alignment="0" pref="70" max="32767" attributes="0"/>
+                                          <Component id="L6" max="32767" attributes="0"/>
+                                          <Component id="L3" alignment="0" max="32767" attributes="0"/>
                                           <Component id="L2" alignment="0" max="32767" attributes="0"/>
                                           <Component id="L1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L6" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="sMonthBox" min="-2" pref="69" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="sMonthBox" min="-2" pref="74" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="sDateBox" min="-2" pref="54" max="-2" attributes="0"/>
+                                              <Component id="sDateBox" min="-2" pref="75" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="sYearBox" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                                              <Component id="sYearBox" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="sPurchaserField" alignment="1" max="32767" attributes="0"/>
                                           <Component id="sStoreField" alignment="0" max="32767" attributes="0"/>
@@ -264,11 +343,13 @@
                                   <Component id="L1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="sMonthBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sDateBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sYearBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="L2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="sYearBox" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="sMonthBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="sDateBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="L2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -298,7 +379,7 @@
                                   <Component id="editButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <EmptySpace pref="95" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -376,7 +457,7 @@
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[57, 20]"/>
+                          <Dimension value="[74, 20]"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -423,7 +504,7 @@
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[45, 20]"/>
+                          <Dimension value="[75, 20]"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -449,6 +530,9 @@
                           </StringArray>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[72, 20]"/>
+                        </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -609,25 +693,27 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="L12" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L10" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L8" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="L9" alignment="0" pref="70" max="32767" attributes="0"/>
-                                          <Component id="L11" max="32767" attributes="0"/>
-                                          <Component id="L7" alignment="0" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="L12" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="L10" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="L8" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="L9" alignment="0" pref="70" max="32767" attributes="0"/>
+                                              <Component id="L11" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="L7" min="-2" pref="70" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jScrollPane5" alignment="1" max="32767" attributes="0"/>
                                           <Component id="jScrollPane6" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="aMonthBox" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="aMonthBox" min="-2" pref="74" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="aDateBox" pref="53" max="32767" attributes="0"/>
+                                              <Component id="aDateBox" min="-2" pref="66" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="aYearBox" min="-2" max="-2" attributes="0"/>
+                                              <Component id="aYearBox" max="32767" attributes="0"/>
                                           </Group>
                                           <Component id="aStoreField" alignment="1" max="32767" attributes="0"/>
                                           <Component id="aPurchaserField" alignment="1" max="32767" attributes="0"/>
@@ -768,7 +854,7 @@
                           <ComponentRef name="aDateBox"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[57, 20]"/>
+                          <Dimension value="[74, 20]"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -817,7 +903,7 @@
                           <ComponentRef name="aYearBox"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                          <Dimension value="[45, 20]"/>
+                          <Dimension value="[66, 20]"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -844,6 +930,9 @@
                         </Property>
                         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                           <ComponentRef name="aPurchaserField"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[82, 20]"/>
                         </Property>
                       </Properties>
                       <AuxValues>
@@ -1092,7 +1181,7 @@
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="bankField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="bankSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="bankEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1116,9 +1205,6 @@
                     <Component class="javax.swing.JTextField" name="bankField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="bankFieldKeyPressed"/>
@@ -1186,7 +1272,7 @@
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cashField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="cashSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cashEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1205,9 +1291,6 @@
                     <Component class="javax.swing.JTextField" name="cashField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cashFieldKeyPressed"/>
@@ -1280,7 +1363,7 @@
                                   <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ateField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="ateSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="ateEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1304,9 +1387,6 @@
                     <Component class="javax.swing.JTextField" name="ateField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="ateFieldKeyPressed"/>
@@ -1341,9 +1421,6 @@
             <Component class="javax.swing.JTextField" name="totalField">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -1383,47 +1460,56 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pennySpinner" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="nickelSpinner" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="dimeSpinner" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="quarterSpinner" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="halfdollarSpinner" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="dollarcoinSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="dollarSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="fiveSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="tenSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="twentySpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="fiftySpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="hundredSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="jLabel1" pref="119" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dimeL" max="32767" attributes="0"/>
-                          <Component id="halfdollarL" max="32767" attributes="0"/>
-                          <Component id="dollarcoinL" max="32767" attributes="0"/>
-                          <Component id="nickelL" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="quarterL" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="dollarL" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="fiveL" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="tenL" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="twentyL" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="fiftyL" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="hundredL" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="pennySpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="101" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel1" pref="142" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="totalL" min="-2" pref="106" max="-2" attributes="0"/>
+                              <EmptySpace pref="100" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="pennyL" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="pennyL" min="-2" pref="50" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="totalL" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="nickelSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="dimeSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="quarterSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="halfdollarSpinner" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="dollarcoinSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="dollarSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="fiveSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="tenSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="twentySpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="fiftySpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <Component id="hundredSpinner" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="dimeL" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="quarterL" alignment="0" pref="50" max="32767" attributes="0"/>
+                                          <Component id="halfdollarL" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="dollarcoinL" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="dollarL" pref="50" max="32767" attributes="0"/>
+                                          <Component id="fiveL" pref="50" max="32767" attributes="0"/>
+                                          <Component id="tenL" pref="50" max="32767" attributes="0"/>
+                                          <Component id="twentyL" pref="50" max="32767" attributes="0"/>
+                                          <Component id="fiftyL" pref="50" max="32767" attributes="0"/>
+                                          <Component id="hundredL" pref="50" max="32767" attributes="0"/>
+                                          <Component id="nickelL" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1499,10 +1585,12 @@
                           <Component id="twentyL" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fiftySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fiftyL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="fiftyL" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fiftySpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1510,7 +1598,7 @@
                           <Component id="hundredSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="hundredL" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="106" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

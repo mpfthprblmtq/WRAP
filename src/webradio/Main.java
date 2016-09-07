@@ -66,7 +66,7 @@ public class Main {
         loginGUI.setVisible(true);
 
         // detects when program exits
-        Runtime.getRuntime().addShutdownHook(new Thread() {
+         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 EventLog.add("logged out");

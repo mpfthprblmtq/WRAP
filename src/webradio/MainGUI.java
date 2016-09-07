@@ -290,6 +290,7 @@ public class MainGUI extends javax.swing.JFrame {
         text.setBackground(new java.awt.Color(250, 250, 250));
         text.setColumns(20);
         text.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        text.setLineWrap(true);
         text.setRows(5);
         text.setWrapStyleWord(true);
         text.setFocusable(false);
@@ -489,9 +490,9 @@ public class MainGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(f1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(1, 1, 1)
                         .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(profileButton)
                             .addComponent(accountButton)
@@ -578,7 +579,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void profileButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseEntered
         textHeader.setText("Profiles");
         text.setText("Shows DJ's information, and allows for addition, deletion, and "
-                + "\nediting of DJ's.");
+                + "editing of DJ's.");
         f1.setText("Shortcut key: F1");
     }//GEN-LAST:event_profileButtonMouseEntered
 
@@ -600,8 +601,8 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void accountButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountButtonMouseEntered
         textHeader.setText("Accounts");
-        text.setText("Allows addition and deletion of users of W.R.A.P. along"
-                + "\nwith the editing of existing users."
+        text.setText("Allows addition and deletion of users of W.R.A.P. along "
+                + "with the editing of existing users."
                 + "\nNote: You can only edit your own profile.");
         f1.setText("Shortcut key: F2");
     }//GEN-LAST:event_accountButtonMouseEntered
@@ -624,9 +625,9 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void taskButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taskButtonMouseEntered
         textHeader.setText("Tasks");
-        text.setText("Check the DJ requirements of a member.  Four main"
-                + "\ntasks: Pay dues, send in a show time and description,"
-                + "\nfill out the proper paperwork, and be trained on the board.");
+        text.setText("Check the DJ requirements of a member."
+                + "\nFour main tasks: Pay dues, send in a show time and description, "
+                + "fill out the proper paperwork, and be trained on the board.");
         f1.setText("Shortcut key: F3");
     }//GEN-LAST:event_taskButtonMouseEntered
 
@@ -648,8 +649,8 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void showButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showButtonMouseEntered
         textHeader.setText("Shows");
-        text.setText("Allows the addition or deletion of shows where you can add"
-                + "\nthe show name, description, times, and hosts.");
+        text.setText("Allows the addition or deletion of shows where you can add "
+                + "the show name, description, times, and hosts.");
         f1.setText("Shortcut key: F4");
     }//GEN-LAST:event_showButtonMouseEntered
 
@@ -671,8 +672,8 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void financeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_financeButtonMouseEntered
         textHeader.setText("Finances");
-        text.setText("Track finances, add money, and basically"
-                + "\nanything that has to do with our funds.");
+        text.setText("Track finances, add money, and basically "
+                + "anything that has to do with our funds.");
         f1.setText("Shortcut key: F5");
     }//GEN-LAST:event_financeButtonMouseEntered
 
@@ -694,8 +695,8 @@ public class MainGUI extends javax.swing.JFrame {
      */
     private void reportButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportButtonMouseEntered
         textHeader.setText("Reports");
-        text.setText("Generate reports based on member tasks, create"
-                + "\na roster, or print report on individuals.");
+        text.setText("Generate reports based on member tasks, create "
+                + "a roster, or print report on individuals.");
         f1.setText("Shortcut key: F6");
     }//GEN-LAST:event_reportButtonMouseEntered
 

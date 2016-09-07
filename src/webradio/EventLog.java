@@ -38,15 +38,6 @@ public class EventLog {
             out.close();
         } catch (IOException ex) {
             Util.error(ex.toString(), ex.getMessage());
-            
-            // if the program is starting
-        } catch (NullPointerException ex) {
-            try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(log, true)))) {
-                out.println("[" + df.format(date) + "] WRAP started");
-                out.close();
-            } catch (IOException ex2) {
-                Util.error(ex2.toString(), ex2.getMessage());
-            }
         }
     }
 }

@@ -80,7 +80,7 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Types of Profiles");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields (Profiles)");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Accounts");
@@ -92,7 +92,7 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Types of Accounts");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields (Accounts)");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Tasks");
@@ -108,7 +108,7 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Deleting a Show");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields (Shows)");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Finances");
@@ -121,6 +121,8 @@ public class HelpGUI extends javax.swing.JFrame {
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Editing Account amounts");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Using the money counter");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fields (Transactions)");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Reports");
@@ -378,6 +380,12 @@ public class HelpGUI extends javax.swing.JFrame {
             case "Deleting a Profile":
                 textArea.setText(HelpController.getDeleteProfile());
                 break;
+            case "Types of Profiles":
+                //textArea.setText(HelpController.getProfileType());
+                break;
+            case "Fields (Profiles)":
+                //textArea.setText(HelpController.getFieldsProfiles());
+                break;
             case "Accounts":
                 textArea.setText(HelpController.getAccounts());
                 break;
@@ -390,11 +398,19 @@ public class HelpGUI extends javax.swing.JFrame {
             case "Deleting an Account":
                 textArea.setText(HelpController.getDeleteAccount());
                 break;
+            case "Types of Accounts":
+                //textArea.setText(HelpController.getAccountType());
+                break;
+            case "Fields (Accounts)":
+                //textArea.setText(HelpController.getFieldsAccounts());
             case "Tasks":
                 textArea.setText(HelpController.getTasks());
                 break;
             case "Editing a Profile's tasks":
                 textArea.setText(HelpController.getEditTasks());
+                break;
+            case "Task Descriptions":
+                //textArea.setText(HelpController.getTaskDesctriptions());
                 break;
             case "Shows":
                 textArea.setText(HelpController.getShows());
@@ -408,11 +424,28 @@ public class HelpGUI extends javax.swing.JFrame {
             case "Deleting a Show":
                 textArea.setText(HelpController.getDeleteShow());
                 break;
+            case "Fields (Shows)":
+                //textArea.setText(HelpController.getFieldsShows());
+                break;
             case "Finances":
                 textArea.setText(HelpController.getFinances());
                 break;
+            case "Adding a Transaction":
+                //textArea.setText(HelpController.getAddTransaction());
+                break;
+            case "Editing a Transaction":
+                //textArea.setText(HelpController.getEditTransaction());
+                break;
+            case "Deleting a Transaction":
+                //textArea.setText(HelpController.getDeleteTransaction());
+                break;
+            case "Editing Account amounts":
+                //textArea.setText(HelpController.getAccountAmounts());
             case "Using the money counter":
-                textArea.setText(HelpController.getMoneyCounter());
+                //textArea.setText(HelpController.getMoneyCounter());
+                break;
+            case "Fields (Transactions)":
+                //textArea.setText(HelpController.getFieldsTransactions());
                 break;
             case "Reports":
                 textArea.setText(HelpController.getReports());

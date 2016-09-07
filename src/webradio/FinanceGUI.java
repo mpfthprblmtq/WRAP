@@ -233,6 +233,15 @@ public class FinanceGUI extends javax.swing.JFrame {
         closeItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         exitItem = new javax.swing.JMenuItem();
+        links = new javax.swing.JMenu();
+        webradioItem = new javax.swing.JMenuItem();
+        SIUeMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        profilesMenu = new javax.swing.JMenu();
+        collegiatelinkItem = new javax.swing.JMenuItem();
+        facebookItem = new javax.swing.JMenuItem();
+        financesMenu = new javax.swing.JMenu();
+        paypalItem = new javax.swing.JMenuItem();
         help = new javax.swing.JMenu();
         helpItem = new javax.swing.JMenuItem();
         bugItem = new javax.swing.JMenuItem();
@@ -286,14 +295,15 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         sMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         sMonthBox.setEnabled(false);
-        sMonthBox.setPreferredSize(new java.awt.Dimension(57, 20));
+        sMonthBox.setPreferredSize(new java.awt.Dimension(74, 20));
 
         sDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         sDateBox.setEnabled(false);
-        sDateBox.setPreferredSize(new java.awt.Dimension(45, 20));
+        sDateBox.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
         sYearBox.setEnabled(false);
+        sYearBox.setPreferredSize(new java.awt.Dimension(72, 20));
 
         sPurchaserField.setEditable(false);
         sPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
@@ -406,7 +416,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 46, Short.MAX_VALUE)
                         .addComponent(deleteButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(editButton)
@@ -415,20 +425,19 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(L5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(L4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                            .addComponent(L6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(L3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(L2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(L1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE))
+                                .addComponent(sYearBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(sPurchaserField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sStoreField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane9)
@@ -444,11 +453,12 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(sStoreField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(L1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(L2))
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(L2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sPurchaserField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -471,7 +481,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(submitButton)
                     .addComponent(editButton)
                     .addComponent(deleteButton))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         transactionsTP.addTab("Search", searchPanel);
@@ -512,14 +522,15 @@ public class FinanceGUI extends javax.swing.JFrame {
         aMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         aMonthBox.setName(""); // NOI18N
         aMonthBox.setNextFocusableComponent(aDateBox);
-        aMonthBox.setPreferredSize(new java.awt.Dimension(57, 20));
+        aMonthBox.setPreferredSize(new java.awt.Dimension(74, 20));
 
         aDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         aDateBox.setNextFocusableComponent(aYearBox);
-        aDateBox.setPreferredSize(new java.awt.Dimension(45, 20));
+        aDateBox.setPreferredSize(new java.awt.Dimension(66, 20));
 
         aYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
         aYearBox.setNextFocusableComponent(aPurchaserField);
+        aYearBox.setPreferredSize(new java.awt.Dimension(82, 20));
 
         aPurchaserField.setNextFocusableComponent(aAmountField);
         aPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
@@ -612,24 +623,25 @@ public class FinanceGUI extends javax.swing.JFrame {
             .addGroup(addPanelLayout.createSequentialGroup()
                 .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(L12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(L11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(L7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(L12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(L10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(L8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(L9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                                .addComponent(L11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(L7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane5)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addPanelLayout.createSequentialGroup()
-                                .addComponent(aMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addPanelLayout.createSequentialGroup()
+                                .addComponent(aMonthBox, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aDateBox, 0, 53, Short.MAX_VALUE)
+                                .addComponent(aDateBox, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(aYearBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(aYearBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(aStoreField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(aPurchaserField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(aAmountField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -689,9 +701,9 @@ public class FinanceGUI extends javax.swing.JFrame {
             transactionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(transactionsTP)
+                .addComponent(transactionsTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                 .addContainerGap())
         );
         transactionPanelLayout.setVerticalGroup(
@@ -722,7 +734,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         jLabel16.setText("Balance:");
 
         bankField.setEditable(false);
-        bankField.setBackground(new java.awt.Color(255, 255, 255));
         bankField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 bankFieldKeyPressed(evt);
@@ -773,7 +784,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(bankField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(bankPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bankSubmitButton)
                     .addComponent(bankEditButton))
@@ -785,7 +796,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         jLabel18.setText("Balance:");
 
         cashField.setEditable(false);
-        cashField.setBackground(new java.awt.Color(255, 255, 255));
         cashField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cashFieldKeyPressed(evt);
@@ -838,7 +848,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGroup(cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(cashField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(cashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cashSubmitButton)
                     .addComponent(cashEditButton))
@@ -852,7 +862,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         jLabel19.setText("Balance:");
 
         ateField.setEditable(false);
-        ateField.setBackground(new java.awt.Color(255, 255, 255));
         ateField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ateFieldKeyPressed(evt);
@@ -903,7 +912,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 .addGroup(atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(ateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(atePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ateSubmitButton)
                     .addComponent(ateEditButton))
@@ -915,7 +924,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         jLabel21.setText("Total funds:");
 
         totalField.setEditable(false);
-        totalField.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout accountsPanelLayout = new javax.swing.GroupLayout(accountsPanel);
         accountsPanel.setLayout(accountsPanelLayout);
@@ -1123,42 +1131,47 @@ public class FinanceGUI extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nickelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quarterSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(halfdollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dollarcoinSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fiveSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(twentySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fiftySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dimeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(halfdollarL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dollarcoinL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nickelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(moneycounterPanelLayout.createSequentialGroup()
                         .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(quarterL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dollarL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fiveL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tenL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(twentyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fiftyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hundredL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(moneycounterPanelLayout.createSequentialGroup()
-                                .addComponent(pennyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(totalL, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 62, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(pennySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 101, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(totalL, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(100, Short.MAX_VALUE))
+                    .addGroup(moneycounterPanelLayout.createSequentialGroup()
+                        .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pennyL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, moneycounterPanelLayout.createSequentialGroup()
+                                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nickelSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(quarterSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(halfdollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dollarcoinSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dollarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fiveSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tenSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(twentySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fiftySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dimeL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(quarterL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(halfdollarL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dollarcoinL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dollarL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(fiveL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(tenL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(twentyL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(fiftyL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(hundredL, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                    .addComponent(nickelL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         moneycounterPanelLayout.setVerticalGroup(
             moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1220,16 +1233,17 @@ public class FinanceGUI extends javax.swing.JFrame {
                     .addComponent(twentySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(twentyL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(fiftySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fiftyL))
+                .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fiftyL, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(fiftySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(moneycounterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(hundredSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hundredL))
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 106, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Funds Calculator", moneycounterPanel);
@@ -1286,6 +1300,62 @@ public class FinanceGUI extends javax.swing.JFrame {
         file.add(exitItem);
 
         menubar.add(file);
+
+        links.setText("Links");
+
+        webradioItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageicon.png"))); // NOI18N
+        webradioItem.setText("Web Radio");
+        webradioItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                webradioItemActionPerformed(evt);
+            }
+        });
+        links.add(webradioItem);
+
+        SIUeMenu.setText("SIUe");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/e.PNG"))); // NOI18N
+        jMenuItem1.setText("Homepage");
+        SIUeMenu.add(jMenuItem1);
+
+        links.add(SIUeMenu);
+
+        profilesMenu.setText("Profiles");
+
+        collegiatelinkItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/collegiatelink.png"))); // NOI18N
+        collegiatelinkItem.setText("CollegiateLink");
+        collegiatelinkItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                collegiatelinkItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(collegiatelinkItem);
+
+        facebookItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/facebook.png"))); // NOI18N
+        facebookItem.setText("Facebook (Show Hosts)");
+        facebookItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facebookItemActionPerformed(evt);
+            }
+        });
+        profilesMenu.add(facebookItem);
+
+        links.add(profilesMenu);
+
+        financesMenu.setText("Finances");
+
+        paypalItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/paypal.png"))); // NOI18N
+        paypalItem.setText("PayPal");
+        paypalItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paypalItemActionPerformed(evt);
+            }
+        });
+        financesMenu.add(paypalItem);
+
+        links.add(financesMenu);
+
+        menubar.add(links);
 
         help.setText("Help");
 
@@ -1597,6 +1667,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             Runtime.getRuntime().exec("calc");
         } catch (IOException ex) {
             Util.error(ex.toString(), ex.getMessage());
+            
         }
     }//GEN-LAST:event_calcButtonActionPerformed
 
@@ -1956,6 +2027,38 @@ public class FinanceGUI extends javax.swing.JFrame {
     private void aNotesFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNotesFieldFocusGained
         //aNotesField.selectAll();
     }//GEN-LAST:event_aNotesFieldFocusGained
+
+    private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.siue.edu/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_webradioItemActionPerformed
+
+    private void collegiatelinkItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_collegiatelinkItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://siue.collegiatelink.net/organization/webradio"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_collegiatelinkItemActionPerformed
+
+    private void facebookItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facebookItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.facebook.com/groups/156451584405369/"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_facebookItemActionPerformed
+
+    private void paypalItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paypalItemActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URI("https://www.paypal.com/businessexp/summary"));
+        } catch (IOException | URISyntaxException ex) {
+            Util.error(ex.toString(), ex.getMessage());
+        }
+    }//GEN-LAST:event_paypalItemActionPerformed
 
     // </editor-fold>
     
@@ -2712,6 +2815,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel L7;
     private javax.swing.JLabel L8;
     private javax.swing.JLabel L9;
+    private javax.swing.JMenu SIUeMenu;
     private javax.swing.JFormattedTextField aAmountField;
     private javax.swing.JComboBox<String> aDateBox;
     private javax.swing.JComboBox<String> aMonthBox;
@@ -2740,6 +2844,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel cashPanel;
     private javax.swing.JButton cashSubmitButton;
     private javax.swing.JMenuItem closeItem;
+    private javax.swing.JMenuItem collegiatelinkItem;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel dimeL;
     private javax.swing.JSpinner dimeSpinner;
@@ -2750,9 +2855,11 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JButton editButton;
     private javax.swing.JLabel errLabel;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JMenuItem facebookItem;
     private javax.swing.JLabel fiftyL;
     private javax.swing.JSpinner fiftySpinner;
     private javax.swing.JMenu file;
+    private javax.swing.JMenu financesMenu;
     private javax.swing.JLabel fiveL;
     private javax.swing.JSpinner fiveSpinner;
     private javax.swing.JLabel halfdollarL;
@@ -2782,12 +2889,14 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JMenu links;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JMenuItem logoutItem;
@@ -2795,8 +2904,10 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JPanel moneycounterPanel;
     private javax.swing.JLabel nickelL;
     private javax.swing.JSpinner nickelSpinner;
+    private javax.swing.JMenuItem paypalItem;
     private javax.swing.JLabel pennyL;
     private javax.swing.JSpinner pennySpinner;
+    private javax.swing.JMenu profilesMenu;
     private javax.swing.JLabel quarterL;
     private javax.swing.JSpinner quarterSpinner;
     private javax.swing.JFormattedTextField sAmountField;
@@ -2818,6 +2929,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     private javax.swing.JTabbedPane transactionsTP;
     private javax.swing.JLabel twentyL;
     private javax.swing.JSpinner twentySpinner;
+    private javax.swing.JMenuItem webradioItem;
     // End of variables declaration//GEN-END:variables
     // </editor-fold>
 }

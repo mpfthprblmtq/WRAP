@@ -221,7 +221,7 @@
         <Component class="javax.swing.JTree" name="tree">
           <Properties>
             <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-              <TreeModel code="W.R.A.P.&#xa; Profiles&#xa;  Adding a Profile&#xa;  Editing a Profile&#xa;  Deleting a Profile&#xa;  Types of Profiles&#xa;  Fields&#xa; Accounts&#xa;  Adding an Account&#xa;  Editing an Account&#xa;  Deleting an Account&#xa;  Types of Accounts&#xa;  Fields&#xa; Tasks&#xa;  Editing a Profile&apos;s tasks&#xa;  Task Descriptions&#xa; Shows&#xa;  Adding a Show&#xa;  Editing a Show&#xa;  Deleting a Show&#xa;  Fields&#xa; Finances&#xa;  Adding a Transaction&#xa;  Editing a Transaction&#xa;  Deleting a Transaction&#xa;  Editing Account amounts&#xa;  Using the money counter&#xa; Reports&#xa;  Generating reports"/>
+              <TreeModel code="W.R.A.P.&#xa; Profiles&#xa;  Adding a Profile&#xa;  Editing a Profile&#xa;  Deleting a Profile&#xa;  Types of Profiles&#xa;  Fields (Profiles)&#xa; Accounts&#xa;  Adding an Account&#xa;  Editing an Account&#xa;  Deleting an Account&#xa;  Types of Accounts&#xa;  Fields (Accounts)&#xa; Tasks&#xa;  Editing a Profile&apos;s tasks&#xa;  Task Descriptions&#xa; Shows&#xa;  Adding a Show&#xa;  Editing a Show&#xa;  Deleting a Show&#xa;  Fields (Shows)&#xa; Finances&#xa;  Adding a Transaction&#xa;  Editing a Transaction&#xa;  Deleting a Transaction&#xa;  Editing Account amounts&#xa;  Using the money counter&#xa;  Fields (Transactions)&#xa; Reports&#xa;  Generating reports"/>
             </Property>
           </Properties>
           <Events>
