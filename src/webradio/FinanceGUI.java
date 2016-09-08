@@ -321,6 +321,8 @@ public class FinanceGUI extends javax.swing.JFrame {
         L6.setText("Notes:");
 
         sStoreField.setEditable(false);
+        sStoreField.setFocusCycleRoot(true);
+        sStoreField.setNextFocusableComponent(sMonthBox);
         sStoreField.setPreferredSize(new java.awt.Dimension(166, 20));
         sStoreField.setDocument(new JTextFieldLimit(30));
         sStoreField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -336,17 +338,21 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         sMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         sMonthBox.setEnabled(false);
+        sMonthBox.setNextFocusableComponent(sDateBox);
         sMonthBox.setPreferredSize(new java.awt.Dimension(74, 20));
 
         sDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         sDateBox.setEnabled(false);
+        sDateBox.setNextFocusableComponent(sYearBox);
         sDateBox.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
         sYearBox.setEnabled(false);
+        sYearBox.setNextFocusableComponent(sPurchaserField);
         sYearBox.setPreferredSize(new java.awt.Dimension(72, 20));
 
         sPurchaserField.setEditable(false);
+        sPurchaserField.setNextFocusableComponent(sAmountField);
         sPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
         sPurchaserField.setDocument(new JTextFieldLimit(30));
         sPurchaserField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -362,6 +368,7 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         sAmountField.setEditable(false);
         sAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        sAmountField.setNextFocusableComponent(sReasonField);
         sAmountField.setPreferredSize(new java.awt.Dimension(166, 20));
         sAmountField.setDocument(new JTextFieldLimit(10));
         sAmountField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -384,7 +391,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         sReasonField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         sReasonField.setLineWrap(true);
         sReasonField.setRows(5);
+        sReasonField.setTabSize(0);
         sReasonField.setWrapStyleWord(true);
+        sReasonField.setNextFocusableComponent(sNotesField);
         sReasonField.setPreferredSize(new java.awt.Dimension(166, 76));
         sReasonField.setDocument(new JTextFieldLimit(60));
         sReasonField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -409,7 +418,9 @@ public class FinanceGUI extends javax.swing.JFrame {
         sNotesField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         sNotesField.setLineWrap(true);
         sNotesField.setRows(5);
+        sNotesField.setTabSize(0);
         sNotesField.setWrapStyleWord(true);
+        sNotesField.setNextFocusableComponent(sStoreField);
         sNotesField.setPreferredSize(new java.awt.Dimension(166, 76));
         sNotesField.setDocument(new JTextFieldLimit(60));
         sNotesField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -545,6 +556,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         L12.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         L12.setText("Reason:");
 
+        aStoreField.setFocusCycleRoot(true);
         aStoreField.setMinimumSize(new java.awt.Dimension(166, 20));
         aStoreField.setNextFocusableComponent(aMonthBox);
         aStoreField.setPreferredSize(new java.awt.Dimension(166, 20));
@@ -609,6 +621,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         aReasonField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         aReasonField.setLineWrap(true);
         aReasonField.setRows(5);
+        aReasonField.setTabSize(0);
         aReasonField.setWrapStyleWord(true);
         aReasonField.setNextFocusableComponent(aNotesField);
         aReasonField.setPreferredSize(new java.awt.Dimension(166, 76));
@@ -633,6 +646,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         aNotesField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         aNotesField.setLineWrap(true);
         aNotesField.setRows(5);
+        aNotesField.setTabSize(0);
         aNotesField.setWrapStyleWord(true);
         aNotesField.setNextFocusableComponent(aStoreField);
         aNotesField.setPreferredSize(new java.awt.Dimension(166, 76));
@@ -2235,13 +2249,13 @@ public class FinanceGUI extends javax.swing.JFrame {
         String store = aStoreField.getText();
         String purchaser = aPurchaserField.getText();
         double amount = Double.valueOf(aAmountField.getText().replace(",", ""));
-        String reason = aReasonField.getText();
+        String reason = aReasonField.getText().trim();
 
         String notes;
-        if (aNotesField.getText().equals("")) {
+        if (aNotesField.getText().trim().equals("")) {
             notes = "N/A";
         } else {
-            notes = aNotesField.getText();
+            notes = aNotesField.getText().trim();
         }
 
         int id = Util.generateID();
@@ -2387,13 +2401,13 @@ public class FinanceGUI extends javax.swing.JFrame {
         String store = sStoreField.getText();
         String purchaser = sPurchaserField.getText();
         double amount = Double.valueOf(sAmountField.getText());
-        String reason = sReasonField.getText();
+        String reason = sReasonField.getText().trim();
 
         String notes;
-        if (sNotesField.getText().equals("")) {
+        if (sNotesField.getText().trim().equals("")) {
             notes = "N/A";
         } else {
-            notes = sNotesField.getText();
+            notes = sNotesField.getText().trim();
         }
 
         Date date = new Date();
@@ -2508,7 +2522,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
 
         // Reason
-        if (aReasonField.getText().equals("") || aReasonField.getText().equals("--")) {
+        if (aReasonField.getText().trim().equals("") || aReasonField.getText().trim().equals("--")) {
             flag = false;
             aReasonField.setForeground(Color.red);
             aReasonField.setText("--");
@@ -2646,7 +2660,7 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
 
         // Reason
-        if (sReasonField.getText().equals("") || sReasonField.getText().equals("--")) {
+        if (sReasonField.getText().trim().equals("") || sReasonField.getText().trim().equals("--")) {
             flag = false;
             sReasonField.setForeground(Color.red);
             sReasonField.setText("--");
@@ -2826,6 +2840,10 @@ public class FinanceGUI extends javax.swing.JFrame {
             sMonthBox.setSelectedIndex(0);
             sDateBox.setSelectedIndex(0);
             sYearBox.setSelectedIndex(0);
+        } else {
+            sMonthBox.setEnabled(b);
+            sDateBox.setEnabled(b);
+            sYearBox.setEnabled(b);
         }
 
         if (!b) {

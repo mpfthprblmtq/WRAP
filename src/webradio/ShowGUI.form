@@ -236,6 +236,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tabs">
+      <Properties>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -346,10 +349,16 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="enabled" type="boolean" value="false"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="sDescField"/>
+                </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[385, 20]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sNameFieldFocusGained"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="sSP">
               <Properties>
@@ -375,13 +384,18 @@
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
+                    <Property name="tabSize" type="int" value="0"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sSMField"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[385, 76]"/>
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sDescFieldFocusGained"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="sDescFieldKeyPressed"/>
                   </Events>
                 </Component>
@@ -391,11 +405,17 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="enabled" type="boolean" value="false"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="sShowNumSpinner"/>
+                </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[385, 20]"/>
                 </Property>
                 <Property name="requestFocusEnabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="sSMFieldFocusGained"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="sDayTimePanel">
               <Properties>
@@ -545,6 +565,9 @@
                       <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sDayBox1"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sShowNumSpinnerStateChanged"/>
@@ -565,6 +588,9 @@
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sStartBox1"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -615,6 +641,9 @@
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sEndBox1"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[75, 20]"/>
                     </Property>
@@ -668,6 +697,10 @@
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sDayBox2"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[75, 20]"/>
                     </Property>
@@ -691,6 +724,9 @@
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sStartBox2"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -741,6 +777,9 @@
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sEndBox2"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[75, 20]"/>
                     </Property>
@@ -794,6 +833,9 @@
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sDayBox3"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[75, 20]"/>
                     </Property>
@@ -1557,6 +1599,9 @@
                       <StringArray count="0"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="sNameField"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[131, 20]"/>
                     </Property>
@@ -1573,6 +1618,7 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit"/>
                 <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editButtonActionPerformed"/>
@@ -1582,6 +1628,7 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
                 <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
@@ -1591,6 +1638,7 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Submit"/>
                 <Property name="enabled" type="boolean" value="false"/>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitButtonActionPerformed"/>
@@ -1599,6 +1647,12 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="addPanel">
+          <Properties>
+            <Property name="focusable" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="addPanelComponentShown"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Add">
@@ -1689,14 +1743,13 @@
             </Component>
             <Component class="javax.swing.JTextField" name="aNameField">
               <Properties>
-                <Property name="focusCycleRoot" type="boolean" value="true"/>
-                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="aDescField"/>
-                </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[385, 20]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aNameFieldFocusGained"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="aSP">
               <Properties>
@@ -1712,15 +1765,17 @@
                 <Component class="javax.swing.JTextArea" name="aDescField">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
-                    <Property name="rows" type="int" value="5"/>
-                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="aSMField"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="0"/>
                     </Property>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="tabSize" type="int" value="0"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[385, 76]"/>
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aDescFieldFocusGained"/>
                     <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="aDescFieldKeyPressed"/>
                   </Events>
                 </Component>
@@ -1728,13 +1783,13 @@
             </Container>
             <Component class="javax.swing.JTextField" name="aSMField">
               <Properties>
-                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="aShowNumSpinner"/>
-                </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[385, 20]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aSMFieldFocusGained"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="aDayTimePanel">
               <Properties>
@@ -1883,9 +1938,6 @@
                   <Properties>
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="0" maximum="7" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
-                    </Property>
-                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="aHostNumSpinner"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -2832,9 +2884,6 @@
                     <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
                       <SpinnerModel initial="0" maximum="4" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
                     </Property>
-                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="aNameField"/>
-                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="aHostNumSpinnerStateChanged"/>
@@ -2903,6 +2952,7 @@
             <Component class="javax.swing.JButton" name="addButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
+                <Property name="focusable" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>

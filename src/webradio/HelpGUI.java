@@ -381,10 +381,10 @@ public class HelpGUI extends javax.swing.JFrame {
                 textArea.setText(HelpController.getDeleteProfile());
                 break;
             case "Types of Profiles":
-                //textArea.setText(HelpController.getProfileType());
+                textArea.setText(HelpController.getProfileTypes());
                 break;
             case "Fields (Profiles)":
-                //textArea.setText(HelpController.getFieldsProfiles());
+                textArea.setText(HelpController.getFieldsProfiles());
                 break;
             case "Accounts":
                 textArea.setText(HelpController.getAccounts());

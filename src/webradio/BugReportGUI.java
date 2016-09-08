@@ -51,17 +51,19 @@ public class BugReportGUI extends javax.swing.JFrame {
         }
     }
     // </editor-fold>
-    
+
     /**
      * Creates new form BugReport
      */
     public BugReportGUI() {
-        
+
         // picks up enter being pressed
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
                     if (e.getID() == KeyEvent.KEY_PRESSED) {
-                        submitButton.doClick();
+                        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                            submitButton.doClick();
+                        }
                     } else {
                         // don't pick up keytyped or keyreleased
                     }
@@ -109,9 +111,15 @@ public class BugReportGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Name:");
 
+        nameField.setFocusCycleRoot(true);
+        nameField.setNextFocusableComponent(desc);
         nameField.setPreferredSize(new java.awt.Dimension(128, 20));
-        nameField.setRequestFocusEnabled(false);
         nameField.setDocument(new JTextFieldLimit(30));
+        nameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFieldFocusGained(evt);
+            }
+        });
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -120,10 +128,23 @@ public class BugReportGUI extends javax.swing.JFrame {
         desc.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         desc.setLineWrap(true);
         desc.setRows(5);
+        desc.setTabSize(0);
         desc.setWrapStyleWord(true);
+        desc.setNextFocusableComponent(nameField);
         desc.setPreferredSize(new java.awt.Dimension(213, 119));
         desc.setDocument(new JTextFieldLimit(200));
+        desc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                descFocusGained(evt);
+            }
+        });
+        desc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(desc);
+        desc.setTabSize(0);
 
         jLabel3.setText("Please provide a brief description:");
 
@@ -199,32 +220,48 @@ public class BugReportGUI extends javax.swing.JFrame {
      * Send the input to IOController to create the report file
      */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        if (nameField.getText().equals("") || desc.getText().equals("")) {
+        if (nameField.getText().equals("") || desc.getText().trim().equals("")) {
             errLabel.setText("All fields required");
         } else {
             this.dispose();
             String name = nameField.getText();
             String report = desc.getText();
             IOController.reportBug(name, report);
-            
+
             // log
             EventLog.add("created bug report");
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
-     * Handles when the window is closed 
+     * Handles when the window is closed
      * When the window is closed, call Main.closeAccountGUI()
      */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Main.CloseBugReportGUI();
     }//GEN-LAST:event_formWindowClosed
 
+    private void descKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = desc.getText();
+            nameField.requestFocus();
+            desc.setText(s);
+        }
+    }//GEN-LAST:event_descKeyPressed
+
+    private void descFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descFocusGained
+        desc.selectAll();
+    }//GEN-LAST:event_descFocusGained
+
+    private void nameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFieldFocusGained
+        nameField.selectAll();
+    }//GEN-LAST:event_nameFieldFocusGained
+
     /**
      * main()
-     * 
+     *
      * You already know what main is if you're reading this
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -245,7 +282,7 @@ public class BugReportGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -254,7 +291,7 @@ public class BugReportGUI extends javax.swing.JFrame {
             new BugReportGUI().setVisible(true);
         });
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Form variables declarations"> 
     // I'll modify what I want
     // Variables declaration - do not modify//GEN-BEGIN:variables

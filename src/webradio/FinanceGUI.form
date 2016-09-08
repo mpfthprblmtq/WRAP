@@ -424,6 +424,10 @@
                     <Component class="javax.swing.JTextField" name="sStoreField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
+                        <Property name="focusCycleRoot" type="boolean" value="true"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="sMonthBox"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
                         </Property>
@@ -456,6 +460,9 @@
                           </StringArray>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="sDateBox"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[74, 20]"/>
                         </Property>
@@ -503,6 +510,9 @@
                           </StringArray>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="sYearBox"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[75, 20]"/>
                         </Property>
@@ -530,6 +540,9 @@
                           </StringArray>
                         </Property>
                         <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="sPurchaserField"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[72, 20]"/>
                         </Property>
@@ -541,6 +554,9 @@
                     <Component class="javax.swing.JTextField" name="sPurchaserField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="sAmountField"/>
+                        </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
                         </Property>
@@ -558,6 +574,9 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                           <Format format="#,##0.00" subtype="-1" type="0"/>
+                        </Property>
+                        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                          <ComponentRef name="sReasonField"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
@@ -594,7 +613,11 @@
                             </Property>
                             <Property name="lineWrap" type="boolean" value="true"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="tabSize" type="int" value="0"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
+                            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                              <ComponentRef name="sNotesField"/>
+                            </Property>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[166, 76]"/>
                             </Property>
@@ -633,7 +656,11 @@
                             </Property>
                             <Property name="lineWrap" type="boolean" value="true"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="tabSize" type="int" value="0"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
+                            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                              <ComponentRef name="sStoreField"/>
+                            </Property>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[166, 76]"/>
                             </Property>
@@ -812,6 +839,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="aStoreField">
                       <Properties>
+                        <Property name="focusCycleRoot" type="boolean" value="true"/>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[166, 20]"/>
                         </Property>
@@ -995,6 +1023,7 @@
                             </Property>
                             <Property name="lineWrap" type="boolean" value="true"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="tabSize" type="int" value="0"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
                             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="aNotesField"/>
@@ -1033,6 +1062,7 @@
                             </Property>
                             <Property name="lineWrap" type="boolean" value="true"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="tabSize" type="int" value="0"/>
                             <Property name="wrapStyleWord" type="boolean" value="true"/>
                             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="aStoreField"/>

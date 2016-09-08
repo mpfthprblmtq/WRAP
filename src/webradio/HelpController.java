@@ -97,6 +97,16 @@ public class HelpController {
     }
 
     /**
+     * Returns the string for fields for the profile gui
+     *
+     * @return the specified help message
+     */
+    public static String getFieldsProfiles() {
+        return "Profile Fields\n\n"
+                + "First Name:  ";
+    }
+    
+    /**
      * Returns the string for generic accounts
      *
      * @return the specified help message

@@ -107,7 +107,6 @@ public class SuggestionReportGUI extends javax.swing.JFrame {
         desc.setLineWrap(true);
         desc.setRows(5);
         desc.setWrapStyleWord(true);
-        desc.setPreferredSize(new java.awt.Dimension(213, 119));
         desc.setDocument(new JTextFieldLimit(200));
         jScrollPane1.setViewportView(desc);
 
@@ -132,7 +131,7 @@ public class SuggestionReportGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

@@ -8,7 +8,6 @@ package webradio;
 
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -284,6 +283,8 @@ public class ShowGUI extends javax.swing.JFrame {
             }
         });
 
+        tabs.setFocusable(false);
+
         sl1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         sl1.setText("Show Name:");
 
@@ -295,7 +296,13 @@ public class ShowGUI extends javax.swing.JFrame {
 
         sNameField.setEditable(false);
         sNameField.setEnabled(false);
+        sNameField.setNextFocusableComponent(sDescField);
         sNameField.setPreferredSize(new java.awt.Dimension(385, 20));
+        sNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sNameFieldFocusGained(evt);
+            }
+        });
 
         sSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         sSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -307,9 +314,16 @@ public class ShowGUI extends javax.swing.JFrame {
         sDescField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         sDescField.setLineWrap(true);
         sDescField.setRows(5);
+        sDescField.setTabSize(0);
         sDescField.setWrapStyleWord(true);
         sDescField.setEnabled(false);
+        sDescField.setNextFocusableComponent(sSMField);
         sDescField.setPreferredSize(new java.awt.Dimension(385, 76));
+        sDescField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sDescFieldFocusGained(evt);
+            }
+        });
         sDescField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 sDescFieldKeyPressed(evt);
@@ -319,8 +333,14 @@ public class ShowGUI extends javax.swing.JFrame {
 
         sSMField.setEditable(false);
         sSMField.setEnabled(false);
+        sSMField.setNextFocusableComponent(sShowNumSpinner);
         sSMField.setPreferredSize(new java.awt.Dimension(385, 20));
         sSMField.setRequestFocusEnabled(false);
+        sSMField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sSMFieldFocusGained(evt);
+            }
+        });
 
         sDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         sDayTimePanel.setEnabled(false);
@@ -335,6 +355,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         sShowNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
         sShowNumSpinner.setEnabled(false);
+        sShowNumSpinner.setNextFocusableComponent(sDayBox1);
         sShowNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sShowNumSpinnerStateChanged(evt);
@@ -343,24 +364,31 @@ public class ShowGUI extends javax.swing.JFrame {
 
         sDayBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox1.setEnabled(false);
+        sDayBox1.setNextFocusableComponent(sStartBox1);
 
         sStartBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox1.setEnabled(false);
+        sStartBox1.setNextFocusableComponent(sEndBox1);
         sStartBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox1.setEnabled(false);
+        sEndBox1.setName(""); // NOI18N
+        sEndBox1.setNextFocusableComponent(sDayBox2);
         sEndBox1.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
         sDayBox2.setEnabled(false);
+        sDayBox2.setNextFocusableComponent(sStartBox2);
 
         sStartBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sStartBox2.setEnabled(false);
+        sStartBox2.setNextFocusableComponent(sEndBox2);
         sStartBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sEndBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "6:00am", "6:30am", "7:00am", "7:30am", "8:00am", "8:30am", "9:00am", "9:30am", "10:00am", "10:30am", "11:00am", "11:30am", "12:00pm", "12:30pm", "1:00pm", "1:30pm", "2:00pm", "2:30pm", "3:00pm", "3:30pm", "4:00pm", "4:30pm", "5:00pm", "5:30pm", "6:00pm", "6:30pm", "7:00pm", "7:30pm", "8:00pm", "8:30pm", "9:00pm", "9:30pm", "10:00pm", "10:30pm", "11:00pm", "11:30pm", "12:00am" }));
         sEndBox2.setEnabled(false);
+        sEndBox2.setNextFocusableComponent(sDayBox3);
         sEndBox2.setPreferredSize(new java.awt.Dimension(75, 20));
 
         sDayBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }));
@@ -541,6 +569,7 @@ public class ShowGUI extends javax.swing.JFrame {
         sHost3.setModel(sHost3model);
 
         sHost4.setEnabled(false);
+        sHost4.setNextFocusableComponent(sNameField);
         sHost4.setPreferredSize(new java.awt.Dimension(131, 20));
         DefaultComboBoxModel sHost4model = new DefaultComboBoxModel(getProfiles());
         sHost4.setModel(sHost4model);
@@ -587,6 +616,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         editButton.setText("Edit");
         editButton.setEnabled(false);
+        editButton.setFocusable(false);
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
@@ -595,6 +625,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         deleteButton.setText("Delete");
         deleteButton.setEnabled(false);
+        deleteButton.setFocusable(false);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
@@ -603,6 +634,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         submitButton.setText("Submit");
         submitButton.setEnabled(false);
+        submitButton.setFocusable(false);
         submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitButtonActionPerformed(evt);
@@ -670,23 +702,39 @@ public class ShowGUI extends javax.swing.JFrame {
 
         tabs.addTab("Search", searchPanel);
 
+        addPanel.setFocusable(false);
+        addPanel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                addPanelComponentShown(evt);
+            }
+        });
+
         al1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         al1.setText("Show Name:");
 
         al2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         al2.setText("Description:");
 
-        aNameField.setFocusCycleRoot(true);
-        aNameField.setNextFocusableComponent(aDescField);
         aNameField.setPreferredSize(new java.awt.Dimension(385, 20));
+        aNameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aNameFieldFocusGained(evt);
+            }
+        });
 
         aSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         aSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         aDescField.setColumns(20);
+        aDescField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         aDescField.setRows(5);
-        aDescField.setNextFocusableComponent(aSMField);
+        aDescField.setTabSize(0);
         aDescField.setPreferredSize(new java.awt.Dimension(385, 76));
+        aDescField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aDescFieldFocusGained(evt);
+            }
+        });
         aDescField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 aDescFieldKeyPressed(evt);
@@ -694,8 +742,12 @@ public class ShowGUI extends javax.swing.JFrame {
         });
         aSP.setViewportView(aDescField);
 
-        aSMField.setNextFocusableComponent(aShowNumSpinner);
         aSMField.setPreferredSize(new java.awt.Dimension(385, 20));
+        aSMField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aSMFieldFocusGained(evt);
+            }
+        });
 
         aDayTimePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -708,7 +760,6 @@ public class ShowGUI extends javax.swing.JFrame {
         al6.setText("End time:");
 
         aShowNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 7, 1));
-        aShowNumSpinner.setNextFocusableComponent(aHostNumSpinner);
         aShowNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 aShowNumSpinnerStateChanged(evt);
@@ -889,7 +940,6 @@ public class ShowGUI extends javax.swing.JFrame {
         aHostPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         aHostNumSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
-        aHostNumSpinner.setNextFocusableComponent(aNameField);
         aHostNumSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 aHostNumSpinnerStateChanged(evt);
@@ -960,6 +1010,7 @@ public class ShowGUI extends javax.swing.JFrame {
         aHost4.setSelectedIndex(numProfiles);
 
         addButton.setText("Add");
+        addButton.setFocusable(false);
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -1547,6 +1598,34 @@ public class ShowGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sDescFieldKeyPressed
 
+    private void sNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sNameFieldFocusGained
+        sNameField.selectAll();
+    }//GEN-LAST:event_sNameFieldFocusGained
+
+    private void sDescFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sDescFieldFocusGained
+        sDescField.selectAll();
+    }//GEN-LAST:event_sDescFieldFocusGained
+
+    private void sSMFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sSMFieldFocusGained
+        sSMField.selectAll();
+    }//GEN-LAST:event_sSMFieldFocusGained
+
+    private void aNameFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNameFieldFocusGained
+        aNameField.selectAll();
+    }//GEN-LAST:event_aNameFieldFocusGained
+
+    private void aDescFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aDescFieldFocusGained
+        aDescField.selectAll();
+    }//GEN-LAST:event_aDescFieldFocusGained
+
+    private void aSMFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aSMFieldFocusGained
+        sSMField.selectAll();
+    }//GEN-LAST:event_aSMFieldFocusGained
+
+    private void addPanelComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_addPanelComponentShown
+        aNameField.requestFocus();
+    }//GEN-LAST:event_addPanelComponentShown
+
     /**
      * fillList()
      *
@@ -2078,6 +2157,7 @@ public class ShowGUI extends javax.swing.JFrame {
         submitButton.setEnabled(true);
         deleteButton.setEnabled(false);
         editButton.setEnabled(false);
+        sNameField.requestFocus();
     }
 
     /**
@@ -2150,7 +2230,7 @@ public class ShowGUI extends javax.swing.JFrame {
 
         // preconditions
         errLabel.setForeground(Color.red);
-        asetAllForeground(Color.black);
+        ssetAllForeground(Color.black);
 
         // ShowName
         // if it is nothing or default, throw error
@@ -2167,7 +2247,7 @@ public class ShowGUI extends javax.swing.JFrame {
         // ShowDescription
         // if it is nothing or default, throw error
         // if it contains separator character, throw error
-        if (sDescField.getText().equals("") || sDescField.getText().equals("--")) {
+        if (sDescField.getText().trim().equals("") || sDescField.getText().trim().equals("--")) {
             flag = false;
             sDescField.setForeground(Color.red);
             sDescField.setText("--");
@@ -2363,7 +2443,7 @@ public class ShowGUI extends javax.swing.JFrame {
         // ShowDescription
         // if it is nothing or default, throw error
         // if it contains separator character, throw error
-        if (aDescField.getText().equals("") || aDescField.getText().equals("--")) {
+        if (aDescField.getText().trim().equals("") || aDescField.getText().trim().equals("--")) {
             flag = false;
             aDescField.setForeground(Color.red);
             aDescField.setText("--");
@@ -4056,7 +4136,7 @@ public class ShowGUI extends javax.swing.JFrame {
                 t[0] = getTime(sStartBox1.getSelectedIndex());
                 t[1] = getTime(sEndBox1.getSelectedIndex());
                 t[2] = getTime(sStartBox2.getSelectedIndex());
-                t[3] = getTime(sEndBox3.getSelectedIndex());
+                t[3] = getTime(sEndBox2.getSelectedIndex());
                 break;
             case 3:
                 d[0] = getDay(sDayBox1.getSelectedIndex());

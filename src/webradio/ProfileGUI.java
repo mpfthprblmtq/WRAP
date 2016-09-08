@@ -342,8 +342,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snotesField.setEditable(false);
         snotesField.setBackground(new java.awt.Color(240, 240, 240));
         snotesField.setColumns(20);
+        snotesField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         snotesField.setLineWrap(true);
         snotesField.setRows(5);
+        snotesField.setTabSize(0);
         snotesField.setBorder(null);
         snotesField.setNextFocusableComponent(sfNameField);
         snotesField.setDocument(new JTextFieldLimit(100));
@@ -358,6 +360,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         sscrollPane.setViewportView(snotesField);
+        snotesField.setTabSize(0);
 
         submitButton.setText("Submit");
         submitButton.setEnabled(false);
@@ -506,7 +509,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(sfNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -548,13 +551,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addComponent(sscrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(submitButton)
                             .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deleteButton)))
                     .addComponent(jLabel18))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         tabs.addTab("Search", searchPanel);
@@ -586,6 +589,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("Notes:");
 
+        afNameField.setFocusCycleRoot(true);
         afNameField.setNextFocusableComponent(alNameField);
         afNameField.setPreferredSize(new java.awt.Dimension(158, 20));
         afNameField.setDocument(new JTextFieldLimit(30));
@@ -746,8 +750,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         ascrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         anotesField.setColumns(20);
+        anotesField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         anotesField.setLineWrap(true);
         anotesField.setRows(5);
+        anotesField.setTabSize(0);
         anotesField.setNextFocusableComponent(afNameField);
         anotesField.setDocument(new JTextFieldLimit(100));
         anotesField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -761,6 +767,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         ascrollPane.setViewportView(anotesField);
+        anotesField.setTabSize(0);
 
         addButton.setText("Add");
         addButton.setNextFocusableComponent(afNameField);
@@ -1096,6 +1103,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
             // if search tab is not in focus, put it in focus
             tabs.setSelectedIndex(0);
+            
+            searchPanel.requestFocus();
         } else {
             // do nothing
             // it'll crash otherwise
@@ -2276,10 +2285,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[6] = String.valueOf(stypeBox.getSelectedIndex());
         str[7] = String.valueOf(spositionBox.getSelectedIndex());
         
-        if (snotesField.getText().equals("")) {
+        if (snotesField.getText().trim().equals("")) {
             str[8] = "N/A";
         } else {
-            str[8] = snotesField.getText();
+            str[8] = snotesField.getText().trim();
         }
         
         str[9] = "false";
@@ -2309,10 +2318,10 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[6] = String.valueOf(atypeBox.getSelectedIndex());
         str[7] = String.valueOf(apositionBox.getSelectedIndex());
         
-        if (anotesField.getText().equals("")) {
+        if (anotesField.getText().trim().equals("")) {
             str[8] = "N/A";
         } else {
-            str[8] = anotesField.getText();
+            str[8] = anotesField.getText().trim();
         }
 
         str[9] = "false";
@@ -2555,6 +2564,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             anotesField.setForeground(Color.red);
         }
+//        if (anotesField.getText().trim().equals("--")) {
+//            anotesField.setText("");
+//        }
+//        String s = anotesField.getText().trim();
+//        if(s.equals("")) {
+//            flag = false;
+//            anotesField.setForeground(Color.red);
+//            anotesField.setText("--");
+//        }
 
         setAddErrLabel();
         return flag;
@@ -2729,6 +2747,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             flag = false;
             snotesField.setForeground(Color.red);
         }
+//        if (snotesField.getText().equals("--")) {
+//            snotesField.setText("");
+//        }
+//        String s = snotesField.getText().trim();
+//        if(s.equals("")) {
+//            flag = false;
+//            snotesField.setForeground(Color.red);
+//            snotesField.setText("--");
+//        }
 
         setSearchErrLabel();
         return flag;

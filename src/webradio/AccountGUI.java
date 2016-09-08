@@ -842,6 +842,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
             search(users.elementAt(list.getSelectedIndex()).username);
             tabs.setSelectedIndex(0);
+            searchPanel.requestFocus();
         } else {
             // do nothing
             // it crashes otherwise
