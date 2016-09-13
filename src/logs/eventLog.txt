@@ -6,480 +6,55 @@
      \/  \/   |_|  \_\/_/    \_\_|         #                                                                  #
                                            ####################################################################
 
-[09/06/16 23:49] user root logged in
-[09/06/16 23:50] user root logged out
-[09/06/16 23:50] user pripley logged in
-[09/06/16 23:52] user pripley logged out
-[09/06/16 23:52] user pripley terminated program
-[09/06/16 23:53] user root logged in
-[09/06/16 23:54] user root logged out
-[09/06/16 23:54] user root terminated program
-[09/06/16 23:54] user root logged in
-[09/06/16 23:54] user root logged out
-[09/06/16 23:54] user root terminated program
-[09/06/16 23:55] user root logged in
-[09/06/16 23:55] user root logged out
-[09/06/16 23:55] user root terminated program
-[09/06/16 23:56] user root logged in
-[09/06/16 23:57] user root logged out
-[09/06/16 23:57] user root terminated program
-[09/06/16 23:57] user root logged in
-[09/06/16 23:57] user root logged out
-[09/06/16 23:57] user root terminated program
-[09/06/16 23:58] user root logged in
-[09/06/16 23:58] user root edited profile 800493092 (Anderson, Reid)
-[09/07/16 00:11] user root logged out
-[09/07/16 00:11] user root terminated program
-[09/07/16 00:11] user root logged in
-[09/07/16 00:11] user root logged out
-[09/07/16 00:11] user root terminated program
-[09/07/16 00:15] user root logged in
-[09/07/16 00:16] user root logged out
-[09/07/16 00:16] user root terminated program
-[09/07/16 00:16] user root logged in
-[09/07/16 00:16] user root logged out
-[09/07/16 00:16] user root terminated program
-[09/07/16 00:18] user root logged in
-[09/07/16 00:18] user root logged out
-[09/07/16 00:18] user root terminated program
-[09/07/16 00:20] user root logged in
-[09/07/16 00:20] user root logged out
-[09/07/16 00:20] user pripley logged in
-[09/07/16 00:20] user pripley logged out
-[09/07/16 00:20] user pripley terminated program
-[09/07/16 00:27] user root logged in
-[09/07/16 00:28] user root logged out
-[09/07/16 00:28] user pripley logged in
-[09/07/16 00:28] user pripley logged out
-[09/07/16 00:28] user pripley terminated program
-[09/07/16 00:29] user root logged in
-[09/07/16 00:29] user root logged out
-[09/07/16 00:29] user root terminated program
-[09/07/16 00:29] user root logged in
-[09/07/16 00:30] user root logged out
-[09/07/16 00:30] user pripley logged in
-[09/07/16 00:52] user pripley logged out
-[09/07/16 00:52] user pripley terminated program
-[09/07/16 00:52] user pripley logged in
-[09/07/16 00:53] user pripley logged out
-[09/07/16 00:53] user pripley terminated program
-[09/07/16 00:53] user pripley logged in
-[09/07/16 00:53] user pripley logged out
-[09/07/16 00:53] user pripley terminated program
-[09/07/16 00:53] user pripley logged in
-[09/07/16 00:54] user asdfasdf edited account asdfasdf
-[09/07/16 00:54] user pripley edited account pripley
-[09/07/16 00:54] user pripley logged out
-[09/07/16 00:54] user pripley terminated program
-[09/07/16 00:57] user root logged in
-[09/07/16 00:58] user root logged out
-[09/07/16 00:58] user pripley logged in
-[09/07/16 00:58] user pripley logged out
-[09/07/16 00:58] user pripley terminated program
-[09/07/16 09:56] user pripley logged in
-[09/07/16 09:58] user pripley logged out
-[09/07/16 09:58] user pripley terminated program
-[09/07/16 09:58] user pripley logged in
-[09/07/16 09:58] user pripley edited account pripley
-[09/07/16 09:59] user pripley logged out
-[09/07/16 09:59] user pripley terminated program
-[09/07/16 10:00] user pripley logged in
-[09/07/16 10:00] user pripley logged out
-[09/07/16 10:00] user pripley terminated program
-[09/07/16 10:02] user pripley logged in
-[09/07/16 10:04] user pripley logged out
-[09/07/16 10:04] user pripley terminated program
-[09/07/16 10:05] user pripley logged in
-[09/07/16 10:12] user pripley logged out
-[09/07/16 10:12] user pripley terminated program
-[09/07/16 10:19] user pripley logged in
-[09/07/16 10:19] user pripley logged out
-[09/07/16 10:19] user pripley terminated program
-[09/07/16 10:21] user pripley logged in
-[09/07/16 10:21] user pripley logged out
-[09/07/16 10:21] user pripley terminated program
-[09/07/16 10:21] user pripley logged in
-[09/07/16 10:21] user pripley logged out
-[09/07/16 10:21] user pripley terminated program
-[09/07/16 10:23] user pripley logged in
-[09/07/16 10:24] user pripley logged out
-[09/07/16 10:24] user pripley terminated program
-[09/07/16 10:24] user pripley logged in
-[09/07/16 10:25] user pripley logged out
-[09/07/16 10:25] user pripley terminated program
-[09/07/16 10:26] user pripley logged in
-[09/07/16 10:26] user pripley logged out
-[09/07/16 10:26] user pripley terminated program
-[09/07/16 10:49] user pripley logged in
-[09/07/16 10:49] user pripley logged out
-[09/07/16 10:49] user pripley terminated program
-[09/07/16 10:50] user pripley logged in
-[09/07/16 10:50] user pripley logged out
-[09/07/16 10:50] user pripley terminated program
-[09/07/16 10:52] user pripley logged in
-[09/07/16 10:52] user pripley logged out
-[09/07/16 10:52] user pripley terminated program
-[09/07/16 10:53] user pripley logged in
-[09/07/16 10:53] user pripley logged out
-[09/07/16 10:53] user pripley terminated program
-[09/07/16 11:06] user pripley logged in
-[09/07/16 11:07] user pripley logged out
-[09/07/16 11:07] user pripley terminated program
-[09/07/16 11:07] user pripley logged in
-[09/07/16 11:08] user pripley logged out
-[09/07/16 11:08] user pripley terminated program
-[09/07/16 11:09] user pripley logged in
-[09/07/16 11:10] user pripley logged out
-[09/07/16 11:10] user pripley terminated program
-[09/07/16 11:13] user pripley logged in
-[09/07/16 11:13] user pripley logged out
-[09/07/16 11:13] user pripley terminated program
-[09/07/16 11:13] user pripley logged in
-[09/07/16 11:14] user pripley logged out
-[09/07/16 11:14] user pripley terminated program
-[09/07/16 12:16] user pripley logged in
-[09/07/16 12:21] user pripley logged out
-[09/07/16 12:21] user pripley terminated program
-[09/07/16 12:21] user pripley logged in
-[09/07/16 12:27] user pripley logged out
-[09/07/16 12:27] user pripley terminated program
-[09/07/16 12:27] user pripley logged in
-[09/07/16 12:37] user pripley logged out
-[09/07/16 12:37] user pripley terminated program
-[09/07/16 12:37] user pripley logged in
-[09/07/16 12:38] user pripley logged out
-[09/07/16 12:38] user pripley terminated program
-[09/07/16 12:51] user pripley logged in
-[09/07/16 12:52] user pripley logged out
-[09/07/16 12:52] user pripley terminated program
-[09/07/16 12:53] user pripley logged in
-[09/07/16 12:54] user pripley logged out
-[09/07/16 12:54] user pripley terminated program
-[09/07/16 12:54] user pripley logged in
-[09/07/16 12:55] user pripley logged out
-[09/07/16 12:55] user pripley terminated program
-[09/07/16 13:19] user pripley logged in
-[09/07/16 13:19] user pripley edited transaction 594346002 (3.0 - asdf)
-[09/07/16 13:19] user pripley logged out
-[09/07/16 13:19] user pripley terminated program
-[09/07/16 13:22] user pripley logged in
-[09/07/16 13:22] user pripley logged out
-[09/07/16 13:22] user pripley terminated program
-[09/07/16 13:24] user pripley logged in
-[09/07/16 13:24] user pripley edited account totals
-[09/07/16 13:24] user pripley edited account totals
-[09/07/16 13:27] user pripley logged out
-[09/07/16 13:27] user pripley terminated program
-[09/07/16 13:27] user pripley logged in
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:28] user pripley edited account totals
-[09/07/16 13:29] user pripley logged out
-[09/07/16 13:29] user pripley terminated program
-[09/07/16 13:35] user pripley logged in
-[09/07/16 13:35] user pripley edited account totals
-[09/07/16 13:35] user pripley edited account totals
-[09/07/16 13:35] user pripley logged out
-[09/07/16 13:35] user pripley terminated program
-[09/07/16 13:36] user pripley logged in
-[09/07/16 13:36] user pripley edited account totals
-[09/07/16 13:38] user pripley logged out
-[09/07/16 13:38] user pripley terminated program
-[09/07/16 13:38] user pripley logged in
-[09/07/16 13:38] user pripley edited account totals
-[09/07/16 13:38] user pripley edited account totals
-[09/07/16 13:38] user pripley edited account totals
-[09/07/16 13:38] user pripley edited account totals
-[09/07/16 13:40] user pripley logged out
-[09/07/16 13:40] user pripley terminated program
-[09/07/16 13:40] user pripley logged in
-[09/07/16 13:40] user pripley edited account totals
-[09/07/16 13:40] user pripley edited account totals
-[09/07/16 13:41] user pripley logged out
-[09/07/16 13:41] user pripley terminated program
-[09/07/16 13:43] user pripley logged in
-[09/07/16 13:43] user pripley edited account totals
-[09/07/16 13:43] user pripley edited account totals
-[09/07/16 13:43] user pripley edited account totals
-[09/07/16 13:43] user pripley edited account totals
-[09/07/16 13:44] user pripley edited account totals
-[09/07/16 13:47] user pripley edited account totals
-[09/07/16 13:47] user pripley edited account totals
-[09/07/16 13:47] user pripley edited account totals
-[09/07/16 13:47] user pripley edited account totals
-[09/07/16 13:47] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:48] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:49] user pripley edited account totals
-[09/07/16 13:52] user pripley logged out
-[09/07/16 13:52] user pripley terminated program
-[09/07/16 13:53] user pripley logged in
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:53] user pripley edited account totals
-[09/07/16 13:54] user pripley logged out
-[09/07/16 13:54] user pripley terminated program
-[09/07/16 13:54] user pripley logged in
-[09/07/16 13:54] user pripley edited account totals
-[09/07/16 13:54] user pripley edited account totals
-[09/07/16 13:54] user pripley edited account totals
-[09/07/16 13:54] user pripley edited account totals
-[09/07/16 13:55] user pripley logged out
-[09/07/16 13:55] user pripley terminated program
-[09/07/16 14:08] user pripley logged in
-[09/07/16 14:09] user pripley edited account totals
-[09/07/16 14:09] user pripley logged out
-[09/07/16 14:09] user pripley terminated program
-[09/07/16 14:11] user pripley logged in
-[09/07/16 14:11] user pripley edited account totals
-[09/07/16 14:11] user pripley edited account totals
-[09/07/16 14:12] user pripley edited account totals
-[09/07/16 14:13] user pripley logged out
-[09/07/16 14:13] user pripley terminated program
-[09/07/16 14:16] user pripley logged in
-[09/07/16 14:17] user pripley logged out
-[09/07/16 14:17] user pripley terminated program
-[09/07/16 19:18] user pripley logged in
-[09/07/16 19:18] user pripley edited profile 800493092 (Anderson, Reid)
-[09/07/16 19:22] user pripley logged out
-[09/07/16 19:22] user pripley terminated program
-[09/07/16 19:24] user pripley logged in
-[09/07/16 19:24] user pripley logged out
-[09/07/16 19:24] user pripley terminated program
-[09/07/16 19:59] user root logged in
-[09/07/16 20:10] user root edited show asdf
-[09/07/16 20:11] user root edited show asdf
-[09/07/16 20:11] user root edited show asdf
-[09/07/16 20:11] user root edited show asdf
-[09/07/16 20:11] user root edited show asdf
-[09/07/16 20:12] user root logged out
-[09/07/16 20:12] user root terminated program
-[09/07/16 20:16] user root logged in
-[09/07/16 20:16] user root edited show asdf
-[09/07/16 20:17] user root logged out
-[09/07/16 20:17] user root terminated program
-[09/07/16 20:17] user root logged in
-[09/07/16 20:18] user root logged out
-[09/07/16 20:18] user root terminated program
-[09/07/16 20:31] user root logged in
-[09/07/16 20:32] user root logged out
-[09/07/16 20:32] user root terminated program
-[09/07/16 20:35] user root logged in
-[09/07/16 20:35] user root logged out
-[09/07/16 20:35] user root terminated program
-[09/07/16 20:38] user root logged in
-[09/07/16 20:39] user root logged out
-[09/07/16 20:39] user root terminated program
-[09/07/16 20:39] user root logged in
-[09/07/16 20:41] user root logged out
-[09/07/16 20:41] user root terminated program
-[09/07/16 20:41] user root logged in
-[09/07/16 20:41] user root logged out
-[09/07/16 20:41] user root terminated program
-[09/07/16 20:41] user root logged in
-[09/07/16 20:41] user root logged out
-[09/07/16 20:41] user root terminated program
-[09/07/16 20:42] user root logged in
-[09/07/16 20:42] user root logged out
-[09/07/16 20:42] user root terminated program
-[09/07/16 20:42] user root logged in
-[09/07/16 20:43] user root edited show asdf
-[09/07/16 20:43] user root logged out
-[09/07/16 20:43] user root terminated program
-[09/07/16 20:44] user root logged in
-[09/07/16 20:44] user root logged out
-[09/07/16 20:44] user root terminated program
-[09/07/16 20:44] user root logged in
-[09/07/16 20:45] user root logged out
-[09/07/16 20:45] user root terminated program
-[09/07/16 20:45] user root logged in
-[09/07/16 20:45] user root logged out
-[09/07/16 20:45] user root terminated program
-[09/07/16 20:46] user root logged in
-[09/07/16 20:46] user root logged out
-[09/07/16 20:46] user root terminated program
-[09/07/16 20:46] user root logged in
-[09/07/16 20:46] user root logged out
-[09/07/16 20:46] user root terminated program
-[09/07/16 20:47] user root logged in
-[09/07/16 20:48] user root logged out
-[09/07/16 20:48] user root terminated program
-[09/07/16 20:51] user root logged in
-[09/07/16 20:51] user root logged out
-[09/07/16 20:51] user root terminated program
-[09/07/16 20:52] user root logged in
-[09/07/16 20:53] user root logged out
-[09/07/16 20:53] user root terminated program
-[09/07/16 20:53] user root logged in
-[09/07/16 20:53] user root logged out
-[09/07/16 20:53] user root terminated program
-[09/07/16 20:54] user root logged in
-[09/07/16 20:54] user root logged out
-[09/07/16 20:54] user root terminated program
-[09/07/16 20:55] user root logged in
-[09/07/16 20:55] user root created bug report
-[09/07/16 20:55] user root logged out
-[09/07/16 20:55] user root terminated program
-[09/07/16 21:00] user root logged in
-[09/07/16 21:00] user root logged out
-[09/07/16 21:00] user root terminated program
-[09/07/16 21:01] user root logged in
-[09/07/16 21:01] user root logged out
-[09/07/16 21:01] user root terminated program
-[09/07/16 21:04] user root logged in
-[09/07/16 21:04] user root edited transaction 594346002 (3.0 - asdf)
-[09/07/16 21:05] user root logged out
-[09/07/16 21:05] user root terminated program
-[09/07/16 21:05] user root logged in
-[09/07/16 21:05] user root logged out
-[09/07/16 21:05] user root terminated program
-[09/07/16 21:06] user root logged in
-[09/07/16 21:07] user root edited transaction 594346002 (3.0 - asdf)
-[09/07/16 21:07] user root logged out
-[09/07/16 21:07] user root terminated program
-[09/07/16 21:17] user root logged in
-[09/07/16 21:18] user root added transaction 735401958 (8.0 - asdf)
-[09/07/16 21:26] user root edited transaction 735401958 (8.0 - asdf)
-[09/07/16 21:27] user root logged out
-[09/07/16 21:27] user root terminated program
-[09/07/16 21:27] user root logged in
-[09/07/16 21:28] user root edited transaction 735401958 (8.0 - asdf)
-[09/07/16 21:29] user root added transaction 269517668 (678.0 - asdf)
-[09/07/16 21:34] user root logged out
-[09/07/16 21:34] user root terminated program
-[09/07/16 21:35] user root logged in
-[09/07/16 21:35] user root edited transaction 269517668 (678.0 - asdf)
-[09/07/16 21:39] user root logged in
-[09/07/16 21:39] user root logged out
-[09/07/16 21:39] user root terminated program
-[09/07/16 21:39] user root logged out
-[09/07/16 21:39] user root terminated program
-[09/07/16 21:39] user root logged in
-[09/07/16 21:40] user root edited transaction 269517668 (678.0 - asdf)
-[09/07/16 21:40] user root logged out
-[09/07/16 21:40] user root terminated program
-[09/07/16 21:41] user root logged in
-[09/07/16 21:41] user root edited transaction 269517668 (678.0 - asdf)
-[09/07/16 21:44] user root logged out
-[09/07/16 21:44] user root terminated program
-[09/07/16 21:44] user root logged in
-[09/07/16 21:45] user root edited profile 800493092 (Anderson, Reid)
-[09/07/16 21:45] user root logged out
-[09/07/16 21:45] user root terminated program
-[09/07/16 21:50] user root logged in
-[09/07/16 21:51] user root added profile 678324768 (a, a)
-[09/07/16 21:52] user root logged out
-[09/07/16 21:52] user root terminated program
-[09/07/16 21:52] user root logged in
-[09/07/16 21:53] user root edited profile 678324768 (a, a)
-[09/07/16 21:53] user root logged out
-[09/07/16 21:53] user root terminated program
-[09/07/16 21:53] user root logged in
-[09/07/16 21:53] user root deleted profile 678324768 (a, a)
-[09/07/16 21:55] user root logged out
-[09/07/16 21:55] user root terminated program
-[09/07/16 21:55] user asdf logged in
-[09/07/16 21:56] user asdf added profile 532543564 (a, a)
-[09/07/16 21:56] user asdf logged out
-[09/07/16 21:56] user asdf terminated program
-[09/08/16 00:17] user root logged in
-[09/08/16 00:17] user root edited profile 532543564 (a, a)
-[09/08/16 00:17] user root deleted profile 532543564 (a, a)
-[09/08/16 00:18] user root added profile 675246712 (a, a)
-[09/08/16 00:19] user root edited show asdf
-[09/08/16 00:20] user root logged in
-[09/08/16 00:20] user root edited profile 784293573 (a, a)
-[09/08/16 00:20] user root logged out
-[09/08/16 00:20] user root terminated program
-[09/08/16 00:32] user root logged in
-[09/08/16 00:32] user root edited show asdf
-[09/08/16 00:34] user root logged out
-[09/08/16 00:34] user root terminated program
-[09/08/16 00:37] user root logged in
-[09/08/16 00:37] user root logged out
-[09/08/16 00:37] user root terminated program
-[09/08/16 00:37] user root logged out
-[09/08/16 00:37] user root terminated program
-[09/08/16 00:37] user root logged in
-[09/08/16 00:37] user root made a suggestion
-[09/08/16 00:38] user root logged out
-[09/08/16 00:38] user root terminated program
-[09/08/16 00:38] user root logged in
-[09/08/16 00:38] user root logged out
-[09/08/16 00:38] user root terminated program
+[09/08/16 14:40] user pripley logged in
+[09/08/16 14:40] user pripley opened help
+[09/08/16 14:41] user pripley logged out
+[09/08/16 14:41] user pripley terminated program
+[09/08/16 14:42] user root logged in
+[09/08/16 14:42] user root opened help
+[09/08/16 14:45] user root logged out
+[09/08/16 14:45] user root terminated program
+[09/08/16 14:45] user root logged in
+[09/08/16 14:45] user root opened help
+[09/08/16 14:46] user root logged out
+[09/08/16 14:46] user root terminated program
+[09/08/16 14:46] user root logged in
+[09/08/16 14:46] user root opened help
+[09/08/16 14:47] user root logged out
+[09/08/16 14:47] user root terminated program
+[09/08/16 15:11] user root logged in
+[09/08/16 15:13] user root logged out
+[09/08/16 15:13] user root terminated program
+[09/08/16 15:13] user root logged in
+[09/08/16 15:14] user root logged out
+[09/08/16 15:14] user root terminated program
+[09/08/16 15:14] user root logged in
+[09/08/16 15:15] user root logged out
+[09/08/16 15:15] user root terminated program
+[09/08/16 15:21] user root logged in
+[09/08/16 15:21] user root logged out
+[09/08/16 15:21] user root terminated program
+[09/08/16 15:21] user root logged in
+[09/08/16 15:21] user root logged out
+[09/08/16 15:21] user root terminated program
+[09/08/16 15:22] user root logged in
+[09/08/16 15:22] user root logged out
+[09/08/16 15:22] user root terminated program
+[09/08/16 15:23] user root logged in
+[09/08/16 15:23] user root logged out
+[09/08/16 15:23] user root terminated program
+[09/08/16 15:24] user root logged in
+[09/08/16 15:25] user root logged out
+[09/08/16 15:25] user root terminated program
+[09/08/16 15:28] user root logged in
+[09/08/16 15:33] user root logged out
+[09/08/16 15:33] user root terminated program
+[09/08/16 15:33] user root logged in
+[09/08/16 15:33] user root logged out
+[09/08/16 15:33] user root terminated program
+[09/08/16 15:35] user root logged in
+[09/08/16 15:36] user root logged out
+[09/08/16 15:36] user root terminated program
+[09/08/16 15:38] user root logged in
+[09/08/16 15:38] user root made a suggestion
+[09/08/16 15:38] user root logged out

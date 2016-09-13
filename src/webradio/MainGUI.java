@@ -769,12 +769,15 @@ public class MainGUI extends javax.swing.JFrame {
      * @param evt
      */
     private void verstionItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verstionItemActionPerformed
-        JOptionPane.showMessageDialog(this, "W.R.A.P. - Web Radio Assistance Program\n"
-                + "Version 1.0  :D \n\n"
-                + "Profiles:  Manage contact info of club members\n"
-                + "Accounts:  Manage user accounts (username, password, access, and name)\n"
-                + "Tasks:     Manage members' requirements to join/remain in the club\n"
-                + "Shows:     Manage shows, including names, descriptions, times, and hosts");
+        JOptionPane.showMessageDialog(this,
+                "<html><font face=\"consolas\" color=#800000>W.R.A.P. - Web Radio Assistance Program\n"
+                + "<html><font face=\"consolas\" color=#800000>Version 1.2  :D </font>\n\n"
+                + "<html><font color=#800000>Profiles:\t</font>  Manage contact info of club members\n"
+                + "<html><font color=#800000>Accounts:\t</font>  Manage user accounts (username, password, access, and name)\n"
+                + "<html><font color=#800000>Tasks:   \t</font>  Manage members' requirements to join/remain in the club\n"
+                + "<html><font color=#800000>Shows:   \t</font>  Manage shows, including names, descriptions, times, and hosts\n"
+                + "<html><font color=#800000>Finances:\t</font>  Manage transactions and amount in accounts.\n"
+                + "<html><font color=#800000>Reports: \t</font>  Create formatted reports on any of the beforemetioned features.\n");
     }//GEN-LAST:event_verstionItemActionPerformed
     /**
      * Handles if user selects suggestion option in the menu bar
@@ -801,7 +804,9 @@ public class MainGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,
                 "Special thanks to:\n"
                 + "\t- Brian Stevens, for finding a lot of initial bugs in Phase I of testing\n"
-                + "\t- Steve Buscemi, for his life of influential works");
+                + "\t- Brian Stevens, for finding a lot of other bugs in Phase II of testing\n"
+                + "\t- Steve Buscemi, for his life of influential works\n"
+                + "\t- StackOverflow, for being my goto source when things break");
     }//GEN-LAST:event_thanksItemActionPerformed
 
     /**
@@ -815,8 +820,7 @@ public class MainGUI extends javax.swing.JFrame {
                 + "(618)-570-5661\n"
                 + "ripley307@gmail.com\n\n"
                 + "Coded independantly since Fall 2015\n"
-                + "Since I don't have copyrights, please don't\n"
-                + "steal my code...");
+                + "© Pat Ripley 2016");
     }//GEN-LAST:event_devItemActionPerformed
 
     private void helpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpItemActionPerformed

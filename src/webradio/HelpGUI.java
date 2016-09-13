@@ -139,7 +139,6 @@ public class HelpGUI extends javax.swing.JFrame {
         treeSP.setViewportView(tree);
 
         textSP.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textSP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         textArea.setEditable(false);
         textArea.setColumns(20);
@@ -399,10 +398,11 @@ public class HelpGUI extends javax.swing.JFrame {
                 textArea.setText(HelpController.getDeleteAccount());
                 break;
             case "Types of Accounts":
-                //textArea.setText(HelpController.getAccountType());
+                textArea.setText(HelpController.getAccountType());
                 break;
             case "Fields (Accounts)":
-                //textArea.setText(HelpController.getFieldsAccounts());
+                textArea.setText(HelpController.getFieldsAccounts());
+                break;
             case "Tasks":
                 textArea.setText(HelpController.getTasks());
                 break;
@@ -410,7 +410,7 @@ public class HelpGUI extends javax.swing.JFrame {
                 textArea.setText(HelpController.getEditTasks());
                 break;
             case "Task Descriptions":
-                //textArea.setText(HelpController.getTaskDesctriptions());
+                textArea.setText(HelpController.getTaskDesctriptions());
                 break;
             case "Shows":
                 textArea.setText(HelpController.getShows());
@@ -425,27 +425,28 @@ public class HelpGUI extends javax.swing.JFrame {
                 textArea.setText(HelpController.getDeleteShow());
                 break;
             case "Fields (Shows)":
-                //textArea.setText(HelpController.getFieldsShows());
+                textArea.setText(HelpController.getFieldsShows());
                 break;
             case "Finances":
                 textArea.setText(HelpController.getFinances());
                 break;
             case "Adding a Transaction":
-                //textArea.setText(HelpController.getAddTransaction());
+                textArea.setText(HelpController.getAddTransaction());
                 break;
             case "Editing a Transaction":
-                //textArea.setText(HelpController.getEditTransaction());
+                textArea.setText(HelpController.getEditTransaction());
                 break;
             case "Deleting a Transaction":
-                //textArea.setText(HelpController.getDeleteTransaction());
+                textArea.setText(HelpController.getDeleteTransaction());
                 break;
             case "Editing Account amounts":
-                //textArea.setText(HelpController.getAccountAmounts());
+                textArea.setText(HelpController.getAccountAmounts());
+                break;
             case "Using the money counter":
-                //textArea.setText(HelpController.getMoneyCounter());
+                textArea.setText(HelpController.getMoneyCounter());
                 break;
             case "Fields (Transactions)":
-                //textArea.setText(HelpController.getFieldsTransactions());
+                textArea.setText(HelpController.getFieldsTransactions());
                 break;
             case "Reports":
                 textArea.setText(HelpController.getReports());

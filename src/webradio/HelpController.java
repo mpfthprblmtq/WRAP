@@ -103,7 +103,22 @@ public class HelpController {
      */
     public static String getFieldsProfiles() {
         return "Profile Fields\n\n"
-                + "First Name:  ";
+                + "First Name:  Profile's first name.\n\n"
+                + "Last Name:  Profile's last name.\n\n"
+                + "800 Number:  Profile's 800 number (usually on the cougar "
+                + "card).\n\n"
+                + "Phone:  Primary phone, or best way to reach them.\n\n"
+                + "SIUe Email:  Email associated with the university (usually "
+                + "their eid + @siue.edu).\n\n"
+                + "Preferred Email:  Email to best get a hold of them (can be "
+                + "their siue email as well, if they prefer).\n\n"
+                + "Type:  The type of profile they are.  Can be DJ, Member, "
+                + "Prospect or Advisor.\n\n"
+                + "Position:  The profile's role in the club.  Can be President, "
+                + "Vice President, Secretary, Treasurer, SM Manager, or Technical"
+                + " officer.\n\n"
+                + "Notes:  Any notes on the profile (i.e. \"needs updated "
+                + "email addresses\"";
     }
     
     /**
@@ -113,11 +128,7 @@ public class HelpController {
      */
     public static String getAccounts() {
         return "Accounts\n\n"
-                + "This allows the creation of users of the program.  There are "
-                + "different levels of access, and each has its own perks.\n"
-                + "   0 (Admin) : Unlimited usability\n"
-                + "   1 (Mod) : Some features restricted\n"
-                + "   2 (User) : Can only view\n\n"
+                + "This allows the creation of users of the program."  
                 + "Users' passwords are hashed and salted for security.  When "
                 + "editing accounts, you can only edit your own account's "
                 + "information.  The only exception is if you're an admin and "
@@ -169,6 +180,30 @@ public class HelpController {
     }
     
     /**
+     * Returns the string for account types
+     *
+     * @return the specified help message
+     */
+    public static String getAccountType() {
+        return "Account Types\n\n"
+                + "There are three different levels of access, and each has its own perks.\n\n"
+                + "   0 (Admin) : Unlimited usability\n"
+                + "   1 (Mod) : Some features restricted\n"
+                + "   2 (User) : Can only view\n\n";
+    }
+    
+    public static String getFieldsAccounts() {
+        return "Account Fields\n\n"
+                + "Username:  Desired username, must be unique.\n\n"
+                + "Password:  Desired password.  This is hashed and salted, so "
+                + "the password is never written to the disk.\n\n"
+                + "Access:  Access level for account, gives account different "
+                + "permissions per level.\n\n"
+                + "Name:  What the account owner's name is (for the welcome "
+                + "message).";
+    }
+    
+    /**
      * Returns the string for generic tasks
      *
      * @return the specified help message
@@ -200,6 +235,23 @@ public class HelpController {
                 + "will update with the profile's standing.";
     }
     
+    /**
+     * Returns the string for task descriptions
+     * 
+     * @return the specified help message 
+     */
+    public static String getTaskDesctriptions() {
+        return "Task Descriptions\n\n"
+                + "Dues Paid:  Payment of $6 dues per semester.  Can either be "
+                + "paid in person, or online through our website (dues paid online "
+                + "are $6.50 to account for greedy little PayPal).\n\n"
+                + "Board Trained:  Going through a training on how to use the board "
+                + "and it's functions.  Must be with a specified board trainer.\n\n"
+                + "Show Description/Time:  Turning in information for a show so "
+                + "that we know about it and we can put it on the website.\n\n"
+                + "Paperwork turned in:  Turning in an application or applying online "
+                + "so we have it on record.";
+    }
     /**
      * Returns the string for generic Shows
      *
@@ -255,6 +307,23 @@ public class HelpController {
     }
     
     /**
+     * Returns the string for Show's fields
+     * 
+     * @return the specified help message
+     */
+    public static String getFieldsShows() {
+        return "Show Fields\n\n"
+                + "Show Name:  The name of the show.\n\n"
+                + "Show Description:  The description of the show.\n\n"
+                + "Social:  The primary social network page of the show (i.e. a "
+                + "facebook page, a souncloud profile, twitter account, etc).\n\n"
+                + "Days/Times:  The days and times the show will take place.  Note "
+                + "that when you change the number on the spinner, it will affect "
+                + "the boxes below it, enabling more or less days/times.\n\n"
+                + "Hosts:  The host(s) of the show.  Linked with profiles.";
+    }
+    
+    /**
      * Returns the string for generic finances
      *
      * @return the specified help message
@@ -268,6 +337,61 @@ public class HelpController {
     }
     
     /**
+     * Returns the string for adding transactions
+     *
+     * @return the specified help message
+     */
+    public static String getAddTransaction() {
+        return "Adding a Transaction\n\n"
+                + "To add a transaction, go to the Transcations tab in the Finances window, then "
+                + "go to the add panel.  There you can enter the store, date, purchaser, "
+                + "amount, and reasons/notes.\n\n"
+                + "Once the information is entered, click the add button.  The "
+                + "result of the addition will be at the bottom of the window.";
+    }
+    
+    /**
+     * Returns the string for editing transactions
+     *
+     * @return the specified help message
+     */
+    public static String getEditTransaction() {
+        return "Editing a Transaction\n\n"
+                + "To edit a transaction, click on the transaction you would like to edit from "
+                + "the list on the right.  Once selected, click the Edit button.  "
+                + "There you can edit the information you would like.\n\n"
+                + "When you're done editing, click submit.  The result of the "
+                + "edit will be at the bottom of the window.";
+    }
+    
+    /**
+     * Returns the string for using the money counter
+     *
+     * @return the specified help message
+     */
+    public static String getDeleteTransaction() {
+        return "Delete a Transaction\n\n"
+                + "To delete a transaction, click on the transaction you would like to "
+                + "delete in the list to the right.  Once you select the transaction, "
+                + "click delete.  A confirmation will pop up asking if you are "
+                + "sure you want to delete that transaction.  Click yes to delete.\n\n"
+                + "The result of the deletion will be at the bottom of the window.";
+    }
+    
+    /**
+     * Returns the string for the account amounts
+     *
+     * @return the specified help message
+     */
+    public static String getAccountAmounts() {
+        return "Account Amounts\n\n"
+                + "To change the account amounts for a specified account, go "
+                + "to that account tab (bank, cash, or 8-account), press edit, "
+                + "change the amount, then press submit.  That field should update, "
+                + "as well as the total amount at the bottom.";
+    }
+    
+    /**
      * Returns the string for using the money counter
      *
      * @return the specified help message
@@ -278,6 +402,21 @@ public class HelpController {
                 + "denomination you have in the necessary slots.  As you are "
                 + "inputting the values, a running total will be calculated as "
                 + "you go.";
+    }
+    
+    /**
+     * Returns the string for transaction fields
+     *
+     * @return the specified help message
+     */
+    public static String getFieldsTransactions() {
+        return "Transaction Fields\n\n"
+                + "Store:  Store the item(s) were purchased at.\n\n"
+                + "Date:  Date the item(s) were purchased.\n\n"
+                + "Purchaser:  Person who actually purchased it.\n\n"
+                + "Amount:  Amount of the purchase.\n\n"
+                + "Reason:  Reason for purchase (i.e. Donut Fundraiser).\n\n"
+                + "Notes:  Any special notes to append.";
     }
     
     /**
