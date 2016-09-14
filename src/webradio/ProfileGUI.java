@@ -9,6 +9,7 @@ package webradio;
 // imports
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
@@ -101,6 +102,31 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Creates new form ProfileGUI
      */
     public ProfileGUI() {
+        
+        // picks up enter being pressed
+        KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                .addKeyEventDispatcher((KeyEvent e) -> {
+                    if (this.isFocusOwner()) {
+                        if (e.getID() == KeyEvent.KEY_PRESSED) {
+                            if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                    addButton.doClick();
+                                }
+                            } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
+                                if (submitButton.isEnabled()) {
+                                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                        submitButton.doClick();
+                                    }
+                                }
+                            }
+                        } else {
+                            // don't pick up keytyped or keyreleased
+                        }
+                    }
+                    return false;
+                });
+        
+        // inits the components
         initComponents();
     }
 
@@ -246,11 +272,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 slNameFieldFocusGained(evt);
             }
         });
-        slNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                slNameFieldKeyPressed(evt);
-            }
-        });
 
         snum800Field.setEditable(false);
         snum800Field.setPreferredSize(new java.awt.Dimension(158, 20));
@@ -258,11 +279,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 snum800FieldFocusGained(evt);
-            }
-        });
-        snum800Field.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                snum800FieldKeyPressed(evt);
             }
         });
 
@@ -275,11 +291,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 ssiueEmailFieldFocusGained(evt);
             }
         });
-        ssiueEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ssiueEmailFieldKeyPressed(evt);
-            }
-        });
 
         sprefEmailField.setEditable(false);
         sprefEmailField.setNextFocusableComponent(stypeBox);
@@ -288,11 +299,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sprefEmailFieldFocusGained(evt);
-            }
-        });
-        sprefEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sprefEmailFieldKeyPressed(evt);
             }
         });
 
@@ -306,11 +312,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 stypeBoxActionPerformed(evt);
             }
         });
-        stypeBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                stypeBoxKeyPressed(evt);
-            }
-        });
 
         spositionBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "President", "Vice President", "Treasurer", "SM Manager", "Secretary", "Tech Officer", "None", "--" }));
         spositionBox.setSelectedIndex(7);
@@ -320,11 +321,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         spositionBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spositionBoxActionPerformed(evt);
-            }
-        });
-        spositionBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                spositionBoxKeyPressed(evt);
             }
         });
 
@@ -346,6 +342,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         snotesField.setLineWrap(true);
         snotesField.setRows(5);
         snotesField.setTabSize(0);
+        snotesField.setWrapStyleWord(true);
         snotesField.setBorder(null);
         snotesField.setNextFocusableComponent(sfNameField);
         snotesField.setDocument(new JTextFieldLimit(100));
@@ -398,9 +395,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         sphoneField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sphoneField1KeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 sphoneField1KeyReleased(evt);
             }
@@ -416,9 +410,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         sphoneField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sphoneField2KeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 sphoneField2KeyReleased(evt);
             }
@@ -431,11 +422,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sphoneField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sphoneField3FocusGained(evt);
-            }
-        });
-        sphoneField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sphoneField3KeyPressed(evt);
             }
         });
 
@@ -453,11 +439,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         sfNameField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sfNameFieldMouseClicked(evt);
-            }
-        });
-        sfNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sfNameFieldKeyPressed(evt);
             }
         });
 
@@ -598,11 +579,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 afNameFieldFocusGained(evt);
             }
         });
-        afNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                afNameFieldKeyPressed(evt);
-            }
-        });
 
         alNameField.setNextFocusableComponent(anum800Field);
         alNameField.setPreferredSize(new java.awt.Dimension(158, 20));
@@ -612,11 +588,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 alNameFieldFocusGained(evt);
             }
         });
-        alNameField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                alNameFieldKeyPressed(evt);
-            }
-        });
 
         anum800Field.setNextFocusableComponent(aphoneField1);
         anum800Field.setPreferredSize(new java.awt.Dimension(158, 20));
@@ -624,11 +595,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         anum800Field.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 anum800FieldFocusGained(evt);
-            }
-        });
-        anum800Field.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                anum800FieldKeyPressed(evt);
             }
         });
 
@@ -641,9 +607,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         aphoneField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aphoneField1KeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 aphoneField1KeyReleased(evt);
             }
@@ -658,9 +621,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             }
         });
         aphoneField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aphoneField2KeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 aphoneField2KeyReleased(evt);
             }
@@ -674,11 +634,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 aphoneField3FocusGained(evt);
             }
         });
-        aphoneField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aphoneField3KeyPressed(evt);
-            }
-        });
 
         asiueEmailField.setNextFocusableComponent(aprefEmailField);
         asiueEmailField.setPreferredSize(new java.awt.Dimension(158, 20));
@@ -688,11 +643,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 asiueEmailFieldFocusGained(evt);
             }
         });
-        asiueEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                asiueEmailFieldKeyPressed(evt);
-            }
-        });
 
         aprefEmailField.setNextFocusableComponent(atypeBox);
         aprefEmailField.setPreferredSize(new java.awt.Dimension(158, 20));
@@ -700,11 +650,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         aprefEmailField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aprefEmailFieldFocusGained(evt);
-            }
-        });
-        aprefEmailField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aprefEmailFieldKeyPressed(evt);
             }
         });
 
@@ -721,11 +666,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 atypeBoxActionPerformed(evt);
             }
         });
-        atypeBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                atypeBoxKeyPressed(evt);
-            }
-        });
 
         apositionField.setEditable(false);
         apositionField.setBackground(new java.awt.Color(255, 255, 255));
@@ -740,11 +680,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 apositionBoxActionPerformed(evt);
             }
         });
-        apositionBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                apositionBoxKeyPressed(evt);
-            }
-        });
 
         ascrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         ascrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -754,6 +689,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         anotesField.setLineWrap(true);
         anotesField.setRows(5);
         anotesField.setTabSize(0);
+        anotesField.setWrapStyleWord(true);
         anotesField.setNextFocusableComponent(afNameField);
         anotesField.setDocument(new JTextFieldLimit(100));
         anotesField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1550,93 +1486,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     /**
      * Handles if Enter is pressed while field is in focus
      * Clicks the ADD button
-     *
-     * @param evt
-     */
-    private void afNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_afNameFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_afNameFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void alNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_alNameFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_alNameFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void anum800FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anum800FieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_anum800FieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void aphoneField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField1KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aphoneField1KeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void aphoneField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField2KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aphoneField2KeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void aphoneField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aphoneField3KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aphoneField3KeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void asiueEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_asiueEmailFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_asiueEmailFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void aprefEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aprefEmailFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aprefEmailFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
      */
     private void anotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_anotesFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             String s = anotesField.getText();
             afNameField.requestFocus();
             anotesField.setText(s);
@@ -1645,153 +1497,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
     /**
      * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void atypeBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_atypeBoxKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_atypeBoxKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the ADD button
-     */
-    private void apositionBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_apositionBoxKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_apositionBoxKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void sfNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sfNameFieldKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_sfNameFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void slNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_slNameFieldKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_slNameFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void snum800FieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_snum800FieldKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_snum800FieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void sphoneField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField1KeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_sphoneField1KeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void sphoneField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField2KeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_sphoneField2KeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void sphoneField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sphoneField3KeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_sphoneField3KeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void ssiueEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ssiueEmailFieldKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_ssiueEmailFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void sprefEmailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sprefEmailFieldKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_sprefEmailFieldKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void stypeBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stypeBoxKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_stypeBoxKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
-     * Clicks the SUBMIT button if user is editing Profile
-     */
-    private void spositionBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spositionBoxKeyPressed
-        if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            }
-        }
-    }//GEN-LAST:event_spositionBoxKeyPressed
-
-    /**
-     * Handles if Enter is pressed while field is in focus
      * Clicks the SUBMIT button if user is editing Profile
      */
     private void snotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_snotesFieldKeyPressed
         if (submitButton.isEnabled()) {
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                submitButton.doClick();
-            } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            if (evt.getKeyCode() == KeyEvent.VK_TAB) {
                 String s = snotesField.getText();   // text disappears if you press tab
                 sfNameField.requestFocus();
                 snotesField.setText(s);
@@ -2102,9 +1812,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     public void submit() {
 
-        // update graphics
-        errLabel.setForeground(Color.blue);
-        errLabel.setText("Profile edited successfully");
+        System.out.println("derp");
+        
+        
 
         // create new Profile object
         String[] str = getSearchValues();
@@ -2113,6 +1823,8 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // update graphics
         setSearchFieldsEditable(false);
+//        errLabel.setForeground(Color.blue);
+//        errLabel.setText("Profile updated successfully");
 
         // delete then add
         ProfileController.DeleteProfile(temp.getId());
@@ -2134,8 +1846,12 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         deleteButton.setEnabled(false);
         
         list.setSelectedIndex(getProfileIndex(p.getId()));
-                search(people.get(list.getSelectedIndex()).id);
+        search(people.get(list.getSelectedIndex()).id);
 
+        // update graphics
+        errLabel.setForeground(Color.blue);
+        errLabel.setText("Profile edited successfully");
+        
         // log
         EventLog.add("edited profile " + p.getId()
                 + " (" + p.getlName() + ", " + p.getfName() + ")");

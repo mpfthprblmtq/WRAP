@@ -105,7 +105,7 @@ public class AccountGUI extends javax.swing.JFrame {
      * Creates new form AccountGUI
      */
     public AccountGUI() {
-        
+
         // picks up enter being pressed
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
@@ -1465,6 +1465,8 @@ public class AccountGUI extends javax.swing.JFrame {
                 editButton.setEnabled(false);
                 submitButton.setEnabled(false);
                 changePasswordLabel.setEnabled(false);
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Account updated successfully");
 
                 // sends the updated account to the end of the list, then
                 // selets it
@@ -1490,78 +1492,83 @@ public class AccountGUI extends javax.swing.JFrame {
      */
     public void submit() {
 
-        // if the username is NOT root
-        if (!Main.p.getUsername().equals("root")) {
+        if (Main.p != null) {
+            // if the username is NOT root
+            if (!Main.p.getUsername().equals("root")) {
 
-            // if the user tries to change theirselves in access level (no)
-            if (sAComboBox.getSelectedIndex() != temp.getAccess()) {
-                JOptionPane.showMessageDialog(this,
-                        "403 : Forbidden\nAccess cannot be changed",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // if the confirm password matches the one on file
-            if (confirmPassword(true)) {
-
-                setSearchFieldsEditable(false);
-
-                // create new account object
-                String username = sUField.getText();
-                String password = passwordChangeTo;
-                String access = String.valueOf(sAComboBox.getSelectedIndex());
-                String name = sNField.getText();
-                Account p = new Account(username, password, Integer.valueOf(access), name);
-
-                // delete old, then add new
-                if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
-                    errLabel.setForeground(Color.blue);
-                    errLabel.setText("Account edited successfully");
-
-                    // create list elements
-                    ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
-                            temp.getAccess(), temp.getName());
-                    ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
-
-                    // update the list
-                    updateList(REMOVE, t);
-                    updateList(ADD, q);
-
-                } else {
-                    errLabel.setForeground(Color.red);
-                    errLabel.setText("Error submitting account");
+                // if the user tries to change theirselves in access level (no)
+                if (sAComboBox.getSelectedIndex() != temp.getAccess()) {
+                    JOptionPane.showMessageDialog(this,
+                            "403 : Forbidden\nAccess cannot be changed",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
 
-                // update the global account
-                Main.p.setUsername(username);
-                Main.p.setPassword(password);
-                Main.p.setAccess(sAComboBox.getSelectedIndex());
-                Main.p.setName(name);
+                // if the confirm password matches the one on file
+                if (confirmPassword(true)) {
 
-                // update the login label
-                loginLabel.setText("Logged in as " + Main.p.getUsername());
+                    setSearchFieldsEditable(false);
 
-                // update graphics
-                deleteButton.setEnabled(false);
-                editButton.setEnabled(false);
-                submitButton.setEnabled(false);
-                changePasswordLabel.setEnabled(false);
+                    // create new account object
+                    String username = sUField.getText();
+                    String password = passwordChangeTo;
+                    String access = String.valueOf(sAComboBox.getSelectedIndex());
+                    String name = sNField.getText();
+                    Account p = new Account(username, password, Integer.valueOf(access), name);
 
-                passwordChangeTo = "";
-                changePasswordLabel2.setText(" ");
+                    // delete old, then add new
+                    if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
+                        errLabel.setForeground(Color.blue);
+                        errLabel.setText("Account edited successfully");
 
-                list.setSelectedIndex(list.getLastVisibleIndex());
-                search(users.getElementAt(users.getSize() - 1).username);
+                        // create list elements
+                        ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
+                                temp.getAccess(), temp.getName());
+                        ListElement q = new ListElement(username, password, Integer.valueOf(access), name);
 
-                // log
-                EventLog.add("edited account " + username);
+                        // update the list
+                        updateList(REMOVE, t);
+                        updateList(ADD, q);
+
+                    } else {
+                        errLabel.setForeground(Color.red);
+                        errLabel.setText("Error submitting account");
+                    }
+
+                    // update the global account
+                    Main.p.setUsername(username);
+                    Main.p.setPassword(password);
+                    Main.p.setAccess(sAComboBox.getSelectedIndex());
+                    Main.p.setName(name);
+
+                    // update the login label
+                    loginLabel.setText("Logged in as " + Main.p.getUsername());
+
+                    // update graphics
+                    deleteButton.setEnabled(false);
+                    editButton.setEnabled(false);
+                    submitButton.setEnabled(false);
+                    changePasswordLabel.setEnabled(false);
+
+                    errLabel.setForeground(Color.blue);
+                    errLabel.setText("Account updated successfully");
+
+                    passwordChangeTo = "";
+                    changePasswordLabel2.setText(" ");
+
+                    list.setSelectedIndex(list.getLastVisibleIndex());
+                    search(users.getElementAt(users.getSize() - 1).username);
+
+                    // log
+                    EventLog.add("edited account " + username);
+                } else {
+                    // error with confirmPassword
+                }
+                // if user is is root
             } else {
-                // error with confirmPassword
+                rootSubmit();
             }
-            // if user is is root
-        } else {
-            rootSubmit();
         }
     }
 

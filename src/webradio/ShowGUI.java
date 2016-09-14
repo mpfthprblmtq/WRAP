@@ -727,8 +727,10 @@ public class ShowGUI extends javax.swing.JFrame {
 
         aDescField.setColumns(20);
         aDescField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        aDescField.setLineWrap(true);
         aDescField.setRows(5);
         aDescField.setTabSize(0);
+        aDescField.setWrapStyleWord(true);
         aDescField.setPreferredSize(new java.awt.Dimension(385, 76));
         aDescField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

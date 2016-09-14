@@ -648,7 +648,9 @@ public class TaskGUI extends javax.swing.JFrame {
     public void updateList(int action, ListElement element) {
         switch (action) {
             case ADD:         // add
-                people.add(people.getSize(), element);
+                //people.add(people.getSize(), element);
+                people.removeAllElements();
+                list.setModel(fillList());
                 break;
             case REMOVE:      // remove
                 people.remove(list.getSelectedIndex());
@@ -754,13 +756,32 @@ public class TaskGUI extends javax.swing.JFrame {
         // update graphics
         editButton.setEnabled(true);
         submitButton.setEnabled(false);
-        list.setSelectedIndex(people.getSize()-1);
+        //list.setSelectedIndex(people.getSize()-1);
+        list.setSelectedIndex(getProfileIndex(p.getId()));
+        update();
         
         // log
                 EventLog.add("edited tasks for " + p.getId() 
                 + " (" + p.getlName() + ", " + p.getfName() + ")");
     }
 
+    /**
+     * getProfileIndex()
+     *
+     * Returns the index to choose on the Host comboboxes
+     *
+     * @param id
+     * @return the index to choose
+     */
+    public int getProfileIndex(String id) {
+        for (int i = 0; i < people.getSize(); i++) {
+            if (id.equals(people.getElementAt(i).id)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
     /**
      * admin()
      *

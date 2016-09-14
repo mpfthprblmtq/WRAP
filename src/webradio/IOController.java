@@ -435,11 +435,19 @@ public class IOController {
 
                 // if the username and access match the parameters
                 if (str[0].equals(username) && str[2].equals(oldAccess)) {
-                    // create a new account
-                    Account a = new Account(str[0], str[1], Integer.valueOf(newAccess), str[3]);
+                    // create a new "account"
+                    String acc = str[0] + s + str[1] + s + newAccess + s + str[3] + s;
+                    
                     // delete then add
                     DeleteUser(username);
-                    AddUser(a);
+                    //AddUser(a);
+
+                    try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(accounts, true)))) {
+                        out.println(acc);
+                        out.close();
+                    } catch (IOException ex) {
+                        Util.error(ex.toString(), ex.getMessage());
+                    }
 
                     return true;
                 }
@@ -447,6 +455,7 @@ public class IOController {
         } catch (FileNotFoundException ex) {
             Util.error(ex.toString(), ex.getMessage());
         }
+
         return false;
     }
 
@@ -479,10 +488,10 @@ public class IOController {
                 String line = b_in.nextLine();
                 String[] str = line.split(s);
 
-                    // create new Profile objects and increment count
-                    pro[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
-                            Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
-                    count++;
+                // create new Profile objects and increment count
+                pro[count] = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
+                        Util.toBool(str[9]), Util.toBool(str[10]), Util.toBool(str[11]), Util.toBool(str[12]));
+                count++;
             }
             b_in.close();
         } catch (FileNotFoundException ex) {
@@ -1479,10 +1488,10 @@ public class IOController {
             out.println("------------------------------------------------");
             for (int i = 0; i < p.length; i++) {
                 if (!p[i].getId().equals("000000000")) {
-                    out.printf("%-3s %-2.15s %-2.15s %-12s %n", 
-                            i, 
-                            p[i].getlName(), 
-                            p[i].getfName(), 
+                    out.printf("%-3s %-2.15s %-2.15s %-12s %n",
+                            i,
+                            p[i].getlName(),
+                            p[i].getfName(),
                             p[i].getId());
                 }
             }

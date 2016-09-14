@@ -34,7 +34,7 @@ public class EventLog {
         Date date = new Date();
         try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(log, true)))) {
             out.println("[" + df.format(date) + "] user " + Main.p.getUsername() + " "
-                    + s);
+                    + s + "\n");
             out.close();
         } catch (IOException ex) {
             Util.error(ex.toString(), ex.getMessage());
