@@ -9,6 +9,7 @@ package webradio;
 // imports
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -102,13 +103,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Creates new form ProfileGUI
      */
     public ProfileGUI() {
-        
+
         // picks up enter being pressed
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
-                    if (this.isFocusOwner()) {
                         if (e.getID() == KeyEvent.KEY_PRESSED) {
-                            if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
+                            if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")
+                                    && !profilesMenu.isPopupMenuVisible()) {
                                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                                     addButton.doClick();
                                 }
@@ -122,10 +123,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                         } else {
                             // don't pick up keytyped or keyreleased
                         }
-                    }
                     return false;
                 });
-        
+
         // inits the components
         initComponents();
     }
@@ -1039,7 +1039,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
             // if search tab is not in focus, put it in focus
             tabs.setSelectedIndex(0);
-            
+
             searchPanel.requestFocus();
         } else {
             // do nothing
@@ -1624,7 +1624,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      *
      * Works with the global list of Profiles, which updates the JList graphics
      *
-     * @param action, the type of action (either add or remove)
+     * @param action,  the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -1633,14 +1633,14 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                 //people.add(people.getSize(), element);
                 people.removeAllElements();
                 list.setModel(fillList());
-                
+
                 break;
             case REMOVE:      // remove
                 people.remove(list.getSelectedIndex());
                 break;
         }
     }
-    
+
     /**
      * getProfileIndex()
      *
@@ -1657,7 +1657,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         }
         return -1;
     }
-    
+
     /**
      * add()
      *
@@ -1684,7 +1684,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             errLabel.setText("Profile added successfully");
 
             updateList(ADD, element);
-            
+
             setAddValuesToNull();
             afNameField.requestFocus();
 
@@ -1692,15 +1692,15 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             EventLog.add("added profile " + p.getId()
                     + " (" + p.getlName() + ", " + p.getfName() + ")");
 
+            // opens the menu
+            profilesMenu.doClick();
+            
             // show dialog for adding to facebook and collegiatelink
             JOptionPane.showMessageDialog(this,
                     "Remember to add them to Facebook and CollegiateLink!\n"
                     + "(In the Links option on the Menu Bar)",
                     "Extra Additions Required",
                     JOptionPane.INFORMATION_MESSAGE);
-
-            // opens the menu
-            profilesMenu.doClick();
 
             // else if addition fails
         } else {
@@ -1813,8 +1813,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
     public void submit() {
 
         System.out.println("derp");
-        
-        
 
         // create new Profile object
         String[] str = getSearchValues();
@@ -1844,19 +1842,19 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         submitButton.setEnabled(false);
         editButton.setEnabled(false);
         deleteButton.setEnabled(false);
-        
+
         list.setSelectedIndex(getProfileIndex(p.getId()));
         search(people.get(list.getSelectedIndex()).id);
 
         // update graphics
         errLabel.setForeground(Color.blue);
         errLabel.setText("Profile edited successfully");
-        
+
         // log
         EventLog.add("edited profile " + p.getId()
                 + " (" + p.getlName() + ", " + p.getfName() + ")");
     }
-    
+
     /**
      * admin()
      *
@@ -2000,13 +1998,13 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[5] = sprefEmailField.getText();
         str[6] = String.valueOf(stypeBox.getSelectedIndex());
         str[7] = String.valueOf(spositionBox.getSelectedIndex());
-        
+
         if (snotesField.getText().trim().equals("")) {
             str[8] = "N/A";
         } else {
             str[8] = snotesField.getText().trim();
         }
-        
+
         str[9] = "false";
         str[10] = "false";
         str[11] = "false";
@@ -2033,7 +2031,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         str[5] = aprefEmailField.getText();
         str[6] = String.valueOf(atypeBox.getSelectedIndex());
         str[7] = String.valueOf(apositionBox.getSelectedIndex());
-        
+
         if (anotesField.getText().trim().equals("")) {
             str[8] = "N/A";
         } else {

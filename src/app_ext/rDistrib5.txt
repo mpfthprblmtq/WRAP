@@ -1,5 +1,4 @@
 <blank>///<blank>///000000000///0000000000///<blank>///<blank>///-1///-1///<blank>///false///false///false///false///
-Nathan///Ash///111111111///6184014109///nash@siue.edu///nathan.ash@sbcglobal.net///1///6///Needs updated 800 number///false///false///false///false///
 Shawn///Bettig///222222222///6304053828///sbettig@siue.edu///s1bettig@gmail.com///1///6///Needs updated 800 number///false///false///false///false///
 Jacob///Fillingim///800403895///6186107641///jfillin@siue.edu///jfilling23@gmail.com///1///6///N/A///false///false///false///false///
 Mike///Jordan///800581321///2242279270///mijorda@siue.edu///mijorda@siue.edu///1///6///N/A///false///false///false///false///
@@ -19,7 +18,6 @@ David///Swartz///888888888///6187093682///xxxxx@siue.edu///davywavy94@gmail.com/
 Andrea///Thompson///800324484///2174121135///athomag@siue.edu///arthompson89@yahoo.com///1///6///N/A///false///false///false///false///
 Shawn///Williams///800511291///7739640571///shawwil@siue.edu///shawwil@siue.edu///1///6///N/A///false///false///false///false///
 Danielle///Williams///999999999///0000000000///xxxxx@siue.edu///danie641@gmail.com///2///6///N/A///false///false///false///false///
-Deshaunna///York///000000001///7734071276///xxxxx@siue.edu///xxxxx@gmail.com///1///6///N/A///false///false///false///false///
 Kaberia///Mwongo///777777777///5407640510///kmwongo@siue.edu///kabsmwongo@yahoo.com///1///4///N/A///false///false///false///false///
 Pat///Ripley///800497377///6185705661///pripley@siue.edu///ripley307@gmail.com///1///5///Derp asdf asdf asdf asdf asdf///false///false///false///false///
 LaShaunda///Jordan///800578999///8723334802///lajorda@siue.edu///lajorda@siue.edu///1///6///N/A///true///false///false///false///
@@ -38,3 +36,6 @@ Courtney///Johnson///444444444///6186962558///courtjo@siue.edu///j-drew91@outloo
 Sky///Johnson///800536417///3143269216///sjohnaf@siue.edu///sjohnaf@siue.edu///2///6///needs deleted///false///false///false///false///
 Blake///Fry///800490455///6185938512///bfry@siue.edu///bfry@siue.edu///1///6///needs deleted///false///false///false///false///
 Andrew///Braun///800499395///6187980616///abraun@siue.edu///abraun@siue.edu///1///6///asdf///false///false///false///false///
+Deshaunna///York///000000001///7734071276///xxxxx@siue.edu///xxxxx@gmail.com///1///6///needs deleted///false///false///false///false///
+Nathan///Ash///111111111///6184014109///nash@siue.edu///nathan.ash@sbcglobal.net///1///6///asdf///false///false///false///false///
+asdf///asdf///182093749///0912374192///asdf@a.a///asdf@a.a///2///0///N/A///false///false///false///false///

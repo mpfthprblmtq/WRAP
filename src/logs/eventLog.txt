@@ -246,3 +246,235 @@
 
 [09/12/16 23:28] user pripley terminated program
 
+[09/15/16 13:35] user root logged in
+
+[09/15/16 13:36] user root logged out
+
+[09/15/16 13:36] user root terminated program
+
+[09/15/16 13:37] user root logged in
+
+[09/15/16 13:38] user root logged out
+
+[09/15/16 13:38] user root terminated program
+
+[09/15/16 13:38] user root logged in
+
+[09/15/16 13:38] user root logged out
+
+[09/15/16 13:38] user root terminated program
+
+[09/15/16 13:45] user root logged in
+
+[09/15/16 13:47] user root logged out
+
+[09/15/16 13:47] user root terminated program
+
+[09/20/16 16:14] user root logged in
+
+[09/20/16 16:17] user root logged out
+
+[09/20/16 16:17] user root terminated program
+
+[09/20/16 16:18] user root logged in
+
+[09/20/16 16:19] user root logged out
+
+[09/20/16 16:19] user root terminated program
+
+[09/20/16 16:19] user root logged in
+
+[09/20/16 16:22] user root logged in
+
+[09/21/16 09:41] user root logged in
+
+[09/21/16 09:41] user root logged out
+
+[09/21/16 09:41] user root terminated program
+
+[09/21/16 09:43] user root logged in
+
+[09/21/16 09:43] user root logged out
+
+[09/21/16 09:43] user root terminated program
+
+[09/21/16 12:58] user root logged in
+
+[09/21/16 12:58] user root logged out
+
+[09/21/16 12:58] user root terminated program
+
+[09/21/16 13:05] user root logged in
+
+[09/21/16 13:05] user root edited profile 000000001 (York, Deshaunna)
+
+[09/21/16 13:07] user root logged out
+
+[09/21/16 13:07] user root terminated program
+
+[09/21/16 13:07] user root logged in
+
+[09/21/16 13:08] user root logged out
+
+[09/21/16 13:08] user root terminated program
+
+[09/21/16 13:08] user root logged in
+
+[09/21/16 13:10] user root logged out
+
+[09/21/16 13:10] user root terminated program
+
+[09/21/16 13:10] user root logged in
+
+[09/21/16 13:11] user root logged out
+
+[09/21/16 13:11] user root terminated program
+
+[09/21/16 13:12] user root logged in
+
+[09/21/16 13:13] user root logged out
+
+[09/21/16 13:13] user root terminated program
+
+[09/21/16 13:13] user root logged in
+
+[09/21/16 13:14] user root logged out
+
+[09/21/16 13:14] user root terminated program
+
+[09/21/16 13:14] user root logged in
+
+[09/21/16 13:14] user root edited profile 111111111 (Ash, Nathan)
+
+[09/21/16 13:14] user root logged out
+
+[09/21/16 13:14] user root terminated program
+
+[09/21/16 13:15] user root logged in
+
+[09/21/16 13:15] user root logged out
+
+[09/21/16 13:15] user root terminated program
+
+[09/21/16 13:22] user root logged in
+
+[09/21/16 13:23] user root logged out
+
+[09/21/16 13:23] user root terminated program
+
+[09/21/16 13:23] user root logged in
+
+[09/21/16 13:25] user root logged in
+
+[09/21/16 13:25] user root logged out
+
+[09/21/16 13:25] user root terminated program
+
+[09/21/16 13:27] user root logged in
+
+[09/21/16 13:29] user root logged out
+
+[09/21/16 13:29] user root terminated program
+
+[09/21/16 13:29] user root logged out
+
+[09/21/16 13:29] user root terminated program
+
+[09/21/16 13:30] user root logged in
+
+[09/21/16 13:31] user root logged out
+
+[09/21/16 13:31] user root terminated program
+
+[09/21/16 13:32] user root logged in
+
+[09/21/16 13:32] user root added show asdfasfd
+
+[09/21/16 13:33] user root logged out
+
+[09/21/16 13:33] user root terminated program
+
+[09/21/16 13:34] user root logged in
+
+[09/21/16 13:34] user root logged out
+
+[09/21/16 13:34] user root terminated program
+
+[09/21/16 13:36] user root logged in
+
+[09/21/16 13:36] user root logged out
+
+[09/21/16 13:36] user root terminated program
+
+[09/21/16 14:02] user root logged in
+
+[09/21/16 14:02] user root edited profile 111111111 (Ash, Nathan)
+
+[09/21/16 14:04] user root logged out
+
+[09/21/16 14:04] user root terminated program
+
+[09/21/16 14:13] user root logged in
+
+[09/21/16 14:13] user root added profile 908989080 (asdf, asdf)
+
+[09/21/16 14:14] user root edited profile 908989080 (asdf, asdfasdf)
+
+[09/21/16 14:14] user root deleted profile 908989080 (asdf, asdfasdf)
+
+[09/21/16 14:14] user root added profile 328779878 (asdf, asdf)
+
+[09/21/16 14:19] user root logged out
+
+[09/21/16 14:19] user root terminated program
+
+[09/21/16 14:19] user root logged in
+
+[09/21/16 14:20] user root deleted profile 328779878 (asdf, asdf)
+
+[09/21/16 14:20] user root added profile 893849384 (asdf, asdf)
+
+[09/21/16 14:25] user root logged out
+
+[09/21/16 14:25] user root terminated program
+
+[09/21/16 14:26] user root logged in
+
+[09/21/16 14:26] user root deleted profile 893849384 (asdf, asdf)
+
+[09/21/16 14:26] user root added profile 234234234 (asdf, asdf)
+
+[09/21/16 14:27] user root logged out
+
+[09/21/16 14:27] user root terminated program
+
+[09/21/16 14:27] user root logged in
+
+[09/21/16 14:28] user root deleted profile 234234234 (asdf, asdf)
+
+[09/21/16 14:28] user root added profile 387293847 (asdf, asdf)
+
+[09/21/16 14:30] user root logged in
+
+[09/21/16 14:30] user root deleted profile 387293847 (asdf, asdf)
+
+[09/21/16 14:31] user root added profile 987987908 (asdf, asdf)
+
+[09/21/16 14:31] user root logged out
+
+[09/21/16 14:31] user root terminated program
+
+[09/21/16 14:31] user root logged out
+
+[09/21/16 14:31] user root terminated program
+
+[09/21/16 14:31] user root logged in
+
+[09/21/16 14:31] user root deleted profile 987987908 (asdf, asdf)
+
+[09/21/16 14:32] user root added profile 182093749 (asdf, asdf)
+
+[09/21/16 14:32] user root logged out
+
+[09/21/16 14:32] user root terminated program
+

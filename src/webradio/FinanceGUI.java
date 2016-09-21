@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -99,6 +100,7 @@ public class FinanceGUI extends javax.swing.JFrame {
 
     // transaction variables, global list of transactions and temp for editing
     DefaultListModel<ListElement> transactions = new DefaultListModel<>();
+    DefaultComboBoxModel<String> days = new DefaultComboBoxModel<>();
     Transaction temp;
 
     public static final int ADD = 0;
@@ -340,8 +342,13 @@ public class FinanceGUI extends javax.swing.JFrame {
         sMonthBox.setEnabled(false);
         sMonthBox.setNextFocusableComponent(sDateBox);
         sMonthBox.setPreferredSize(new java.awt.Dimension(74, 20));
+        sMonthBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sMonthBoxActionPerformed(evt);
+            }
+        });
 
-        sDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        sDateBox.setModel(sUpdateDayBoxModel(0));
         sDateBox.setEnabled(false);
         sDateBox.setNextFocusableComponent(sYearBox);
         sDateBox.setPreferredSize(new java.awt.Dimension(75, 20));
@@ -350,6 +357,11 @@ public class FinanceGUI extends javax.swing.JFrame {
         sYearBox.setEnabled(false);
         sYearBox.setNextFocusableComponent(sPurchaserField);
         sYearBox.setPreferredSize(new java.awt.Dimension(72, 20));
+        sYearBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sYearBoxActionPerformed(evt);
+            }
+        });
 
         sPurchaserField.setEditable(false);
         sPurchaserField.setNextFocusableComponent(sAmountField);
@@ -576,14 +588,24 @@ public class FinanceGUI extends javax.swing.JFrame {
         aMonthBox.setName(""); // NOI18N
         aMonthBox.setNextFocusableComponent(aDateBox);
         aMonthBox.setPreferredSize(new java.awt.Dimension(74, 20));
+        aMonthBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aMonthBoxActionPerformed(evt);
+            }
+        });
 
-        aDateBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        aDateBox.setModel(aUpdateDayBoxModel(0));
         aDateBox.setNextFocusableComponent(aYearBox);
         aDateBox.setPreferredSize(new java.awt.Dimension(66, 20));
 
         aYearBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
         aYearBox.setNextFocusableComponent(aPurchaserField);
         aYearBox.setPreferredSize(new java.awt.Dimension(82, 20));
+        aYearBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aYearBoxActionPerformed(evt);
+            }
+        });
 
         aPurchaserField.setNextFocusableComponent(aAmountField);
         aPurchaserField.setPreferredSize(new java.awt.Dimension(166, 20));
@@ -2139,6 +2161,22 @@ public class FinanceGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_paypalItemActionPerformed
 
+    private void sMonthBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sMonthBoxActionPerformed
+        sDateBox.setModel(sUpdateDayBoxModel(sMonthBox.getSelectedIndex()));
+    }//GEN-LAST:event_sMonthBoxActionPerformed
+
+    private void aMonthBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aMonthBoxActionPerformed
+        aDateBox.setModel(aUpdateDayBoxModel(aMonthBox.getSelectedIndex()));
+    }//GEN-LAST:event_aMonthBoxActionPerformed
+
+    private void aYearBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aYearBoxActionPerformed
+        aDateBox.setModel(aUpdateDayBoxModel(aMonthBox.getSelectedIndex()));
+    }//GEN-LAST:event_aYearBoxActionPerformed
+
+    private void sYearBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sYearBoxActionPerformed
+        sDateBox.setModel(aUpdateDayBoxModel(sMonthBox.getSelectedIndex()));
+    }//GEN-LAST:event_sYearBoxActionPerformed
+
     // </editor-fold>
     /**
      * updateTotal()
@@ -2733,6 +2771,260 @@ public class FinanceGUI extends javax.swing.JFrame {
         } else if (errCount == 1) {
             errLabel.setForeground(Color.red);
             errLabel.setText(err);
+        }
+    }
+
+    /**
+     * aUpdateDayBoxModel()
+     *
+     * Updates the Date box so it shows the correct number of days per month
+     *
+     * @param n
+     * @return the model to set
+     */
+    public DefaultComboBoxModel aUpdateDayBoxModel(int n) {
+        switch (n) {
+            case 1:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 2:
+                // check if it's a leap year
+                if (aYearBox.getSelectedIndex() != 0) {
+                    if (Integer.valueOf(aYearBox.getItemAt(aYearBox.getSelectedIndex())) % 4 == 0) {
+                        return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                            "6", "7", "8", "9", "10",
+                            "11", "12", "13", "14", "15",
+                            "16", "17", "18", "19", "20",
+                            "21", "22", "23", "24", "25",
+                            "26", "27", "28", "29"
+                        });
+                    } else {
+                        return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                            "6", "7", "8", "9", "10",
+                            "11", "12", "13", "14", "15",
+                            "16", "17", "18", "19", "20",
+                            "21", "22", "23", "24", "25",
+                            "26", "27", "28"
+                        });
+                    }
+                }
+            case 3:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 4:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 5:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 6:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 7:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 8:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 9:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 10:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 11:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 12:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            default:
+                return new DefaultComboBoxModel(new String[]{"--"});
+
+        }
+    }
+
+    /**
+     * sUpdateDayBoxModel()
+     *
+     * Updates the Date box so it shows the correct number of days per month
+     *
+     * @param n
+     * @return the model to set
+     */
+    public DefaultComboBoxModel sUpdateDayBoxModel(int n) {
+        switch (n) {
+            case 1:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 2:
+                // check if it's a leap year
+                if (Integer.valueOf(sYearBox.getItemAt(sYearBox.getSelectedIndex())) % 4 == 0) {
+                    return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                        "6", "7", "8", "9", "10",
+                        "11", "12", "13", "14", "15",
+                        "16", "17", "18", "19", "20",
+                        "21", "22", "23", "24", "25",
+                        "26", "27", "28", "29"
+                    });
+                } else {
+                    return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                        "6", "7", "8", "9", "10",
+                        "11", "12", "13", "14", "15",
+                        "16", "17", "18", "19", "20",
+                        "21", "22", "23", "24", "25",
+                        "26", "27", "28"
+                    });
+                }
+            case 3:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 4:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 5:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 6:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 7:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 8:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 9:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 10:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            case 11:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",});
+            case 12:
+                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    "6", "7", "8", "9", "10",
+                    "11", "12", "13", "14", "15",
+                    "16", "17", "18", "19", "20",
+                    "21", "22", "23", "24", "25",
+                    "26", "27", "28", "29", "30",
+                    "31"
+                });
+            default:
+                return new DefaultComboBoxModel(new String[]{"--"});
+
         }
     }
 
