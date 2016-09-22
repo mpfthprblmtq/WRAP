@@ -111,8 +111,10 @@ public class AccountGUI extends javax.swing.JFrame {
                 .addKeyEventDispatcher((KeyEvent e) -> {
                     if (e.getID() == KeyEvent.KEY_PRESSED) {
                         if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
-                            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                                addButton.doClick();
+                            if (addButton.isEnabled()) {
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                    addButton.doClick();
+                                }
                             }
                         } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
                             if (submitButton.isEnabled()) {
@@ -1195,6 +1197,9 @@ public class AccountGUI extends javax.swing.JFrame {
             };
         }
 
+        // disable the submit button
+        submitButton.setEnabled(false);
+        
         // display the dialog
         int option = JOptionPane.showConfirmDialog(null, message, "Change password", JOptionPane.OK_CANCEL_OPTION);
 
@@ -1207,6 +1212,7 @@ public class AccountGUI extends javax.swing.JFrame {
                 // update graphics
                 changePasswordLabel2.setForeground(Color.blue);
                 changePasswordLabel2.setText("Password changed!");
+                submitButton.setEnabled(true);
 
                 // set globals
                 passwordChanged = true;
@@ -1250,6 +1256,9 @@ public class AccountGUI extends javax.swing.JFrame {
                 "Invalid password"};
         }
 
+        // disable the submit button
+        submitButton.setEnabled(false);
+        
         // display the dialog
         int option = JOptionPane.showConfirmDialog(null, message, "Confirm submission", JOptionPane.OK_CANCEL_OPTION);
 
@@ -1302,7 +1311,7 @@ public class AccountGUI extends javax.swing.JFrame {
         if (AccountController.AddUser(p)) {
             // errLabel
             errLabel.setForeground(Color.blue);
-            errLabel.setText("User added successfully");
+            errLabel.setText("Account added successfully");
 
             // update the list
             updateList(ADD, element);
@@ -1373,7 +1382,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
             // errLabel
             errLabel.setForeground(Color.blue);
-            errLabel.setText("User deleted successfully");
+            errLabel.setText("Account deleted successfully");
 
             // update graphics
             setSearchValuesToNull();
@@ -1387,7 +1396,7 @@ public class AccountGUI extends javax.swing.JFrame {
 
         } else {
             errLabel.setForeground(Color.red);
-            errLabel.setText("User not deleted successfully");
+            errLabel.setText("Account not deleted successfully");
         }
 
     }
@@ -1465,14 +1474,15 @@ public class AccountGUI extends javax.swing.JFrame {
                 editButton.setEnabled(false);
                 submitButton.setEnabled(false);
                 changePasswordLabel.setEnabled(false);
-                errLabel.setForeground(Color.blue);
-                errLabel.setText("Account updated successfully");
 
                 // sends the updated account to the end of the list, then
                 // selets it
                 list.setSelectedIndex(list.getLastVisibleIndex());
                 search(users.getElementAt(users.getSize() - 1).username);
 
+                errLabel.setForeground(Color.blue);
+                errLabel.setText("Account updated successfully");
+                
                 // log
                 EventLog.add("edited account " + username);
             }

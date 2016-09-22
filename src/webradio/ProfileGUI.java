@@ -107,22 +107,23 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         // picks up enter being pressed
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
-                        if (e.getID() == KeyEvent.KEY_PRESSED) {
-                            if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")
-                                    && !profilesMenu.isPopupMenuVisible()) {
+                    if (e.getID() == KeyEvent.KEY_PRESSED) {
+                        if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
+                            if (addButton.isEnabled()) {
                                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                                     addButton.doClick();
                                 }
-                            } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
-                                if (submitButton.isEnabled()) {
-                                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                                        submitButton.doClick();
-                                    }
+                            }
+                        } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
+                            if (submitButton.isEnabled()) {
+                                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                    submitButton.doClick();
                                 }
                             }
-                        } else {
-                            // don't pick up keytyped or keyreleased
                         }
+                    } else {
+                        // don't pick up keytyped or keyreleased
+                    }
                     return false;
                 });
 
@@ -1624,7 +1625,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      *
      * Works with the global list of Profiles, which updates the JList graphics
      *
-     * @param action,  the type of action (either add or remove)
+     * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -1694,13 +1695,23 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
             // opens the menu
             profilesMenu.doClick();
+
+            
             
             // show dialog for adding to facebook and collegiatelink
-            JOptionPane.showMessageDialog(this,
+            //Object[] options = {"OK"};
+            int option = JOptionPane.showConfirmDialog(this, 
                     "Remember to add them to Facebook and CollegiateLink!\n"
-                    + "(In the Links option on the Menu Bar)",
-                    "Extra Additions Required",
+                    + "(In the Links option on the Menu Bar)", 
+                    "Extra Addition Required", 
+                    JOptionPane.OK_OPTION, 
                     JOptionPane.INFORMATION_MESSAGE);
+            
+            System.out.println(option);
+            if(option != -1) {
+                addButton.setEnabled(true);
+            }
+            
 
             // else if addition fails
         } else {
@@ -1769,7 +1780,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             // update graphics
             updateList(REMOVE, element);
             errLabel.setForeground(Color.blue);
-            errLabel.setText("User deleted successfully");
+            errLabel.setText("Profile deleted successfully");
             setSearchValuesToNull();
             setSearchFieldsEditable(false);
             editButton.setEnabled(false);
