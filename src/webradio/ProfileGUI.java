@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -1693,24 +1695,36 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
             EventLog.add("added profile " + p.getId()
                     + " (" + p.getlName() + ", " + p.getfName() + ")");
 
-            // opens the menu
-            profilesMenu.doClick();
-
-            
-            
             // show dialog for adding to facebook and collegiatelink
-            //Object[] options = {"OK"};
-            int option = JOptionPane.showConfirmDialog(this, 
+//            int option = JOptionPane.showConfirmDialog(this, 
+//                    "Remember to add them to Facebook and CollegiateLink!\n"
+//                    + "(In the Links option on the Menu Bar)", 
+//                    "Extra Addition Required", 
+//                    JOptionPane.OK_OPTION, 
+//                    JOptionPane.INFORMATION_MESSAGE);
+
+            int option = JOptionPane.showConfirmDialog(
+                    null, 
                     "Remember to add them to Facebook and CollegiateLink!\n"
                     + "(In the Links option on the Menu Bar)", 
-                    "Extra Addition Required", 
-                    JOptionPane.OK_OPTION, 
-                    JOptionPane.INFORMATION_MESSAGE);
+                    "Additional Addition", 
+                        JOptionPane.OK_CANCEL_OPTION, 
+                        JOptionPane.INFORMATION_MESSAGE);
             
             System.out.println(option);
-            if(option != -1) {
+            if(option == 0) {
+                // opens the menu
+                profilesMenu.doClick();
+                
                 addButton.setEnabled(true);
+                
+                
+            } else if (option == 1) {
+                addButton.setEnabled(true);
+            } else {
+                
             }
+            
             
 
             // else if addition fails
@@ -1823,8 +1837,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      */
     public void submit() {
 
-        System.out.println("derp");
-
         // create new Profile object
         String[] str = getSearchValues();
         Profile p = new Profile(str[0], str[1], str[2], str[3], str[4], str[5], Integer.valueOf(str[6]), Integer.valueOf(str[7]), str[8],
@@ -1832,8 +1844,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 
         // update graphics
         setSearchFieldsEditable(false);
-//        errLabel.setForeground(Color.blue);
-//        errLabel.setText("Profile updated successfully");
 
         // delete then add
         ProfileController.DeleteProfile(temp.getId());
