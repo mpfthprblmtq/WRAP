@@ -9,14 +9,12 @@ package webradio;
 // imports
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -110,12 +108,11 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         KeyboardFocusManager.getCurrentKeyboardFocusManager()
                 .addKeyEventDispatcher((KeyEvent e) -> {
                     if (e.getID() == KeyEvent.KEY_PRESSED) {
-                        if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")) {
-                            if (addButton.isEnabled()) {
+                        if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Add")
+                                && addButton.isEnabled()) {
                                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                                     addButton.doClick();
                                 }
-                            }
                         } else if (tabs.getTitleAt(tabs.getSelectedIndex()).equals("Search")) {
                             if (submitButton.isEnabled()) {
                                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -996,7 +993,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
                     .addComponent(tabs))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errLabel)
-                .addGap(26, 26, 26))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1135,8 +1132,9 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Checks to see if all of the elements are kosher, then calls add() if they are
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        System.out.println(evt.getActionCommand());
         if (aCheck()) {
-            add();
+                add();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -1684,7 +1682,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
         if (ProfileController.AddProfile(p)) {
             // update graphics
             errLabel.setForeground(Color.blue);
-            errLabel.setText("Profile added successfully");
+            errLabel.setText("Profile added successfully - Remember the extra additions!");
 
             updateList(ADD, element);
 
@@ -1703,29 +1701,7 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
 //                    JOptionPane.OK_OPTION, 
 //                    JOptionPane.INFORMATION_MESSAGE);
 
-            int option = JOptionPane.showConfirmDialog(
-                    null, 
-                    "Remember to add them to Facebook and CollegiateLink!\n"
-                    + "(In the Links option on the Menu Bar)", 
-                    "Additional Addition", 
-                        JOptionPane.OK_CANCEL_OPTION, 
-                        JOptionPane.INFORMATION_MESSAGE);
-            
-            System.out.println(option);
-            if(option == 0) {
-                // opens the menu
-                profilesMenu.doClick();
-                
-                addButton.setEnabled(true);
-                
-                
-            } else if (option == 1) {
-                addButton.setEnabled(true);
-            } else {
-                
-            }
-            
-            
+            profilesMenu.doClick();
 
             // else if addition fails
         } else {

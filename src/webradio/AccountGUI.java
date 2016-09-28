@@ -433,6 +433,7 @@ public class AccountGUI extends javax.swing.JFrame {
         passwordMatch.setText(" ");
 
         aAField.setEditable(false);
+        aAField.setBackground(new java.awt.Color(255, 255, 255));
         aAField.setPreferredSize(new java.awt.Dimension(47, 20));
 
         aAComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 : Admin", "1 : Mod", "2 : User", "--" }));
@@ -1529,8 +1530,6 @@ public class AccountGUI extends javax.swing.JFrame {
 
                     // delete old, then add new
                     if (AccountController.DeleteUser(temp.getUsername()) && AccountController.AddUser(p)) {
-                        errLabel.setForeground(Color.blue);
-                        errLabel.setText("Account edited successfully");
 
                         // create list elements
                         ListElement t = new ListElement(temp.getUsername(), temp.getPassword(),
@@ -1561,14 +1560,16 @@ public class AccountGUI extends javax.swing.JFrame {
                     submitButton.setEnabled(false);
                     changePasswordLabel.setEnabled(false);
 
-                    errLabel.setForeground(Color.blue);
-                    errLabel.setText("Account updated successfully");
+                    
 
                     passwordChangeTo = "";
                     changePasswordLabel2.setText(" ");
 
                     list.setSelectedIndex(list.getLastVisibleIndex());
                     search(users.getElementAt(users.getSize() - 1).username);
+                    
+                    errLabel.setForeground(Color.blue);
+                    errLabel.setText("Account updated successfully");
 
                     // log
                     EventLog.add("edited account " + username);

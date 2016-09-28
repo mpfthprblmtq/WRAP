@@ -468,15 +468,17 @@ public class ShowGUI extends javax.swing.JFrame {
                             .addComponent(sl4)
                             .addComponent(sDayBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sStartBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sStartBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sStartBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sStartBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sStartBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(sStartBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sl5)
-                            .addComponent(sStartBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(sDayTimePanelLayout.createSequentialGroup()
+                                .addComponent(sl5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(sStartBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sl6)
@@ -487,7 +489,7 @@ public class ShowGUI extends javax.swing.JFrame {
                             .addComponent(sEndBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sEndBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sEndBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
         sDayTimePanelLayout.setVerticalGroup(
             sDayTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2170,10 +2172,6 @@ public class ShowGUI extends javax.swing.JFrame {
      */
     public void submit() {
 
-        // update graphics
-        errLabel.setForeground(Color.blue);
-        errLabel.setText("Show edited successfully");
-
         // create the new show object
         Show s = getShow();
 
@@ -2200,6 +2198,10 @@ public class ShowGUI extends javax.swing.JFrame {
         list.setSelectedIndex(list.getLastVisibleIndex());
         search(shows.getElementAt(shows.getSize() - 1).name);
 
+        // update graphics
+        errLabel.setForeground(Color.blue);
+        errLabel.setText("Show edited successfully");
+        
         // log
         EventLog.add("edited show " + s.getShowName());
 
