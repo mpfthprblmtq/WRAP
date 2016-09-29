@@ -332,11 +332,6 @@ public class FinanceGUI extends javax.swing.JFrame {
                 sStoreFieldFocusGained(evt);
             }
         });
-        sStoreField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sStoreFieldKeyPressed(evt);
-            }
-        });
 
         sMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         sMonthBox.setEnabled(false);
@@ -372,11 +367,6 @@ public class FinanceGUI extends javax.swing.JFrame {
                 sPurchaserFieldFocusGained(evt);
             }
         });
-        sPurchaserField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sPurchaserFieldKeyPressed(evt);
-            }
-        });
 
         sAmountField.setEditable(false);
         sAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
@@ -386,11 +376,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         sAmountField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sAmountFieldFocusGained(evt);
-            }
-        });
-        sAmountField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                sAmountFieldKeyPressed(evt);
             }
         });
 
@@ -578,11 +563,6 @@ public class FinanceGUI extends javax.swing.JFrame {
                 aStoreFieldFocusGained(evt);
             }
         });
-        aStoreField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aStoreFieldKeyPressed(evt);
-            }
-        });
 
         aMonthBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
         aMonthBox.setName(""); // NOI18N
@@ -615,11 +595,6 @@ public class FinanceGUI extends javax.swing.JFrame {
                 aPurchaserFieldFocusGained(evt);
             }
         });
-        aPurchaserField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aPurchaserFieldKeyPressed(evt);
-            }
-        });
 
         aAmountField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
         aAmountField.setNextFocusableComponent(aReasonField);
@@ -628,11 +603,6 @@ public class FinanceGUI extends javax.swing.JFrame {
         aAmountField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 aAmountFieldFocusGained(evt);
-            }
-        });
-        aAmountField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                aAmountFieldKeyPressed(evt);
             }
         });
 
@@ -812,11 +782,6 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         bankField.setEditable(false);
         bankField.setBackground(new java.awt.Color(255, 255, 255));
-        bankField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                bankFieldKeyPressed(evt);
-            }
-        });
 
         bankSubmitButton.setText("Submit");
         bankSubmitButton.setEnabled(false);
@@ -875,11 +840,6 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         cashField.setEditable(false);
         cashField.setBackground(new java.awt.Color(255, 255, 255));
-        cashField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cashFieldKeyPressed(evt);
-            }
-        });
 
         jLabel20.setText("Cash (in cash box):");
 
@@ -942,11 +902,6 @@ public class FinanceGUI extends javax.swing.JFrame {
 
         ateField.setEditable(false);
         ateField.setBackground(new java.awt.Color(255, 255, 255));
-        ateField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ateFieldKeyPressed(evt);
-            }
-        });
 
         ateEditButton.setText("Edit");
         ateEditButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1510,15 +1465,13 @@ public class FinanceGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Literally all event related methods
-     * Includes:
+     * Literally all event related methods Includes:
      *
-     * Add, Submit, and Edit : calls outside methods for Transactions
-     * FormWindow events : closing, opening
-     * ListClicked : searches for element that was clicked
-     * MenuBar things : things in the menu bar (exit, close, logout, help, bug, etc)
-     * GainFocus : selects all text in the field when field gains focus
-     * EnterKeyPressed : clicks a button when enter is pressed
+     * Add, Submit, and Edit : calls outside methods for Transactions FormWindow
+     * events : closing, opening ListClicked : searches for element that was
+     * clicked MenuBar things : things in the menu bar (exit, close, logout,
+     * help, bug, etc) GainFocus : selects all text in the field when field
+     * gains focus EnterKeyPressed : clicks a button when enter is pressed
      */
     // <editor-fold defaultstate="collapsed" desc="Literally all event-related methods"> 
     /**
@@ -1586,8 +1539,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_suggestionItemActionPerformed
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void pennySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pennySpinnerStateChanged
         pennies = Integer.valueOf(pennySpinner.getValue().toString());
@@ -1597,8 +1550,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pennySpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void nickelSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nickelSpinnerStateChanged
         nickels = Integer.valueOf(nickelSpinner.getValue().toString());
@@ -1608,8 +1561,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_nickelSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void dimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dimeSpinnerStateChanged
         dimes = Integer.valueOf(dimeSpinner.getValue().toString());
@@ -1619,8 +1572,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_dimeSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void quarterSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_quarterSpinnerStateChanged
         quarters = Integer.valueOf(quarterSpinner.getValue().toString());
@@ -1630,8 +1583,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_quarterSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void halfdollarSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_halfdollarSpinnerStateChanged
         halfdollars = Integer.valueOf(halfdollarSpinner.getValue().toString());
@@ -1641,8 +1594,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_halfdollarSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void dollarcoinSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dollarcoinSpinnerStateChanged
         dollarcoins = Integer.valueOf(dollarcoinSpinner.getValue().toString());
@@ -1652,8 +1605,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_dollarcoinSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void dollarSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_dollarSpinnerStateChanged
         dollars = Integer.valueOf(dollarSpinner.getValue().toString());
@@ -1663,8 +1616,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_dollarSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void fiveSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fiveSpinnerStateChanged
         fives = Integer.valueOf(fiveSpinner.getValue().toString());
@@ -1674,8 +1627,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_fiveSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void tenSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tenSpinnerStateChanged
         tens = Integer.valueOf(tenSpinner.getValue().toString());
@@ -1685,8 +1638,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tenSpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void twentySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_twentySpinnerStateChanged
         twenties = Integer.valueOf(twentySpinner.getValue().toString());
@@ -1696,8 +1649,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_twentySpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void fiftySpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fiftySpinnerStateChanged
         fifties = Integer.valueOf(fiftySpinner.getValue().toString());
@@ -1707,8 +1660,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_fiftySpinnerStateChanged
 
     /**
-     * Handles when the specified spinner value is changed
-     * Updates the label associated with it as well as the total label
+     * Handles when the specified spinner value is changed Updates the label
+     * associated with it as well as the total label
      */
     private void hundredSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_hundredSpinnerStateChanged
         hundreds = Integer.valueOf(hundredSpinner.getValue().toString());
@@ -1739,8 +1692,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_adminLabelMouseExited
 
     /**
-     * Handles when "Launch Local Calculator" button is clicked
-     * Opens the local calculator
+     * Handles when "Launch Local Calculator" button is clicked Opens the local
+     * calculator
      */
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
         try {
@@ -1824,9 +1777,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     /**
-     * Handles when the form is shown
-     * Updates loginLabel
-     * Updates account totals on the accounts tab
+     * Handles when the form is shown Updates loginLabel Updates account totals
+     * on the accounts tab
      */
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         loginLabel.setText("Logged in as " + Main.p.getUsername());
@@ -1935,129 +1887,48 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_accountsTabsStateChanged
 
     /**
-     * Handles if enter is pressed while field is in focus, presses submit
-     */
-    private void sStoreFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sStoreFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            submitButton.doClick();
-        }
-    }//GEN-LAST:event_sStoreFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses submit
-     */
-    private void sPurchaserFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sPurchaserFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            submitButton.doClick();
-        }
-    }//GEN-LAST:event_sPurchaserFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses submit
-     */
-    private void sAmountFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sAmountFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            submitButton.doClick();
-        }
-    }//GEN-LAST:event_sAmountFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses submit
+     * Handles if tab is pressed while field is in focus, presses submit
      */
     private void sReasonFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sReasonFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            submitButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = aReasonField.getText();
             sNotesField.requestFocus();
+            sReasonField.setText(s);
         }
     }//GEN-LAST:event_sReasonFieldKeyPressed
 
     /**
-     * Handles if enter is pressed while field is in focus, presses submit
+     * Handles if tab is pressed while field is in focus, tabs to the next
      */
     private void sNotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sNotesFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            submitButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = sNotesField.getText();
             sStoreField.requestFocus();
+            sNotesField.setText(s);
         }
     }//GEN-LAST:event_sNotesFieldKeyPressed
 
     /**
-     * Handles if enter is pressed while field is in focus, presses add
-     */
-    private void aStoreFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aStoreFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aStoreFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses add
-     */
-    private void aPurchaserFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aPurchaserFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aPurchaserFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses add
-     */
-    private void aAmountFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aAmountFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        }
-    }//GEN-LAST:event_aAmountFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses add
+     * Handles if tab is pressed while field is in focus, tabs to the next
      */
     private void aReasonFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aReasonFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = aReasonField.getText();
             aNotesField.requestFocus();
+            aReasonField.setText(s);
         }
     }//GEN-LAST:event_aReasonFieldKeyPressed
 
     /**
-     * Handles if enter is pressed while field is in focus, presses add
+     * Handles if tab is pressed while field is in focus, tabs to the next
      */
     private void aNotesFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_aNotesFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            addButton.doClick();
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            String s = aNotesField.getText();
             aStoreField.requestFocus();
+            aNotesField.setText(s);
         }
     }//GEN-LAST:event_aNotesFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses submit
-     */
-    private void bankFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bankFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            bankSubmitButton.doClick();
-        }
-    }//GEN-LAST:event_bankFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses submit
-     */
-    private void cashFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cashSubmitButton.doClick();
-        }
-    }//GEN-LAST:event_cashFieldKeyPressed
-
-    /**
-     * Handles if enter is pressed while field is in focus, presses submit
-     */
-    private void ateFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ateFieldKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ateSubmitButton.doClick();
-        }
-    }//GEN-LAST:event_ateFieldKeyPressed
 
     /**
      * Handles when field gains focus, selects all text in the field
@@ -2084,14 +1955,14 @@ public class FinanceGUI extends javax.swing.JFrame {
      * Handles when field gains focus, selects all text in the field
      */
     private void sReasonFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sReasonFieldFocusGained
-        //sReasonField.selectAll();
+        sReasonField.selectAll();
     }//GEN-LAST:event_sReasonFieldFocusGained
 
     /**
      * Handles when field gains focus, selects all text in the field
      */
     private void sNotesFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sNotesFieldFocusGained
-        //sNotesField.selectAll();
+        sNotesField.selectAll();
     }//GEN-LAST:event_sNotesFieldFocusGained
 
     /**
@@ -2119,14 +1990,14 @@ public class FinanceGUI extends javax.swing.JFrame {
      * Handles when field gains focus, selects all text in the field
      */
     private void aReasonFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aReasonFieldFocusGained
-        //aReasonField.selectAll();
+        aReasonField.selectAll();
     }//GEN-LAST:event_aReasonFieldFocusGained
 
     /**
      * Handles when field gains focus, selects all text in the field
      */
     private void aNotesFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aNotesFieldFocusGained
-        //aNotesField.selectAll();
+        aNotesField.selectAll();
     }//GEN-LAST:event_aNotesFieldFocusGained
 
     private void webradioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_webradioItemActionPerformed
@@ -2162,19 +2033,35 @@ public class FinanceGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_paypalItemActionPerformed
 
     private void sMonthBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sMonthBoxActionPerformed
+        int index = sDateBox.getSelectedIndex();
         sDateBox.setModel(sUpdateDayBoxModel(sMonthBox.getSelectedIndex()));
+        if (sMonthBox.getSelectedIndex() != 0) {
+            sDateBox.setSelectedIndex(index);
+        }
     }//GEN-LAST:event_sMonthBoxActionPerformed
 
     private void aMonthBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aMonthBoxActionPerformed
+        int index = aDateBox.getSelectedIndex();
         aDateBox.setModel(aUpdateDayBoxModel(aMonthBox.getSelectedIndex()));
+        if (aMonthBox.getSelectedIndex() != 0) {
+            aDateBox.setSelectedIndex(index);
+        }
     }//GEN-LAST:event_aMonthBoxActionPerformed
 
     private void aYearBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aYearBoxActionPerformed
+        int index = aDateBox.getSelectedIndex();
         aDateBox.setModel(aUpdateDayBoxModel(aMonthBox.getSelectedIndex()));
+        if (aMonthBox.getSelectedIndex() != 0) {
+            aDateBox.setSelectedIndex(index);
+        }
     }//GEN-LAST:event_aYearBoxActionPerformed
 
     private void sYearBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sYearBoxActionPerformed
-        sDateBox.setModel(aUpdateDayBoxModel(sMonthBox.getSelectedIndex()));
+        int index = sDateBox.getSelectedIndex();
+        sDateBox.setModel(sUpdateDayBoxModel(sMonthBox.getSelectedIndex()));
+        if (sMonthBox.getSelectedIndex() != 0) {
+            sDateBox.setSelectedIndex(index);
+        }
     }//GEN-LAST:event_sYearBoxActionPerformed
 
     // </editor-fold>
@@ -2205,8 +2092,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * updateAccountTotals()
      *
-     * Takes the values of the three accounts and sends them to IOController\
-     * to update that file
+     * Takes the values of the three accounts and sends them to IOController\ to
+     * update that file
      */
     public void updateAccountTotals() {
 
@@ -2236,8 +2123,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * fillList()
      *
-     * Gets all of the Transactions from IOController and shoves them into an array
-     * Then it populates the DefaultListModel of ListElements from that array
+     * Gets all of the Transactions from IOController and shoves them into an
+     * array Then it populates the DefaultListModel of ListElements from that
+     * array
      *
      * @return the DefaultListModel to populate the JList
      */
@@ -2259,9 +2147,10 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * updateList()
      *
-     * Works with the global list of Transactions, which updates the JList graphics
+     * Works with the global list of Transactions, which updates the JList
+     * graphics
      *
-     * @param action,  the type of action (either add or remove)
+     * @param action, the type of action (either add or remove)
      * @param element, the element to add or remove
      */
     public void updateList(int action, ListElement element) {
@@ -2278,10 +2167,10 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * add()
      *
-     * If the fields are all valid, this method is called
-     * Takes fields and creates Transaction and ListElement objects
-     * Then it calls the FinanceController to add the Transaction
-     * If the addition succeeds, update the list, and update graphics
+     * If the fields are all valid, this method is called Takes fields and
+     * creates Transaction and ListElement objects Then it calls the
+     * FinanceController to add the Transaction If the addition succeeds, update
+     * the list, and update graphics
      */
     public void add() {
         String store = aStoreField.getText();
@@ -2331,8 +2220,7 @@ public class FinanceGUI extends javax.swing.JFrame {
      * search()
      *
      * Calls the searchTransaction() method from FinanceController, which
-     * returns a valid Transaction
-     * Update the graphics with the Transaction info
+     * returns a valid Transaction Update the graphics with the Transaction info
      *
      * @param id, the id to search
      */
@@ -2361,8 +2249,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * edit()
      *
-     * Basically just sets the fields to editable
-     * Stores a temporary global Transaction, used in the editing process in submit()
+     * Basically just sets the fields to editable Stores a temporary global
+     * Transaction, used in the editing process in submit()
      */
     public void edit() {
 
@@ -2392,9 +2280,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * delete()
      *
-     * Creates a Transaction with the fields given
-     * Then call deleteTransaction() from FinanceController
-     * If success, confirm on errLabel
+     * Creates a Transaction with the fields given Then call deleteTransaction()
+     * from FinanceController If success, confirm on errLabel
      */
     public void delete() {
         String id = transactions.get(list.getSelectedIndex()).id;
@@ -2425,10 +2312,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * submit()
      *
-     * Takes the new input as parameters for a new Transaction object
-     * Then it deletes the old transaction, then adds the new one (in that order)
-     * If success, update the graphics
-     * If failure, return and update graphics
+     * Takes the new input as parameters for a new Transaction object Then it
+     * deletes the old transaction, then adds the new one (in that order) If
+     * success, update the graphics If failure, return and update graphics
      */
     public void submit() {
         // update graphics
@@ -2502,12 +2388,12 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * aCheck()
      *
-     * Checks the add panel and makes sure all the fields are kosher
-     * See comments in function for details on each element
-     * First, it "resets" by making all fields foregrounds black
-     * Then it checks each individual field, and sets the foreground red if the field has an error
-     * If it returns a true flag, there is no error
-     * It calls the setAddErrLabel to find the individual errors and updates errLabel
+     * Checks the add panel and makes sure all the fields are kosher See
+     * comments in function for details on each element First, it "resets" by
+     * making all fields foregrounds black Then it checks each individual field,
+     * and sets the foreground red if the field has an error If it returns a
+     * true flag, there is no error It calls the setAddErrLabel to find the
+     * individual errors and updates errLabel
      *
      * @return flag, the conditional to show if the fields are valid
      */
@@ -2528,6 +2414,7 @@ public class FinanceGUI extends javax.swing.JFrame {
             aStoreField.setForeground(Color.red);
         }
 
+        System.out.println(aDateBox.getSelectedIndex());
         // Month, Day, and Year
         if (aMonthBox.getSelectedIndex() == 0) {
             flag = false;
@@ -2576,9 +2463,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * setAddErrLabel()
      *
-     * Checks each field to see if the text color is red
-     * If it is, add to count
-     * Starts with end so it can print out "Error with ##### field and # other(s)
+     * Checks each field to see if the text color is red If it is, add to count
+     * Starts with end so it can print out "Error with ##### field and #
+     * other(s)
      */
     public void setAddErrLabel() {
         int errCount = 0;
@@ -2640,12 +2527,12 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * sCheck()
      *
-     * Checks the search panel and makes sure all the fields are kosher
-     * See comments in function for details on each element
-     * First, it "resets" by making all fields foregrounds black
-     * Then it checks each individual field, and sets the foreground red if the field has an error
-     * If it returns a true flag, there is no error
-     * It calls the setSearchErrLabel to find the individual errors and updates errLabel
+     * Checks the search panel and makes sure all the fields are kosher See
+     * comments in function for details on each element First, it "resets" by
+     * making all fields foregrounds black Then it checks each individual field,
+     * and sets the foreground red if the field has an error If it returns a
+     * true flag, there is no error It calls the setSearchErrLabel to find the
+     * individual errors and updates errLabel
      *
      * @return flag, the conditional to show if the fields are valid
      */
@@ -2714,9 +2601,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * setSearchErrLabel()
      *
-     * Checks each field to see if the text color is red
-     * If it is, add to count
-     * Starts with end so it can print out "Error with ##### field and # other(s)
+     * Checks each field to see if the text color is red If it is, add to count
+     * Starts with end so it can print out "Error with ##### field and #
+     * other(s)
      */
     public void setSearchErrLabel() {
         int errCount = 0;
@@ -2783,9 +2670,12 @@ public class FinanceGUI extends javax.swing.JFrame {
      * @return the model to set
      */
     public DefaultComboBoxModel aUpdateDayBoxModel(int n) {
+        int index = aDateBox.getSelectedIndex();
         switch (n) {
             case 1:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2797,7 +2687,9 @@ public class FinanceGUI extends javax.swing.JFrame {
                 // check if it's a leap year
                 if (aYearBox.getSelectedIndex() != 0) {
                     if (Integer.valueOf(aYearBox.getItemAt(aYearBox.getSelectedIndex())) % 4 == 0) {
-                        return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                        return new DefaultComboBoxModel(new String[]{
+                            "--",
+                            "1", "2", "3", "4", "5",
                             "6", "7", "8", "9", "10",
                             "11", "12", "13", "14", "15",
                             "16", "17", "18", "19", "20",
@@ -2805,7 +2697,9 @@ public class FinanceGUI extends javax.swing.JFrame {
                             "26", "27", "28", "29"
                         });
                     } else {
-                        return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                        return new DefaultComboBoxModel(new String[]{
+                            "--",
+                            "1", "2", "3", "4", "5",
                             "6", "7", "8", "9", "10",
                             "11", "12", "13", "14", "15",
                             "16", "17", "18", "19", "20",
@@ -2815,7 +2709,9 @@ public class FinanceGUI extends javax.swing.JFrame {
                     }
                 }
             case 3:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2824,14 +2720,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 4:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 5:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2840,14 +2740,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 6:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 7:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2856,7 +2760,9 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 8:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2865,14 +2771,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 9:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 10:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2881,14 +2791,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 11:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 12:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2900,6 +2814,7 @@ public class FinanceGUI extends javax.swing.JFrame {
                 return new DefaultComboBoxModel(new String[]{"--"});
 
         }
+
     }
 
     /**
@@ -2913,7 +2828,9 @@ public class FinanceGUI extends javax.swing.JFrame {
     public DefaultComboBoxModel sUpdateDayBoxModel(int n) {
         switch (n) {
             case 1:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2923,16 +2840,22 @@ public class FinanceGUI extends javax.swing.JFrame {
                 });
             case 2:
                 // check if it's a leap year
-                if (Integer.valueOf(sYearBox.getItemAt(sYearBox.getSelectedIndex())) % 4 == 0) {
-                    return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
-                        "6", "7", "8", "9", "10",
-                        "11", "12", "13", "14", "15",
-                        "16", "17", "18", "19", "20",
-                        "21", "22", "23", "24", "25",
-                        "26", "27", "28", "29"
-                    });
+                if (sYearBox.getSelectedIndex() != 0) {
+                    if (Integer.valueOf(sYearBox.getItemAt(sYearBox.getSelectedIndex())) % 4 == 0) {
+                        return new DefaultComboBoxModel(new String[]{
+                            "--",
+                            "1", "2", "3", "4", "5",
+                            "6", "7", "8", "9", "10",
+                            "11", "12", "13", "14", "15",
+                            "16", "17", "18", "19", "20",
+                            "21", "22", "23", "24", "25",
+                            "26", "27", "28", "29"
+                        });
+                    }
                 } else {
-                    return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                    return new DefaultComboBoxModel(new String[]{
+                        "--",
+                        "1", "2", "3", "4", "5",
                         "6", "7", "8", "9", "10",
                         "11", "12", "13", "14", "15",
                         "16", "17", "18", "19", "20",
@@ -2941,7 +2864,9 @@ public class FinanceGUI extends javax.swing.JFrame {
                     });
                 }
             case 3:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2950,14 +2875,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 4:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 5:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2966,14 +2895,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 6:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 7:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2982,7 +2915,9 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 8:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -2991,14 +2926,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 9:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 10:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -3007,14 +2946,18 @@ public class FinanceGUI extends javax.swing.JFrame {
                     "31"
                 });
             case 11:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
                     "21", "22", "23", "24", "25",
                     "26", "27", "28", "29", "30",});
             case 12:
-                return new DefaultComboBoxModel(new String[]{"1", "2", "3", "4", "5",
+                return new DefaultComboBoxModel(new String[]{
+                    "--",
+                    "1", "2", "3", "4", "5",
                     "6", "7", "8", "9", "10",
                     "11", "12", "13", "14", "15",
                     "16", "17", "18", "19", "20",
@@ -3029,8 +2972,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     }
 
     /**
-     * aSetAllForeground()
-     * Graphics update
+     * aSetAllForeground() Graphics update
      *
      * @param c
      */
@@ -3046,8 +2988,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     }
 
     /**
-     * sSetAllForeground()
-     * Graphics update
+     * sSetAllForeground() Graphics update
      *
      * @param c
      */
@@ -3065,8 +3006,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * setAddValuesToNull()
      *
-     * Graphics update
-     * Resets the add panel with null values
+     * Graphics update Resets the add panel with null values
      */
     public void setAddValuesToNull() {
         aStoreField.setText("");
@@ -3100,8 +3040,7 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * setSearchFieldsToValid()
      *
-     * Graphics update
-     * Sets the search panel to accept valid values
+     * Graphics update Sets the search panel to accept valid values
      */
     public void setSearchFieldsToValid() {
         sStoreField.setBackground(Color.white);
@@ -3117,8 +3056,8 @@ public class FinanceGUI extends javax.swing.JFrame {
     /**
      * setSearchFieldsEditable()
      *
-     * Graphics update
-     * Sets the search fields editable based on boolean parameter
+     * Graphics update Sets the search fields editable based on boolean
+     * parameter
      *
      * @param b, the conditional to change the editability of the fields
      */
