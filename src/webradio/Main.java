@@ -51,6 +51,14 @@ public class Main {
     // helpGUI
     static HelpGUI helpGUI;
     static boolean helpGUIVisible = false;
+    
+    // loginGUI
+    static LoginGUI loginGUI;
+    static boolean loginGUIVisible = false;
+    
+    // console
+    static WRAP_Console console;
+    static boolean consoleVisible = false;
 
     /**
      * main()
@@ -61,9 +69,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        LoginGUI loginGUI = new LoginGUI();
-        loginGUI.setLocationRelativeTo(null);
-        loginGUI.setVisible(true);
+        LaunchLoginGUI();
 
         // detects when program exits
         Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -291,5 +297,33 @@ public class Main {
 
     public static void CloseHelpGUI() {
         helpGUIVisible = false;
+    }
+    
+    /**
+     * LoginGUI
+     * Controls the LoginGUI opening and closing
+     */
+    public static void LaunchLoginGUI() {
+        loginGUI = new LoginGUI();
+        loginGUI.setLocationRelativeTo(null);
+        loginGUI.setVisible(true);
+    }
+
+    public static void CloseLoginGUI() {
+        loginGUI.dispose();
+    }
+    
+    /**
+     * WRAP_Console
+ WRAP_Console version of the application
+     */
+    public static void LaunchConsole() {
+        console = new WRAP_Console();
+        console.setLocationRelativeTo(null);
+        console.setVisible(true);
+    }
+
+    public static void CloseConsole() {
+        console.dispose();
     }
 } // end Main

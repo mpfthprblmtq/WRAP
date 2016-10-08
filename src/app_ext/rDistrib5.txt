@@ -1,5 +1,4 @@
 <blank>///<blank>///000000000///0000000000///<blank>///<blank>///-1///-1///<blank>///false///false///false///false///
-Shawn///Bettig///222222222///6304053828///sbettig@siue.edu///s1bettig@gmail.com///1///6///Needs updated 800 number///false///false///false///false///
 Jacob///Fillingim///800403895///6186107641///jfillin@siue.edu///jfilling23@gmail.com///1///6///N/A///false///false///false///false///
 Mike///Jordan///800581321///2242279270///mijorda@siue.edu///mijorda@siue.edu///1///6///N/A///false///false///false///false///
 Kendra///Martin///800535992///6302156678///kendmar@siue.edu///kendmar@siue.edu///1///6///N/A///false///false///false///false///
@@ -31,11 +30,11 @@ Deion///Craig///333333333///7739847098///decraig@siue.edu///decraig@siue.edu///1
 Thomas///Gegan///800508659///6189757910///tgagen@siue.edu///tgagen@siue.edu///1///6///N/A///false///true///false///true///
 Azrael///Long///800581201///3145661575///azlong@siue.edu///azlong@siue.edu///1///6///asdfasdf///false///false///false///false///
 asdf///sagasd///978347894///9236792783///asd@a.com///a@a.com///3///1///asdf///false///false///false///false///
-Reid///Anderson///800493092///2176192076///reiande@siue.edu///stretchanderson93@gmail.com///1///6///needs stuff///false///false///false///false///
 Courtney///Johnson///444444444///6186962558///courtjo@siue.edu///j-drew91@outlook.com///2///6///Needs updated 800 number and stuff///false///false///false///false///
 Sky///Johnson///800536417///3143269216///sjohnaf@siue.edu///sjohnaf@siue.edu///2///6///needs deleted///false///false///false///false///
 Blake///Fry///800490455///6185938512///bfry@siue.edu///bfry@siue.edu///1///6///needs deleted///false///false///false///false///
 Andrew///Braun///800499395///6187980616///abraun@siue.edu///abraun@siue.edu///1///6///asdf///false///false///false///false///
 Deshaunna///York///000000001///7734071276///xxxxx@siue.edu///xxxxx@gmail.com///1///6///needs deleted///false///false///false///false///
+Shawn///Bettig///222222222///6304053828///sbettig@siue.edu///s1bettig@gmail.com///1///6///asdf///false///false///false///false///
+Reid///Anderson///800493092///2176192076///reiande@siue.edu///stretchanderson93@gmail.com///1///6///needs stuff///true///false///false///false///
 Nathan///Ash///111111111///6184014109///nash@siue.edu///nathan.ash@sbcglobal.net///1///6///asdf///false///false///false///false///
-asdf///asfd///347529034///8909087908///asdf@a.a///asdf@a.a///2///0///N/A///false///false///false///false///

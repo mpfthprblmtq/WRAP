@@ -1,2 +1,1 @@
-asdf///asdf///000000000///MON,SUN///am0700,am0700,am0630,am0900///N/A///
-asdfasfd///asdf///444444444///MON///am0630,am0630///N/A///
+asdf///asdf		///800499395///SUN///am0600,am0630///N/A///

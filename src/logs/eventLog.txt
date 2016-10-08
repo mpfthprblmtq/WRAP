@@ -572,3 +572,245 @@
 
 [09/22/16 00:17] user root terminated program
 
+[09/26/16 21:46] user root logged in
+
+[09/26/16 21:47] user root logged out
+
+[09/26/16 21:47] user root terminated program
+
+[09/26/16 21:48] user root logged in
+
+[09/26/16 21:48] user root deleted profile 347529034 (asfd, asdf)
+
+[09/26/16 21:48] user root added profile 897689768 (asdf, asf)
+
+[09/26/16 21:50] user root logged out
+
+[09/26/16 21:50] user root terminated program
+
+[09/26/16 21:50] user root logged in
+
+[09/26/16 21:50] user root deleted profile 897689768 (asdf, asf)
+
+[09/26/16 21:50] user root added profile 899087987 (asdf, asdf)
+
+[09/26/16 21:50] user root logged out
+
+[09/26/16 21:50] user root terminated program
+
+[09/26/16 21:51] user root logged in
+
+[09/26/16 21:51] user root added profile 324513451 (asdf, safd)
+
+[09/26/16 21:51] user root logged out
+
+[09/26/16 21:51] user root terminated program
+
+[09/26/16 21:55] user root logged in
+
+[09/26/16 21:55] user root added profile 987987908 (asdf, asdf)
+
+[09/26/16 21:55] user root logged out
+
+[09/26/16 21:55] user root terminated program
+
+[09/26/16 21:56] user root logged in
+
+[09/26/16 21:56] user root added profile 897098790 (asdf, asdf)
+
+[09/26/16 21:57] user root added profile 908790879 (asdf, asf)
+
+[09/26/16 21:57] user root logged out
+
+[09/26/16 21:57] user root terminated program
+
+[09/26/16 21:58] user root logged in
+
+[09/26/16 21:58] user root added profile 897980798 (asdf, asdf)
+
+[09/26/16 21:58] user root logged out
+
+[09/26/16 21:58] user root terminated program
+
+[09/26/16 22:03] user root logged in
+
+[09/26/16 22:03] user root added profile 879687968 (asdf, asdf)
+
+[09/26/16 22:04] user root logged out
+
+[09/26/16 22:04] user root terminated program
+
+[09/26/16 22:04] user root logged in
+
+[09/26/16 22:04] user root added profile 678576857 (asdf, asdf)
+
+[09/26/16 22:04] user root logged out
+
+[09/26/16 22:04] user root terminated program
+
+[09/26/16 22:06] user asdf logged in
+
+[09/26/16 22:06] user asdf added profile 896789069 (asdf, asdf)
+
+[09/26/16 22:06] user asdf logged out
+
+[09/26/16 22:06] user asdf terminated program
+
+[09/26/16 22:09] user root logged in
+
+[09/26/16 22:09] user root added profile 890790879 (asdf, asdf)
+
+[09/26/16 22:13] user root logged out
+
+[09/26/16 22:13] user root terminated program
+
+[09/26/16 22:13] user root logged in
+
+[09/26/16 22:13] user root added profile 098790879 (asdf, asdf)
+
+[09/26/16 22:13] user root logged out
+
+[09/26/16 22:13] user root terminated program
+
+[09/26/16 22:14] user root logged in
+
+[09/26/16 22:15] user root added profile 890987908 (asdf, asdf)
+
+[09/26/16 22:15] user root deleted profile 899087987 (asdf, asdf)
+
+[09/26/16 22:15] user root deleted profile 324513451 (asdf, safd)
+
+[09/26/16 22:15] user root deleted profile 987987908 (asdf, asdf)
+
+[09/26/16 22:15] user root deleted profile 897098790 (asdf, asdf)
+
+[09/26/16 22:15] user root deleted profile 908790879 (asdf, asf)
+
+[09/26/16 22:16] user root deleted profile 897980798 (asdf, asdf)
+
+[09/26/16 22:16] user root deleted profile 879687968 (asdf, asdf)
+
+[09/26/16 22:16] user root deleted profile 678576857 (asdf, asdf)
+
+[09/26/16 22:16] user root deleted profile 896789069 (asdf, asdf)
+
+[09/26/16 22:16] user root deleted profile 890790879 (asdf, asdf)
+
+[09/26/16 22:16] user root deleted profile 098790879 (asdf, asdf)
+
+[09/26/16 22:16] user root deleted profile 890987908 (asdf, asdf)
+
+[09/26/16 22:16] user root edited profile 222222222 (Bettig, Shawn)
+
+[09/26/16 22:16] user root logged out
+
+[09/26/16 22:16] user root terminated program
+
+[09/26/16 22:16] user root logged in
+
+[09/26/16 22:16] user root edited account asdf
+
+[09/26/16 22:17] user root deleted account asdf
+
+[09/26/16 22:17] user root added account asdf
+
+[09/26/16 22:17] user root deleted account asdf
+
+[09/26/16 22:17] user root logged out
+
+[09/26/16 22:17] user pripley logged in
+
+[09/26/16 22:17] user pripley edited account pripley
+
+[09/26/16 22:18] user pripley logged out
+
+[09/26/16 22:18] user pripley terminated program
+
+[09/26/16 22:18] user pripley logged in
+
+[09/26/16 22:19] user pripley edited account pripley
+
+[09/26/16 22:19] user pripley edited account pripley
+
+[09/26/16 22:19] user pripley added account asdf
+
+[09/26/16 22:20] user pripley deleted account asdf
+
+[09/26/16 22:20] user pripley logged out
+
+[09/26/16 22:20] user pripley terminated program
+
+[09/26/16 22:20] user root logged in
+
+[09/26/16 22:20] user root edited tasks for 800493092 (Anderson, Reid)
+
+[09/26/16 22:20] user root deleted show asdf
+
+[09/26/16 22:21] user root deleted show asdfasfd
+
+[09/26/16 22:21] user root added show asdf
+
+[09/26/16 22:21] user root edited show asdf
+
+[09/26/16 22:22] user root logged out
+
+[09/26/16 22:22] user root terminated program
+
+[09/26/16 22:22] user root logged in
+
+[09/26/16 22:24] user root edited show asdf
+
+[09/26/16 22:24] user root logged out
+
+[09/26/16 22:24] user root terminated program
+
+[09/28/16 13:28] user root logged in
+
+[09/28/16 13:28] user root deleted show asdf
+
+[09/28/16 13:29] user root added show asfd
+
+[09/28/16 13:29] user root edited show asdf
+
+[09/28/16 13:29] user root logged out
+
+[09/28/16 13:29] user root terminated program
+
+[09/28/16 13:31] user root logged in
+
+[09/28/16 13:31] user root logged out
+
+[09/28/16 13:31] user root terminated program
+
+[09/28/16 21:09] user root logged in
+
+[09/28/16 21:10] user root logged out
+
+[09/28/16 21:10] user root terminated program
+
+[09/28/16 21:39] user root logged in
+
+[09/28/16 21:39] user root logged out
+
+[09/28/16 21:39] user root terminated program
+
+[09/28/16 21:40] user root logged in
+
+[09/28/16 21:40] user root logged out
+
+[09/28/16 21:40] user root terminated program
+
+[09/28/16 22:11] user root logged in
+
+[09/28/16 22:12] user root logged out
+
+[09/28/16 22:12] user root terminated program
+
+[10/07/16 00:27] user root logged in
+
+[10/07/16 00:27] user root edited profile 111111111 (Ash, Nathan)
+
+[10/07/16 00:27] user root logged out
+
+[10/07/16 00:27] user root terminated program
+
