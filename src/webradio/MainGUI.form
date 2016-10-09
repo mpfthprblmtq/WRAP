@@ -242,8 +242,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="logo" pref="171" max="32767" attributes="0"/>
-                  <Component id="loginLabel" max="32767" attributes="0"/>
+                  <Component id="loginLabel" pref="171" max="32767" attributes="0"/>
+                  <Component id="logo" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>

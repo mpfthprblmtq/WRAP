@@ -55,10 +55,6 @@ public class Main {
     // loginGUI
     static LoginGUI loginGUI;
     static boolean loginGUIVisible = false;
-    
-    // console
-    static WRAP_Console console;
-    static boolean consoleVisible = false;
 
     /**
      * main()
@@ -313,17 +309,4 @@ public class Main {
         loginGUI.dispose();
     }
     
-    /**
-     * WRAP_Console
- WRAP_Console version of the application
-     */
-    public static void LaunchConsole() {
-        console = new WRAP_Console();
-        console.setLocationRelativeTo(null);
-        console.setVisible(true);
-    }
-
-    public static void CloseConsole() {
-        console.dispose();
-    }
 } // end Main
