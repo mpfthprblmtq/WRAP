@@ -1666,7 +1666,7 @@ public class ShowGUI extends javax.swing.JFrame {
     public ComboBoxElement[] getProfiles() {
 
         int total = IOController.getTotalProfiles();
-        Profile[] pro = IOController.getAllProfiles();
+        Profile[] pro = ProfileController.sort(ProfileController.getAllProfiles());
         cbElements = new ComboBoxElement[total + 1];
 
         if (pro != null && cbElements.length > 0) {

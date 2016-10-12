@@ -1132,7 +1132,6 @@ public class ProfileGUI extends javax.swing.JFrame implements Util {
      * Checks to see if all of the elements are kosher, then calls add() if they are
      */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        System.out.println(evt.getActionCommand());
         if (aCheck()) {
                 add();
         }

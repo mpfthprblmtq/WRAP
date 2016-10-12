@@ -674,13 +674,28 @@ public class TaskGUI extends javax.swing.JFrame {
         fNameField.setText(p.getfName());
         lNameField.setText(p.getlName());
 
-        // check standing
-        if (!p.isDuesPaid() || !p.isPaperworkTurnedIn() || !p.isShowDesc_Time() || !p.isTrained()) {
-            statusField.setForeground(Color.red);
-            statusField.setText("Bad");
-        } else {
-            statusField.setForeground(Color.blue);
-            statusField.setText("Good");
+        int n = count(p);
+        switch(n) {
+            case 0:
+                statusField.setForeground(Color.red);
+                statusField.setText("Horrible");
+                break;
+            case 1:
+                statusField.setForeground(Color.red);
+                statusField.setText("Bad");
+                break;
+            case 2:
+                statusField.setForeground(Color.blue);
+                statusField.setText("Okay");
+                break;
+            case 3:
+                statusField.setForeground(Color.blue);
+                statusField.setText("Good");
+                break;
+            case 4:
+                statusField.setForeground(Color.blue);
+                statusField.setText("Great");
+                break;
         }
 
         // set the checkboxes
@@ -688,6 +703,24 @@ public class TaskGUI extends javax.swing.JFrame {
         ptiBox.setSelected(p.isPaperworkTurnedIn());
         sdtBox.setSelected(p.isShowDesc_Time());
         btBox.setSelected(p.isTrained());
+    }
+    
+    /**
+     * count()
+     * 
+     * Function used to count the number of tasks completed, used in updating
+     * the "status" of the account from good, great, okay, or bad
+     * 
+     * @param p
+     * @return 
+     */
+    public int count(Profile p) {
+        int count = 0;
+        if(p.isDuesPaid()) { count++; }
+        if(p.isPaperworkTurnedIn()) { count++; }
+        if(p.isShowDesc_Time()) { count++; }
+        if(p.isTrained()) { count++; }
+        return count;
     }
 
     /**

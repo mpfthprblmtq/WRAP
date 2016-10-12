@@ -862,3 +862,97 @@
 
 [10/08/16 23:26] user root terminated program
 
+[10/09/16 12:31] user root logged in
+
+[10/09/16 12:31] user root logged out
+
+[10/09/16 12:31] user root terminated program
+
+[10/09/16 12:31] user root logged in
+
+[10/09/16 12:33] user root logged in
+
+[10/09/16 12:33] user root logged out
+
+[10/09/16 12:33] user root terminated program
+
+[10/09/16 12:34] user root logged in
+
+[10/09/16 12:35] user root added show asdf
+
+[10/09/16 12:35] user root deleted show asdf
+
+[10/09/16 12:35] user root logged out
+
+[10/09/16 12:35] user root terminated program
+
+[10/09/16 15:15] user root logged in
+
+[10/09/16 15:17] user root added profile 000000001 (Lname1, Fname1)
+
+[10/09/16 15:17] user root added profile 000000002 (Lname2, Lname2)
+
+[10/09/16 15:18] user root added profile 000000003 (Lname3, Fname3)
+
+[10/09/16 15:18] user root edited profile 000000002 (Lname2, Fname2)
+
+[10/09/16 15:20] user root logged out
+
+[10/09/16 15:20] user root terminated program
+
+[10/09/16 15:20] user root logged in
+
+[10/09/16 15:20] user root logged out
+
+[10/09/16 15:20] user root terminated program
+
+[10/09/16 15:21] user root logged in
+
+[10/09/16 15:21] user root logged in
+
+[10/09/16 15:21] user root logged out
+
+[10/09/16 15:21] user root terminated program
+
+[10/09/16 15:22] user root logged in
+
+[10/09/16 15:22] user root added account username
+
+[10/09/16 15:22] user root edited tasks for 000000001 (Lname1, Fname1)
+
+[10/09/16 15:23] user root edited tasks for 000000002 (Lname2, Fname2)
+
+[10/09/16 15:23] user root edited tasks for 000000003 (Lname3, Fname3)
+
+[10/09/16 15:25] user root logged out
+
+[10/09/16 15:25] user root terminated program
+
+[10/09/16 15:28] user username logged in
+
+[10/09/16 15:28] user username edited tasks for 000000002 (Lname2, Fname2)
+
+[10/09/16 15:28] user username added show Show_1
+
+[10/09/16 15:29] user username added show Show_2
+
+[10/09/16 15:29] user username edited show Show_2
+
+[10/09/16 15:30] user username added show Show_3
+
+[10/09/16 15:31] user username added transaction 528930798 (1.0 - Store 1)
+
+[10/09/16 15:31] user username added transaction 377211757 (2.0 - Store 2)
+
+[10/09/16 15:32] user username added transaction 182431515 (3.0 - Store 3)
+
+[10/09/16 15:32] user username logged out
+
+[10/09/16 15:32] user username terminated program
+
+[10/09/16 15:34] user root logged in
+
+[10/09/16 15:34] user root logged out
+
+[10/09/16 15:34] user root terminated program
+

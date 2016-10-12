@@ -1133,7 +1133,8 @@ public class AccountGUI extends javax.swing.JFrame {
         Account[] str = IOController.getAllUsers();     // get users
         elements = new ListElement[total];              // create array of ListElements
 
-        if (str != null && elements.length > 0) {
+        // tests if there's no elements in the str array
+        if (str[0] != null) {
             // create the DefaultListModel elements
             for (int i = 0; i < total; i++) {
                 elements[i] = new ListElement(str[i].getUsername(),

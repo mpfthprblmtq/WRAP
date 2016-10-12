@@ -2414,7 +2414,6 @@ public class FinanceGUI extends javax.swing.JFrame {
             aStoreField.setForeground(Color.red);
         }
 
-        System.out.println(aDateBox.getSelectedIndex());
         // Month, Day, and Year
         if (aMonthBox.getSelectedIndex() == 0) {
             flag = false;

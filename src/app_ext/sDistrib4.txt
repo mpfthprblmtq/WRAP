@@ -1,1 +1,3 @@
-asdf///asdf		///800499395///SUN///am0600,am0630///N/A///
+Show_1///Show_1 description	///000000001///SUN///am0700,am0800///N/A///
+Show_2///Show_2 description///000000001,000000002///MON,TUE///am0800,am0900,am0900,am1000///N/A///
+Show_3///Show_3 description	///000000001,000000002,000000003///WED,THU,FRI///am1000,am1100,am1100,pm1200,pm1200,pm0100///N/A///
